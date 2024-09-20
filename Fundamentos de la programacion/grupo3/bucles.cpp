@@ -83,10 +83,12 @@ int main() {
     dia = getDay();
     mes = getMounth();
     anyo = getYear();
-
-    cout << anyo;
-
-    cout << esFechaValida(dia, mes, anyo);
+    
+    if (esFechaValida(dia, mes, anyo)) {
+        cout << "La fecha " << dia << "/" << mes << "/" << anyo << " es valida." << endl;
+    } else {
+        cout << "La fecha " << dia << "/" << mes << "/" << anyo << " no es valida." << endl;
+    }
 
     return 0;
 }
