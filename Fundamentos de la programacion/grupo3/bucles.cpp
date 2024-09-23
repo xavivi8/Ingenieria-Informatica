@@ -48,7 +48,7 @@ int getYear() {
 }
 
 bool esBisiesto(int anyo) {
-    // divisible entre 5 y no divisible entre 100 a menos que también sea divisible por 400
+    // divisible entre 4 y no divisible entre 100 a menos que también sea divisible por 400
     if ((anyo % 4 == 0 && anyo % 100 != 0) || (anyo % 400 == 0)) {
         return true;
     }
