@@ -1,6 +1,9 @@
 //
 // Created by jmart on 23/09/2024.
 //
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
 #include <iostream>
 #include <string>
 
@@ -12,7 +15,7 @@ int getInt(string message){
   cout << message << endl;
   cin >> inter;
 
-  return 0;
+  return inter;
 }
 
 double getDouble(string message){
@@ -32,3 +35,5 @@ std::string getString(string message){
 
   return text;
 }
+
+#endif
