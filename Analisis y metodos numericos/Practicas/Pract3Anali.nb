@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[     13417,        378]
-NotebookOptionsPosition[      9455,        299]
-NotebookOutlinePosition[      9852,        315]
-CellTagsIndexPosition[      9809,        312]
+NotebookDataLength[     16210,        459]
+NotebookOptionsPosition[     11583,        368]
+NotebookOutlinePosition[     11980,        384]
+CellTagsIndexPosition[     11937,        381]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -293,6 +293,75 @@ Cell[BoxData[
       RowBox[{"5", "/", "6"}]]}], "}"}]}], "}"}]], "Output",
  CellChangeTimes->{3.9361540704730234`*^9},
  CellLabel->"Out[13]=",ExpressionUUID->"0a588c18-0d49-45c7-a1a5-d17fb73c81aa"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ComplexExpand", "[", 
+  RowBox[{"Solve", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"z", "^", "3"}], "==", "I"}], ",", "z"}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.936154095424512*^9, 3.9361541074753504`*^9}},
+ CellLabel->"In[14]:=",ExpressionUUID->"00ec70d1-0914-4308-b3f2-63b0a16c92a7"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"z", "\[Rule]", 
+     RowBox[{"-", "\[ImaginaryI]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"z", "\[Rule]", 
+     RowBox[{
+      FractionBox["\[ImaginaryI]", "2"], "+", 
+      FractionBox[
+       SqrtBox["3"], "2"]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"z", "\[Rule]", 
+     RowBox[{
+      FractionBox["\[ImaginaryI]", "2"], "-", 
+      FractionBox[
+       SqrtBox["3"], "2"]}]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.936154108464245*^9},
+ CellLabel->"Out[14]=",ExpressionUUID->"1a6c62da-2341-4b11-8023-78c822e6c6d0"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"E", "^", 
+  RowBox[{"(", 
+   RowBox[{"1", "+", "I"}], ")"}]}]], "Input",
+ CellChangeTimes->{{3.936154153031758*^9, 3.936154158626546*^9}},
+ CellLabel->"In[15]:=",ExpressionUUID->"a3773876-21fc-4bca-b60e-d33eccab2a1a"],
+
+Cell[BoxData[
+ SuperscriptBox["\[ExponentialE]", 
+  RowBox[{"1", "+", "\[ImaginaryI]"}]]], "Output",
+ CellChangeTimes->{3.9361541602472134`*^9},
+ CellLabel->"Out[15]=",ExpressionUUID->"f43a34da-faec-4f09-b11b-96a35bd396c4"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ComplexExpand", "[", 
+  RowBox[{"E", "^", 
+   RowBox[{"(", 
+    RowBox[{"1", "+", "I"}], ")"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.93615416263962*^9, 3.936154173155026*^9}},
+ CellLabel->"In[16]:=",ExpressionUUID->"220e35f9-ed77-42a1-84ad-79d99ae29852"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"\[ExponentialE]", " ", 
+   RowBox[{"Cos", "[", "1", "]"}]}], "+", 
+  RowBox[{"\[ImaginaryI]", " ", "\[ExponentialE]", " ", 
+   RowBox[{"Sin", "[", "1", "]"}]}]}]], "Output",
+ CellChangeTimes->{3.936154174014244*^9},
+ CellLabel->"Out[16]=",ExpressionUUID->"9b32e8ac-18c5-4dd6-b524-1f79459c0678"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
@@ -376,7 +445,19 @@ Cell[8247, 256, 236, 6, 34, "Output",ExpressionUUID->"3490836b-20d2-4b90-bc5a-6a
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[8520, 267, 280, 6, 44, "Input",ExpressionUUID->"d064e7fb-e82a-4145-b386-099a1cb89c6b"],
-Cell[8803, 275, 612, 19, 85, "Output",ExpressionUUID->"0a588c18-0d49-45c7-a1a5-d17fb73c81aa"]
+Cell[8803, 275, 612, 19, 37, "Output",ExpressionUUID->"0a588c18-0d49-45c7-a1a5-d17fb73c81aa"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9452, 299, 321, 7, 44, "Input",ExpressionUUID->"00ec70d1-0914-4308-b3f2-63b0a16c92a7"],
+Cell[9776, 308, 612, 19, 53, "Output",ExpressionUUID->"1a6c62da-2341-4b11-8023-78c822e6c6d0"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10425, 332, 241, 5, 44, "Input",ExpressionUUID->"a3773876-21fc-4bca-b60e-d33eccab2a1a"],
+Cell[10669, 339, 223, 4, 34, "Output",ExpressionUUID->"f43a34da-faec-4f09-b11b-96a35bd396c4"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10929, 348, 282, 6, 44, "Input",ExpressionUUID->"220e35f9-ed77-42a1-84ad-79d99ae29852"],
+Cell[11214, 356, 329, 7, 56, "Output",ExpressionUUID->"9b32e8ac-18c5-4dd6-b524-1f79459c0678"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
