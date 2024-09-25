@@ -1,5 +1,21 @@
-in 00
-mov b,a
-in 01
+MVI a, 00
+IN 00
+MOV b, a
 
+MVI A, 01
+IN 01
 
+CMP b
+
+JC A_ES_MENOR
+JZ SON_IGUALES
+OUT 03
+HLT
+
+A_ES_MENOR: mov a,b
+OUT 03
+HLT
+
+SON_IGUALES: mvi a,ff
+OUT 03
+HLT
