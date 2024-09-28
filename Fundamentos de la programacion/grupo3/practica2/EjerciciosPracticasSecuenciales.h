@@ -2,6 +2,7 @@
 // Created by jmart on 23/09/2024.
 //
 #include <iostream>
+#include <cmath>
 #include "functions.h"
 
 using namespace std;
@@ -92,5 +93,23 @@ int ejer5() {
     cout << "Nota media: " << to_string(sumatoria_de_notas/contador_de_notas) << endl;
   }
 
+  return 0;
+}
+
+int ejer6() {
+  float a, b, c;
+  float solucion1, solucion2;
+
+  a = getFloat("Inserte el valor de a: ");
+  b = getFloat("Inserte el valor de b: ");
+  c = getFloat("Inserte el valor de c: ");
+
+  if(a>0 && b>0 && c>0) {
+    solucion1 = (-b+sqrt((b*b)-(4*a*c))) / (2*a);
+    solucion2 = (-b-sqrt((b*b)-(4*a*c))) / (2*a);
+
+    cout << "Soluciones: " << solucion1 << " y " << solucion2 << endl;
+  }
+  
   return 0;
 }
