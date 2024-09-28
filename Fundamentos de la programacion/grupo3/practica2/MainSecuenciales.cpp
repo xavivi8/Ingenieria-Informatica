@@ -13,7 +13,8 @@ std::string textoMenu(){
          "\nEjercicio 1: sumas, restas, divisiones y productos."
          "\nEjercicio 2: iva de in producto."
          "\nEjercicio 3: Datos de una persona"
-         "\nEjercicio 4: Nota media";
+         "\nEjercicio 4: Nota media"
+         "\nEjercicio 5: Media de alumnos";
 }
 
 int menu(){
@@ -43,6 +44,10 @@ int menu(){
       }
       case 4:{
           ejer4();
+          break;
+      }
+      case 5:{
+          ejer5();
           break;
       }
       default: {
