@@ -112,3 +112,14 @@ int ejer6() {
 
   return 0;
 }
+
+int ejer11() {
+  float factura, anyos;
+
+  factura = getFloat("Ingrese la factura: ");
+  anyos = getFloat("Ingrese el numero de anyos: ");
+
+  cout << "Factura: " << to_string(factura * pow(1 + 0.03, anyos)) << endl;
+
+  return 0;
+}
