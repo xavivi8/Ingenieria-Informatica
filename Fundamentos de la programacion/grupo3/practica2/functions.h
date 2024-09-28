@@ -27,6 +27,24 @@ double getDouble(string message){
   return doub;
 }
 
+float getFloat(string message){
+  float floa;
+
+  cout << message << endl;
+  cin >> floa;
+
+  return floa;
+}
+
+char getChar(string message){
+  char caracter;
+
+  cout << message << endl;
+  cin >> caracter;
+
+  return caracter;
+}
+
 std::string getString(string message){
   string text;
 
