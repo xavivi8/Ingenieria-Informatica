@@ -62,3 +62,35 @@ int ejer4(){
 
   return 0;
 }
+
+int ejer5() {
+  bool preguntar_notas = true;
+  float nota;
+  float sumatoria_de_notas = 0;
+  int contador_de_notas = 0;
+
+  cout << "Introduce las notas de los alumnos (introduce -1 o menos para terminar): " << endl;
+
+  while (preguntar_notas) {
+
+    cout << "Inserte una nota: " << endl;
+    cin >> nota;
+
+    if (nota <= -1) {
+      preguntar_notas = false;
+    }
+
+    if (nota >= 0) {
+      sumatoria_de_notas += nota;
+      contador_de_notas++;
+    }
+  }
+
+  if(contador_de_notas == 0) {
+    cout << "No se introdujeron notas válidas." << endl;
+  } else {
+    cout << "Nota media: " << to_string(sumatoria_de_notas/contador_de_notas) << endl;
+  }
+
+  return 0;
+}
