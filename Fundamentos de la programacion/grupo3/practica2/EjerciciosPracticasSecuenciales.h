@@ -34,3 +34,31 @@ int ejer2(){
 
   return 0;
 }
+
+int ejer3(){
+  int edad;
+  float altura;
+  char grupoTeoria;
+
+  edad = getInt("Inserte la edad");
+  altura = getFloat("Inserte la altura");
+  grupoTeoria = getChar("Inserte el grupo de teoria");
+
+  cout << "Ha indicado que su edad es " << edad << " anyos. "
+                                                   "\n Ha indicado que su altura es " << altura << " m. "
+                                                   "\n Ha indicado que su grupo de teoria es " << grupoTeoria << "." << endl;
+
+  return 0;
+}
+
+int ejer4(){
+  int nota_practicas, nota_teoria, nota_participacion;
+
+  nota_practicas = getInt("Nota de practicas");
+  nota_teoria = getInt("Nota de teoria; ");
+  nota_participacion = getInt("Nota de participacion: ");
+
+  cout << "Nota media: " << to_string((nota_practicas * 0.3)+(nota_teoria*0.6)+(nota_participacion*0.1)) << endl;
+
+  return 0;
+}
