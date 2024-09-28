@@ -104,12 +104,11 @@ int ejer6() {
   b = getFloat("Inserte el valor de b: ");
   c = getFloat("Inserte el valor de c: ");
 
-  if(a>0 && b>0 && c>0) {
-    solucion1 = (-b+sqrt((b*b)-(4*a*c))) / (2*a);
-    solucion2 = (-b-sqrt((b*b)-(4*a*c))) / (2*a);
 
-    cout << "Soluciones: " << solucion1 << " y " << solucion2 << endl;
-  }
-  
+  solucion1 = (-b+sqrt((b*b)-(4*a*c))) / (2*a);
+  solucion2 = (-b-sqrt((b*b)-(4*a*c))) / (2*a);
+
+  cout << "Soluciones: " << solucion1 << " y " << solucion2 << endl;
+
   return 0;
 }
