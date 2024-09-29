@@ -94,3 +94,17 @@ int ejer7() {
 
   return 0;
 }
+
+int ejer8() {
+  int edad;
+
+  edad = getInt("Inserte su edad: ");
+
+  if(edad >= 18 && edad<=25) {
+    cout << "Enhorabuena eres joven, estas entre [18,25}" << endl;
+  } else {
+    cout << "No eres joven, no estas entre [18,25}. O eres un niño o un viejo." << endl;
+  }
+
+  return  0;
+}
