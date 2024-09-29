@@ -29,13 +29,13 @@ int ejer3(){
   num3 = getDouble("Inserte el tercer numero: ");
 
   if (num1 > num2 && num1 > num3){
-    cout << "El número mayor es: " << num1 << endl;
+    cout << "El numero mayor es: " << num1 << endl;
   } else if(num2 > num1 && num2 > num3){
-    cout << "El número mayor es: " << num2 << endl;
+    cout << "El numero mayor es: " << num2 << endl;
   } else if(num3 > num1 && num3 > num2){
-    cout << "El número mayor es: " << num3 << endl;
+    cout << "El numero mayor es: " << num3 << endl;
   } else {
-    cout << "Ambos números son iguales." << endl;
+    cout << "Ambos numeros son iguales." << endl;
   }
 
   return 0;
@@ -46,7 +46,7 @@ int ejer4(){
 
   num = getInt("Inserte un numero: ");
 
-  (num % 2 == 0) ? cout << "El número es par" : cout << "El número es impar";
+  (num % 2 == 0) ? cout << "El numero es par" : cout << "El numero es impar";
 
   return 0;
 }
