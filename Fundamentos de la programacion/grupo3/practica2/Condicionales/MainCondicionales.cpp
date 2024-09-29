@@ -4,12 +4,15 @@
 #include <iostream>
 #include <string>
 #include "functions.h"
+#include "EjerciciosPracticasCondicionales.h"
 
 using namespace std;
 
 std::string textoMenu(){
     return "Seleccione el ejercicio que desea probar de secuenciales: "
-           "\nEjercicio 2: Mayor de dos números.";
+           "\nEjercicio 2: Mayor de dos numeros."
+           "\nEjercicio 3: Mayor de tres numeros."
+           "\nEjercicio 4: Comprobar si es par o impar.";
 }
 
 int menu(){
@@ -22,16 +25,24 @@ int menu(){
 
         switch (opcion) {
         case 0: {
-                cout << "Fin" << endl;
-                break;
+          cout << "Fin" << endl;
+          break;
         }
-        case 1: {
-                break;
+        case 2: {
+          ejer2();
+          break;
+        }
+        case 3: {
+          ejer3();
+          break;
+        }
+        case 4: {
+          ejer4();
+          break;
         }
         default: {
-                cout << "Opcion invalida \n\n" << endl;
-                opcion = 1;
-                break;
+          cout << "Opcion invalida \n\n" << endl;
+          break;
         }
 
         }
