@@ -50,3 +50,14 @@ int ejer4(){
 
   return 0;
 }
+
+int ejer5() {
+  int n, m;
+
+  n = getInt("Inserte un numero n: ");
+  m = getInt("Inserte un numero m: ");
+
+  (m % n == 0) ? cout << n << " divide a " << m << endl : cout << n << " no divide a " << m << endl;
+
+  return 0;
+}
