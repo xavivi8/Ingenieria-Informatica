@@ -19,7 +19,7 @@ int menu(){
     int opcion = 1;
 
     do{
-        cout << "---------------------------------------------------------" << endl;
+        cout << "\n ---------------------------------------------------------" << endl;
         cout << textoMenu() << endl;
         opcion = getInt("Inserte la opcion: ");
 
