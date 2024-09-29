@@ -54,4 +54,13 @@ std::string getString(string message){
   return text;
 }
 
+bool isVocal(char caracte){
+  if(caracte=='a' || caracte=='e' || caracte=='i' || caracte=='o' || caracte=='u' || caracte=='A' || caracte=='E'
+      || caracte=='I' || caracte=='O' || caracte=='U' ){
+    return true;
+      } else {
+        return false;
+      }
+}
+
 #endif
