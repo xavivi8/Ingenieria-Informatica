@@ -67,6 +67,21 @@ int ejer6() {
 
   caracte = getChar("Inserte un caracter: ");
 
+  if (caracte >= 'A' && caracte<='Z') {
+    cout << "Es mayuscula" << endl;
+  } else{
+    cout << "Es minuscula" << endl;
+  }
+
+
+  return 0;
+}
+
+int ejer7() {
+  char caracte;
+
+  caracte = getChar("Inserte un caracter: ");
+
   if(isVocal(caracte)) {
     if (caracte >= 'A' && caracte<='Z') {
       cout << "Es mayuscula" << endl;
@@ -74,7 +89,7 @@ int ejer6() {
       cout << "Es minuscula" << endl;
     }
   } else {
-    cout << "No es una bocal" << endl;
+    cout << "No es una vocal" << endl;
   }
 
   return 0;
