@@ -108,3 +108,21 @@ int ejer8() {
 
   return  0;
 }
+
+int ejer9() {
+  double num1, num2, num3, num4;
+  string mensaje = "";
+
+  num1 = getDouble("Inserte el numero 1: ");
+  num2 = getDouble("Inserte el numero 2: ");
+  num3 = getDouble("Inserte el numero 3: ");
+  num4 = getDouble("Inserte el numero 4: ");
+
+  if (num4 == num1 || num4 == num2 || num4 == num3) {
+    cout << "El cuarto numero coincide con alguno de los introducidos." << endl;
+  } else {
+    cout << "El cuarto numero no coincide con ninguno de los introducidos." << endl;
+  }
+
+  return  0;
+}
