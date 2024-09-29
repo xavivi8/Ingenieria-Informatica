@@ -61,3 +61,21 @@ int ejer5() {
 
   return 0;
 }
+
+int ejer6() {
+  char caracte;
+
+  caracte = getChar("Inserte un caracter: ");
+
+  if(isVocal(caracte)) {
+    if (caracte >= 'A' && caracte<='Z') {
+      cout << "Es mayuscula" << endl;
+    } else{
+      cout << "Es minuscula" << endl;
+    }
+  } else {
+    cout << "No es una bocal" << endl;
+  }
+
+  return 0;
+}
