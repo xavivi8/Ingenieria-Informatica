@@ -122,4 +122,28 @@ int ejer7() {
   return 0;
 }
 
+int ejer8() {
+  int numero_terminos;
+  double pi = 0.0;
+
+  numero_terminos = getInt("Introduce el numero de terminos para aproximar pi:");
+
+  // Calcular la aproximacion de pi usando la serie de Leibniz
+  for (int i = 0; i < numero_terminos; i++) {
+    // Si el término es par, se suma; si es impar, se resta
+    if (i % 2 == 0) {
+      pi += 1.0 / (2 * i + 1);
+    } else {
+      pi -= 1.0 / (2 * i + 1);
+    }
+  }
+
+  // Multiplicar por 4 para obtener la aproximación de pi
+  pi *= 4;
+
+  cout << "Aproximacion de pi con " << numero_terminos << " terminos: " << pi << endl;
+
+  return 0;
+}
+
 #endif //EJERCICIOSCICLICAS_H
