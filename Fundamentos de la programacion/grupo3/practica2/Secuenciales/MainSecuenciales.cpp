@@ -16,7 +16,8 @@ std::string textoMenu(){
          "\nEjercicio 4: Nota media"
          "\nEjercicio 5: Media de alumnos"
          "\nEjercicio 6: Raiz cuadrada"
-         "\nEjercicio 11: Factura de luz";
+         "\nEjercicio 11: Factura de luz"
+         "\nFin del programa: 0";
 }
 
 int menu(){

@@ -18,7 +18,8 @@ std::string textoMenu()
         "\nEjercicio 6: Caracter si es o no mayuscula."
         "\nEjercicio 7: Es o no vocal y mayuscula/minuscula."
         "\nEjercicio 8: Comprobar si la edad es entre 18 y 25."
-        "\nEjercicio 9: Comprobar la coincidencia de un cuarto número entre otros tres numeros.";
+        "\nEjercicio 9: Comprobar la coincidencia de un cuarto número entre otros tres numeros."
+        "\nFin del programa: 0";
 }
 
 int menu()
