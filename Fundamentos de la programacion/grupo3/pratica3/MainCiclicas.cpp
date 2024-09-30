@@ -13,6 +13,8 @@ std::string textoMenu()
         "\nEjercicio 3: Numeros mayores que 0."
         "\nEjercicio 4: Suma de cuadrados del 1 al 10."
         "\nEjercicio 5: Calculo de temperaturas."
+        "\nEjercicio 6: Introducir numeros que no esten entre [20,30] y 0."
+        "\nEjercicio 7: Calcular x^y sin usar pow."
         "\nFin del programa: 0";
 }
 
@@ -50,6 +52,16 @@ int menu()
         case 5:
             {
                 ejer5();
+                break;
+            }
+        case 6:
+            {
+                ejer6();
+                break;
+            }
+        case 7:
+            {
+                ejer7();
                 break;
             }
         default:
