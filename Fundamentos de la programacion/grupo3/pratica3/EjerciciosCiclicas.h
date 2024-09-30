@@ -2,6 +2,7 @@
 // Created by jmart on 30/09/2024.
 //
 #include <iostream>
+#include <cmath>
 #include "functions.h"
 
 using namespace std;
@@ -35,6 +36,18 @@ int ejer3() {
   }while (num_actual != 0);
 
   cout << "La cantidad de numeros mayores de " << num_mayor_0 << endl;
+
+  return 0;
+}
+
+int ejer4() {
+  double sol=0;
+  string solucion="";
+
+  for(int i=1; i<=10; i++) {
+    sol += pow(i,2);
+    string += "";
+  }
 
   return 0;
 }
