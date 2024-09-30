@@ -25,8 +25,7 @@ int menu()
 {
     int opcion = 1;
 
-    do
-    {
+    do {
         cout << "\n -----------------------------------------------------------------------------------" << endl;
         cout << textoMenu() << endl;
         opcion = getInt("Inserte la opcion: ");
@@ -84,8 +83,7 @@ int menu()
                 break;
             }
         }
-    }
-    while (opcion != 0);
+    } while (opcion != 0);
 
     return 0;
 }
