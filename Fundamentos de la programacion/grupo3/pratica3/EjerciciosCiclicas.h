@@ -46,8 +46,13 @@ int ejer4() {
 
   for(int i=1; i<=10; i++) {
     sol += pow(i,2);
-    string += "";
+    solucion += to_string(i)+"^2";
+    if(i!=10) {
+      solucion += " + ";
+    }
   }
+
+  cout << sol << " = " << solucion;
 
   return 0;
 }
