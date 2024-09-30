@@ -57,4 +57,28 @@ int ejer4() {
   return 0;
 }
 
+int ejer5() {
+  int contador=0;
+  double temperatura, sumatorio=0, mayor = 0, menor = 0;
+
+  for(int i=0; i<=24; i+=4) {
+    contador++;
+
+    temperatura = getDouble(("Inserte la temperatura " + to_string(i) +": "));
+
+    if(temperatura<menor || i == 0) {
+      menor = temperatura;
+    }
+    if(temperatura>mayor || i==0) {
+      mayor = temperatura;
+    }
+
+    sumatorio += temperatura;
+  }
+
+  cout << "Media: " << (sumatorio/contador) << "\nMayor: " << mayor << "\nMenor: " << menor <<endl;
+
+  return 0;
+}
+
 #endif //EJERCICIOSCICLICAS_H
