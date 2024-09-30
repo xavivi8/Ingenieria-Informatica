@@ -81,4 +81,45 @@ int ejer5() {
   return 0;
 }
 
+int ejer6() {
+  int num;
+
+  cout << "Introduce un numero distinto de 0 y fuera del rango [20,30]" << endl;
+
+  do {
+    num = getInt("Inserte un numero: ");
+  } while (!(num ==0 ||(num >= 20 && num <=30)));
+
+  return 0;
+}
+
+int ejer7() {
+  int x, y;
+  long long resultado = 1;
+
+  cout << "Inserte numeros para calcular x^y" << endl;
+
+  do {
+    x = getInt("Inserte un numero x: ");
+    if(x<=0) {
+      cout << "x debe ser positivo." << endl;
+    }
+  } while (x <= 0);
+
+  do {
+    y = getInt("Inserte un numero y: ");
+    if(y<=0) {
+      cout << "y debe ser positivo." << endl;
+    }
+  } while (y <= 0);
+
+  for(int i = 1; i<=y; i++) {
+    resultado *= x;
+  }
+
+  cout << "El resiltado de " << x << "^" << y << " da " << resultado << endl;
+
+  return 0;
+}
+
 #endif //EJERCICIOSCICLICAS_H
