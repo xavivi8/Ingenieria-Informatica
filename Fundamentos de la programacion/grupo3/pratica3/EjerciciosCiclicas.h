@@ -21,4 +21,22 @@ int ejer2(){
   return 0;
 }
 
+int ejer3() {
+  int num_mayor_0=0;
+  double num_actual;
+
+  do {
+    num_actual = getDouble("Inserte un numero: ");
+
+    if (num_actual > 0){
+      num_mayor_0++;
+    }
+
+  }while (num_actual != 0);
+
+  cout << "La cantidad de numeros mayores de " << num_mayor_0 << endl;
+
+  return 0;
+}
+
 #endif //EJERCICIOSCICLICAS_H
