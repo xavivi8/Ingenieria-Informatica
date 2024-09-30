@@ -10,7 +10,8 @@ std::string textoMenu()
 {
     return "Seleccione el ejercicio que desea probar de secuenciales: "
         "\nEjercicio 2: Tabla de multiplicar de un numero."
-        "\nEjercicio 3: Mayor de tres numeros."
+        "\nEjercicio 3: Numeros mayores que 0."
+        "\nEjercicio 4: Suma de cuadrados del 1 al 10."
         "\nFin del programa: 0";
 }
 
@@ -33,6 +34,16 @@ int menu()
         case 2:
             {
                 ejer2();
+                break;
+            }
+        case 3:
+            {
+                ejer3();
+                break;
+            }
+        case 4:
+            {
+                ejer4();
                 break;
             }
         default:
