@@ -190,4 +190,24 @@ int ejer9(){
   return 0;
 }
 
+int ejer10() {
+  char caracter;
+  string son_vocales;
+
+  cout << "Inserte caracteres, para parar inserte + o - ." << endl;
+
+  do{
+    caracter = getChar("Inserte un caracter: ");
+
+    if(!isVocal(caracter) && son_vocales.empty() && caracter != '+' && caracter != '-') {
+      son_vocales = "no ";
+    }
+
+  } while (caracter != '+' && caracter != '-');
+
+  cout << "En los caracteres insertados " << son_vocales << "hay vocales." << endl;
+
+  return  0;
+}
+
 #endif //EJERCICIOSCICLICAS_H
