@@ -17,6 +17,7 @@ std::string textoMenu()
         "\nEjercicio 7: Calcular x^y sin usar pow."
         "\nEjercicio 8: Acercarse a Pi."
         "\nEjercicio 9: Algoritmo de Euclides."
+        "\nEjercicio 10: Son o no vocales."
         "\nFin del programa: 0";
 }
 
@@ -74,6 +75,11 @@ int menu()
         case 9:
             {
                 ejer9();
+                break;
+            }
+        case 10:
+            {
+                ejer10();
                 break;
             }
         default:
