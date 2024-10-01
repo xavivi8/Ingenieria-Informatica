@@ -146,4 +146,29 @@ int ejer8() {
   return 0;
 }
 
+int ejer9(){
+  int mcd, x, y;
+
+  do {
+    x = getInt("Inserte un numero x: ");
+    y = getInt("Inserte un numero y: ");
+
+    if(x<=0 || y<=0) {
+      cout << "Ambos números deben ser positivos." << endl;
+    }
+  } while (x <= 0 && y <= 0);
+
+  mcd = x;
+
+  while(y != 0) {
+    int resto = mcd % y;
+    mcd=y;
+    y=resto;
+  }
+
+  cout << "El MCD de " << x << " y " << y << " es: " << mcd << endl;
+
+  return 0;
+}
+
 #endif //EJERCICIOSCICLICAS_H
