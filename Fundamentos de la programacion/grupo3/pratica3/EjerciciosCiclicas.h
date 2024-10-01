@@ -210,4 +210,21 @@ int ejer10() {
   return  0;
 }
 
+int ejer11() {
+  int suma = 0;
+
+  for (int i = 9; i <= 45; i++) {
+    if (i % 3 == 0) {
+      if (i < 21 || i > 27) {
+        suma += i;
+      }
+    }
+  }
+
+  // Mostrar el resultado
+  std::cout << "La suma de los multiplos de 3 entre 9 y 45, excluyendo los numeros entre 21 y 27, es: " << suma << std::endl;
+
+  return 0;
+}
+
 #endif //EJERCICIOSCICLICAS_H
