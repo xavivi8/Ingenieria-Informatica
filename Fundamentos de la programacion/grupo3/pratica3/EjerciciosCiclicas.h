@@ -147,7 +147,8 @@ int ejer8() {
 }
 
 int ejer9(){
-  int mcd, x, y;
+  bool finish = false;
+  int origin_x, origin_y, mcd, x, y;
 
   do {
     x = getInt("Inserte un numero x: ");
@@ -159,14 +160,32 @@ int ejer9(){
   } while (x <= 0 && y <= 0);
 
   mcd = x;
+  origin_x = x;
+  origin_y = y;
 
-  while(y != 0) {
-    int resto = mcd % y;
-    mcd=y;
-    y=resto;
+  if (x%y==0) {
+    mcd = y;
+    cout << "mcd(" << origin_x << "," << origin_y << ") = " << y << endl;
+  } else {
+    while(y != 0 && finish == false) {
+      int resto = x % y;
+      x=y;
+      y=resto;
+      int r= x % y;
+      if(r==0) {
+        mcd = y;
+        finish = true;
+      } else if(y % r == 0) {
+        mcd = y;
+        finish = true;
+      } else if(r % (y % r) == 0) {
+        mcd = y;
+        finish = true;
+      }
+    }
+
+    cout << "mcd(" << origin_x << "," << origin_y << ") = mcd( " << origin_y << "," << mcd << ")" << endl;
   }
-
-  cout << "El MCD de " << x << " y " << y << " es: " << mcd << endl;
 
   return 0;
 }
