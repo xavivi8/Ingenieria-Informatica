@@ -18,6 +18,7 @@ std::string textoMenu()
         "\nEjercicio 8: Acercarse a Pi."
         "\nEjercicio 9: Algoritmo de Euclides."
         "\nEjercicio 10: Son o no vocales."
+        "\nEjercicio 11: Suma de multiplos de 3 entre 9 y 45 excluyendo los numeros entre [21,27]"
         "\nFin del programa: 0";
 }
 
@@ -80,6 +81,11 @@ int menu()
         case 10:
             {
                 ejer10();
+                break;
+            }
+        case 11:
+            {
+                ejer11();
                 break;
             }
         default:
