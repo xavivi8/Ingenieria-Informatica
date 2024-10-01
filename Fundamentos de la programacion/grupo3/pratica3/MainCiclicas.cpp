@@ -15,6 +15,8 @@ std::string textoMenu()
         "\nEjercicio 5: Calculo de temperaturas."
         "\nEjercicio 6: Introducir numeros que no esten entre [20,30] y 0."
         "\nEjercicio 7: Calcular x^y sin usar pow."
+        "\nEjercicio 8: Acercarse a Pi."
+        "\nEjercicio 9: Algoritmo de Euclides."
         "\nFin del programa: 0";
 }
 
@@ -62,6 +64,16 @@ int menu()
         case 7:
             {
                 ejer7();
+                break;
+            }
+        case 8:
+            {
+                ejer8();
+                break;
+            }
+        case 9:
+            {
+                ejer9();
                 break;
             }
         default:
