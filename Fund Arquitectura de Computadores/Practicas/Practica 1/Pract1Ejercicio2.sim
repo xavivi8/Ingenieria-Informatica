@@ -9,11 +9,15 @@ IN 01
 MVI c,02
 IN 02
 
-
+JZ suma
 
 HLT
 
-resta: 
-OUT 01
+suma: mov b,a
+ADD c
+OUT 03
 HLT
-suma:
+resta: mov b,a
+SUB c
+OUT 03
+HLT
