@@ -1,18 +1,21 @@
 IN 01
+MOV b,a
 IN 02
+mov c,b
 IN 00
-CPI 00;hacer tambien un cpi del uno para comprobar que sea 1 y no mas
+CPI 00
 
 JZ suma
 JNZ resta
 
 HLT
 
-suma: mov b,a
+suma: mov a,b
 ADD c
 OUT 03
 HLT
-resta: mov b,a
+
+resta: mov a,b
 SUB c
 OUT 03
 HLT
