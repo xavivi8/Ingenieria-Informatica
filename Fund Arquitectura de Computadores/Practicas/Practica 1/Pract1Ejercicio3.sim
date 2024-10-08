@@ -3,12 +3,14 @@ out 00
 
 derecha: rrc
 out 00
+out 01
 cpi 01
 
 jz izquierda
 jmp derecha
 izquierda: rlc
 out 00
+out 01
 cpi 80
 jz derecha
 jmp izquierda
