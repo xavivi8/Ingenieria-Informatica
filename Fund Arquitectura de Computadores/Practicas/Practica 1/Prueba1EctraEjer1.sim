@@ -1,0 +1,37 @@
+IN 00
+MOV b, a
+
+IN 01
+
+CMP b
+
+JC 01_GANA
+JZ 00_GANA
+JNC 01_GANA
+HLT
+
+00_GANA: mov a,b
+MVI h,00 
+
+01_GANA: mov a,b
+MVI h,01
+RC
+
+IN 02
+MOV b,a
+
+IN 03
+
+CMP b
+
+JC 02_GANA
+JZ 02_GANA
+JNC 03_GANA
+OUT 03
+
+03_GANA: mov a,b
+MVI L,03
+
+02_GANA: mov a,b
+MVI L,02
+
