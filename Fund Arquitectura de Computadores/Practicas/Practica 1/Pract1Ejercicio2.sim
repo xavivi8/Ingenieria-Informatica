@@ -1,7 +1,7 @@
 IN 01
 MOV b,a
 IN 02
-mov c,a
+MOV c,a
 IN 00
 CPI 00
 
@@ -10,12 +10,12 @@ JZ resta
 
 HLT
 
-suma: mov a,b
+suma: MOV a,b
 ADD c
 OUT 03
 HLT
 
-resta: mov a,b
+resta: MOV a,b
 SUB c
 OUT 03
 HLT
