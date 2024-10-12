@@ -17,7 +17,7 @@ std::string textoMenu()
 
 int menu()
 {
-    int opcion = 1;
+    int opcion;
 
     do {
         cout << "\n -----------------------------------------------------------------------------------" << endl;
