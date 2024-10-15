@@ -1,17 +1,17 @@
-start: MVI a,80
+START: MVI a,80
 OUT 00
 OUT 01
 
-derecha: RRC
+DERECHA: RRC
 OUT 00
 OUT 01
 CPI 01
 
-JZ izquierda
-JMP derecha
-izquierda: RLC
+JZ IZQUIERDA
+JMP DERECHA
+IZQUIERDA: RLC
 OUT 00
 OUT 01
 CPI 80
-JZ derecha
-JMP izquierda
+JZ DERECHA
+JMP IZQUIERDA

@@ -1,4 +1,4 @@
-IN 01
+START: IN 01
 MOV b,a
 IN 02
 MOV c,a
@@ -10,19 +10,19 @@ JZ resta
 
 HLT
 
-suma: MOV a,b
+SUMA: MOV a,b
 ADD c
 OUT 03
 HLT
 
-resta: MOV a,b
+RESTA: MOV a,b
 SUB c
 MOV c, a
 CPI 00
-JC negativo
+JC NEGATIVO
 OUT 03
 HLT
 
-negativo:MVI a FF
+NEGATIVO:MVI a FF
 OUT 03
 HLT
