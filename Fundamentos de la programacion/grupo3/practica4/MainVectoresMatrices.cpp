@@ -14,6 +14,7 @@ std::string textoMenu()
         "\nEjercicio 1: Almacenar y mostrar numeros con su indice."
         "\nEjercicio 2: Mostrar un array de numeros al reves."
         "\nEjercicio 3: Sumatoria de un array."
+        "\nEjercicio 4: Suma acumulada de los elementos de una array."
         "\nFin del programa: 0";
 }
 
@@ -46,6 +47,11 @@ int menu()
         case 3:
             {
                 ejer3();
+                break;
+            }
+        case 4:
+            {
+                ejer4();
                 break;
             }
         default:

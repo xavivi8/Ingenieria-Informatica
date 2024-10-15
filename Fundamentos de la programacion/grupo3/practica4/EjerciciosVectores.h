@@ -55,7 +55,6 @@ int ejer1(){
   return 0;
 }
 
-
 int ejer2() {
   int numeros[MAX_NUMEROS];
   int cantidad = 0;
@@ -90,5 +89,24 @@ int ejer3() {
   return 0;
 }
 
+int ejer4() {
+  int numeros[MAX_NUMEROS];
+  int cantidad = 0;
+  int sumatoria = 0;
+  Resultado res = pedirNumeros();
+
+  cantidad = res.cantidad;
+  for (int i = 0; i < cantidad; ++i) {
+    numeros[i] = (res.numeros[i]+sumatoria);
+    sumatoria += res.numeros[i];
+  }
+
+  cout << "\nIndice\tValor\n";
+  for (int i = 0; i < cantidad; ++i) {
+    cout << (i+1) << "\t" << numeros[i] << "\n";
+  }
+
+  return 0;
+}
 
 #endif //EJERCICIOSVECTORES_H
