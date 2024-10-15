@@ -1,33 +1,34 @@
-IN 00
-MOV b, a
-IN 01
-CMP b
-JC 01_GANA
-JZ 00_GANA
-JNC 01_GANA
+START:   MVI A, 00       ; Inicializar el acumulador
+IN  00          ; Leer primer número
+MOV B, A         ; Guardar en B (mayor)
+MOV C, A         ; Guardar en C (menor)
 
-COMPARAR_02_03: IN 02
-MOV b,a
+IN  01          ; Leer segundo número
+CMP B            ; Comparar con B (mayor)
+JNC CHECK_MIN1   ; Si A >= B, no cambiar B
+MOV B, A         ; Si A < B, B = A (nuevo mayor)
+CHECK_MIN1: CMP C         ; Comparar con C (menor)
+JC CHECK_NEXT2   ; Si A >= C, no cambiar C
+MOV C, A         ; Si A < C, C = A (nuevo menor)
+         
+CHECK_NEXT2: IN  02     ; Leer tercer número
+CMP B            ; Comparar con B (mayor)
+JNC CHECK_MIN2   ; Si A >= B, no cambiar B
+MOV B, A         ; Si A < B, B = A (nuevo mayor)
+CHECK_MIN2: CMP C         ; Comparar con C (menor)
+JC CHECK_NEXT3   ; Si A >= C, no cambiar C
+MOV C, A         ; Si A < C, C = A (nuevo menor)
 
-IN 03
+CHECK_NEXT3: IN  03      ; Leer cuarto número
+CMP B            ; Comparar con B (mayor)
+JNC OUTPUT_MAX   ; Si A >= B, no cambiar B
+MOV B, A         ; Si A < B, B = A (nuevo mayor)
 
-CMP b
-JC 02_GANA
-JZ 02_GANA
-JNC 03_GANA
-HLT
+OUTPUT_MAX: MOV A, B      ; El mayor en A
+OUT 03          ; Enviar el mayor al puerto 03h
+         
+MOV A, C         ; El menor en A
+ OUT 03          ; Enviar el menor al puerto 03h
+HLT              ; Terminar el programa
 
-00_GANA: mov a,b
-MVI h,00 
-JZ COMPARAR_02_03
-
-01_GANA: mov a,b
-MVI h,01
-JNC COMPARAR_02_03
-
-03_GANA: mov a,b
-MVI L,03
-
-02_GANA: mov a,b
-MVI L,02
 
