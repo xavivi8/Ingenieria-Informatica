@@ -74,6 +74,19 @@ int ejer2() {
   return 0;
 }
 
+int ejer3() {
+  int numeros[MAX_NUMEROS];
+  int cantidad = 0;
+  int sumatoria = 0;
+  Resultado res = pedirNumeros();
 
+  cantidad = res.cantidad;
+  for (int i = 0; i < cantidad; ++i) {
+    numeros[i] = res.numeros[i];
+    sumatoria += res.numeros[i];
+  }
+
+  cout << "La suma de todos los numeros es de: " << sumatoria << endl;
+}
 
 #endif //EJERCICIOSVECTORES_H

@@ -13,6 +13,7 @@ std::string textoMenu()
     return "Seleccione el ejercicio que desea probar de secuenciales: "
         "\nEjercicio 1: Almacenar y mostrar numeros con su indice."
         "\nEjercicio 2: Mostrar un array de numeros al reves."
+        "\nEjercicio 3: Sumatoria de un array."
         "\nFin del programa: 0";
 }
 
@@ -40,6 +41,11 @@ int menu()
         case 2:
             {
                 ejer2();
+                break;
+            }
+        case 3:
+            {
+                ejer3();
                 break;
             }
         default:
