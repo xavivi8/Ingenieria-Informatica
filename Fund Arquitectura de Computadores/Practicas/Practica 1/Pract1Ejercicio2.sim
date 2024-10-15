@@ -17,5 +17,12 @@ HLT
 
 resta: MOV a,b
 SUB c
+MOV c, a
+CPI 00
+JC negativo
+OUT 03
+HLT
+
+negativo:MVI a FF
 OUT 03
 HLT
