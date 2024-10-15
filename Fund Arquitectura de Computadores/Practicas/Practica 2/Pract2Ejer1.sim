@@ -1,0 +1,40 @@
+mvi h 00
+mvi e,00
+lda 0100
+mov b,a
+lda 0101
+mov C,a
+mvi d,e1
+cmp b
+jc Bmayor
+jnc Cmayor
+Bmayor: mov a,b
+mov l,b
+add b
+CC Eaumento
+inr d
+mov h,a
+mov a,c
+Cmp d
+mov a,h
+jz Salida
+jnc Bmayor
+
+Cmayor:mov l,c
+add c
+CC Eaumento
+inr d
+mov h,a
+mov a,b
+Cmp d
+mov a,h
+jz Salida
+jnc Cmayor
+
+Eaumento:inr e
+ret
+
+Salida: out 03
+mov a,e
+out 02
+hlt
