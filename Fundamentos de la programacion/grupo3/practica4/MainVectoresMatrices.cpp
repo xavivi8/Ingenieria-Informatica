@@ -33,7 +33,7 @@ int menu()
             }
         case 1:
             {
-                ejercicio1();
+                ejer1();
                 break;
             }
         default:

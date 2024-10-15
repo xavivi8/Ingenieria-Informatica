@@ -13,7 +13,7 @@ using namespace std;
 
 const int MAX_NUMEROS = 100;
 
-int ejercicio1(){
+int ejer1(){
   int numeros[MAX_NUMEROS];
   int cantidad = 0;
   int num = 0;
