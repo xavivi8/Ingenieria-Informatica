@@ -87,6 +87,8 @@ int ejer3() {
   }
 
   cout << "La suma de todos los numeros es de: " << sumatoria << endl;
+  return 0;
 }
+
 
 #endif //EJERCICIOSVECTORES_H
