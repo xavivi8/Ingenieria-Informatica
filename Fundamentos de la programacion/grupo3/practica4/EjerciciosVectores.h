@@ -24,14 +24,14 @@ Resultado pedirNumeros() {
   int num = 0;
   res.cantidad = 0;
 
-  cout << "Inserte numeros hasta " << MAX_NUMEROS << " para almacenarlos (para salir inserte -1): " << endl;
+  cout << "Inserte numeros hasta " << MAX_NUMEROS << " para almacenarlos (para salir inserte 0): " << endl;
   do {
     cin >> num;
-    if (num != -1 && res.cantidad < MAX_NUMEROS) {
+    if (num != 0 && res.cantidad < MAX_NUMEROS) {
       res.numeros[res.cantidad] = num;
       res.cantidad++;
     }
-  } while (num != -1 && res.cantidad < MAX_NUMEROS);
+  } while (num != 0 && res.cantidad < MAX_NUMEROS);
 
   return res;
 }
@@ -73,5 +73,7 @@ int ejer2() {
 
   return 0;
 }
+
+
 
 #endif //EJERCICIOSVECTORES_H
