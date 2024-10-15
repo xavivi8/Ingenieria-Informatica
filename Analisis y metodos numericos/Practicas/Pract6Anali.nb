@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[     44313,        990]
-NotebookOptionsPosition[     39539,        901]
-NotebookOutlinePosition[     39941,        917]
-CellTagsIndexPosition[     39898,        914]
+NotebookDataLength[     49633,       1134]
+NotebookOptionsPosition[     43597,       1025]
+NotebookOutlinePosition[     43999,       1041]
+CellTagsIndexPosition[     43956,       1038]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -878,23 +878,147 @@ Cell[BoxData[
  RowBox[{
   RowBox[{"f", "[", "x_", "]"}], ":=", 
   RowBox[{
-   RowBox[{"x", "^", "3"}], " ", "-", 
+   SuperscriptBox["x", "3"], "-", 
    RowBox[{"4", "x"}], "+", "8"}]}]], "Input",
- CellChangeTimes->{{3.9379679900445156`*^9, 3.937968009781229*^9}},
- CellLabel->"In[24]:=",ExpressionUUID->"4e3b0685-3d33-ed4e-9136-cd5a56224c3e"],
+ CellChangeTimes->{{3.9379679900445156`*^9, 3.937968009781229*^9}, {
+  3.9379683555662823`*^9, 3.937968368899702*^9}},
+ CellLabel->"In[27]:=",ExpressionUUID->"4e3b0685-3d33-ed4e-9136-cd5a56224c3e"],
 
 Cell["\<\
 Se estudia: el dominio de f, la continuidad de f, los ceros de f y se forman \
-intervalos para evaluar f en ellos.\
+intervalos para evaluar f en ellos.
+Como es un polinomio, el dominio es toda una recta real y siempre es \
+continua. Falta estudiar los ceros de f.\
 \>", "Text",
  CellChangeTimes->{{3.9379680135336227`*^9, 
-  3.9379680567328033`*^9}},ExpressionUUID->"b3748a37-d3ff-6d45-93da-\
+  3.9379681220181465`*^9}},ExpressionUUID->"b3748a37-d3ff-6d45-93da-\
 1bf63d2db67e"],
 
-Cell[BoxData[""], "Input",
- CellChangeTimes->{{3.937967999834606*^9, 
-  3.9379680009353256`*^9}},ExpressionUUID->"38b8cc26-2bc6-da48-8fa0-\
-4188c3d9af73"]
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Solve", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"f", "[", "x", "]"}], "==", "0"}], ",", "x"}], "]"}], "//", 
+  "N"}]], "Input",
+ CellChangeTimes->{{3.937968125766939*^9, 3.937968146585106*^9}, {
+  3.9379682082265053`*^9, 3.93796820968301*^9}},
+ CellLabel->"In[28]:=",ExpressionUUID->"ffe580b7-4f9a-7446-b2bf-6baa9a3005ca"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", "}"}], "}"}]], "Output",
+ CellChangeTimes->{{3.937968138987089*^9, 3.937968147549118*^9}, 
+   3.9379683727020626`*^9},
+ CellLabel->"Out[28]=",ExpressionUUID->"3da39cde-2ffa-824c-a292-aac3526025ea"]
+}, Open  ]],
+
+Cell["Solo hay un cero real, -2, 649...", "Text",
+ CellChangeTimes->{{3.937967999834606*^9, 3.9379680009353256`*^9}, {
+  3.93796816899704*^9, 3.9379681840616703`*^9}, {3.937968215705862*^9, 
+  3.937968216039589*^9}},ExpressionUUID->"38b8cc26-2bc6-da48-8fa0-\
+4188c3d9af73"],
+
+Cell["Evaluamos f en un punto anterior y otro posterior", "Text",
+ CellChangeTimes->{{3.937968220207548*^9, 
+  3.9379682357575626`*^9}},ExpressionUUID->"a9f11d2a-a6bd-2542-b99f-\
+06be85581093"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"f", "[", 
+    RowBox[{"-", "3"}], "]"}], ",", 
+   RowBox[{"f", "[", "0", "]"}]}], "}"}]], "Input",
+ CellChangeTimes->{{3.937968188510231*^9, 3.937968197493311*^9}},
+ CellLabel->"In[29]:=",ExpressionUUID->"64d38f37-37d3-0d4f-833c-ff221e379379"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"-", "7"}], ",", "8"}], "}"}]], "Output",
+ CellChangeTimes->{3.937968375979538*^9},
+ CellLabel->"Out[29]=",ExpressionUUID->"ba065a69-008a-554b-aa60-e2ddedb8240f"]
+}, Open  ]],
+
+Cell["\<\
+f es negativa hasta el - 2.649 ... y positiva despu\[EAcute]s .
+  Para el crecimiento hacemos lo mismo, pero para la funci\[OAcute]n f\
+\[CloseCurlyQuote][x]\
+\>", "Text",
+ CellChangeTimes->{{3.9379682395970917`*^9, 
+  3.937968295417019*^9}},ExpressionUUID->"f07d0a91-99c0-8943-a0d2-\
+a06fba38de21"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Solve", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"f", "'"}], "[", "x", "]"}], "==", "0"}], ",", "x"}], "]"}], "//",
+   "N"}]], "Input",
+ CellChangeTimes->{{3.937968298631836*^9, 3.937968312996069*^9}},
+ CellLabel->"In[30]:=",ExpressionUUID->"36e00ac9-e8b2-af44-a32b-02b343fb81a7"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"x", "\[Rule]", 
+     RowBox[{"-", "1.1547005383792517`"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", "\[Rule]", "1.1547005383792517`"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.9379683778817883`*^9},
+ CellLabel->"Out[30]=",ExpressionUUID->"3a1af44b-6349-0546-867b-6bb89e2f72b7"]
+}, Open  ]],
+
+Cell["\<\
+Se anula en dos puntos. Hay que evaluar en un punto anterior, en otro entre \
+los dos puntos y en uno mayor.\
+\>", "Text",
+ CellChangeTimes->{{3.937968316559187*^9, 
+  3.9379683477132664`*^9}},ExpressionUUID->"c6c79a59-db9d-4e42-b167-\
+8872da3dc0a4"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"f", "'"}], "[", 
+    RowBox[{"-", "2"}], "]"}], ",", 
+   RowBox[{
+    RowBox[{"f", "'"}], "[", "0", "]"}], ",", 
+   RowBox[{"f", "[", "2", "]"}]}], "}"}]], "Input",
+ CellChangeTimes->{{3.9379683851467075`*^9, 3.9379684058224583`*^9}},
+ CellLabel->"In[31]:=",ExpressionUUID->"d24707db-8773-7849-a50f-c2d12c705c0a"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"8", ",", 
+   RowBox[{"-", "4"}], ",", "8"}], "}"}]], "Output",
+ CellChangeTimes->{3.937968408574402*^9},
+ CellLabel->"Out[31]=",ExpressionUUID->"72b5accf-1c38-194c-bc47-e6f9ecf23780"]
+}, Open  ]],
+
+Cell["\<\
+f' es positiva antes de - 1.15, negativa entre - 1.15 y 1.15 y es positiva \
+despu\[EAcute]s de 1.15. 
+Por tanto, f es creciente hasta -1.15, decreciente entre -1.15 y 1.15 y \
+creciente despu\[EAcute]s de 1.15. Tiene un m\[AAcute]ximo local en -1.15 y \
+un m\[IAcute]nimo local en 1.15.\
+\>", "Text",
+ CellChangeTimes->{{3.937968413203285*^9, 
+  3.9379685470340176`*^9}},ExpressionUUID->"bd82fc76-0eb5-2d43-801c-\
+af7a8731c514"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
@@ -986,9 +1110,29 @@ Cell[10893, 346, 418, 11, 42, "Input",ExpressionUUID->"b89123ac-f928-714c-9094-3
 Cell[11314, 359, 27220, 508, 241, "Output",ExpressionUUID->"2ce315d7-8342-a44a-b269-7856db1091e6"]
 }, Open  ]],
 Cell[38549, 870, 212, 4, 33, "Text",ExpressionUUID->"3abc1b25-b5ca-b344-a0d0-a08b2dc125a5"],
-Cell[38764, 876, 307, 7, 28, "Input",ExpressionUUID->"4e3b0685-3d33-ed4e-9136-cd5a56224c3e"],
-Cell[39074, 885, 268, 6, 33, "Text",ExpressionUUID->"b3748a37-d3ff-6d45-93da-1bf63d2db67e"],
-Cell[39345, 893, 154, 3, 28, "Input",ExpressionUUID->"38b8cc26-2bc6-da48-8fa0-4188c3d9af73"]
+Cell[38764, 876, 354, 8, 28, "Input",ExpressionUUID->"4e3b0685-3d33-ed4e-9136-cd5a56224c3e"],
+Cell[39121, 886, 380, 8, 55, "Text",ExpressionUUID->"b3748a37-d3ff-6d45-93da-1bf63d2db67e"],
+Cell[CellGroupData[{
+Cell[39526, 898, 361, 9, 42, "Input",ExpressionUUID->"ffe580b7-4f9a-7446-b2bf-6baa9a3005ca"],
+Cell[39890, 909, 241, 5, 32, "Output",ExpressionUUID->"3da39cde-2ffa-824c-a292-aac3526025ea"]
+}, Open  ]],
+Cell[40146, 917, 273, 4, 33, "Text",ExpressionUUID->"38b8cc26-2bc6-da48-8fa0-4188c3d9af73"],
+Cell[40422, 923, 193, 3, 33, "Text",ExpressionUUID->"a9f11d2a-a6bd-2542-b99f-06be85581093"],
+Cell[CellGroupData[{
+Cell[40640, 930, 295, 7, 28, "Input",ExpressionUUID->"64d38f37-37d3-0d4f-833c-ff221e379379"],
+Cell[40938, 939, 213, 5, 32, "Output",ExpressionUUID->"ba065a69-008a-554b-aa60-e2ddedb8240f"]
+}, Open  ]],
+Cell[41166, 947, 309, 7, 55, "Text",ExpressionUUID->"f07d0a91-99c0-8943-a0d2-a06fba38de21"],
+Cell[CellGroupData[{
+Cell[41500, 958, 333, 9, 42, "Input",ExpressionUUID->"36e00ac9-e8b2-af44-a32b-02b343fb81a7"],
+Cell[41836, 969, 363, 9, 32, "Output",ExpressionUUID->"3a1af44b-6349-0546-867b-6bb89e2f72b7"]
+}, Open  ]],
+Cell[42214, 981, 260, 6, 33, "Text",ExpressionUUID->"c6c79a59-db9d-4e42-b167-8872da3dc0a4"],
+Cell[CellGroupData[{
+Cell[42499, 991, 378, 10, 28, "Input",ExpressionUUID->"d24707db-8773-7849-a50f-c2d12c705c0a"],
+Cell[42880, 1003, 223, 5, 32, "Output",ExpressionUUID->"72b5accf-1c38-194c-bc47-e6f9ecf23780"]
+}, Open  ]],
+Cell[43118, 1011, 439, 9, 55, "Text",ExpressionUUID->"bd82fc76-0eb5-2d43-801c-af7a8731c514"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
