@@ -13,20 +13,39 @@ using namespace std;
 
 const int MAX_NUMEROS = 100;
 
+// Estructura para almacenar el array y la cantidad de números
+struct Resultado {
+  int numeros[MAX_NUMEROS];
+  int cantidad;
+};
+
+Resultado pedirNumeros() {
+  Resultado res;
+  int num = 0;
+  res.cantidad = 0;
+
+  cout << "Inserte números hasta " << MAX_NUMEROS << " para almacenarlos (para salir inserte -1): " << endl;
+  do {
+    cin >> num;
+    if (num != -1 && res.cantidad < MAX_NUMEROS) {
+      res.numeros[res.cantidad] = num;
+      res.cantidad++;
+    }
+  } while (num != -1 && res.cantidad < MAX_NUMEROS);
+
+  return res;
+}
+
 int ejer1(){
   int numeros[MAX_NUMEROS];
   int cantidad = 0;
-  int num = 0;
+  Resultado res = pedirNumeros();
 
-  cout << "Inserte numeros hasta "<< MAX_NUMEROS <<" para almacenarlos (para salir inserte -1): " << endl;
-  do{
-    cin >> num;
-    if(num != -1) {
-      numeros[cantidad] = num;
-      cantidad++;
-    }
+  cantidad = res.cantidad;
+  for (int i = 0; i < cantidad; ++i) {
+    numeros[i] = res.numeros[i];
+  }
 
-  }while(num != -1 && cantidad < MAX_NUMEROS);
 
   cout << "\nIndice\tValor\n";
   for (int i = 0; i < cantidad; ++i) {
@@ -34,6 +53,10 @@ int ejer1(){
   }
 
   return 0;
+}
+
+int ejer2() {
+ int numeros[MAX_NUMEROS];
 }
 
 #endif //EJERCICIOSVECTORES_H
