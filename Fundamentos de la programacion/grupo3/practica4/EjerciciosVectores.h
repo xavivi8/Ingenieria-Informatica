@@ -24,7 +24,7 @@ Resultado pedirNumeros() {
   int num = 0;
   res.cantidad = 0;
 
-  cout << "Inserte números hasta " << MAX_NUMEROS << " para almacenarlos (para salir inserte -1): " << endl;
+  cout << "Inserte numeros hasta " << MAX_NUMEROS << " para almacenarlos (para salir inserte -1): " << endl;
   do {
     cin >> num;
     if (num != -1 && res.cantidad < MAX_NUMEROS) {
@@ -55,8 +55,23 @@ int ejer1(){
   return 0;
 }
 
+
 int ejer2() {
- int numeros[MAX_NUMEROS];
+  int numeros[MAX_NUMEROS];
+  int cantidad = 0;
+  Resultado res = pedirNumeros();
+
+  cantidad = res.cantidad;
+  for (int i = 0; i < cantidad; ++i) {
+    numeros[i] = res.numeros[i];
+  }
+
+  cout << "\nIndice\tValor\n";
+  for (int i = cantidad - 1; i >= 0; --i) {
+    cout << (i + 1) << "\t" << numeros[i] << "\n";
+  }
+
+  return 0;
 }
 
 #endif //EJERCICIOSVECTORES_H
