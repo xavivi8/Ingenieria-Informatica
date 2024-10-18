@@ -16,6 +16,7 @@ std::string textoMenu()
         "\nEjercicio 3: Sumatoria de un array."
         "\nEjercicio 4: Suma acumulada de los elementos de una array."
         "\nEjercicio 5: Inicializar vector y mostrar el elemento mayor."
+        "\nEjercicio 6: Encontrar el numero que pertenece al vector."
         "\nFin del programa: 0";
 }
 
@@ -58,6 +59,11 @@ int menu()
         case 5:
             {
                 ejer5();
+                break;
+            }
+        case 6:
+            {
+                ejer6();
                 break;
             }
         default:

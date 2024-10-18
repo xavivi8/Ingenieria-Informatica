@@ -2,7 +2,7 @@
 // Created by jmart on 12/10/2024.
 //
 #include <iostream>
-#include <vector>
+#include <cstdio>
 
 #include "functions.h"
 
@@ -122,7 +122,6 @@ int ejer5() {
 
   mayor = numeros[0];
 
-  // Encontrar el mayor número
   for (int i = 1; i < cantidad; ++i) {  // Cambié a i < res.cantidad
     if (numeros[i] > mayor) {
       mayor = numeros[i];
@@ -132,6 +131,34 @@ int ejer5() {
   cout << "El mayor numero es: " << mayor << endl;
 
   return 0;
+}
+
+int ejer6() {
+  int numeros[MAX_NUMEROS];
+  int cantidad = 0, num=0;
+  bool encontrado=false;
+  Resultado res = pedirNumeros();
+
+  cantidad = res.cantidad;
+  for (int i = 0; i < cantidad; ++i) {
+    numeros[i] = (res.numeros[i]);
+  }
+
+  cout << "Inserte un numero para ver si se encuentra en el vector: " << endl;
+  cin >> num;
+
+  for(int i= 0; i<cantidad;i++) {
+    if(num == numeros[i]) {
+      printf("El numero se encuentra en la posicion %d\n", i);
+      encontrado = true;
+    }
+  }
+
+  if (!encontrado) {
+    printf("El numero no se encuentra en el vector.\n");
+  }
+
+  return  0;
 }
 
 #endif //EJERCICIOSVECTORES_H
