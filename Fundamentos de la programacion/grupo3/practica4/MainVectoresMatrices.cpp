@@ -15,6 +15,7 @@ std::string textoMenu()
         "\nEjercicio 2: Mostrar un array de numeros al reves."
         "\nEjercicio 3: Sumatoria de un array."
         "\nEjercicio 4: Suma acumulada de los elementos de una array."
+        "\nEjercicio 5: Inicializar vector y mostrar el elemento mayor."
         "\nFin del programa: 0";
 }
 
@@ -52,6 +53,11 @@ int menu()
         case 4:
             {
                 ejer4();
+                break;
+            }
+        case 5:
+            {
+                ejer5();
                 break;
             }
         default:

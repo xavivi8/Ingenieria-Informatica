@@ -109,4 +109,29 @@ int ejer4() {
   return 0;
 }
 
+int ejer5() {
+  int mayor = 0;
+  int numeros[MAX_NUMEROS];
+  int cantidad = 0;
+  Resultado res = pedirNumeros();
+
+  cantidad = res.cantidad;
+  for (int i = 0; i < cantidad; ++i) {
+    numeros[i] = (res.numeros[i]);
+  }
+
+  mayor = numeros[0];
+
+  // Encontrar el mayor número
+  for (int i = 1; i < cantidad; ++i) {  // Cambié a i < res.cantidad
+    if (numeros[i] > mayor) {
+      mayor = numeros[i];
+    }
+  }
+
+  cout << "El mayor numero es: " << mayor << endl;
+
+  return 0;
+}
+
 #endif //EJERCICIOSVECTORES_H
