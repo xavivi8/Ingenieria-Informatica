@@ -1,17 +1,17 @@
-lda 0100
-mov b,a
-lda 0101
-mov C,a
+LDA 0100
+MOV b,a
+LDA 0101
+MOV C,a
 
-mov a b
+MOV a b
 CPI 00
 JZ Es_cero
 
-mov a c
+MOV a c
 CPI 00
 JZ Es_cero
 
-mov a b
+MOV a b
 CPI 01
 JZ Es_uno
 
@@ -19,7 +19,10 @@ mov a c
 CPI 01
 JZ Es_uno
 
-hlt 
+OUT 00
+
+
+HLT 
 Es_cero: mvi a 00
 OUT 03
 HLT 
