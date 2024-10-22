@@ -1,40 +1,35 @@
-mvi h 00
-mvi e,00
 lda 0100
 mov b,a
 lda 0101
 mov C,a
-mvi d,e1
-cmp b
-jc Bmayor
-jnc Cmayor
-Bmayor: mov a,b
-mov l,b
-add b
-CC Eaumento
-inr d
-mov h,a
-mov a,c
-Cmp d
-mov a,h
-jz Salida
-jnc Bmayor
 
-Cmayor:mov l,c
-add c
-CC Eaumento
-inr d
-mov h,a
-mov a,b
-Cmp d
-mov a,h
-jz Salida
-jnc Cmayor
+mov a b
+CPI 00
+JZ Es_cero
 
-Eaumento:inr e
-ret
+mov a c
+CPI 00
+JZ Es_cero
 
-Salida: out 03
-mov a,e
-out 02
-hlt
+mov a b
+CPI 01
+JZ Es_uno
+
+mov a c
+CPI 01
+JZ Es_uno
+
+hlt 
+Es_cero: mvi a 00
+OUT 03
+HLT 
+
+Es_uno: CMP b
+JC B_mayor
+MVI a 01
+OUT 03
+HLT
+
+B_mayor: mov a b
+OUT 03
+HLT
