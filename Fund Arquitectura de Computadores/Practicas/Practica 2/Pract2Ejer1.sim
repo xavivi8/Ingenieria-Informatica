@@ -1,5 +1,10 @@
+MVI h 01
+MVI d 00
+MVI e 00
+MVI l 00
 LDA 0100
 MOV b,a
+MOV H a
 LDA 0101
 MOV C,a
 
@@ -19,10 +24,25 @@ mov a c
 CPI 01
 JZ Es_uno
 
+MOV a b
 OUT 00
 
+MULTIPLICAR: MOV a c
+MOV d c
+ADD d
+MOV l a
 
-HLT 
+CONTADOR: MOV a h
+SUB e
+MOV a h
+CPI 00
+JZ Fin
+JNZ MULTIPLICAR
+
+Fin: mov a d
+OUT 03
+HLT
+
 Es_cero: mvi a 00
 OUT 03
 HLT 
