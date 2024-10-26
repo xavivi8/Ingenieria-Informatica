@@ -1,1 +1,1 @@
-# Ingenier-a-Inform-tica
+# Ingenieria-Informatica
