@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[      3170,         89]
-NotebookOptionsPosition[      2185,         65]
-NotebookOutlinePosition[      2587,         81]
-CellTagsIndexPosition[      2544,         78]
+NotebookDataLength[     10058,        279]
+NotebookOptionsPosition[      8627,        247]
+NotebookOutlinePosition[      9029,        263]
+CellTagsIndexPosition[      8986,        260]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -56,11 +56,193 @@ Grupo de pr\[AAcute]cticas : \
 e8d0b9bd6e05"]
 }, Open  ]],
 
+Cell[CellGroupData[{
+
 Cell["Pr\[AAcute]ctica 7", "Section",
  CellChangeTimes->{{3.9355791003871403`*^9, 3.935579106140892*^9}, {
   3.9390901358790817`*^9, 
   3.9390901361918926`*^9}},ExpressionUUID->"3797e760-1388-0541-b35f-\
-def2ba04bb89"]
+def2ba04bb89"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"AnalisisRB", "[", 
+   RowBox[{"A_", ",", "R_"}], "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"falloReflexiva", "=", 
+      RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Do", "[", 
+      RowBox[{
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"MemberQ", "[", 
+          RowBox[{"R", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"A", "[", 
+              RowBox[{"[", "n", "]"}], "]"}], ",", 
+             RowBox[{"A", "[", 
+              RowBox[{"[", "n", "]"}], "]"}]}], "}"}]}], "]"}], ",", "Null", 
+         ",", "\[IndentingNewLine]", 
+         RowBox[{"AppendTo", "[", 
+          RowBox[{"falloReflexiva", ",", 
+           RowBox[{"A", "[", 
+            RowBox[{"[", "n", "]"}], "]"}]}], "]"}]}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"n", ",", 
+         RowBox[{"Length", "[", "A", "]"}]}], "}"}]}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"falloSimetrica", "=", 
+      RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Do", "[", 
+      RowBox[{
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"MemberQ", "[", 
+          RowBox[{"R", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"R", "[", 
+              RowBox[{"[", 
+               RowBox[{"m", ",", "2"}], "]"}], "]"}], ",", 
+             RowBox[{"R", "[", 
+              RowBox[{"[", 
+               RowBox[{"m", ",", "1"}], "]"}], "]"}]}], "}"}]}], "]"}], ",", 
+         "Null", ",", "\[IndentingNewLine]", 
+         RowBox[{"AppendTo", "[", 
+          RowBox[{"falloSimetrica", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"R", "[", 
+              RowBox[{"[", 
+               RowBox[{"m", ",", "2"}], "]"}], "]"}], ",", 
+             RowBox[{"R", "[", 
+              RowBox[{"[", 
+               RowBox[{"m", ",", "1"}], "]"}], "]"}]}], "}"}]}], "]"}]}], 
+        "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"m", ",", 
+         RowBox[{"Length", "[", "R", "]"}]}], "}"}]}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"falloTransitiva", "=", 
+      RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Do", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Do", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"R", "[", 
+               RowBox[{"[", 
+                RowBox[{"p", ",", "1"}], "]"}], "]"}], "==", 
+              RowBox[{"R", "[", 
+               RowBox[{"[", 
+                RowBox[{"q", ",", "2"}], "]"}], "]"}]}], ",", 
+             "\[IndentingNewLine]", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"MemberQ", "[", 
+                RowBox[{"R", ",", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"R", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"q", ",", "1"}], "]"}], "]"}], ",", 
+                   RowBox[{"R", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"q", ",", "2"}], "]"}], "]"}]}], "}"}]}], "]"}], 
+               ",", "Null", ",", "\[IndentingNewLine]", 
+               RowBox[{"AppendTo", "[", 
+                RowBox[{"falloTransitiva", ",", " ", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"R", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"q", ",", "1"}], "]"}], "]"}], ",", 
+                    RowBox[{"R", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"q", ",", "2"}], "]"}], "]"}]}], "}"}], ",", 
+                   "\[IndentingNewLine]", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"R", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"p", ",", "1"}], "]"}], "]"}], ",", 
+                    RowBox[{"R", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"p", ",", "2"}], "]"}], "]"}]}], "}"}]}], "}"}]}],
+                 "]"}]}], "]"}]}], "]"}], ";"}], "\[IndentingNewLine]", ",", 
+          RowBox[{"{", 
+           RowBox[{"q", ",", 
+            RowBox[{"Length", "[", "R", "]"}]}], "}"}]}], "]"}], ";"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"p", ",", 
+         RowBox[{"Length", "[", "R", "]"}]}], "}"}]}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"falloAntisimetrica", "=", 
+      RowBox[{"{", "}"}]}], ";"}]}], "\[IndentingNewLine]", "]"}]}]], "Input",
+ CellChangeTimes->{{3.939094620356348*^9, 3.939094830060129*^9}, {
+  3.9390948681853733`*^9, 3.9390949168980694`*^9}, {3.9390949522454453`*^9, 
+  3.939095290777174*^9}, {3.9390953449727*^9, 
+  3.9390953577748528`*^9}},ExpressionUUID->"642becc5-e352-0a4b-aafc-\
+289431d85d1d"],
+
+Cell[CellGroupData[{
+
+Cell["Ejercicio 8.4.", "Subsection",
+ CellChangeTimes->{{3.9390930354606647`*^9, 
+  3.939093050422409*^9}},ExpressionUUID->"6373929d-a5f9-3e41-8641-\
+5ebd9768a221"],
+
+Cell["\<\
+Calcular el diagrama de orden de P({a,b,c}) (siendo a, b, c los tres primeros \
+n\[UAcute]meros distintos de tu DNI)\
+\>", "Text",
+ CellChangeTimes->{{3.9390930617269287`*^9, 
+  3.939093126906437*^9}},ExpressionUUID->"b3bd6e19-6e95-3f4c-8a09-\
+8d733af903d6"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"partes", " ", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", "}"}], ",", 
+     RowBox[{"{", "1", "}"}], ",", 
+     RowBox[{"{", "3", "}"}], ",", 
+     RowBox[{"{", "4", "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "3"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "4"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"3", ",", "4"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2", ",", "3"}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ORDEN", "[", 
+   RowBox[{"A_", ",", "R_"}], "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "falloReflexiva", ",", "falloAntiisimetrica", ",", "falloTransitiva"}], 
+     "}"}], ","}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.9390942697189274`*^9, 3.9390943699210052`*^9}, {
+  3.939094457638363*^9, 
+  3.9390945214131794`*^9}},ExpressionUUID->"46b88382-2676-c54e-80b6-\
+bd15498ebdbe"]
+}, Open  ]]
+}, Open  ]]
 }, Open  ]]
 },
 WindowSize->{1141.2, 568.8},
@@ -89,7 +271,15 @@ Cell[CellGroupData[{
 Cell[1477, 42, 163, 3, 66, "Section",ExpressionUUID->"57f6aa7b-4296-a846-8b9e-d8497d4b2d86"],
 Cell[1643, 47, 293, 8, 99, "Text",ExpressionUUID->"7060ac4a-285c-d04a-a0b4-e8d0b9bd6e05"]
 }, Open  ]],
-Cell[1951, 58, 218, 4, 66, "Section",ExpressionUUID->"3797e760-1388-0541-b35f-def2ba04bb89"]
+Cell[CellGroupData[{
+Cell[1973, 60, 218, 4, 66, "Section",ExpressionUUID->"3797e760-1388-0541-b35f-def2ba04bb89"],
+Cell[2194, 66, 4953, 129, 476, "Input",ExpressionUUID->"642becc5-e352-0a4b-aafc-289431d85d1d"],
+Cell[CellGroupData[{
+Cell[7172, 199, 164, 3, 53, "Subsection",ExpressionUUID->"6373929d-a5f9-3e41-8641-5ebd9768a221"],
+Cell[7339, 204, 268, 6, 33, "Text",ExpressionUUID->"b3bd6e19-6e95-3f4c-8a09-8d733af903d6"],
+Cell[7610, 212, 977, 30, 61, "Input",ExpressionUUID->"46b88382-2676-c54e-80b6-bd15498ebdbe"]
+}, Open  ]]
+}, Open  ]]
 }, Open  ]]
 }
 ]
