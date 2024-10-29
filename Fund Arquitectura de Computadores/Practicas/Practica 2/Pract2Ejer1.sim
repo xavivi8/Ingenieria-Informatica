@@ -1,11 +1,11 @@
-MVI e 01
-MVI l 00
-LDA 0100
+MVI e 01 ;Declarar e como 1 para posteriormente usarlo en el contador
+MVI l 00 ;Es necesario que l empiece en 0
+LDA 0100 ;Coger el valor en 0100, comprobar si es cero y sino guardarlo en b
 CPI 00
 JZ Fin
 MOV b,a
 MOV H a
-LDA 0101
+LDA 0101;Coger el valor en 0101, comprobar si es cero y sino guardarlo en c
 CPI 00
 JZ Fin
 MOV C,a
