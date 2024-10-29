@@ -34,7 +34,11 @@ int ejer1(){
         }
     }
 
-    cout << "Hay esta cantidad de vocales: \nA:";
+    cout << "Hay esta cantidad de vocales: \nA: " << cant_a
+        << "\nE: " << cant_e
+        << "\nI: " << cant_i
+        << "\nO: " << cant_o
+        << "\nU: " << cant_u << endl;
 
     return 0;
 }
