@@ -129,4 +129,27 @@ int ejer4(){
     return 0;
 }
 
+int ejer5(){
+    cin.ignore();
+    bool palindromo = true;
+    string cadena1="";
+    int pos_ini=0, pos_fin=0;
+    cout << "Inserte una primera cadena: " << endl;
+    getline(cin,cadena1);
+    pos_fin = cadena1.length();
+    while(palindromo && pos_ini<=cadena1.length()){
+        if(cadena1[pos_ini]!=cadena1[pos_fin]){
+            palindromo=false;
+        }
+        pos_ini--;
+        pos_fin++;
+    }
+    if(palindromo){
+        cout << "Es un palindromo" << endl;
+    } else {
+        cout << "No es un palindromo" << endl;
+    }
+    return 0;
+}
+
 #endif
