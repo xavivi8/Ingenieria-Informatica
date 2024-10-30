@@ -2,6 +2,7 @@
 // Created by jmart on 28/10/2024.
 //
 #include <iostream>
+#include <string>
 #include <cstdio>
 
 #include "functions.h"
@@ -12,34 +13,65 @@ using namespace std;
 
 int ejer1(){
     string cadena_a_analizar = "";
-    int cant_a = 0, cant_e = 0, cant_i = 0, cant_o = 0, cant_u = 0;
+    int cont_a = 0, cont_e = 0, cont_i = 0, cont_o = 0, cont_u = 0;
 
     cadena_a_analizar = getString("Inserte una cadena para sacar la cantidad de vocales de cada tipo: ");
 
     for(int i=0; i<=cadena_a_analizar.length();i++){
         if('a' == cadena_a_analizar[i] || 'A' == cadena_a_analizar[i]){
-            cant_a++;
+            cont_a++;
         }
         if('e' == cadena_a_analizar[i] || 'E' == cadena_a_analizar[i]){
-            cant_e++;
+            cont_e++;
         }
         if('i' == cadena_a_analizar[i] || 'I' == cadena_a_analizar[i]){
-            cant_i++;
+            cont_i++;
         }
         if('o' == cadena_a_analizar[i] || 'O' == cadena_a_analizar[i]){
-            cant_o++;
+            cont_o++;
         }
         if('u' == cadena_a_analizar[i] || 'U' == cadena_a_analizar[i]){
-            cant_u++;
+            cont_u++;
         }
     }
 
-    cout << "Hay esta cantidad de vocales: \nA: " << cant_a
-        << "\nE: " << cant_e
-        << "\nI: " << cant_i
-        << "\nO: " << cant_o
-        << "\nU: " << cant_u << endl;
+    cout << "Hay esta cantidad de vocales: \nA: " << cont_a
+        << "\nE: " << cont_e
+        << "\nI: " << cont_i
+        << "\nO: " << cont_o
+        << "\nU: " << cont_u << endl;
 
+    return 0;
+}
+
+int ejer2(){
+    cin.ignore();
+    int primera_cadena=0;
+    string cadena ="", cadena_max, cadena_min;
+    do{
+        cout << "Inserte una cadena: " << endl;
+        getline(cin,cadena);
+        //cadena=getString("Inserte una cadena: ");
+
+        if(primera_cadena==0){
+            cadena_max=cadena;
+            cadena_min=cadena;
+            primera_cadena++;
+        }
+
+        if(cadena!="FIN"){
+            if(cadena.length()>=cadena_max.length()){
+                cadena_max=cadena;
+            }
+            if(cadena.length()<=cadena_min.length()){
+                cadena_min=cadena;
+            }
+        }
+
+    }while(cadena!="FIN");
+
+    cout << "Cadena maxima: " << cadena_max
+        <<"\nCadena minima: " << cadena_min << endl;
     return 0;
 }
 
