@@ -12,6 +12,10 @@ std::string textoMenu()
 {
     return "Seleccione el ejercicio que desea probar de secuenciales: "
         "\nEjercicio 1: Cantidad de vocales en la cadena."
+        "\nEjercicio 2: Acabar el programa al introducir: FIN y dar el mayor y menor lexicográfico."
+        "\nEjercicio 3: Igual pero el mayor y menor seran por caracter."
+        "\nEjercicio 4: Comprovar si el nombre introducido se encuentra en el vector."
+        "\nEjercicio 5: Palindromo."
         "\nFin del programa: 0";
 }
 
@@ -51,6 +55,11 @@ int menu()
                 ejer4();
                 break;
             }
+        case 5:
+            {
+                ejer5();
+                break;
+            }    
         default:
             {
                 cout << "Opcion invalida \n\n" << endl;
