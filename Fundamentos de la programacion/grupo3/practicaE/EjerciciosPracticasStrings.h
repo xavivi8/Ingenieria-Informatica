@@ -104,4 +104,29 @@ int ejer3(){
     return 0;
 }
 
+int ejer4(){
+    cin.ignore();
+    bool nombre_encontrado=false;
+    string cadena = "";
+    string nombres[]={"Javi","Marco","Pedro"};
+    int tamano = sizeof(nombres) / sizeof(nombres[0]);
+
+    cout << "Inserte un nombre: " << endl;
+    getline(cin,cadena);
+
+    for(int i=0;i<=tamano;i++){
+        if(cadena==nombres[i]){
+            nombre_encontrado=true;
+        }
+    }
+
+    if(nombre_encontrado){
+        cout << "Se ha encontrado el nombre " << cadena << " en el vector" << endl;
+    } else {
+        cout << "No se ha encontrado el nombre " << cadena << " en el vector" << endl;
+    }
+
+    return 0;
+}
+
 #endif
