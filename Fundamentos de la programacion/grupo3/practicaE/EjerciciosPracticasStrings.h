@@ -43,7 +43,6 @@ int ejer1(){
 
     return 0;
 }
-
 int ejer2(){
     cin.ignore();
     int primera_cadena=0;
@@ -60,8 +59,38 @@ int ejer2(){
         }
 
         if(cadena!="FIN"){
+            if(cadena > cadena_max){
+            cadena_max=cadena;
+            }
+            if(cadena < cadena_min){
+                cadena_min=cadena;
+            }
+        }
+
+    }while(cadena!="FIN");
+
+    cout << "Cadena lexicografica mayor: " << cadena_max
+        <<"\nCadena lexicografica menor: " << cadena_min << endl;
+    return 0;
+}
+
+int ejer3(){
+    cin.ignore();
+    int primera_cadena=0;
+    string cadena ="", cadena_max, cadena_min;
+    do{
+        cout << "Inserte una cadena: " << endl;
+        getline(cin,cadena);
+
+        if(primera_cadena==0){
+            cadena_max=cadena;
+            cadena_min=cadena;
+            primera_cadena++;
+        }
+
+        if(cadena!="FIN"){
             if(cadena.length()>=cadena_max.length()){
-                cadena_max=cadena;
+            cadena_max=cadena;
             }
             if(cadena.length()<=cadena_min.length()){
                 cadena_min=cadena;

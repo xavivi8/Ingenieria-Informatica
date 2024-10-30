@@ -41,6 +41,11 @@ int menu()
                 ejer2();
                 break;
             }
+        case 3:
+            {
+                ejer3();
+                break;
+            }
         default:
             {
                 cout << "Opcion invalida \n\n" << endl;
