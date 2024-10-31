@@ -63,4 +63,19 @@ int ejer2(){
     return 0;
 }
 
+PERSONA preguntarPersona(){
+    PERSONA laPersona = {"",false};
+
+    return laPersona;
+};
+
+int ejer3(){
+    int pos_aler=0, pos_sin_aler=0;
+    string pers_aler="", per_sin_aler="";
+    PERSONA persona_sin_aler[CANT_PERSON];
+    PERSONA persona_con_aler[CANT_PERSON];
+
+    return 0;
+}
+
 #endif
