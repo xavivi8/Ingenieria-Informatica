@@ -134,9 +134,9 @@ int ejer5(){
     bool palindromo = true;
     string cadena1="";
     int pos_ini=0, pos_fin=0;
-    cout << "Inserte una primera cadena: " << endl;
+    cout << "Inserte una cadena: " << endl;
     getline(cin,cadena1);
-    pos_fin = cadena1.length();
+    pos_fin = (cadena1.length()-1);
     while(palindromo && pos_ini<=cadena1.length()){
         if(cadena1[pos_ini]!=cadena1[pos_fin]){
             palindromo=false;
@@ -149,6 +149,26 @@ int ejer5(){
     } else {
         cout << "No es un palindromo" << endl;
     }
+    return 0;
+}
+
+int ejer7(){
+    string cadena="", palabra="";
+    string palabras[100];
+    int pos_palabras = 0;
+    cout << "Inserte una primera cadena: " << endl;
+    getline(cin,cadena);
+    cadena+=' ';
+    for(int i=0;i<=cadena.length();i++){
+        if(cadena[i]!=' '){
+            palabra+=cadena[i];
+        } else if(cadena[i]==' ' && palabra != ""){
+            palabras[pos_palabras] = palabra;
+            pos_palabras++;
+            palabra = "";
+        }
+    }
+    cout << "Cantidad de palabras: " << pos_palabras << endl;
     return 0;
 }
 

@@ -15,7 +15,8 @@ std::string textoMenu()
         "\nEjercicio 2: Acabar el programa al introducir: FIN y dar el mayor y menor lexicográfico."
         "\nEjercicio 3: Igual pero el mayor y menor seran por caracter."
         "\nEjercicio 4: Comprovar si el nombre introducido se encuentra en el vector."
-        "\nEjercicio 5: Palindromo."
+        "\nEjercicio 5: Palindromo de palabras."
+        "\nEjercicio 6: Palindromo de frases."
         "\nFin del programa: 0";
 }
 
@@ -27,7 +28,8 @@ int menu()
         cout << "\n -----------------------------------------------------------------------------------" << endl;
         cout << textoMenu() << endl;
         opcion = getInt("Inserte la opcion: ");
-
+        cin.ignore();
+        
         switch (opcion)
         {
         case 0:
@@ -58,6 +60,16 @@ int menu()
         case 5:
             {
                 ejer5();
+                break;
+            }
+        case 6:
+            {
+                ejer5();
+                break;
+            }
+        case 7:
+            {
+                ejer7();
                 break;
             }    
         default:
