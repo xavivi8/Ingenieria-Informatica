@@ -1,4 +1,4 @@
-MVI e 01 ;Declarar e como 1 para posteriormente usarlo en el contador
+MVI e 00
 MVI l 00 ;Es necesario que l empiece en 0
 LDA 0100 ;Coger el valor en 0100, comprobar si es cero y sino guardarlo en b
 CPI 00
@@ -14,14 +14,20 @@ MULTIPLICAR: MOV a l
 MOV d c
 ADD d
 MOV l a
+JC ACARREO
 
-CONTADOR: MOV a h
-SUB e
-MOV h a
+
+CONTADOR: DCR h
+MOV a h
 CPI 00
 JZ Fin
 JNZ MULTIPLICAR
 
+ACARREO: INR e
+JMP CONTADOR
+
 Fin: mov a l
 OUT 03
+MOV a e
+OUT 02
 HLT
