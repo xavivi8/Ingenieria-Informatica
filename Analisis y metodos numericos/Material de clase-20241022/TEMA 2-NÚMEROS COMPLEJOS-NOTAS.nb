@@ -1,0 +1,2677 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 6.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[    112851,       2669]
+NotebookOptionsPosition[    111990,       2647]
+NotebookOutlinePosition[    112468,       2665]
+CellTagsIndexPosition[    112425,       2662]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ "Universidad de Ja\[EAcute]n. Escuela Polit\[EAcute]cnica Superior de Ja\
+\[EAcute]n.    \n",
+ StyleBox["Grado en Ingenier\[IAcute]a Inform\[AAcute]tica",
+  FontFamily->"Times New Roman",
+  FontSlant->"Italic"],
+ "           ",
+ StyleBox["\n",
+  FontFamily->"Times New Roman",
+  FontSlant->"Italic"],
+ "Asignatura:",
+ StyleBox[" An\[AAcute]lisis y M\[EAcute]todos Num\[EAcute]ricos",
+  FontWeight->"Bold"],
+ StyleBox[". ",
+  FontFamily->"Times New Roman",
+  FontSlant->"Italic"],
+ "Curso",
+ StyleBox[" ",
+  FontSlant->"Italic"],
+ "2024/25\nF.Javier Mu\[NTilde]oz Delgado"
+}], "Text",
+ CellChangeTimes->{{3.563524438328125*^9, 3.563524480515625*^9}, {
+  3.563524574265625*^9, 3.563524577796875*^9}, {3.56431460025*^9, 
+  3.56431462309375*^9}, {3.566743028921875*^9, 3.566743065234375*^9}, {
+  3.5667981775625*^9, 3.5667981951875*^9}, {3.568208130671875*^9, 
+  3.5682082909375*^9}, {3.5703412780561247`*^9, 3.5703412935092497`*^9}, {
+  3.606135850180294*^9, 3.606135853029457*^9}, {3.6337972501007395`*^9, 
+  3.6337972782973523`*^9}, {3.635775952924748*^9, 3.6357760405767612`*^9}, {
+  3.7151774127728205`*^9, 3.71517747245382*^9}, {3.715261633328*^9, 
+  3.715261662285*^9}, {3.8109186914624033`*^9, 3.810918718712104*^9}, {
+  3.841241679236001*^9, 3.8412416878770013`*^9}, {3.8731184382589455`*^9, 
+  3.8731184401119833`*^9}, {3.9043137748393464`*^9, 3.9043137769084206`*^9}, {
+  3.935341232674265*^9, 3.935341234974161*^9}},
+ FontColor->RGBColor[
+  0., 0.5019607843137255, 
+   0.7529411764705882],ExpressionUUID->"01c3c157-898e-49c5-af53-621baf6bb0fc"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+
+Notas del Tema 2: N\[UAcute]meros complejos (15-09-2024) 
+
+\
+\>", "Title",
+ CellChangeTimes->{{3.5630831089196253`*^9, 3.5630831164040003`*^9}, 
+   3.563514918015625*^9, {3.564898688453125*^9, 3.564898689703125*^9}, {
+   3.5670901944375*^9, 3.5670902166875*^9}, {3.568208332625*^9, 
+   3.568208338296875*^9}, {3.569513822984375*^9, 3.5695138243125*^9}, {
+   3.5703408452904997`*^9, 3.5703408671186247`*^9}, {3.5703412526811247`*^9, 
+   3.5703412559311247`*^9}, {3.57734385496875*^9, 3.5773439095*^9}, {
+   3.7152217178529997`*^9, 3.7152217657279997`*^9}, {3.7152617525629997`*^9, 
+   3.715261755788*^9}, {3.7152624841099997`*^9, 3.715262492953*^9}, {
+   3.7159575183150096`*^9, 3.7159575260610094`*^9}, {3.7242503240502276`*^9, 
+   3.7242503300202274`*^9}, {3.810918683815503*^9, 3.810918687918003*^9}, {
+   3.841241692033001*^9, 3.841241698191001*^9}, {3.8731184449148474`*^9, 
+   3.873118451590679*^9}, {3.904313782152464*^9, 3.904313785200432*^9}, {
+   3.9353412420731645`*^9, 3.9353412883170094`*^9}},
+ TextAlignment->Center,
+ FontFamily->"Book Antiqua",
+ FontSize->14,
+ FontColor->RGBColor[0.6588235294117647, 0.8274509803921568, 1.],
+ Background->RGBColor[
+  0., 0.5019607843137255, 
+   0.7529411764705882],ExpressionUUID->"13408d0b-02be-416c-898e-d614f716e659"],
+
+Cell["Tema 2: El cuerpo de los n\[UAcute]meros reales.", "Title",
+ CellChangeTimes->{{3.494773271375*^9, 3.494773309390625*^9}, {
+   3.4947733680625*^9, 3.494773551828125*^9}, {3.5595297461875*^9, 
+   3.559529746875*^9}, {3.7152217815889997`*^9, 3.715221805243*^9}, 
+   3.715261865664*^9, {3.71595752913361*^9, 3.7159575304292097`*^9}},
+ FontFamily->"Book Antiqua",
+ FontSize->14,
+ FontColor->RGBColor[
+  0., 0.5019607843137255, 
+   0.7529411764705882],ExpressionUUID->"01f44805-ad21-4acc-8890-86881ae63a0e"],
+
+Cell[TextData[{
+ StyleBox["Cuestiones previas.",
+  FontWeight->"Bold"],
+ "\n\t\[DownQuestion]D\[OAcute]nde encontrar informaci\[OAcute]n sobre este \
+tema? La mayor\[IAcute]a de libros titulados An\[AAcute]lisis, \
+An\[AAcute]lisis Matem\[AAcute]tico, C\[AAcute]lculo o C\[AAcute]lculo \
+Infinitesimal pueden ser \[UAcute]tiles para este tema y para muchos otros. \
+Tambi\[EAcute]n es f\[AAcute]cil encontrar en internet apuntes, \
+presentaciones y v\[IAcute]deos de diferentes profesores y universidades que \
+pueden ser de utilidad.\n\tLo que aqu\[IAcute] se presenta son una notas de \
+car\[AAcute]cter informal para ayudar a comprender lo que aparece en los \
+libros y para conocer hasta d\[OAcute]nde llegar. Los problemas que hay al \
+final son algunos ejemplos y cada uno debe valorar si son muchos o pocos, y \
+en su caso, buscar m\[AAcute]s del nivel que considere oportuno. \n\n",
+ StyleBox["1. Necesidad de los n\[UAcute]meros complejos.",
+  FontWeight->"Bold"],
+ "\t\n\tEn el tema anterior hemos visto sucesivas ampliaciones del conjunto \
+de los n\[UAcute]meros, desde los naturales a los reales. \n\tCon los n\
+\[UAcute]meros naturales no pod\[IAcute]amos resolver las ecuaciones: \n\t\t\t\
+x+5 = 2 (necesitamos los negativos y ampliamos al conjunto de los enteros)\n\t\
+\t\t2x = 3 (los enteros no son suficientes, necesitamos las fracciones y \
+ampliamos a los n\[UAcute]meros racionales)\n\t\t\t",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["x", "2"], TraditionalForm]],ExpressionUUID->
+  "1e38ec89-9f4c-48cf-af9a-fd0cb375b282"],
+ " = 2 (las fracciones no son suficientes, necesitamos los irracionales y \
+ampliamos a los n\[UAcute]meros reales)\n\t\t\t",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["x", "2"], TraditionalForm]],ExpressionUUID->
+  "a87142bd-432f-4ab8-ad3e-2a7c9c45bd18"],
+ " + 1 =0 (los reales no son suficientes, necesitamos una nueva ampliaci\
+\[OAcute]n)\n\tPara que tuviese soluci\[OAcute]n, necesitar\[IAcute]amos un n\
+\[UAcute]mero cuyo cuadrado fuese -1. Si suponemos un n\[UAcute]mero \
+\[ImaginaryI] tal que ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ImaginaryI]", "2"], TraditionalForm]],ExpressionUUID->
+  "a718cb43-9abb-4a51-bc07-dd86f6723c8b"],
+ "=-1, tendr\[IAcute]amos que cualquier ecuaci\[OAcute]n de segundo grado, ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SuperscriptBox["ax", "2"], "+", "bx", " ", "+", " ", "c"}], " ", "=", 
+    "0"}], TraditionalForm]],ExpressionUUID->
+  "2987e394-ff29-4bf3-923e-382df5a11096"],
+ ", tendr\[IAcute]a soluci\[OAcute]n. \n\tEn ocasiones, al utilizar la f\
+\[OAcute]rmula para obtener la soluci\[OAcute]n de la ecuaci\[OAcute]n de \
+segundo grado, x= ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{
+     RowBox[{"-", "b"}], "\[PlusMinus]", 
+     SqrtBox[
+      RowBox[{
+       SuperscriptBox["b", "2"], "-", 
+       RowBox[{"4", "ac"}]}]]}], 
+    RowBox[{"2", "a"}]], TraditionalForm]],ExpressionUUID->
+  "8169ca93-b0ee-4441-a481-b87366d049e4"],
+ ", nos encontramos en el radicando una cantidad negativa. Se podr\[IAcute]a \
+escribir x = ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FractionBox[
+     RowBox[{"-", "b"}], 
+     RowBox[{"2", "a"}]], "\[PlusMinus]", 
+    RowBox[{
+     FractionBox[
+      SqrtBox[
+       RowBox[{
+        RowBox[{"4", "ac"}], "-", 
+        SuperscriptBox["b", "2"]}]], 
+      RowBox[{"2", "a"}]], " ", "\[ImaginaryI]"}]}], TraditionalForm]],
+  ExpressionUUID->"129e98ae-e353-4e9c-9a6e-316ed5e828c1"],
+ ", una suma de un n\[UAcute]mero real y un n\[UAcute]mero real por \
+\[ImaginaryI]. Estos n\[UAcute]meros, as\[IAcute] formados, suma de un n\
+\[UAcute]mero real y un n\[UAcute]mero real por \[ImaginaryI], ser\[AAcute]n \
+los n\[UAcute]meros complejos.\n\tM\[AAcute]s a\[UAcute]n, el ",
+ StyleBox["Teorema fundamental del \[AAcute]lgebra ",
+  FontWeight->"Bold"],
+ "dice que cualquier ecuaci\[OAcute]n polin\[OAcute]mica (con coeficientes \
+reales o complejos) tiene todas sus soluciones en los n\[UAcute]meros \
+complejos. No ser\[AAcute] necesario, por tanto, ampliar el conjunto de n\
+\[UAcute]meros para que las ecuaciones polin\[OAcute]micas tengan soluci\
+\[OAcute]n.\n\t\n",
+ StyleBox["2. Suma y producto. El cuerpo de los n\[UAcute]meros complejos.",
+  FontWeight->"Bold"],
+ "\n\tLos n\[UAcute]meros complejos ser\[AAcute]n de la forma a + b\
+\[ImaginaryI], con a y b n\[UAcute]meros reales. Los n\[UAcute]meros reales \
+pueden verse como parte de los complejos, ser\[IAcute]an aquellos en que b=0, \
+es decir, de la forma a+0\[ImaginaryI] = a.\n\tLos n\[UAcute]meros reales se \
+representan en una recta. De forma similar, los complejos se podr\[IAcute]an \
+representar como puntos en un plano. \n\tLos n\[UAcute]meros reales se podr\
+\[IAcute]an colocar en el eje horizontal. En el eje vertical \
+colocar\[IAcute]amos el eje imaginario.\n\tEl n\[UAcute]mero complejo a + b\
+\[ImaginaryI] corresponder\[IAcute]a con el punto (a,b) o con el vector que \
+va desde el punto (0,0) al punto (a,b). Algunos llaman al punto (a,b) el ",
+ StyleBox["afijo",
+  FontWeight->"Bold"],
+ " del n\[UAcute]mero complejo a + \[ImaginaryI] b.\n\t\n\t",
+ Cell[BoxData[
+  GraphicsBox[{{{}, {}, 
+     TagBox[
+      {RGBColor[0.368417, 0.506779, 0.709798], AbsoluteThickness[1.6], 
+       Opacity[1.], LineBox[CompressedData["
+1:eJxN1GlI03EYB/C5XE1neU7923SHITWYipLiEWk2JpRHs61IMpsuxFYzFVOm
+ljg1LchritO98Ggpo4wgNSm0ZlpaSwpntg5rOa8or+kS1yrQ59cDX7583n1f
+PXSBmCvE43C4mL/51wXTMUsWi3c/bvMMElejbgM51uHzWvcvZFpIhlm8jPy0
+opo4aUAm+o579b9Crs1OPnK1EVllldWGC0YmCDkB2GkG2PndM1FLFR3MVctT
+9g3TwJKfB0SVeiq457I8vTPOC+2t5tF+N1DAHMXj2OjvHmDlUJ42KxEDJ0lr
+ya/b3cCFydvukpxdwTgWtS+qxAX8/npDmWrMCUyxTetYOeQIPr+fSdBR7MEp
+wZ/a1WoSmJkbarnYRgQ3f0wYyIskgKeLyOEcdzy4V7aXPcM3923Zf3ZixU+x
+Cj7cq7Mx8xfAGR2dJkdnPZh/zrv5Tf4L8NDLiYrAhOcHtxzKenI/vl4PxueQ
+P6RiC+AddvFFgh+r4OJJbVRmqxl8r7E0vnDJKmLL4pZUh298AjgpXe5ZVkQE
+lx/LCQlsIoGtXWSGK+u7wOMjJQtSe0cwTyIIkqudwCLSPENzygVMVQ3WbZ8j
+gyU9UQn2jW7gDKWoK8gPA9vhgwW+Ux5g9oXjMmYNBez+0FPM3uMFrs68VuU/
+TgVzS+NYii4amJko5bUV0MFag01LDY8B1gimIp2o3uAv1rdNMgbyijKtE/NB
+xubnKXQWcmrW0ppfGPJ6seVOzAlkn1uYR/lN5BCObtSuBvnobFNZZR3yJRbN
+WK9AfvTAZ1SpQuYOBpYODCEL04zh0SPIubbdyyMaZEVs6Nm3Y8gz2ojwr/r/
+9ubil4XTyDt3D3TMziEHnOG4LS4is61sNNlG5JOtw1KTCTmdfSMsfwN583+B
+/wA+Uhvc
+        "]]},
+      Annotation[#, "Charting`Private`Tag$8450#1"]& ]}, {}, {}},
+   AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+   Axes->{True, True},
+   AxesLabel->{
+     FormBox[
+      RowBox[{"eje", " ", "real"}], TraditionalForm], 
+     FormBox[
+      RowBox[{"eje", " ", "imaginario"}], TraditionalForm]},
+   AxesOrigin->{0, 0},
+   DisplayFunction->Identity,
+   Frame->{{False, False}, {False, False}},
+   FrameLabel->{{None, None}, {None, None}},
+   FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+   GridLines->{None, None},
+   GridLinesStyle->Directive[
+     GrayLevel[0.5, 0.4]],
+   ImagePadding->All,
+   ImageSize->{294.66666666666526`, Automatic},
+   Method->{
+    "DefaultBoundaryStyle" -> Automatic, "DefaultMeshStyle" -> 
+     AbsolutePointSize[6], "ScalingFunctions" -> None, 
+     "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+         (Part[{{Identity, Identity}, {Identity, Identity}}, 1, 2][#]& )[
+          Part[#, 1]], 
+         (Part[{{Identity, Identity}, {Identity, Identity}}, 2, 2][#]& )[
+          Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+         (Part[{{Identity, Identity}, {Identity, Identity}}, 1, 2][#]& )[
+          Part[#, 1]], 
+         (Part[{{Identity, Identity}, {Identity, Identity}}, 2, 2][#]& )[
+          Part[#, 2]]}& )}},
+   PlotRange->{{-10, 10}, {-1., 1.}},
+   PlotRangeClipping->True,
+   PlotRangePadding->{{
+      Scaled[0.02], 
+      Scaled[0.02]}, {
+      Scaled[0.05], 
+      Scaled[0.05]}},
+   Ticks->{Automatic, Automatic}]],
+  CellChangeTimes->{3.7159591947918205`*^9, 3.71596072954143*^9},
+  ExpressionUUID->"191291e2-63ef-4129-a1ea-7d6d60db229e"],
+ "\n\t\n\tLas operaciones ",
+ StyleBox["suma",
+  FontWeight->"Bold"],
+ " y ",
+ StyleBox["producto",
+  FontWeight->"Bold"],
+ " de los reales se extienden a los n\[UAcute]meros complejos y los complejos \
+con la suma y producto vuelven a ser un cuerpo (lo que significa que se \
+facilitan las operaciones). \n\t\n\t(a+\[ImaginaryI]b)+(c+\[ImaginaryI]d) = \
+(a+c) + \[ImaginaryI](b+d)\n\t(a+\[ImaginaryI]b)*(c+\[ImaginaryI]d) = \
+(ac-bd)+ \[ImaginaryI] (ad+bc) (aqu\[IAcute] se utiliza el hecho de que ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ImaginaryI]", "2"], TraditionalForm]],ExpressionUUID->
+  "471c4f33-6611-47b6-826f-1a71ab0ba286"],
+ "=-1)\n\t\n\tEs f\[AAcute]cil comprobar que la suma es asociativa y \
+conmutativa, que el 0=0+0\[ImaginaryI] es el ",
+ StyleBox["elemento neutro",
+  FontWeight->"Bold"],
+ " y que para cada n\[UAcute]mero a+\[ImaginaryI]b su ",
+ StyleBox["elemento opuesto",
+  FontWeight->"Bold"],
+ " es (-a-\[ImaginaryI]b).\n\tIgualmente, es f\[AAcute]cil comprobar el \
+producto es asociativo y conmutativo, que el 1 = 1+ 0\[ImaginaryI] es el ",
+ StyleBox["elemento unidad",
+  FontWeight->"Bold"],
+ " y que para cada n\[UAcute]mero a + \[ImaginaryI]b distinto de cero, su \
+inverso es ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox["a", 
+    RowBox[{
+     SuperscriptBox["a", "2"], "+", 
+     SuperscriptBox["b", "2"]}]], TraditionalForm]],ExpressionUUID->
+  "e333e127-c751-4a7e-80c5-83031a016e28"],
+ " - ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox["b", 
+    RowBox[{
+     SuperscriptBox["a", "2"], "+", 
+     SuperscriptBox["b", "2"]}]], TraditionalForm]],ExpressionUUID->
+  "8694fe24-136a-414c-905f-5113b27ec02a"],
+ "\[ImaginaryI].\n\tTambi\[EAcute]n es f\[AAcute]cil comprobar la propiedad \
+distributiva (podemos sacar factor com\[UAcute]n). \n\tEl \
+\[OpenCurlyDoubleQuote]truco\[CloseCurlyDoubleQuote] para encontrar un \
+inverso o para dividir dos n\[UAcute]meros complejos, es multiplicar y \
+dividir por el conjugado de un n\[UAcute]mero complejo\n\t\t\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FractionBox[
+     RowBox[{"a", "+", "\[ImaginaryI]b"}], 
+     RowBox[{"c", "+", "\[ImaginaryI]d"}]], "=", 
+    RowBox[{
+     FractionBox[
+      RowBox[{"a", "+", "\[ImaginaryI]b"}], 
+      RowBox[{"c", "+", "\[ImaginaryI]d"}]], 
+     FractionBox[
+      RowBox[{"c", "-", "\[ImaginaryI]d"}], 
+      RowBox[{"c", "-", "\[ImaginaryI]d"}]]}]}], TraditionalForm]],
+  ExpressionUUID->"3e5bff4a-2482-43f3-8eea-1dafa68c4469"],
+ "= ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"ac", "+", "bd"}], ")"}], "+", 
+     RowBox[{"\[ImaginaryI]", "(", 
+      RowBox[{"bc", "-", "ad"}], ")"}]}], 
+    RowBox[{
+     SuperscriptBox["c", "2"], "+", 
+     SuperscriptBox["d", "2"]}]], TraditionalForm]],ExpressionUUID->
+  "06b64aa6-f62e-4576-8190-4c36242c2853"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FractionBox[
+     RowBox[{"ac", "+", "bd"}], 
+     RowBox[{
+      SuperscriptBox["c", "2"], "+", 
+      SuperscriptBox["d", "2"]}]], "+"}], TraditionalForm]],ExpressionUUID->
+  "e7c72523-d241-438b-9b2d-79e1e09c416f"],
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"i", 
+    FractionBox[
+     RowBox[{"bc", "-", "ad"}], 
+     RowBox[{
+      SuperscriptBox["c", "2"], "+", 
+      SuperscriptBox["d", "2"]}]]}], TraditionalForm]],ExpressionUUID->
+  "f79d8418-3246-4ab3-932a-b44ea4d8d2f1"],
+ "\n\n\tEl ",
+ StyleBox["conjugado",
+  FontWeight->"Bold"],
+ " de un n\[UAcute]mero complejo a + \[ImaginaryI]b es a - \[ImaginaryI]b. Se \
+suele indicar con una l\[IAcute]nea horizontal sobre el n\[UAcute]mero. Si z \
+= a+\[ImaginaryI]b, ",
+ StyleBox[" ",
+  FontSize->16],
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["z", "_"], TraditionalForm]],
+  FontSize->16,ExpressionUUID->"07cb7b03-1627-4355-91a3-512051b86984"],
+ " = a - \[ImaginaryI]b. Algunas propiedades del conjugado son:\n\t1) ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox[
+    RowBox[{"z", "+", "w"}], "_"], TraditionalForm]],
+  FontSize->16,ExpressionUUID->"680d62f5-3cef-49f0-bc2d-31b4f560dcd6"],
+ " = ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["z", "_"], TraditionalForm]],
+  FontSize->16,ExpressionUUID->"3182b2dd-ee4c-4112-99fb-c57a0068205a"],
+ "+",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["w", "_"], TraditionalForm]],
+  FontSize->16,ExpressionUUID->"294d08d5-46b0-495e-9980-433f14bf04c2"],
+ "\n\t2) ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox[
+    RowBox[{"z", "*", "w"}], "_"], TraditionalForm]],
+  FontSize->16,ExpressionUUID->"06079c32-6383-4b6c-8b33-9eadaaced07c"],
+ " = ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["z", "_"], TraditionalForm]],
+  FontSize->16,ExpressionUUID->"87f43873-9000-441d-a0ce-dc41af8d3870"],
+ "*",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["w", "_"], TraditionalForm]],
+  FontSize->16,ExpressionUUID->"5c51dbb9-fa9e-4d17-9234-833c4859769a"],
+ "\n\t3) ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox[
+    RowBox[{"(", 
+     RowBox[{"z", "/", "w"}], ")"}], "_"], TraditionalForm]],
+  FontSize->16,ExpressionUUID->"6632cbb2-8465-4638-9412-83f7bc175caa"],
+ " = ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["z", "_"], TraditionalForm]],
+  FontSize->16,ExpressionUUID->"99b28e8a-2c05-4006-9748-df2f444966d0"],
+ "/",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["w", "_"], TraditionalForm]],
+  FontSize->16,ExpressionUUID->"4d2d5db1-7be4-4e59-be00-55c51353a8ef"],
+ "\n\t4) ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"z", 
+    OverscriptBox["z", "_"]}], TraditionalForm]],
+  FontSize->16,ExpressionUUID->"cbfc0aa2-5ea5-4e3a-bbe0-e6dbab187c20"],
+ " = ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["a", "2"], "+", 
+    SuperscriptBox["b", "2"]}], TraditionalForm]],ExpressionUUID->
+  "4e212058-cf8f-4549-b31e-b49a3a8b1828"],
+ "\nEstas propiedades son f\[AAcute]ciles de demostrar, realizando los c\
+\[AAcute]lculos.\n\n3",
+ StyleBox[". M\[OAcute]dulo y argumento.",
+  FontWeight->"Bold"],
+ "\n\tOtra forma de referirnos a los complejos: M\[OAcute]dulo y argumento.\n\
+\tLos n\[UAcute]meros complejos (como puntos o vectores) en plano complejo se \
+podr\[IAcute]an tambi\[EAcute]n localizar en el plano por la distancia al 0 \
+(longitud) y el \[AAcute]ngulo que forma con el semieje positivo real medido \
+en sentido opuesto al movimiento de las agujas de reloj. La distancia se \
+llama ",
+ StyleBox["m\[OAcute]dulo",
+  FontWeight->"Bold"],
+ " del n\[UAcute]mero complejo y el \[AAcute]ngulo se llama ",
+ StyleBox["argumento",
+  FontWeight->"Bold"],
+ " (en realidad son infinitos, pues podemos a\[NTilde]adirle o restarle \
+tantas vueltas completas completas como queramos). Por ejemplo, el \
+n\[UAcute]mero 1 + \[ImaginaryI], ser\[IAcute]a el n\[UAcute]mero de m\
+\[OAcute]dulo ra\[IAcute]z cuadrada de dos y de argumento \[Pi]/4 + 2\[Pi]k \
+radianes, con k un n\[UAcute]mero entero cualquiera. \n\t\t",
+ Cell[BoxData[
+  GraphicsBox[{{{}, {}, 
+     TagBox[
+      {RGBColor[0.368417, 0.506779, 0.709798], AbsoluteThickness[1.6], 
+       Opacity[1.], FaceForm[Opacity[0.3]], LineBox[CompressedData["
+1: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
+        "]]},
+      Annotation[#, "Charting`Private`Tag$11589#1"]& ]}, {{{}, {}, 
+      TagBox[
+       {RGBColor[0, 0, 1], AbsoluteThickness[1.6], Opacity[1.], 
+        LineBox[CompressedData["
+1:eJxFxW0w03EcAPCNdZRrjMr9adxE5SlOUlKpuMhDneHk8nRCWk/InXR1WrdJ
+nua6nZTnh5R2jGyuMnHsdDnPo1GzMUtj83RndnRZ9cL39+JzH0r8XWqiHg6H
+C/7n/wGJypGu+fAz2xN8LFJkmLv39kcrS8paMV84cED8vhwLgyMStB3PsQR4
+yuWpTwGWDlftvZydizFgumHroWcYG74SWc1dWa2DjXT0KD8rLmwXsqTsyePB
+GYOe3iVrH2FzHkmKx3fCbXKf/qFT3XA3rdwyUi2ENQdPGzfe/gLrbXBMLO36
+YA9dXFtoUz/cz3Af7HUYgq2LVBsNS8OwSiuTjruOwnUL7X3EQhFMJL9ZVijG
+4Pwb/KQq22/w+lmOIjlLDKe7CXn7eiZgWZMwb4TyHf5NGyu1f/ADdjxnsJXU
+LoH9aijXW8ylcAY51mYmSgY7qcONxMHTsJnxiqFwE03oLOUeKJuBb7q3T+4M
+lMOci/FVn9fRGpWFyVzxLMwP9dNn+yrgLH9mJW8OTZkKmKhl/oRPHmewMbc5
+OMpqaAMvQmv6CuQp9F9wCSEmnWqrhM2k/Bo9IXrHI3qYZ+o8jGuI4cpNF+C0
+V9wC0250h2OOIemOCiYFpDk9IaphifOwKFOAbq7wtlXELMLRXA8SeQv9mFlN
+l7xbghuV5FJi0DKcU86Mk15CJ1AX7ZpC0PsFgubgCHQu62pvfjw62ePl6q5M
+tA1jj79BPXrrxMPd4rfoycXZ0XoOuiiiNfpCC1rnQL3HFKAlI6wKfRH6Q7b2
+mmgczfaKta+dQAe+PsI7L0V/uj/wlT6PLnY+xgpRo1PlZWGUZfThoFuyrjU0
+AT9WV6RFT/O9aHGbaAGt1sX1D/qFtZFGp0P/BaO4ekM=
+         "]]},
+       Annotation[#, "Charting`Private`Tag$12213#1"]& ], 
+      TagBox[
+       {RGBColor[0.880722, 0.611041, 0.142051], AbsoluteThickness[1.6], 
+        Opacity[1.], Dashing[{Small, Small}], LineBox[CompressedData["
+1:eJxTTMoPSmViYGAwAWIQ7ZX64uKBl6F2DGDwwX6BqH9bl2SLPYzfyLFZvVNy
+CpwfEblw/YePS+B87v+NMe5y6+F81cB3Lw53b4Hzy89Z2s/4shPOF98ieI+R
+cT+cv+2R85nzNofg/ENZc6Uj3xyB87+q2fKvzT0O5zP9XC0grXoKzjf7n7At
+eN0ZOP9Mi8m5Y1rn4Xz5Ca9/rnx3Ac5//f3+vasGl+D8Ja92n+Lruwzn88ku
+f//kyRU4vydza9oClWtw/jeH1U8y6q/D+SVGR7aIHb4B599fd6T7ouItOP93
+1pXZmlW34XxtR/Z/abvvwPnuixTTN4rfQ4SXbLzSw5j7cL7Om1Du674P4Hxh
+/g8cR34h+Cz7Z69XnvMQzs822X2T0/sRnL/aM2nBvm8I/tfXUgLPpj2G87cG
+uzNPcXkC59d7tM7f8gzBV7zrdWNx61M438q8ZYqk0TM4P0bu/E/Gywj+11O9
+jwoan8P5M1jiSoJUXiDcf2/rIqYjCD5rbWOIZeFLOJ9hZdz6R0Kv4PyiWet7
+hQ4h+Hu1OzgE817D+YJeRTpNfG/g/Du6Fy5X7kHwN8yzV3kS9xbOj11vJij7
+D8FvaF3YeGfVOzh/7QvZ2Xw+7+F8pRYRD/ZlCP50ee6v//8j+ACgshGH
+         "]]},
+       Annotation[#, "Charting`Private`Tag$12213#2"]& ]}, {}, {}}, {{}, {}, 
+     TagBox[
+      {RGBColor[0.368417, 0.506779, 0.709798], AbsoluteThickness[1.6], 
+       Opacity[1.], Dashing[{Small, Small}], FaceForm[Opacity[0.3]], 
+       LineBox[CompressedData["
+1:eJxTTMoPSmViYGAwAWIQDQEf7BlQwAf7pN9iJ9slW+xR+VPg/JNBwQwfPi6B
+82t/GK91k1sP59/zdZ94uHsLnG9wetLz6V92wvkXNmS1MTLuh/OFEgsWnLc5
+BOfLvTz5PuLNETg/cGnm4zW5x+H8uPIbT6RUT8H5k2p7u4LXnYHzNZgTFx3T
+Og/n+55nfLLy3QU4X9L824mrBpfg/Eual7bw9V2G821i9t588uQKnL9rxemA
+BSrX4HyVhoPnMuqvw/mLCm/NEzt8A87nfXer9KLiLThfc9WrVs2q23B+ZIPs
+i7Tdd+D80ofmgRvF78H5S2NKeR7G3IfzD3MnMlz3fQDnr9L7/ffwLwR/9r1l
+S5TnPITzmUKOneP0fgTnO2XmTt33DcHv4VZjfTbtMZzvUxz0Y7LLEzhfLGPC
+lC3PEPwdf0LPLm59CudfDOvvlDR6Bud/tr31jvEygt/zasb1gsbncL6+SmZm
+kMoLhPv/HpjOdATBnzOnx9Oy8CWcP/1E5pJHQq/gfM5du5qEDiH4Id6T/wrk
+vYbzV2TWKjbxvYHzi31vn6jcg+C77/OSfBL3Fs7/cs6RTfYfgi++dE3ZnVXv
+4HwXDs0JfD7v4XylFhEP9mUIPowGAAwPDhQ=
+        "]]},
+      Annotation[#, "Charting`Private`Tag$14314#1"]& ]}},
+   Axes->{True, True},
+   AxesLabel->{None, None},
+   AxesOrigin->{0, 0},
+   DisplayFunction->Identity,
+   FrameLabel->{{None, None}, {None, None}},
+   FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+   GridLinesStyle->Directive[
+     GrayLevel[0.5, 0.4]],
+   ImageSize->{139.33333333333175`, Automatic},
+   Method->{"ScalingFunctions" -> None},
+   PlotRange->All,
+   PlotRangeClipping->True,
+   PlotRangePadding->{{
+      Scaled[0.05], 
+      Scaled[0.05]}, {
+      Scaled[0.05], 
+      Scaled[0.05]}},
+   Ticks->{Automatic, Automatic}]],ExpressionUUID->
+  "ebaf6688-dccb-4043-92c4-12da97d2e0e2"],
+ "\n\n\tSi z = a + \[ImaginaryI]b, el m\[OAcute]dulo se denota por |z| y vale \
+",
+ Cell[BoxData[
+  FormBox[
+   SqrtBox[
+    RowBox[{
+     SuperscriptBox["a", "2"], "+", 
+     SuperscriptBox["b", "2"]}]], TraditionalForm]],ExpressionUUID->
+  "3562dc86-b03c-40a2-845c-7461ceb8cb4c"],
+ ", ser\[IAcute]a la distancia del punto (0,0) al (a,b) (Teorema de Pit\
+\[AAcute]goras). El argumento se podr\[IAcute]a calcular como el arcotangente \
+de b/a, aunque hay que tener cuidado con el cuadrante en el que se encuentra \
+el n\[UAcute]mero complejo. Por ejemplo, dados los n\[UAcute]meros complejos \
+1+\[ImaginaryI] y -1-\[ImaginaryI], calculamos arcotangente de 1 y obtenemos \
+que debe ser \[Pi]/4. Este ser\[IAcute]a el argumento del primer \
+n\[UAcute]mero. Para el segundo sumaremos \[Pi] radianes. Por tanto, arg(1+\
+\[ImaginaryI])=\[Pi]/4+2\[Pi]k  y arg(-1-\[ImaginaryI])= 5\[Pi]/4+2\[Pi]k, \
+con k un entero cualquiera.\n\n\t(Dos \[AAcute]ngulos con \[Pi] radianes de \
+diferencia tienen la misma tangente, por ello cuando la calculadora nos d\
+\[EAcute] el \[AAcute]ngulo cuya tangente sea b/a, hay que pensar si nos \
+quedamos con el \[AAcute]ngulo que nos da o le sumamos \[Pi] radianes.)\n\n\t\
+En ocasiones, al objeto de seleccionar un solo valor para el argumento, se \
+llama ",
+ StyleBox["Argumento Principal",
+  FontWeight->"Bold"],
+ " al valor del argumento en cierto intervalo, por ejemplo el (-\[Pi],\[Pi]]. \
+As\[IAcute] lo hace tambi\[EAcute]n el Mathematica.\n\n\tSi un n\[UAcute]mero \
+complejo z, tiene m\[OAcute]dulo r y argumento \[Theta], suele escribirse \
+como ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["r", "\[Theta]"], TraditionalForm]],ExpressionUUID->
+  "17cf9d71-4fbd-432f-bbd5-bc0d0e43a8d2"],
+ " ",
+ StyleBox["(forma polar)",
+  FontWeight->"Bold"],
+ ". Tendremos que z = r (cos \[Theta] + i  sen \[Theta]) ",
+ StyleBox["(forma trigonom\[EAcute]trica) ",
+  FontWeight->"Bold"],
+ "= r cos \[Theta] + i r sen \[Theta] ",
+ StyleBox["(forma bin\[OAcute]mica). \n\n4. Producto, cociente, inverso, \
+potencias, ra\[IAcute]ces.\n\n\t",
+  FontWeight->"Bold"],
+ "Si multiplicamos dos n\[UAcute]meros complejos, z = r (cos \[Theta] + i  \
+sen \[Theta]), w= s (cos \[Alpha] + i  sen \[Alpha]), tenemos que \n\nz*w = ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["r", "\[Theta]"], TraditionalForm]],ExpressionUUID->
+  "82c4fbc7-8877-461a-b7db-7c6279bce9be"],
+ " ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["s", "\[Alpha]"], TraditionalForm]],ExpressionUUID->
+  "ebe424b7-3444-4bba-bf6e-e7367a940956"],
+ "= r s ( cos \[Theta] cos \[Alpha] -   sen \[Theta]  sen \[Alpha] + i  (sen \
+\[Theta] cos \[Alpha] +  cos \[Theta] sen \[Alpha])) = rs( cos (\[Theta]+\
+\[Alpha]) + i  sen (\[Theta]+\[Alpha])) = ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    RowBox[{"(", "rs", ")"}], 
+    RowBox[{"\[Theta]", "+", "\[Alpha]"}]], TraditionalForm]],ExpressionUUID->
+  "bec0d3a1-07da-4390-84da-470c4185c8bb"],
+ "\n\n\tLlegamos a que ",
+ StyleBox["para multiplicar dos n\[UAcute]meros complejos en forma polar \
+basta multiplicar los m\[OAcute]dulos y sumar los argumentos.",
+  FontWeight->"Bold"],
+ "\n",
+ StyleBox["Para dividir dos n\[UAcute]meros complejos, bastar\[IAcute]a \
+dividir los m\[OAcute]dulos y restar los argumentos.\n\t\t\t",
+  FontWeight->"Bold"],
+ "z/w = ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["r", "\[Theta]"], TraditionalForm]],ExpressionUUID->
+  "dd92e508-ba22-44df-a2b3-a31ec92d2c4a"],
+ " /",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["s", "\[Alpha]"], TraditionalForm]],ExpressionUUID->
+  "ffa47132-70ab-45a0-ade3-ea1b24be8f5f"],
+ " = ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    RowBox[{"(", 
+     RowBox[{"r", "/", "s"}], ")"}], 
+    RowBox[{"\[Theta]", "-", "\[Alpha]"}]], TraditionalForm]],ExpressionUUID->
+  "b769117b-b77f-4f37-a3ad-7f2de1661b79"],
+ "\n\tEl inverso de un n\[UAcute]mero complejo distinto del cero, es un n\
+\[UAcute]mero complejo de m\[OAcute]dulo el inverso del m\[OAcute]dulo y de \
+argumento el opuesto del argumento (as\[IAcute] el producto es 1).\n\t\t\t \
+1/z = 1 / ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["r", "\[Theta]"], TraditionalForm]],ExpressionUUID->
+  "49a182a4-7d3f-4178-b3e3-db7337ed492e"],
+ " = ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    RowBox[{"(", 
+     RowBox[{"1", "/", "r"}], ")"}], 
+    RowBox[{"-", "\[Theta]"}]], TraditionalForm]],ExpressionUUID->
+  "99737d10-b626-44c4-921b-8dc6b6f35b74"],
+ "\n\n\tLa suma de dos n\[UAcute]meros complejos se hace muy bien en forma \
+bin\[OAcute]mica y su interpretaci\[OAcute]n geom\[EAcute]trica coincidir\
+\[IAcute]a con la suma de vectores.\n\tEl producto de n\[UAcute]meros \
+complejos, conlleva el producto de los m\[OAcute]dulos y la suma de los \
+argumentos.\n\n\tLas ",
+ StyleBox["potencias de un n\[UAcute]mero complejo",
+  FontWeight->"Bold"],
+ " se calculan de forma muy sencilla, si el n\[UAcute]mero est\[AAcute] en \
+forma polar, pues basta elevar el m\[OAcute]dulo a la potencia y multiplicar \
+el argumento por la potencia.\n\tSi z = ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["r", "\[Theta]"], TraditionalForm]],ExpressionUUID->
+  "9dc71d57-4977-45a1-a7ca-7b3e33009c8d"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["z", "n"], TraditionalForm]],ExpressionUUID->
+  "694a7c42-fd94-4b5e-9aa1-0000b422e41c"],
+ " = ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    RowBox[{"(", 
+     SuperscriptBox["r", "n"], ")"}], "n\[Theta]"], TraditionalForm]],
+  ExpressionUUID->"6cec9121-0e63-4ff1-89fe-4cfdcdcaf7ac"],
+ " = ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["r", "n"], TraditionalForm]],ExpressionUUID->
+  "daee6358-4bf4-4856-b900-253235185b2d"],
+ " (cos (n\[Theta]) + i sen(n\[Theta])). \n\n\tPor ejemplo, (1+i)=",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    RowBox[{"(", 
+     SqrtBox["2"], ")"}], 
+    FractionBox["\[Pi]", "4"]], TraditionalForm]],ExpressionUUID->
+  "4054fad8-6486-41ae-92fc-e5a4e8c6900c"],
+ ", entonces ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"1", "+", "i"}], ")"}], "20"], TraditionalForm]],ExpressionUUID->
+  "18892b2e-704b-406d-a7c1-697305dfe005"],
+ "= ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    RowBox[{"(", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       SqrtBox["2"], ")"}], "20"], ")"}], 
+    FractionBox[
+     RowBox[{"20", "\[Pi]"}], "4"]], TraditionalForm]],ExpressionUUID->
+  "8339ef9f-0394-428c-a3aa-049c1650ac9b"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    RowBox[{"(", 
+     SuperscriptBox["2", "10"], ")"}], 
+    RowBox[{"5", "\[Pi]"}]], TraditionalForm]],ExpressionUUID->
+  "8a02558b-cacc-45ae-95cd-26c894170b3b"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    RowBox[{"(", 
+     SuperscriptBox["2", "10"], ")"}], "\[Pi]"], TraditionalForm]],
+  ExpressionUUID->"7e1c07ca-5ca7-4ff7-b140-46c20d424835"],
+ "= ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["2", "10"], TraditionalForm]],ExpressionUUID->
+  "496efed9-047b-434a-8fe0-ec7611567dcf"],
+ "(cos \[Pi] + i sen \[Pi]) =-",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["2", "10"], TraditionalForm]],ExpressionUUID->
+  "18c074f2-86a9-459f-a189-d3f8d9577fcc"],
+ ".\n\n\tAhora tenemos tambi\[EAcute]n abierto el camino para definir las ",
+ StyleBox["ra\[IAcute]ces",
+  FontWeight->"Bold"],
+ ". Si un n\[UAcute]mero complejo z tiene m\[OAcute]dulo r y argumento \
+\[Theta], y nos preguntamos cu\[AAcute]l debe ser su ra\[IAcute]z cuadrada, \
+tendremos que debe ser un n\[UAcute]mero complejo w cuyo m\[OAcute]dulo al \
+cuadrado sea r y cuyo argumento por dos sea \[Theta]. Sin embargo, observemos \
+que el argumento podr\[IAcute]a ser tanto \[Theta]/2 como \[Theta]/2+\[Pi], \
+pues estos dos argumentos multiplicados por 2, nos dan \[Theta].\n\n\t\t\t",
+ Cell[BoxData[
+  FormBox[
+   SqrtBox["z"], TraditionalForm]],ExpressionUUID->
+  "7a8e2174-1d5b-4be2-a0f2-ed463fda0a8a"],
+ "= ",
+ Cell[BoxData[
+  FormBox[
+   SqrtBox[
+    SubscriptBox["r", "\[Theta]"]], TraditionalForm]],ExpressionUUID->
+  "b2b208f9-5edc-4443-80f6-f5050343b09a"],
+ "={ ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    RowBox[{"(", 
+     SqrtBox["r"], ")"}], 
+    FractionBox["\[Theta]", "2"]], TraditionalForm]],ExpressionUUID->
+  "2863da79-85d7-41d7-99c4-a80a602ebd35"],
+ ",  ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    RowBox[{"(", 
+     SqrtBox["r"], ")"}], 
+    RowBox[{
+     FractionBox["\[Theta]", "2"], "+", "\[Pi]"}]], TraditionalForm]],
+  ExpressionUUID->"181f69e3-88d1-4485-ae22-a760af15774f"],
+ "}\n\tUn n\[UAcute]mero complejo tiene dos ra\[IAcute]ces cuadradas \
+complejas.\n\tPor ejemplo, ",
+ Cell[BoxData[
+  FormBox[
+   SqrtBox["i"], TraditionalForm]],ExpressionUUID->
+  "0401f04f-cd5f-4aa3-9180-aade9167ae29"],
+ "= ",
+ Cell[BoxData[
+  FormBox[
+   SqrtBox[
+    SubscriptBox["1", 
+     FractionBox["\[Pi]", "2"]]], TraditionalForm]],ExpressionUUID->
+  "8f7b8cc1-43b6-454a-ae6a-70560cc78609"],
+ "={ ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    RowBox[{"(", 
+     SqrtBox["1"], ")"}], 
+    FractionBox["\[Pi]", "4"]], TraditionalForm]],ExpressionUUID->
+  "1f689adf-c989-4369-aa50-ed1b60890ea4"],
+ ",  ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    RowBox[{"(", 
+     SqrtBox["1"], ")"}], 
+    RowBox[{
+     FractionBox["\[Pi]", "4"], "+", "\[Pi]"}]], TraditionalForm]],
+  ExpressionUUID->"668793ef-d384-4481-97de-7aa3f42c2d23"],
+ "} ={ 1(cos ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox["\[Pi]", "4"], TraditionalForm]],ExpressionUUID->
+  "1a0d3b99-476a-42d0-b85c-b2f8679a89c8"],
+ " + i sen ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox["\[Pi]", "4"], TraditionalForm]],ExpressionUUID->
+  "62341f36-8645-4b99-bacc-b1b9cb86dfae"],
+ "), 1(cos ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{"5", "\[Pi]"}], "4"], TraditionalForm]],ExpressionUUID->
+  "b59c00b6-9198-496f-8b36-cce1f3625c29"],
+ " + i sen ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{"5", "\[Pi]"}], "4"], TraditionalForm]],ExpressionUUID->
+  "fc7aebb6-d5c7-4c20-8b54-cc51dbdd79cc"],
+ ")}= {",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    SqrtBox["2"], "2"], TraditionalForm]],ExpressionUUID->
+  "8c1d9760-cb09-4cc9-9343-f9e034e89a1a"],
+ " + i ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    SqrtBox["2"], "2"], TraditionalForm]],ExpressionUUID->
+  "b2b36e86-ec7f-48aa-b56d-044fca44dbdb"],
+ ", - ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    SqrtBox["2"], "2"], TraditionalForm]],ExpressionUUID->
+  "ff173623-7e1d-4d02-91e0-37d24f65eca6"],
+ "-i",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    SqrtBox["2"], "2"], TraditionalForm]],ExpressionUUID->
+  "d1517981-4101-49ab-a8a5-d59265cc9cd1"],
+ "}\n\n\tDe forma similar, si queremos calcular la ra\[IAcute]z \
+n-\[EAcute]sima de un n\[UAcute]mero complejo, debemos calcular la \
+ra\[IAcute]z n-\[EAcute]sima al m\[OAcute]dulo y dividir el argumento por n\n\
+\n\t",
+ Cell[BoxData[
+  FormBox[
+   RadicalBox["z", "n"], TraditionalForm]],ExpressionUUID->
+  "ff6a243e-411d-4de2-a63f-25bdd1d32f4c"],
+ "= ",
+ Cell[BoxData[
+  FormBox[
+   RadicalBox[
+    SubscriptBox["r", "\[Theta]"], "n"], TraditionalForm]],ExpressionUUID->
+  "965318f3-d198-4507-977e-88fff769bba9"],
+ "={ ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    RowBox[{"(", 
+     RadicalBox["r", "n"], ")"}], 
+    FractionBox["\[Theta]", "n"]], TraditionalForm]],ExpressionUUID->
+  "a66a95d0-eb00-48a4-a9ec-f374eedf2f32"],
+ ",  ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    RowBox[{"(", 
+     RadicalBox["r", "n"], ")"}], 
+    RowBox[{
+     FractionBox["\[Theta]", "n"], "+", 
+     FractionBox[
+      RowBox[{"2", "\[Pi]"}], "n"]}]], TraditionalForm]],ExpressionUUID->
+  "d06936ec-3c3c-44bd-ac6d-280493669cfd"],
+ ",  ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    RowBox[{"(", 
+     RadicalBox["r", "n"], ")"}], 
+    RowBox[{
+     FractionBox["\[Theta]", "n"], "+", 
+     RowBox[{"2", 
+      FractionBox[
+       RowBox[{"2", "\[Pi]"}], "n"]}]}]], TraditionalForm]],ExpressionUUID->
+  "e93c63ae-02d5-46bb-897d-c56a0bcc6624"],
+ ", ..., ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    RowBox[{"(", 
+     RadicalBox["r", "n"], ")"}], 
+    RowBox[{
+     FractionBox["\[Theta]", "n"], "+", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"n", "-", "1"}], ")"}], 
+      FractionBox[
+       RowBox[{"2", "\[Pi]"}], "n"]}]}]], TraditionalForm]],ExpressionUUID->
+  "4e7031ae-e0cc-498b-8390-3fc5a79e58fe"],
+ "}\n\n\tObservemos que todas las ra\[IAcute]ces tienen el mismo \
+m\[OAcute]dulo (es decir, geom\[EAcute]tricamente estar\[AAcute]n todas en \
+una circunferencia centrada en el punto cero). Adem\[AAcute]s, se diferencian \
+en que van aumentando el argumento en ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{"2", "\[Pi]"}], "n"], TraditionalForm]],ExpressionUUID->
+  "e645086a-9585-4da1-9c32-8f907c14c5a8"],
+ ". Por tanto, ser\[IAcute]an los v\[EAcute]rtices de un pol\[IAcute]gono \
+regular de n lados centrado en el 0.\n\t\t\t\t\t",
+ Cell[BoxData[
+  GraphicsBox[{{{}, {}, 
+     TagBox[
+      {RGBColor[0.368417, 0.506779, 0.709798], AbsoluteThickness[1.6], 
+       Opacity[1.], FaceForm[Opacity[0.3]], LineBox[CompressedData["
+1:eJw1m3c41f/7x42KyChFpaJFi4rS7q5oGBkRDWWlhMxSZEVSKHtkJrJlZnPb
+O3tvjnEO55x3ilKo3/tz/a6vf47H9T7nXN6v133fr+fjut6265tfM2RjYWF5
+zM7C8t/r//98g//9pn/ggPDSPwJerqqX8/fTAdHYDNNvJL8YvvTI288cWMF/
+boBkz8++lZOpT2E5vzOzjORXa8/wOfs5wclcp/hIkj88tO58XegKnCXv26xJ
+dlhF62xMdYfxk5JHzpO8X2iHAPcHT7B0km9cRbJzwYXgC37eYFv+O7TyLwFC
+N4/LnCj3hXERlQ92JCs2P2xSKvSHwpDbA3tIVotQeH87OxC2CUirNC8TUNPw
+TdgwNRgu3JpZeETyvRTrfqO492C8Lbx3BcmDv2a070eFwZKWyjnhJQLSjMQL
+lHyjgD3eozp0kYBWjnWqm6s+gIzYoZfrSD6RLifpURYN1WfPxU3/JqBgpWeO
+dkEMiPV+51IkudywYqIkJxZSPkXFxywQ4Bhpy7Ul6xPsTPF6c+YXATyCOWer
+k+PBhGdXs+NPAjR6jNvXJSTAI8Lgat48AVtD/jy4GZsIdlof5gTmCOgsEQpr
+D08GjY8NPx59I6AO31s9eZsGClk3V1gSBNzqy4mvkksHouiyiimTgFR9nw+N
+5elgZSQbqEgnYNX5cZmmkgx4WitKS5ki4LWxe1h4Thb84VzdYTlJwBOnYZeX
+R7KhpvrFouQEAWX9950eZGbDyQldVr8xAta3PTuz7fMXKIwan/0zQMCv1t2P
+FT/lgrHLtfoX/QTgWtNkzp158FbtzyhLHwHvqQy20g95UCRv0TLVRYDSc7mQ
+LeH5sKSanH2jhQBRg1l2D79CkPM4+bO6jAB/R+Edwo4I3zmCrOORgMWPKLDI
+VgrLRlIDjsUEeIyzs41fKoWghATLdfnk/lj6tcc3lULCpWfYmEbAJP/p/fOD
+ZfBh0dvxXRgBZnp8XwIXK6DuYfG/wRAC/r7l7z0ElXC3R/bpriACSmxeSVW7
+VIL3bXulIB8CHt53Oj68ugq0dq+N43Ej60nlq3WtUDUUx0y3KpqS+/ucUn1f
+qhYatduFuR8SIGKiKhP+pBau0soflhkSwPKsKK4+rxbKeOw3COgQ0ETLObMO
+6oB68WqNghoBb6OT9iko1oOMvufjNUcIeBcqfkpJvxEEV2Tbj3xnAu1tQOnq
+iy1woOxeciOTCUG0rqxvBi1Qd1N9Z8Y0EzgMC33aXVrgx+yKH/pjTPgUHU71
+Km2Bc3tHJY1bmeBkrHXi66lWkHNYwcn5mQmyxEicw+E2iNPzFH2jx4Su110S
+Rps6QOvrjhBnbSaw0/44FB/rANMCawcLLSYcLTKu4NHsgCt9qkEnrjKhfuMs
+X5RfB2xdX7fL8jgT7lidHXDl7gTRrYa9NjxMUNmlkKyy1AnR0pf2TmYwwPT6
+v+zC3m6IH5Ja5E5hACPDTK3xZzd8vWGRvi+OAaqmjw52C/RAy0eX+muhDJDe
+cyGg/2oPnD0+OX7VhQHHm3LORpb1gHnnlV/fVBlwTnZo1cqEXrizS4x/nkqH
+m5F9h/ZY9INu8eo9J8foEKMpFWnt1Q8OPRHqz/rpIPl3t2VeQj88y1OnD3+l
+A8ud2gOSo/3wtSdXTTuTDhmOn87UqQ3ATFCfDrcdHaoDzEdyDw/CIUGX58or
+6HCC5qd5hT4Et2q22qxfmgEFLknuVVzDkPNnj1fbjxnQN/j8t0B8GAoWRgSO
+UWZgQ9CgM5fBMLwVe98eXTYDTUd/c0DvMAR4PN/L4jADB1JLTRf1RkBcc1hp
+ljEN+QNUmrT8KHymyBvg+DRIBKikOmqNwj1LOsWtfxqaE4O9Kg1H4WGPrORS
+7TSsE896d95llKy3sEPvYqbhV0ruIZbCUXCmjJ5R0JoGqQ3+j7z2j8GuODbb
+o/k0IHhcd1RxUoCv9+yRijQaVFGXPrlsoMDmnyIfFOJowN13zfbUDgpoTIr6
+X/Kngca8AHvUKQqY/ogR/2FKg9SQTEUJMwpQIxjC20VowH7VatGgjQKvIzy5
+Rx2p0BZRYrAreBx0qtY8T3xMhX/lpjMXY8bhSmQo1cSYCl2t5/T008bBqpdR
+M3SdCkY6T7i9asZhnA+G7A9QYZXkWo6Pv8bJeiyJDe+ZgrtVZzi6NCcg5UFF
+if2BKYg2aG6WXzsJHGuPsUaJTsGVQObO/K2TICHqFlywfgpuD78X3LFvEoy/
+mHwdXJoE6StydSMXJmE/K6Oko3ESlqu3sKx9PAkzN69VuJtMgtS+sLATnZMQ
++/Q7p3DsBPTwN+zz95uCCj0xX7PgCXi+PPjyYOQUiFBihwo9JkBH25e3KnEK
+dIf39chaTkDMBoeY/tIpkNbSSVl9dgI+26ra5DCnoD5IX8iiaxwaupIGReSp
+4BphLlvONg5KDQVcyQtU2CU8+jBgngK/xWsXjrDTYEDJil2PSoG7ISe+5/LQ
+4Oe12EjaVwo4Gb1fTNhBg2w/i4G8EAr03WUKHlOiQd7un1nXJMh1p+nOsETS
+oNQjR+DdtTGY/2uqfOz0NLQ+3dnzRW4Mrppu3T14cRokX/C97pEZgy0PnqU+
+V5kGwatt+bzCY8BLt6/9qD8NpftVWs9SRqEp/NZgyGuy7nQ2HcuwGoW+DT+O
+7mifhg+pEnf+vB0BypBCcrD+DHSGclOdnEfgV3X/Yp7xDOjmlz9mtR4BY+lD
+Se1WM0DvaPywoDUCZrJXN867zICV6kJk7vYRcF/uZKd+nIFLN9bu+Wk0DK4C
+2g+9Rmcg7mbY3rufB0Hk1oOr5TfpwHWM6WzjNwgNb6QTufXosG2LW7q7zSDI
+pu8VVzaig5nzm6yAs4OwuuudS4kNHUZcg1bdahoAx0c2r5T86ZCr+rE9mN4P
+Vl0rLmxpID9v7f+Lb1cfSP7+0Od4lAGhDw0sKSv6wGiHuJn1aQaYHNr7Mm2i
+F7KGNNJ1ZBkgF7U55HB8L6QG1h4XUSOvUxOshvb2wn5D550nTck5dLqlbEyi
+Bzo57LIGPzDgc157csehLkhpuN3ZxM6E/efzIhv5u8A4Xzjsy2ompBa7KpR8
+64Tq7K2d/nxMgNNKs+/SOyE253SUjDATRtvNnk8e7IT71mV3NkgxIf7pqlc2
+EuQcdi7aLHOXCTpnvei3drWRc2ei4XcaEyK+sCzUrmyDvt58FbtsJrC6PvWU
+mmoFxYueMj/ymND3pMJoIbEVdF/l7WkqY4Ln1SetKgdb4cf2eOc97UxIodew
+HznRAgG+d/nN5pgwX90tcndzC1Td3Cz7eIEJcnluzzl/NUNn/EKN1RIT5FPf
+nHrzvBmkQ/dU3lhBQAtnwxuJl02wf26dSa0AAW7m8o28AY3wa+xM1NHDBBwy
+mjSfvt4IweY2L0rJcyz86eQaFGqEP+uH4mSPE+DlXGChHtYAlKbSXCkgIDK2
+yHvfx3pweDPdm6VE5hyf7+lRn2vBOrjt/vn7BJh4Ht+zzqIWuirThFTJczXh
+gJKP4+FaqMrL+qtJnrsKu5gWF7NrgFXzsOlVKwI6UmfE3uZXQ6OibfqAAwGm
+qQTLuopKOBQsd+6lPwHpT1VjH7hVwvaBENHV5DnPr99nkHe5Eh4nb7R7ReaA
+bkMZK8XGCug4cibIOIKAb6+pD050lsMrV6Z+Txx53crg9cPgcjAWebAkmkhA
+3qWSk4E3y4HXw5FLP5kAgXR2n2EyZ2T7GLp8JXMHy7Hg9+cnS8HT5XmbfB4B
+eh/bJ1QSSiF520U2zQIyV6lNn7hlXApCA/4fbxURUKRr+rB6AGHf5i6pq6UE
+qKa07fKhF8NvSerL7hoCtIquFnVwFYCaGttb505y/QIe7Hd+lw/mq297C3QT
+MPXM3nX3unyo+qSzGNlDQJCtqOHdTXmw1XqeN4rMYcsCOge8xHNAivXpZrlR
+cv2SNbZzJX8B246LuqFkjtNi2tFdJL9A/T1WHhqFgOm6NfaGR7NhsxdrqDmZ
+A++Pm+HshUzQ4h223T5DAN8mrk/y1RlQIVPKPEnmyCNat5Qj5DNgY8eFWiUG
+AVvMvukfV00Hl2N7E26SOfT85GUBlvg0oE/zfdYgc+pccHOne+pnWMWMELoy
+S0B7A3fCi4IU8EmvW7/xBwG6HEmSc6XJ4DK8ED9H8ti50xt1a5JA9sz3iDoy
+9072bmfb3ZEAYjftMrTJnHzlnYmtY188hHMlNm0mc/SupsDzbSNxENs6erWV
+ZAuKe+ZDRiyscKyyFCdz+H3245zWQzEgtOWocgfJ6WUcDTbNH+HvQVWpZ3/I
+XFy1eOlJaTT8Q+pWATLXL0hurjXL+ACBmu38n0ge4+k8UiMXBW5sU1ySpBdc
+l58RSBCLgHHNZe7PJBeebxhVmw6BPf2xO/xJj+BnqWTZ0hgEh2rmjy2QvOGX
+d8FwagCs7KhV1yC9ZOmZYnyEtx/Q9q2wiSf52rP1OpqWPpBi6xM5S7JI0fq5
+9XFeEP/9xlcp0nv6i8JEnzx8DY1KimwmJFuFsT5uOvASPlVonQkl2adX6Izc
+iBPcErJ0LCX5fh579Nj9p5Dj5VU1SPKzG2nUub5HsIcRve47yaaB7+8eb7kJ
+1a+SDZdJbmYdi2HZfw5VD8SV/CP5T+2vu2HL9/DgUd+tv0kWVa28cXzBCm0c
+zFxoJF/cXp4WYfkcRwwvMFpIDs2fTXSYf4Ht7QJ300hec1HJSlzqFd48TO94
+SXLv2SSWBjMP3P6oW02N5NXfq3c9SH6Htn8oHetJVh8+qLVs7YuKrTvuNpP3
+3yATKnPBzx83m8UznEm2q3ANeZEeiH9a3V33knxMo3m8oCkYPV0GROrI9fUw
+1XNl0N/j7JvSch2Sw8xFBzZyh2OzjZopg9yfgfo5zdN7I/GUdtoWK5Jv+oyn
+Ju/8gPmtS+0Mcn/TT1xMzJaKRskfd/10SbYTD2jNO/8Ru3WXterJ+pC2q+/L
+VY1BALbd+0kO3NCr88nsEyY9metsJb2ubGeyrL9DHHYmXygQIvmT0o0eOy/S
+YHjz4zTIerTWVhg/mpSIm6oWQ7JIrxMfFzumPpGKn1OsaSu/E3DKWOfaqrnP
+yDDy2rCC7I/rOrd0brCm44nXdaRGkvOjyllini8DlVqGumvJfovMN9g3dyAL
+zfRlny5RCXDtL+oUy85CHrtTy5mk1+kcEvijfiob6Zzz3rpkP3uFcglGyH/B
+8qZ9gx/IfqewVj+ZNMxF+5vR23MGCYjRGjsxQslFF4Hho+dIr7tlKbunQy8P
++Tdyu5STHiceUMuZdCcfWZpjK9LI+eO+a+w51/VC3LX0+ueBVgK4DLYdbWsr
+xOaKzo5nzQQob0/f4a9ahKs7DzKLvpL92fJHhEWpGJ8ZYrtE/X9eH37Z9QKi
+mXmUTWY5AdmrqZfXliIamYSfKCXnocRxl4qGbaUovB1OVZcQEG3mvvNSeCk+
+/2G4VEDO0+CM0wWrg8tw4OuRl5czyfkbND1Y4lmBrDtpIowoAuz1VOPP1Veg
+6kV1bidyvnMkaIYVc1bitOm/M6tJLzzne6I6wa0SDyy8er6KPB/O/lW2v+BU
+hTKl4UaxngR4V7zeYGNZg9Z5d8PMnpD11mMUba3WgEPNxfLnZQlIdK3c8Cig
+AUWMFI4EkOfbje0/o+52N+AG/73iQ6fIflBfmbj3TiOWVezap0Wej0/47B/f
+MfqKLA4uFYO7yPqPHpHY79CMd/mn4Cx53nK9tWSPwGb8SnAcZWMh699GcYiN
+tQVXhOfLFS+SHnYlq/qObAtqOOTlbfzBhHemaxX6a1rw7W4BQcNRJrSfi2ug
+N7dikfOaao0iJkxv9r3b860VE9jbljxymZC3/nFDydo2bOGd08/LZMLeRh0e
+e/U2DHzaW76QwIT+X817c7vakH/XmwW+QCac+S7uIT7QjoW2JY7vTZiwxHbG
+MG2sE8eCTAN2rmPCx8MymlfZunBx/bzk3TVMuD43fGhiexfSZBZsfVYxgaqg
+7sym14VqmgPiA38YELj7uf/3oS7U2BTJz09hAF3yHfNDbzemWYW9mSG9UXtL
+/o/fdb2Yw8yWcJBnwI+V48qV1F58UTUnknGBATHDIU7uHH3IE2TzZ+AUA8ZW
+h8KCXB+q3W4x3yLJAOeGM0ou2IffBBR9T65jwGbTlkOHs/pR6dJ2/fkeOggF
+t93CgEFsK8u4aK1Lh2cxjM++6YPIoehVK0nm0ZDEtCHtxkH03JdgS1Gjw0V2
+05xB9iEUUUt6dFyWDubP/nq+thpC1STdJp/ddHipzPPPXnkYXyZKr1imzsDt
+e6bmN51HcLHYeWcLmZfZLeem696OYPgerblsMk+fSFprIhM2goyb+ZL+t2ZA
+6dt2U/acETxYMT91SmEG5qZMhB7NjOC48LOYs3tn4Ia8kZz99VEcUN20zDVJ
+5v2+QwXWYmP49kWA89db0/C8+q6EzZEx3LfM4NmhNg2ejwttrS+QfLBpj/nl
+afjbfODd3btjqHBeZN0P6WlISbU+9jNwDP8G6bF8XDMNA7R3W/asoOByysHi
+yCLSG9es4Hw+QEHLMZYscSEaDJparWulUVCQ2Wnsv4YGe68q2W3/RcEVnqvX
+LLDSQH2rlHrG2nFU4fURTKFToTc2pdTr0jiGX4r5gGVUqJQcuXQwbRzZj2VI
+B5NeqKjtfnK1/QRmvtwvsC13Cg6eVvjb6D6B/oSKgkXKFDxbccra038CO8d1
+k4uip6BxYp3hQtIERj7unpf1mgKb+EEhv94J3Bqp+nON3hRoXZc7Xn50Eu0O
+0hc9Vk/BjHJvBOv0JFZd9BFS0JwE3lvCKwXnJ5Fj87XKSYVJGAtxqNjFMoWK
+xXu+O8Ak6H0qOnlYcApz+DUHwvZMAtu6vTUrL0zh7/6aE0F/JoBp8nwpNGQK
+m0p2B7lHTMApu055g/NUFL4qw245PA7fb6VFhCpRsf6di6xe2ziISxDUei0q
+yj+g2CtWjcOC2ucbgmZUDBTgnuZJHofBoqULN0KpeID/0UZFG/L9e/Y+c5ul
+4safv7YlcY+DqL6cvXkoDSP3rlnYIEWBlMKXkRhLw+/cSW1KuyjwzeWtBmca
+DVfM9u5wFKTA+4vrLFwraPiGyZBu+UN6YIHgOlE6DSnS0m+kKsbgSVGw1bdT
+01h8sNr9B+mNj1/Ghvd2TuPtV6IGrmajIK/XyMU9PI1/ZQMPauiOwpcL4b+P
+UKfR13tih+i1UTi3tKhs9Wcaww/OvU08OgrlWxN8/bbNoIzl+gmXpRHQWmC7
++MBwBsPlNgiqvxkBwTe5F1UZMxhIv2zHDcPg/yVh2Wt+Bm/eUrvxavswWHd6
+UcuWZ/Ccd+mrBfZhENXjUF7PS8dav6b58tohOEYc3nhbko7KATtXzKoNQdcZ
+ZpbZIzrG2F3bna8/CE+vyLdGTtBxgj2C/4hjPxx+5WKuR6fjotjJf1/0+uGG
+ewnH1h90PC+bfvnwxX54aJAj4sTCQM3LA6zr1/TD/BaFUuZmBs4oOg16vO8D
+wZyqu3bKDBQ94iQvl9ULG1ujzh9PZ+Cv4U+sQmPdEGniIyiUw0ApHcvs1spu
+uFT4OptZyMCPBSnRr+K74aTbxMXXNQz8d5N6edi0Gxw1VgbfG2Jg0bmfHkq/
+SC/sVCkp5WLi32iWA1u5u6BFUr93+Q4TC+znd9ZJdsDVLkG8Y8BEiteBR+q8
+HfDB5ehCthETV71oXepmtMOAWuhdeWsmNoo6rG9JaYcbz5mtq18zEafv7HXY
+1w4xn65yUdOYuMveg7ed9EYJ1u1PirKZODZTsHnVijaIvbFry+t8Jj5dMmc7
+QmmFX1Wym1ZWMNG6beyNc3Qr6JgcTArsZKLO5hCnwa2tMPROjpX/NxNnviic
+S9vQAnVMVR+tZSYedJbp2UNrBt609ktBrAS6NS8LTMc1wzGe+7t/ryZQnR7r
+qrajGfbNm7trbCbw1bzp9ZyNTdA9MTege4JArr6m21T2RhgrWzxfa0Gg0cCq
+Y9YdNbCJ8XtrsTWBz99s08kOrIErClZiSTYE5kx0JxCaNWC8cjrf1J7ARxlJ
+wxq91TDmxdPt705gQ7uDT/9gFeAeJbWH4QRetW1Mn5qogKN57dEjkQSGrFG6
+0hZXARYvNq1XjSbwi9vCYu6DCvCRfHJbKI5Ac9GEn49p5WD46du9y2kE/tqj
+MZtDLwOdpJcTB0oJdO694dg6jmAQ94JHrJxAuaTH3zbeR1Dks1EWqiTQLsbc
+78ZUCfgevrFprIZAnkiJ8VJaMXwWn6/a2EzgKr47UieYhRB6zD+hrYVA+6Rf
+QRfNC6Fl9sWHl23k9cCf4orfCoDrUUxTSyeBCdZuVy98z4fCdTEbuQYIvFH/
+T3h8PhfegmHoy0ECDxyru1Fskwul91Ukfw0R6N5CLfH5lQPbqg54Vo4SWKBR
+6ib2+wvYSFrxsUyR+7Pt2OO1S1kw29C48RSVwJ+cvFZonwVjC7GHzWgEpv96
+E2S0nAnFapE+RTMEqjocakv5mwGBg52LZM5EpscXTxbWdDDtex7+7RuBN61G
+2TdypkHekcD3w7MEfmq1eynO+xm8ZSAh7geBMz8OHT68OQVmVhvkO84RWLZj
+uGO/aDI88xMVU5kn8BJf+6KIWBKIHI1Z2/uTwNZHpeXzhxNg3WYuH79fBK75
+otXXfSwe2BSUH8otEMh5xeJe9pk4GDpdvd/3N4GBf8zxjnwsbDJJWn/gD4Gs
+3v849qvEwGJBoxaSvPK0XuYPjY9wI/scvWmRQFP1BeFnuh+g3FjtjOISgWP8
+JZ+MGiOhQnsbFUmejJj70tsdDsExnvQDy+T9HFcYkaWEQtsBJwU/kjOtbMLj
+mSFgUjDC+o1k5QdS+iv/BEHx2Pt1l/4SWB95PPHOykDw4w+yDyB5bFaOls7v
+Dztcy6Gf5FDT9aH/hH1hizKv9uZ/BJ68X38/QPkdxN00biW9B6Vr6Td3GHqA
+oX5d1AuSz/7kW058/gocf4vUJJLMNP4CB/xcIOTlvcv1JAt14A4NNQcYOeMt
+SiHZ+51YxRXHJ8BxJPTaHMmdWapOFpomoKjwYpD0OOTlhUFfXS2wOH6hjPQ4
+DMx0eMSdBljlMbBMehxujnPr5go3wF0f1fzp/31/kGGtULQlMrNiX3STXLXz
+C2P3Y1vkq++rLSC5v0T9b1CMMy6W/zEKInkrz2ZuobcvMUmNR9+YZMv9SRJ+
+Nq8xdHlLtgzJbj9f2HDoemHDDhmdRXI9IrT4Fwt2+WDe7H2DPJJ/hLreNdvk
+h7fNsfQRyc07Bh5t5Q3AnU/UngqTfPq6dkYNWxD+SD/kXkauP734cobpr2Dc
+8snqG+l12LWPMs9Nel7lhEOzG7mf38/JmR3rjMBB7ecXeUiWbA/NLK+Lwsej
+shvekvUABXqSO4c/4Hf3zPInZL0k/hp+Edr+EWdtwj4MkfWVHvn+dfPXGPTm
+6ewBkuOG+tv+1cSi+HT7jRmyPqPSPl1QK4rD/MjpD0dJjuR69c0yJx5X9szJ
+PiPrefLzh+9e6QmY2hYaNknWPw8htyIjNglNNgcEPSD7ZcO5gbYkL9LrditW
+65D9BE12Yo1haXjeL2VBmey3GzPk5Luejo+Oxd5fxyBwfsCuxv5eBtawmlpI
+kP2rFqTbdt0lC2eTHpYMThJk/hcpKFlNel19yVq3CQKb2Ln/bvfNxm3sP+vy
+xgjye5dYu6O+YGlvu2c2OU8Mi3ObfxblIhdPLt/WfnKe9Jw1k5TLQ0nPc+H2
+vQS2eF05rtOQh+z1W1tFuwh855ORk9ybj+fkrHKXmwicZk5L0+cL0eKK6vRq
+JHD7j4pfjwVL0ZPBc5RSRKBT382TrTdLkaj64ZNVQK7PlfqxPRGlOP4p3fFE
+Djl/u4w31e8sw+ZvNbJ9KQSeMrnE3XaoHLcIWHBbhJD9xzJiNSVfiZ80V+YV
+BBLILR8tPetVifoqtc5LfgTeHo/eP99ciSuffnto+JbcDySezFyvQjPZlRmN
+LwjsOcZ2z1uvGrfMqTTOGpH1n9MpEfu0FrexOKRNGhIo27lHoPNLLVLX2420
+6xMoJvyd9u9HLTon0CSDtcl+npmTlLWow2FpCf8yFQKHtliaOhrVY74AbX/c
+EXI+3+I1KtBqxAHecAXRwwS2PQ2WdQ1sxNiPvJV+EgS+4Xu59WJ7I34/nF6v
+K0agQdKSd5byV8zbVAzRQgTqnmapPXGxCVnbRgOzF5j4hdNU3HxjCzbxiH3N
+nmOiyZV/y0LHWlBX/Pej1G9MvFQk2F90vQVLVpz/5k5l4las8fjj14I9NCuB
+sW4mnlgpypTjacWqJ2qF+78wkTH18Bgfaxue2xG8d4sxE/MedUZfnGjHS49O
+Xy27R76/wM17cmUH9hVHp9/RYWKk4K38F2Id+LOTctpeg2QtSljcgw5kBmgG
+q55lYqf7iqBEWgc+Dc8r0uJn4sf7rw550TtxPV+W30wqA4WWt9JdGN1Y5esw
+8jyegVsVslRu8vSg99SrWPZoBrrFW1XvkejB3QsNQb/9GWjX11SbadqDym/H
+bjjZkvlplHO71UwPmp/WZZ27wMAEeC8WNNWLu9hvdHg303HZKVHiSF8//jUb
+qDlaS8f7bu4rPRf6sZw3saS9lI63MpU39wkO4KSwSsmvDDo6MeZ7dNUH8HFi
+Loz401H2aRryNQ7gUVfn7Uc16bjrvtzYTOEg+mhvf73cMYOLd3aZGQQOo8Ub
+G46Exhl8avumPCNzGM/GjDUrVM7gkguf4q/mYVzzVuGibdYMdpqw0qVXjuB6
+3UF2O98ZvFis9c8MRvDLw/2UNUoz+Oj1lTzurBHcMCUm9aZwGr3GUp9XBI3i
+1YzEt6OZ0+gYkjVFiSHZQ/CpdNI01k47rGXJGMXJxrVLFSHTuONRnu/+hlFc
+OhOxOuTJNGryPaAr/xtFVy9vfl7JaVz7YY9i5f0x3DAewXWe9ANG8gxNXYqC
+nxxDVZt9aGizk5d18iwF61NeG2u505BXo9DKWpGCdb91dl5/TEOX9uCbzvco
+uG/FTdoqZRp2CVSP6AVR8LGNXNNFFhoueG48cv43BdN/Grmf16WiYqvULu3C
+cdyiuF5Q6joVW9uk5TRrxzFxTqxIWIGKr9TjHRQ6x1E1S/h2nzQVz6gfltxO
+jKPd5bHTKzmouFnonIj7jglk3IXb61Om0IhDdZ3U6wl085stl5ydRFvLtm0z
+ypN45MJ1hysTk3h6O4vZ9tuT2OEUmHu7dxIpX2XvqT2YxEWb4/lmZZOoFnPs
+eKTTJH5mk1e97DuJm87qbp1Jm8TbXcFfqw5OYlKc+LAy3xQGaX4y4DeawKBj
+K76I1U1hvdHU3+PaEyhe0exV1z6FSjlX1LRVJ9ApxNbp/tAURjiLi/sfn0Cp
+VmrSux9TKCXWQSvjnMD7F9e0Bm8lPW7PZgOxhHH0yZzd4GlBRa7pur2iFAru
+ZAtPoaylYeVeG8tPXRQMrbOdrBSmodJcTMvuegrK5/BPR+2mYXcrZVQog4Jy
+6UlysidoGDfbGVfmSMFvaknsoEvDnbX2TyQ3UdBnqPodZyoNeVS9T7kqjCH1
+1PKt9vPTeH6TzNOsM2M4kVdlVagwjWclQrWHD5H+biunEKE+je3uTYf2CY2h
+b9WPg8qG02iV7a3hRRlFv5HrYfdeT+NzAY6Tbs9H0ZZvTlT/6zSaa7Yc1UkY
+wbd6Yqm+12bwzAvHT1xhI9gso12WemsGW8Ue78h8O4LCf6I0KvRn0Gk1VXXe
+agQ7Qz9+67OaQRb7lb1KZ0ZwHnbVFfrNYIuyVcWrj8O4NSDr+oXWGUxX2V9R
+Rx/EuHH+pevyZB8PdNV3NQ2iYEBD2mk1Or4/fdmuP30QTXaL2AjfpOO8M/f3
+hseDeJ+j4nCZER35FXMPKSwNoBVnr3iqOx1V9GqUK1YPYL+vscTKSjpeaLoQ
+S9nWh46nrVfGyzBwxbiBwM9/vegy0vfd8wyDnPPSp1hHe9GSkZVuJMfA00+9
+ulljetFbhydo9TXyOutlmVSxXqxh29VGNWVg5pv3+7MP9GD2kehHwuTcov4t
+ulEq3YUXdI3fy7Ez0TvHtlVYsAuV+tv6CzmZGFulQrVc6EQixLFxPy8TJwql
+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
+/g9FomeM
+        "]]},
+      Annotation[#, "Charting`Private`Tag$3873#1"]& ]}, {{}, {{}, 
+      {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.03], 
+       AbsoluteThickness[1.6], 
+       PointBox[{{0.9009688679024191, 0.4338837391175581}, {
+        0.2225209339563144, 0.9749279121818236}, {-0.6234898018587335, 
+        0.7818314824680298}, {-1., 
+        0.}, {-0.6234898018587335, -0.7818314824680298}, {
+        0.2225209339563144, -0.9749279121818236}, {
+        0.9009688679024191, -0.4338837391175581}}]}, {}}, {}, {}, {{}, {}}}},
+   AspectRatio->Automatic,
+   Axes->{True, True},
+   AxesLabel->{None, None},
+   AxesOrigin->{0, 0},
+   DisplayFunction->Identity,
+   FrameLabel->{{None, None}, {None, None}},
+   FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+   GridLinesStyle->Directive[
+     GrayLevel[0.5, 0.4]],
+   ImageSize->{135.66666666666686`, Automatic},
+   Method->{"ScalingFunctions" -> None},
+   PlotRange->{{-0.9999998831351729, 1.}, {-0.9999998592812047, 
+    0.9999998782744886}},
+   PlotRangeClipping->True,
+   PlotRangePadding->{{
+      Scaled[0.05], 
+      Scaled[0.05]}, {
+      Scaled[0.05], 
+      Scaled[0.05]}},
+   Ticks->{Automatic, Automatic}]],
+  CellChangeTimes->{{3.7165407422598*^9, 3.7165407463440332`*^9}, 
+    3.723617649842*^9, 3.7236413296850047`*^9, {3.723641399510605*^9, 
+    3.7236414466382055`*^9}},
+  FontSize->14,ExpressionUUID->"b02e15a4-5b7a-488c-9a78-860ea53c5fbc"],
+ "\n",
+ StyleBox["5. Exponencial compleja, logaritmo, seno, coseno, complejo elevado \
+a complejo.\n",
+  FontWeight->"Bold"],
+ "\tEl hecho de que el producto de dos n\[UAcute]meros complejos se reduzca \
+al producto de los m\[OAcute]dulo y la suma de los argumentos, nos permite \
+hacer una extensi\[OAcute]n de la ",
+ StyleBox["exponencial ",
+  FontWeight->"Bold"],
+ "de los n\[UAcute]meros reales a los complejos. Efectivamente, si definimos\n\
+\n\t\t\t",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ExponentialE]", 
+    RowBox[{"a", "+", "\[ImaginaryI]b"}]], TraditionalForm]],ExpressionUUID->
+  "e3158576-7ec4-4e49-bd38-bfbb201db175"],
+ " = ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    RowBox[{"(", 
+     SuperscriptBox["\[ExponentialE]", "a"], ")"}], "b"], TraditionalForm]],
+  ExpressionUUID->"7d5c399d-c373-44dc-a3da-e7043ab3ac17"],
+ "= ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ExponentialE]", "a"], TraditionalForm]],ExpressionUUID->
+  "62d543ef-7016-49a4-9d74-de2f8615db91"],
+ "(cos b + \[ImaginaryI] sen b)\ntenemos por un lado que es una extensi\
+\[OAcute]n de la exponencial de n\[UAcute]meros reales (si el n\[UAcute]mero \
+es real, es decir b=0, tenemos que la exponencial es ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ExponentialE]", "a"], TraditionalForm]],ExpressionUUID->
+  "96d89663-9b9f-4702-99bb-f62828d411fd"],
+ "). Por otra parte, si consideramos la suma de dos n\[UAcute]meros complejos \
+(a+\[ImaginaryI]b)+(c+\[ImaginaryI]d) tenemos que\n\n\t\t",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ExponentialE]", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"a", "+", "\[ImaginaryI]b"}], ")"}], "+", 
+     RowBox[{"(", 
+      RowBox[{"c", "+", "\[ImaginaryI]d"}], ")"}]}]], TraditionalForm]],
+  ExpressionUUID->"9d256b19-a688-4eee-9172-d28eda92bc16"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ExponentialE]", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"a", "+", "c"}], ")"}], "+", 
+     RowBox[{"\[ImaginaryI]", "(", 
+      RowBox[{"b", "+", "d"}], ")"}]}]], TraditionalForm]],ExpressionUUID->
+  "341d8f92-1bbf-41a4-b3c1-bc33a26c1159"],
+ " = ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    RowBox[{"(", 
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{"a", "+", "c"}]], ")"}], 
+    RowBox[{"b", "+", "d"}]], TraditionalForm]],ExpressionUUID->
+  "714d57c6-9844-4f63-be63-2a60847a9b89"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    RowBox[{"(", 
+     SuperscriptBox["\[ExponentialE]", "a"], ")"}], "b"], TraditionalForm]],
+  ExpressionUUID->"e872f8c9-ff71-4a0c-8224-2d6ea48696f4"],
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    RowBox[{"(", 
+     SuperscriptBox["\[ExponentialE]", "c"], ")"}], "d"], TraditionalForm]],
+  ExpressionUUID->"268a4818-4761-4317-a093-b2a3463f2e5c"],
+ " = ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ExponentialE]", 
+    RowBox[{"a", "+", "\[ImaginaryI]b"}]], TraditionalForm]],ExpressionUUID->
+  "420325bf-0473-4d30-9282-4ab41418555d"],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ExponentialE]", 
+    RowBox[{"c", "+", "\[ImaginaryI]d"}]], TraditionalForm]],ExpressionUUID->
+  "f2a2c2f9-57aa-4eea-aa9c-870ce106c8fe"],
+ "\n\tPor tanto, el producto de dos exponenciales es la exponencial de la \
+suma de los exponentes. Es decir, que se extiende la exponencial de los \
+reales a los n\[UAcute]meros complejos y con esta propiedad fundamental.\n\n(",
+ StyleBox["Para quienes tienen m\[AAcute]s curiosidad: Una justificaci\
+\[OAcute]n de por qu\[EAcute] se define as\[IAcute] la funci\[OAcute]n \
+exponencial",
+  FontWeight->"Bold"],
+ "\n\t",
+ StyleBox["En temas posteriores estudiaremos el polinomio de Taylor de una \
+funci\[OAcute]n en un punto. El ejemplo m\[AAcute]s sencillo de polinomio de \
+Taylor ser\[IAcute]a la recta tangente. La recta tangente a la \
+gr\[AAcute]fica de una funci\[OAcute]n f en un punto ",
+  FontSlant->"Italic"],
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["x", "0"], TraditionalForm]],
+  FontSlant->"Italic",ExpressionUUID->"ebf295d9-54a1-4f1e-972e-9ff7abeab84d"],
+ StyleBox[" tiene de ecuaci\[OAcute]n y=f(",
+  FontSlant->"Italic"],
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["x", "0"], TraditionalForm]],
+  FontSlant->"Italic",ExpressionUUID->"2fac73db-432d-48db-8ac7-1b15a6027a1d"],
+ StyleBox[")+f\[CloseCurlyQuote](",
+  FontSlant->"Italic"],
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["x", "0"], TraditionalForm]],
+  FontSlant->"Italic",ExpressionUUID->"209cbd3f-86e3-402f-82ea-832d7c6195be"],
+ StyleBox[") (x-",
+  FontSlant->"Italic"],
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["x", "0"], TraditionalForm]],
+  FontSlant->"Italic",ExpressionUUID->"6c8039f7-ef8f-41a8-9fb8-bf9111a0260d"],
+ StyleBox["). Si la funci\[OAcute]n puede derivarse m\[AAcute]s veces, podr\
+\[IAcute]amos seguir calculando polinomios que en el punto ",
+  FontSlant->"Italic"],
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["x", "0"], TraditionalForm]],
+  FontSlant->"Italic",ExpressionUUID->"a81b30bf-d975-442c-bd1f-704f01a7e6d1"],
+ StyleBox[" coincidiese con la funci\[OAcute]n f, desde su valor en el punto \
+hasta el valor de su derivada n-\[EAcute]sima.\n\t\n\tPara la funci\[OAcute]n \
+exponencial en el punto 0, todas las derivadas valen 1. El polinomio ser\
+\[IAcute]a 1 + x + ",
+  FontSlant->"Italic"],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["x", "2"], TraditionalForm]],
+  FontSlant->"Italic",ExpressionUUID->"ffad995f-c771-4e32-8db1-046e77e59166"],
+ StyleBox["/2 + ",
+  FontSlant->"Italic"],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["x", "3"], TraditionalForm]],
+  FontSlant->"Italic",ExpressionUUID->"10f2ddef-1a25-4651-ad03-347e3cc4fb67"],
+ StyleBox["/3! + ...+ ",
+  FontSlant->"Italic"],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["x", "n"], TraditionalForm]],
+  FontSlant->"Italic",ExpressionUUID->"d5c7f19b-b0cb-4829-a84b-a58014b8e555"],
+ StyleBox["/n! .\n\t\t\n\tEn ciertas ocasiones, cuando el grado del polinomio \
+n crece y tiende a infinito, el polinomio y la funci\[OAcute]n tienden a \
+igualarse. Esto ocurre con la funci\[OAcute]n exponencial. Si en la expresi\
+\[OAcute]n de la exponencial como \[OpenCurlyDoubleQuote]polinomio de grado \
+infinito\[CloseCurlyDoubleQuote] ponemos \[ImaginaryI]x y calculamos, \
+encontramos t\[EAcute]rminos que multiplican a \[ImaginaryI] (ser\[IAcute]an \
+la parte compleja) y otros que ser\[IAcute]an la parte real. Las potencias \
+pares de \[ImaginaryI]x dar\[IAcute]an n\[UAcute]meros reales, mientras que \
+las potencias impares ser\[AAcute]n imaginarios puros. Resulta que la parte \
+real ser\[IAcute]a el polinomio de Taylor de la funci\[OAcute]n coseno de x, \
+mientras que la parte imaginaria ser\[IAcute]a el polinomio de Taylor de la \
+funci\[OAcute]n seno de x.\n\n\t\t",
+  FontSlant->"Italic"],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ExponentialE]", "\[ImaginaryI]x"], TraditionalForm]],
+  FontSlant->"Italic",ExpressionUUID->"8719baeb-d415-43ff-9bca-9444c982415d"],
+ StyleBox[" = 1 + \[ImaginaryI]x + ",
+  FontSlant->"Italic"],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    RowBox[{"(", "\[ImaginaryI]x", ")"}], "2"], TraditionalForm]],
+  FontSlant->"Italic",ExpressionUUID->"b3154212-dcac-4069-966a-d57f646a61d6"],
+ StyleBox["/2 + ",
+  FontSlant->"Italic"],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    RowBox[{"(", "\[ImaginaryI]x", ")"}], "3"], TraditionalForm]],
+  FontSlant->"Italic",ExpressionUUID->"afdf6bf4-3232-4672-a966-1833b476f22b"],
+ StyleBox["/3! + ...+ ",
+  FontSlant->"Italic"],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    RowBox[{"(", "\[ImaginaryI]x", ")"}], "n"], TraditionalForm]],
+  FontSlant->"Italic",ExpressionUUID->"8c104ab1-865e-4490-9224-68ed8c676705"],
+ StyleBox["/n! + .... = (1  ",
+  FontSlant->"Italic"],
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"-", 
+    SuperscriptBox["x", "2"]}], TraditionalForm]],
+  FontSlant->"Italic",ExpressionUUID->"36a47996-fdbd-45de-aa1c-346ee4f1cce2"],
+ StyleBox["/2 + ",
+  FontSlant->"Italic"],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["x", "4"], TraditionalForm]],
+  FontSlant->"Italic",ExpressionUUID->"9a849d4e-ddfc-485a-b5e4-bc7069a9c919"],
+ StyleBox["/4! + ...)+ \[ImaginaryI] (x - ",
+  FontSlant->"Italic"],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["x", "3"], TraditionalForm]],
+  FontSlant->"Italic",ExpressionUUID->"0b3afa87-37b8-46ae-9e7e-d0fe9be8f011"],
+ StyleBox["/3! + ...) = cos x + \[ImaginaryI] sen x \n\n\tEncontramos as\
+\[IAcute], otra manera de justificar por qu\[EAcute] se define as\[IAcute] la \
+funci\[OAcute]n exponencial para los n\[UAcute]meros complejos. )",
+  FontSlant->"Italic"],
+ "\n\n\tDefinida la exponencial se plantea el tema del ",
+ StyleBox["logaritmo",
+  FontWeight->"Bold"],
+ ". Dado un n\[UAcute]mero complejo z, el logaritmo de z deber\[IAcute]a ser \
+un n\[UAcute]mero complejo w=a+\[ImaginaryI]b tal que  ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ExponentialE]", "w"], TraditionalForm]],ExpressionUUID->
+  "efdeefb7-d64a-4be9-9e53-9b45518d6872"],
+ "=z. Si escribimos z en forma polar z = ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["r", "\[Theta]"], TraditionalForm]],ExpressionUUID->
+  "59144e4a-029c-487a-a659-12dcf759d06c"],
+ " entonces igualando ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ExponentialE]", "w"], TraditionalForm]],ExpressionUUID->
+  "043a390d-096e-40b8-b32a-5128e1145f56"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ExponentialE]", 
+    RowBox[{"a", "+", "\[ImaginaryI]b"}]], TraditionalForm]],ExpressionUUID->
+  "5e4df2cb-eb82-49f7-ab0d-4d84cca662f9"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    RowBox[{"(", 
+     SuperscriptBox["\[ExponentialE]", "a"], ")"}], "b"], TraditionalForm]],
+  ExpressionUUID->"a62931ee-3d4b-4b87-bf29-e8fc38d93fa2"],
+ "=z= ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["r", "\[Theta]"], TraditionalForm]],ExpressionUUID->
+  "3f3c7571-982b-4e09-bab6-24e7a1d21271"],
+ ", tenemos que a debe ser el logaritmo de r y b debe ser el argumento de z, \
+es decir \[Theta]. \n\tComo hay infinitos valores para el argumento \
+(diferenci\[AAcute]ndose en m\[UAcute]ltiplos de 2\[Pi]) se tiene que el \
+logaritmo son infinitos valores.\n\n\t\tLog z = Log |z| + \[ImaginaryI] (arg \
+z + 2\[Pi] k)\n\tSi se considera un valor especial del argumento (llamado \
+argumento principal), se podr\[IAcute]a tener un valor especial del \
+logaritmo, ",
+ StyleBox["Logaritmo principal ",
+  FontWeight->"Bold"],
+ "(es el que calcula el Mathematica).\n\t\n\t",
+ StyleBox["Sobre la importancia de los logaritmos. El logaritmo de un \
+producto es la suma de los logaritmos de cada n\[UAcute]mero. Esta propiedad \
+es crucial para utilizar los logaritmos como \
+\[OpenCurlyDoubleQuote]calculadora\[CloseCurlyDoubleQuote]. Si \
+tuvi\[EAcute]semos una tabla con logaritmos (listado de n\[UAcute]meros y sus \
+logaritmos) podr\[IAcute]amos calcular el producto de dos n\[UAcute]meros x e \
+y, sumando los logaritmos de x e y, y buscando en la columna de los \
+n\[UAcute]meros el asociado a la suma.  \n\t\t\t\t\tN\[UAcute]meros         \t\
+Logaritmos\n\t\t\t\t\t\tx ------------> log x\n\t\t\t\t\t\ty ------------> \
+log y\n\t\t\t\t\t\tx*y <-------- log x + log y = log (x*y)\nAdem\[AAcute]s, \
+los logaritmos transforman las potencias en productos, que a su vez, pasar\
+\[IAcute]an a sumas. \n\nlog (log ",
+  FontSlant->"Italic"],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["x", "y"], TraditionalForm]],
+  FontSlant->"Italic",ExpressionUUID->"8bc59494-dd6a-4891-847c-9eb0e99f62c5"],
+ StyleBox[") = log ( y* log x) = log y + log (log x)  \n\t\t\t\t\t\t\
+N\[UAcute]meros\t\t\tLogaritmos\n\t\t\t\t\t\tx ---------------------> log x\n\
+\t\t\t\t\t\tlog x ---------------->log (log x)\n\t\t\t\t\t\ty \
+---------------------> log y\n\t\t\t\t\t\ty* log x <------------- log y + log \
+(log x) = log ( y*log x)\n\t\t\t\t\t\t",
+  FontSlant->"Italic"],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["x", "y"], TraditionalForm]],
+  FontSlant->"Italic",ExpressionUUID->"86d52725-4168-4f6c-9828-dce3654504f0"],
+ StyleBox[" <------------------- y* log x\nPor eso, se construyeron e \
+imprimieron muchas tablas de logaritmos.\nSobre c\[OAcute]mo calcular los \
+logaritmos, o las exponenciales, podr\[IAcute]amos pensar en los polinomios \
+de Taylor de los que antes hablamos. Pues evaluar un polinomio se reduce a \
+calcular multiplicaciones y sumas.",
+  FontSlant->"Italic"],
+ "   \t\n\t\n\n\tTambi\[EAcute]n a partir de la definici\[OAcute]n de \
+exponencial compleja se pueden extender las funciones ",
+ StyleBox["seno",
+  FontWeight->"Bold"],
+ " y ",
+ StyleBox["coseno",
+  FontWeight->"Bold"],
+ ". Efectivamente,\n\n\t\t\t",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ExponentialE]", "\[ImaginaryI]x"], TraditionalForm]],
+  ExpressionUUID->"589eff32-2d0b-457d-b2c0-0671bd1b1dd3"],
+ " = ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["1", "x"], TraditionalForm]],ExpressionUUID->
+  "272ea41a-8fc9-4739-bbcd-432a26b966f7"],
+ "    = cos x + \[ImaginaryI] sen x\n\t\t\t",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ExponentialE]", 
+    RowBox[{"-", "\[ImaginaryI]x"}]], TraditionalForm]],ExpressionUUID->
+  "74a2487b-5d10-4193-9ca0-b4217bac3265"],
+ " = ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["1", 
+    RowBox[{"-", "x"}]], TraditionalForm]],ExpressionUUID->
+  "8072e6df-f371-42e7-872d-25c39f2d5f9b"],
+ "= cos x - \[ImaginaryI] sen x\n\tSumando y dividiendo entre dos, tenemos \
+que \n\t\t\tcos x =  (",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ExponentialE]", "\[ImaginaryI]x"], TraditionalForm]],
+  ExpressionUUID->"6df00a0c-9824-4d43-b78c-bc7155d6aceb"],
+ " + ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ExponentialE]", 
+    RowBox[{"-", "\[ImaginaryI]x"}]], TraditionalForm]],ExpressionUUID->
+  "b61e086e-6f41-4807-b3ca-4114fd4967bb"],
+ ")/2\n\tDe forma similar, restando y dividiendo entre 2\[ImaginaryI] \n\t\t\t\
+sen x =  (",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ExponentialE]", "\[ImaginaryI]x"], TraditionalForm]],
+  ExpressionUUID->"389698cd-e3e0-488c-ae44-e2758665c7fa"],
+ " - ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ExponentialE]", 
+    RowBox[{"-", "\[ImaginaryI]x"}]], TraditionalForm]],ExpressionUUID->
+  "d3a68ab2-96b4-4986-b856-b7fb6266438e"],
+ ")/2\[ImaginaryI]\n\tPor tanto, podr\[IAcute]amos f\[AAcute]cilmente \
+extender la definici\[OAcute]n del seno y del coseno a n\[UAcute]meros \
+complejos\n\t\tcos z =  (",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ExponentialE]", "\[ImaginaryI]z"], TraditionalForm]],
+  ExpressionUUID->"1aa2c14b-3bf7-464b-8b6c-b271ab9634b8"],
+ " + ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ExponentialE]", 
+    RowBox[{"-", "\[ImaginaryI]z"}]], TraditionalForm]],ExpressionUUID->
+  "55c929ca-03b5-483c-8006-78ca2e3cffd7"],
+ ")/2,\tsen z =  (",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ExponentialE]", "\[ImaginaryI]z"], TraditionalForm]],
+  ExpressionUUID->"57c6e045-a77a-4439-942d-313c8f038bc0"],
+ " - ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ExponentialE]", 
+    RowBox[{"-", "\[ImaginaryI]z"}]], TraditionalForm]],ExpressionUUID->
+  "b2208d6d-8c2c-46b9-ac83-7ce0ddf11aa9"],
+ ")/2\[ImaginaryI]\n\n\tUtilizando las funciones exponencial y logaritmo \
+podemos definir lo que ser\[IAcute]a un ",
+ StyleBox["n\[UAcute]mero complejo elevado a otro n\[UAcute]mero complejo",
+  FontWeight->"Bold"],
+ ".\n\n\t",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["z", "w"], TraditionalForm]],ExpressionUUID->
+  "0e1e76a7-011a-4640-a5ef-540d3636b928"],
+ " deber\[IAcute]a ser un n\[UAcute]mero complejo v. Si tomamos logaritmos en \
+la igualdad ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["z", "w"], TraditionalForm]],ExpressionUUID->
+  "5a9f612d-433f-4ad4-9cc8-6518949acbad"],
+ "=v, wLog z = Log v y haciendo exponenciales v deber\[IAcute]a ser ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ExponentialE]", 
+    RowBox[{"w", " ", "Log", " ", "z"}]], TraditionalForm]],ExpressionUUID->
+  "d88deb79-cdd9-446d-a102-6c24c5359002"],
+ ".\n\n\t\t\t",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["z", "w"], TraditionalForm]],ExpressionUUID->
+  "18efd4fe-ad65-4588-9856-24d713df5644"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ExponentialE]", 
+    RowBox[{"w", " ", "Log", " ", "z"}]], TraditionalForm]],ExpressionUUID->
+  "83fd7b67-76e7-4139-91dc-2bcce2d6e872"],
+ "\n\tDado que el logaritmo son infinitos valores, la potencia \
+tambi\[EAcute]n ser\[AAcute]n infinitos valores. Si consideramos el Argumento \
+principal, podemos considerar Logaritmo principal y la potencia ser\[IAcute]a \
+un s\[OAcute]lo valor (esto hace el Mathematica).\n\n",
+ StyleBox["6. Formas de expresar un n\[UAcute]mero complejo.\n",
+  FontWeight->"Bold"],
+ "\nCon la definici\[OAcute]n de la exponencial compleja podemos escribir los \
+n\[UAcute]meros complejos de diferentes formas:\n\nF\[OAcute]rma \
+bin\[OAcute]mica (parte real y parte imaginaria) a + \[ImaginaryI]b\nForma \
+polar (m\[OAcute]dulo y argumento) ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["r", "\[Theta]"], TraditionalForm]],ExpressionUUID->
+  "17205352-094a-4c24-af18-d55f2d5bb555"],
+ "\nForma trigonom\[EAcute]trica r (cos \[Theta] + i  sen \[Theta])\nForma \
+exponencial r ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ExponentialE]", "\[ImaginaryI]\[Theta]"], 
+   TraditionalForm]],ExpressionUUID->"a0f562ee-8895-42fe-a1ef-fdb19bdb1f2b"],
+ "\n\n",
+ StyleBox["7. Teoremas sobre polinomios\n",
+  FontWeight->"Bold"],
+ "\t\n",
+ StyleBox["Teorema fundamental del \[AAcute]lgebra.",
+  FontWeight->"Bold"],
+ "\nTodo polinomio de grado n con coeficientes complejos tiene n \
+ra\[IAcute]ces en el plano complejo.\n\nSignifica que no es necesario ampliar \
+m\[AAcute]s el conjunto de los n\[UAcute]meros complejos para poder resolver \
+las ecuaciones polin\[OAcute]micas.\n\n",
+ StyleBox["Teorema. ",
+  FontWeight->"Bold"],
+ "Si un polinomio tiene coeficientes reales y tiene una ra\[IAcute]z \
+compleja, tiene tambi\[EAcute]n como ra\[IAcute]z la conjugada. \n\nLa \
+demostraci\[OAcute]n es sencilla, ya que si z es una ra\[IAcute]z de un \
+polinomio con coeficientes reales, p, tenemos que p(z)=0. Tomando conjugado a \
+los dos lados de la igualdad 0=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{" ", 
+    FormBox[
+     OverscriptBox[
+      RowBox[{"p", "(", "z", ")"}], "_"],
+     TraditionalForm]}], TraditionalForm]],ExpressionUUID->
+  "f4ff06ca-49ce-4204-ace7-3b7cbc56fce9"],
+ " y como el conjugado de la suma o del producto es la suma o producto de los \
+conjugados tenemos que  0=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{" ", 
+    FormBox[
+     OverscriptBox[
+      RowBox[{"p", "(", "z", ")"}], "_"],
+     TraditionalForm]}], TraditionalForm]],ExpressionUUID->
+  "fad8e06b-3958-4d56-8eaa-7f79dc3c4720"],
+ "= p(",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{" ", 
+    OverscriptBox["z", "_"]}], TraditionalForm]],ExpressionUUID->
+  "73b40843-3fd1-4bcb-b509-c13b3337ff11"],
+ "). Por tanto, el conjugado de z tambi\[EAcute]n es una ra\[IAcute]z de p."
+}], "Text",
+ CellChangeTimes->{{3.496548693651125*^9, 3.496548921713625*^9}, 
+   3.496549072619875*^9, {3.49654924079175*^9, 3.496549241573*^9}, {
+   3.4966351782469997`*^9, 3.4966351791219997`*^9}, {3.559529783796875*^9, 
+   3.559529784453125*^9}, {3.55953138575*^9, 3.5595314408125*^9}, {
+   3.55953378228125*^9, 3.559533796328125*^9}, {3.55953387034375*^9, 
+   3.55953390109375*^9}, {3.5595339953125*^9, 3.559534054296875*^9}, {
+   3.559534105234375*^9, 3.559534118203125*^9}, {3.55953420884375*^9, 
+   3.559534217859375*^9}, {3.6357760732646313`*^9, 3.635776074576706*^9}, {
+   3.7151774861948204`*^9, 3.7151774946338205`*^9}, {3.71517752830982*^9, 
+   3.71517755246782*^9}, {3.715221890826*^9, 3.7152220607209997`*^9}, {
+   3.715222095625*^9, 3.715222490501*^9}, {3.715222593389*^9, 
+   3.715222607539*^9}, {3.715222639271*^9, 3.715222769705*^9}, {
+   3.715222812002*^9, 3.7152230523789997`*^9}, {3.715223325918*^9, 
+   3.715223382691*^9}, {3.715223577303*^9, 3.715223911648*^9}, {
+   3.715224003236*^9, 3.715224042651*^9}, {3.715224088466*^9, 
+   3.715224100092*^9}, {3.715224149098*^9, 3.715224204116*^9}, {
+   3.715224253866*^9, 3.7152246381689997`*^9}, {3.7152246693129997`*^9, 
+   3.7152249067650003`*^9}, 3.715224951946*^9, {3.715225088256*^9, 
+   3.715225136208*^9}, {3.7152251962279997`*^9, 3.715225336388*^9}, {
+   3.715225380837*^9, 3.715225420215*^9}, {3.7152254513199997`*^9, 
+   3.715225662623*^9}, {3.715225737473*^9, 3.715225751742*^9}, 
+   3.7152259116689997`*^9, 3.715225994449*^9, {3.715226161414*^9, 
+   3.71522618274*^9}, {3.7152262614700003`*^9, 3.71522677887*^9}, {
+   3.715226810745*^9, 3.715227257685*^9}, {3.715231665972*^9, 
+   3.7152320300109997`*^9}, {3.7152320674*^9, 3.715232126921*^9}, {
+   3.715232177184*^9, 3.715232205877*^9}, {3.715232297053*^9, 
+   3.715232593624*^9}, {3.715232629111*^9, 3.7152328817869997`*^9}, {
+   3.715237863071*^9, 3.715237903115*^9}, {3.71523794295*^9, 
+   3.715238073373*^9}, {3.7152381572*^9, 3.71523817233*^9}, {
+   3.715238215028*^9, 3.715238258566*^9}, {3.7152383796280003`*^9, 
+   3.715238383624*^9}, {3.715238422987*^9, 3.715238430388*^9}, {
+   3.7152384827349997`*^9, 3.715238486168*^9}, {3.7152385182349997`*^9, 
+   3.715238541009*^9}, {3.715238737641*^9, 3.715238764042*^9}, {
+   3.7152388933120003`*^9, 3.715239171433*^9}, {3.7152392306619997`*^9, 
+   3.7152398603929996`*^9}, {3.715239902984*^9, 3.715239981476*^9}, {
+   3.7152400116070004`*^9, 3.715240452766*^9}, {3.7152404832799997`*^9, 
+   3.715240596668*^9}, {3.7152406961029997`*^9, 3.715240712238*^9}, {
+   3.7152407517720003`*^9, 3.71524099638*^9}, 3.715241060866*^9, {
+   3.715241135157*^9, 3.715241418237*^9}, {3.7152418244230003`*^9, 
+   3.715241934432*^9}, {3.715242110684*^9, 3.7152425139370003`*^9}, {
+   3.715242590869*^9, 3.7152432342860003`*^9}, {3.7152432724779997`*^9, 
+   3.7152434078570004`*^9}, {3.715243456336*^9, 3.715243541984*^9}, {
+   3.715243576973*^9, 3.7152439013129997`*^9}, 3.715244120076*^9, {
+   3.715254235203*^9, 3.7152547386619997`*^9}, {3.7152580061870003`*^9, 
+   3.715258189201*^9}, {3.715258288193*^9, 3.715258290341*^9}, {
+   3.715258330368*^9, 3.7152583354709997`*^9}, {3.715258387028*^9, 
+   3.715258388528*^9}, {3.715258424948*^9, 3.715258435432*^9}, {
+   3.715258523777*^9, 3.7152585473059998`*^9}, {3.7152585784709997`*^9, 
+   3.715258585816*^9}, {3.7152586169639997`*^9, 3.715258618043*^9}, {
+   3.715258657133*^9, 3.7152586584709997`*^9}, {3.715258694025*^9, 
+   3.71525872251*^9}, {3.7152587694110003`*^9, 3.715258792683*^9}, {
+   3.715258854416*^9, 3.715258917593*^9}, {3.715258970969*^9, 
+   3.715258978991*^9}, 3.715259010138*^9, {3.715259044186*^9, 
+   3.7152590741470003`*^9}, {3.715259152153*^9, 3.715259160619*^9}, {
+   3.715259197422*^9, 3.715259362222*^9}, {3.715260805934*^9, 
+   3.715260807297*^9}, {3.7152611961210003`*^9, 3.715261196678*^9}, 
+   3.715261875368*^9, {3.715261941717*^9, 3.71526201862*^9}, {
+   3.71526206229*^9, 3.715262093259*^9}, {3.715262520417*^9, 
+   3.715262538881*^9}, {3.715262571524*^9, 3.715262573158*^9}, {
+   3.715262610087*^9, 3.715262665708*^9}, {3.71595760042841*^9, 
+   3.715957892619812*^9}, {3.715957951475212*^9, 3.7159579762230124`*^9}, {
+   3.715958008304013*^9, 3.715958234578014*^9}, {3.7159582790384145`*^9, 
+   3.7159583011194143`*^9}, {3.715958344403015*^9, 3.715958534424816*^9}, {
+   3.715958587817416*^9, 3.715958789264618*^9}, {3.7159590792202196`*^9, 
+   3.7159590805960197`*^9}, {3.7159591140058193`*^9, 3.71595913704222*^9}, {
+   3.71596076501583*^9, 3.7159608052714305`*^9}, {3.715960837443431*^9, 
+   3.7159610870606327`*^9}, {3.7159611335016327`*^9, 
+   3.7159612187178335`*^9}, {3.715963752052049*^9, 3.715963752410849*^9}, {
+   3.7159637958778496`*^9, 3.7159637974800496`*^9}, {3.716444973314805*^9, 
+   3.716445324034007*^9}, {3.7164453843436074`*^9, 3.7164455373172083`*^9}, {
+   3.7164455991868086`*^9, 3.7164457017100096`*^9}, {3.71644606304661*^9, 
+   3.71644645037461*^9}, {3.7164465621516094`*^9, 3.7164469289786096`*^9}, {
+   3.7164469641216097`*^9, 3.7164469744066095`*^9}, {3.7164470045876093`*^9, 
+   3.7164470707616096`*^9}, {3.7164471062266097`*^9, 
+   3.7164471232326097`*^9}, {3.7164471722876096`*^9, 3.7164472240766096`*^9}, 
+   3.71644726825661*^9, {3.7164473472026095`*^9, 3.71644734725161*^9}, {
+   3.71646695299461*^9, 3.7164669782336097`*^9}, {3.71647023711261*^9, 
+   3.71647026984161*^9}, {3.7164703526356096`*^9, 3.7164704637246094`*^9}, {
+   3.7164710851346097`*^9, 3.7164712543586097`*^9}, {3.7164714078396096`*^9, 
+   3.7164714236216097`*^9}, {3.7164714671096096`*^9, 
+   3.7164715059176097`*^9}, {3.7164718568656096`*^9, 
+   3.7164719192886095`*^9}, {3.7164720116616096`*^9, 3.71647205015761*^9}, {
+   3.7164720821226096`*^9, 3.7164723486156096`*^9}, {3.7164728486326094`*^9, 
+   3.7164729225166097`*^9}, {3.7164729613516097`*^9, 
+   3.7164730416806097`*^9}, {3.7164730912986097`*^9, 
+   3.7164730963236094`*^9}, {3.7164731325046096`*^9, 
+   3.7164731711536093`*^9}, {3.71647330675861*^9, 3.7164734601606092`*^9}, {
+   3.7164736390876093`*^9, 3.7164736403346095`*^9}, {3.7164737014086094`*^9, 
+   3.7164737020876093`*^9}, {3.7164737817146096`*^9, 
+   3.7164738932076097`*^9}, {3.7164751991076097`*^9, 3.71647528938861*^9}, {
+   3.7164753730886097`*^9, 3.71647575321661*^9}, {3.7164757836866093`*^9, 
+   3.7164758044816093`*^9}, {3.7164758811186094`*^9, 
+   3.7164758918006096`*^9}, {3.7164759420286093`*^9, 3.7164759916636095`*^9}, 
+   3.7164770375746098`*^9, {3.7164771259886093`*^9, 3.71647785340261*^9}, {
+   3.7164778838336096`*^9, 3.7164779022816095`*^9}, {3.71647794002061*^9, 
+   3.71647803902761*^9}, {3.71647816445461*^9, 3.71647823688361*^9}, {
+   3.7242159866526003`*^9, 3.7242160301376*^9}, {3.7242160904756002`*^9, 
+   3.7242161709986*^9}, {3.7242162438375998`*^9, 3.7242166473726*^9}, 
+   3.7242166832186003`*^9, {3.7242167257906*^9, 3.7242167574686003`*^9}, {
+   3.7242168047896*^9, 3.7242168942566*^9}, {3.7242169245216*^9, 
+   3.7242172099086*^9}, {3.7242172420786*^9, 3.7242176980095997`*^9}, {
+   3.7242257024392276`*^9, 3.7242257134662275`*^9}, {3.7242257757252274`*^9, 
+   3.7242259612042274`*^9}, {3.724226049698228*^9, 3.7242264890502276`*^9}, {
+   3.724226601028228*^9, 3.7242266516712275`*^9}, {3.7242281480522275`*^9, 
+   3.7242281494852276`*^9}, {3.7242282347422276`*^9, 
+   3.7242283321522274`*^9}, {3.724228432092228*^9, 3.7242285160692277`*^9}, {
+   3.724228554929228*^9, 3.7242285613472276`*^9}, {3.7242285956332273`*^9, 
+   3.7242287024172277`*^9}, {3.7242287374132276`*^9, 
+   3.7242291999722276`*^9}, {3.7242293858062277`*^9, 
+   3.7242296651682277`*^9}, {3.7242296976522274`*^9, 
+   3.7242297757462273`*^9}, {3.7242298173292274`*^9, 
+   3.7242299585642276`*^9}, {3.7242300170362277`*^9, 3.724230063120228*^9}, {
+   3.724230117719228*^9, 3.7242302989972277`*^9}, {3.7242304182692275`*^9, 
+   3.7242304218552275`*^9}, {3.724230461448228*^9, 3.724230774988228*^9}, {
+   3.7242308150622272`*^9, 3.724230824370228*^9}, {3.7242308645692277`*^9, 
+   3.7242309035782275`*^9}, 3.7242309457822275`*^9, {3.7242309879932275`*^9, 
+   3.7242310024022274`*^9}, {3.7242310609252276`*^9, 
+   3.7242311656572275`*^9}, {3.7242312125532274`*^9, 
+   3.7242312574402275`*^9}, {3.7242484121952276`*^9, 3.724248622620228*^9}, {
+   3.724248675401228*^9, 3.7242490888292274`*^9}, {3.7242491247602277`*^9, 
+   3.7242491252372274`*^9}, {3.7242492036362276`*^9, 
+   3.7242494495242276`*^9}, {3.724249572903228*^9, 3.7242495966612277`*^9}, {
+   3.724249648568228*^9, 3.7242498087542276`*^9}, {3.7242498883882275`*^9, 
+   3.7242499856992273`*^9}, {3.7242500261452274`*^9, 
+   3.7242501957272277`*^9}, {3.8109057275629187`*^9, 
+   3.8109057715622187`*^9}, {3.8109064427244225`*^9, 
+   3.8109064457103224`*^9}, {3.810906480149923*^9, 3.810906481868323*^9}, {
+   3.810906754941324*^9, 3.810906918399025*^9}, {3.810907018192526*^9, 
+   3.8109072821219273`*^9}, {3.810907443176128*^9, 3.810907459252528*^9}, {
+   3.8109075726235285`*^9, 3.81090777315193*^9}, {3.81090784048503*^9, 
+   3.8109078953914304`*^9}, {3.8109079976866307`*^9, 
+   3.8109083173307323`*^9}, {3.8109083641389327`*^9, 
+   3.8109084298756332`*^9}, {3.8109084669909334`*^9, 3.810908734919335*^9}, {
+   3.8109087913139353`*^9, 3.810908792036935*^9}, {3.8109089502208357`*^9, 
+   3.810908958309436*^9}, 3.810908991351636*^9, {3.8109109139544463`*^9, 
+   3.810910916759446*^9}, {3.8109110288059473`*^9, 3.8109110924977474`*^9}, {
+   3.810911189246348*^9, 3.8109113672564487`*^9}, {3.8109114146978493`*^9, 
+   3.8109114898895493`*^9}, {3.8109118833572516`*^9, 
+   3.8109118867107515`*^9}, {3.810912213108753*^9, 3.8109122133427534`*^9}, {
+   3.8109133292636595`*^9, 3.8109133600814595`*^9}, {3.81091339377656*^9, 
+   3.810913621918361*^9}, {3.8109137103476615`*^9, 3.810913727376762*^9}, {
+   3.8109181217014*^9, 3.8109181577016*^9}, {3.8109182004592004`*^9, 
+   3.8109183390572014`*^9}, {3.8109183830079017`*^9, 
+   3.8109183994436016`*^9}, {3.8109184299746017`*^9, 
+   3.8109185713327026`*^9}, {3.810918658109603*^9, 3.8109186592154036`*^9}, {
+   3.873118503928646*^9, 3.8731187016503415`*^9}, 3.873118805065942*^9, {
+   3.8731227209611855`*^9, 3.8731227274786854`*^9}, {3.8731230384378214`*^9, 
+   3.873123049447094*^9}, {3.904313858079788*^9, 3.9043139268350973`*^9}, {
+   3.9045644994050217`*^9, 3.904564501441986*^9}},
+ FontFamily->
+  "Book Antiqua",ExpressionUUID->"6315f9e3-4819-4598-972a-1343a178f4e2"],
+
+Cell[TextData[{
+ "8",
+ StyleBox[". Algunos problemas.",
+  FontWeight->"Bold"],
+ "\n\n1.- Expresar en ",
+ StyleBox["forma bin\[OAcute]mica",
+  FontWeight->"Bold"],
+ " los siguientes n\[UAcute]meros complejos: \n\t\[Bullet] z = 2 ( ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"cos", "(", 
+    FractionBox["\[Pi]", "3"], ")"}], TraditionalForm]],ExpressionUUID->
+  "95acdcf6-d64b-4bb7-a4da-ede41024cb76"],
+ " + \[ImaginaryI] sen",
+ Cell[BoxData[
+  RowBox[{"(", 
+   FractionBox["\[Pi]", "3"], ")"}]],ExpressionUUID->
+  "a30083e8-3462-4bbd-afd4-f772bb3a3a6d"],
+ ")\n\t\[Bullet] z = 3 ( ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"cos", "(", 
+    FractionBox["\[Pi]", "4"], ")"}], TraditionalForm]],ExpressionUUID->
+  "261243c2-be9c-440d-b2cf-ad9dbcbffac0"],
+ " + \[ImaginaryI] sen",
+ Cell[BoxData[
+  RowBox[{"(", 
+   FractionBox["\[Pi]", "u"], ")"}]],ExpressionUUID->
+  "2f53bdc7-7706-43b4-b585-729700518b68"],
+ ")\n\t\[Bullet] z = 3.5 ( ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"cos", "(", "\[Pi]", ")"}], TraditionalForm]],ExpressionUUID->
+  "7f2b60fb-11f9-4dc0-8d5b-d91ec8096e77"],
+ " +\[ImaginaryI] sen(\[Pi]) )\n\t\[Bullet] z = 5 ( ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"cos", "(", 
+    FractionBox["\[Pi]", "2"], ")"}], TraditionalForm]],ExpressionUUID->
+  "81991897-dbe0-44b7-9773-8adf012992fd"],
+ " + \[ImaginaryI]sen",
+ Cell[BoxData[
+  RowBox[{"(", 
+   FractionBox["\[Pi]", "2"], ")"}]],ExpressionUUID->
+  "caebd0d8-9b67-4063-8d42-3073442e6b5a"],
+ ")\n\t\[Bullet] z = ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox["3", "7"], TraditionalForm]],ExpressionUUID->
+  "e7638594-cd9f-4a04-9371-463d4a5d5a85"],
+ " ( ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"cos", "(", 
+    FractionBox["\[Pi]", "6"], ")"}], TraditionalForm]],ExpressionUUID->
+  "2d02ebd3-8de8-4edc-90d5-63eccb09319a"],
+ " + \[ImaginaryI]sen",
+ Cell[BoxData[
+  RowBox[{"(", 
+   FractionBox["\[Pi]", "6"], ")"}]],ExpressionUUID->
+  "ac041a56-9c4f-45b5-8fca-a941ae0b0000"],
+ ")\n\t\n2.- Expresar en ",
+ StyleBox["forma polar",
+  FontWeight->"Bold"],
+ " los siguientes n\[UAcute]meros complejos: \n\t\[Bullet] z = - 7\n\t\
+\[Bullet] z =  8\[ImaginaryI]\n\t\[Bullet] z = - 4\[ImaginaryI]\n\t\[Bullet] \
+z = 13\n\t\[Bullet] z = - 2 + 2\[ImaginaryI]\n\t\[Bullet] z =  \[ImaginaryI]\n\
+\t\[Bullet] z =  - \[ImaginaryI]\n\t\[Bullet] z = - ",
+ Cell[BoxData[
+  FormBox[
+   SqrtBox["2"], TraditionalForm]],ExpressionUUID->
+  "2062af31-5759-4765-94c0-b4ea0f342e4b"],
+ " + ",
+ Cell[BoxData[
+  FormBox[
+   SqrtBox["2"], TraditionalForm]],ExpressionUUID->
+  "66b0ad5b-629a-48b7-bb03-2ff79cbca65c"],
+ "\[ImaginaryI]\n\t\[Bullet] z = - 1 + \[ImaginaryI] ",
+ Cell[BoxData[
+  FormBox[
+   SqrtBox["3"], TraditionalForm]],ExpressionUUID->
+  "050f3c9b-f00b-4fc0-a142-1276860dbef4"],
+ "\n\t\[Bullet] z = - 1 + \[ImaginaryI]\n\t\[Bullet] z = - 1 - \[ImaginaryI]\n\
+\t\[Bullet] z =  1 - \[ImaginaryI]\n\t\[Bullet] z =  1 + \[ImaginaryI]\n\t\n\
+3.- Expresar en ",
+ StyleBox["forma trigonom\[EAcute]trica",
+  FontWeight->"Bold"],
+ " los siguientes n\[UAcute]meros complejos: \n\t\[Bullet] z = - 3 + 4\
+\[ImaginaryI]\n\t\[Bullet] z = - 7\n\t\[Bullet] z =  8\[ImaginaryI]\n\t\
+\[Bullet] z = - 4\[ImaginaryI]\n\t\[Bullet] z = 13\n\t\[Bullet] z = - 2 + 2\
+\[ImaginaryI]\n\t\[Bullet] z =  \[ImaginaryI]\n\t\[Bullet] z =  - \
+\[ImaginaryI]\n\t\n4.- Expresar en ",
+ StyleBox["forma exponencial",
+  FontWeight->"Bold"],
+ " los siguientes n\[UAcute]meros complejos: \n\t\[Bullet] z = - 1 + ",
+ Cell[BoxData[
+  FormBox[
+   SqrtBox["3"], TraditionalForm]],ExpressionUUID->
+  "decd9cf4-0e65-4a33-86aa-774afab9d36b"],
+ "\[ImaginaryI]\n\t\[Bullet] z = - 7\n\t\[Bullet] z =  8\[ImaginaryI]\n\t\
+\[Bullet] z = - 4\[ImaginaryI]\n\t\[Bullet] z = 13\n\t\[Bullet] z = - ",
+ Cell[BoxData[
+  FormBox[
+   SqrtBox["2"], TraditionalForm]],ExpressionUUID->
+  "f12b8d5b-1037-4af4-baeb-3173a8568fa7"],
+ " + \[ImaginaryI]",
+ Cell[BoxData[
+  FormBox[
+   SqrtBox["2"], TraditionalForm]],ExpressionUUID->
+  "d16dde93-5497-42b7-9cb7-200e90b774fc"],
+ "\n\t\[Bullet] z =  \[ImaginaryI]\n\t\[Bullet] z =  - \[ImaginaryI]\n\t\
+\[Bullet] z = - ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox["1", "2"], TraditionalForm]],ExpressionUUID->
+  "bf21bbba-9b88-447e-9892-cd06b22f9a50"],
+ " + ",
+ Cell[BoxData[
+  FormBox["\[ImaginaryI]", TraditionalForm]],ExpressionUUID->
+  "99afa6a9-8dc5-479b-803d-af2ced9c05e8"],
+ " ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    SqrtBox["3"], "2"], TraditionalForm]],ExpressionUUID->
+  "999822e3-0191-40ea-b46e-f7a17aaeb664"],
+ "\n\t\n 5.- Escribir en forma polar y trigonom\[EAcute]trica  los siguientes \
+n\[UAcute]meros complejos:\n\t\[Bullet] z = 1 - i \n\t\[Bullet] z = 4\n\t\
+\[Bullet] z = -2i\n\t\[Bullet] z = -4\n\t\[Bullet] z = 8i\n\t\[Bullet] z = - ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SqrtBox["2"], " ", "+", " ", 
+    RowBox[{"i", " ", 
+     SqrtBox["2"]}]}], TraditionalForm]],ExpressionUUID->
+  "97d5c5df-eb26-4215-921e-da973f0f9ac3"],
+ "\t\n",
+ StyleBox["\n6.- ",
+  FontSlant->"Italic"],
+ "Sea z = ",
+ StyleBox["a",
+  FontSlant->"Italic"],
+ " + \[ImaginaryI] ",
+ StyleBox["b",
+  FontSlant->"Italic"],
+ ", con ",
+ StyleBox["a",
+  FontSlant->"Italic"],
+ " y",
+ StyleBox[" b ",
+  FontSlant->"Italic"],
+ "n\[UAcute]meros reales. Describir geom\[EAcute]tricamente el conjunto de \
+los n\[UAcute]meros complejos que satisfacen cada una de las siguientes \
+condiciones:\n\t\[Bullet] \[VerticalSeparator]z\[VerticalSeparator] = 1\n\t\
+\[Bullet] \[VerticalSeparator]z\[VerticalSeparator] < 1\n\t\[Bullet] \
+\[VerticalSeparator]z\[VerticalSeparator] \[LessEqual] 1\n\n7.- Dados los n\
+\[UAcute]meros complejos ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["z", "1"], TraditionalForm]],ExpressionUUID->
+  "4f402c86-72f4-4d26-a9e7-0a14bb150304"],
+ "= 2 i, ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubscriptBox["z", "2"], " ", "=", " ", 
+     RowBox[{"1", "+", 
+      RowBox[{"3", "i"}]}]}], ",", " ", 
+    RowBox[{
+     SubscriptBox["z", "3"], " ", "=", " ", 
+     FractionBox["1", 
+      RowBox[{"2", "-", "i"}]]}]}], TraditionalForm]],ExpressionUUID->
+  "4a3640d7-22e2-407e-92d5-a14a06bb2161"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["z", "4"], " ", "=", " ", 
+    RowBox[{"5", "-", 
+     RowBox[{"2", "i"}]}]}], TraditionalForm]],ExpressionUUID->
+  "b50eb31b-6300-4393-96fe-054d8a695e2d"],
+ "  realizar los siguientes c\[AAcute]lculos:\n\t\[Bullet] ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["z", "2"], " ", "+", " ", 
+    SubscriptBox["z", "4"]}], TraditionalForm]],ExpressionUUID->
+  "507c9410-5853-4c08-b89d-2895bf0dc29b"],
+ "\n\t\[Bullet] ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["z", "1"], " ", "-", " ", 
+    SubscriptBox["z", "3"]}], TraditionalForm]],ExpressionUUID->
+  "1cad9dba-9404-4427-8b28-b8c91ef9dfba"],
+ "\n\t\[Bullet] 5 ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["z", "2"], TraditionalForm]],ExpressionUUID->
+  "50f7b94d-977e-41a4-8b9f-f2169d073474"],
+ "\n\t\[Bullet] ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["z", "2"], TraditionalForm]],ExpressionUUID->
+  "026f7b0f-2b63-4fc0-b1b5-93ba02bc238c"],
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["z", "3"], TraditionalForm]],ExpressionUUID->
+  "8d6851c4-5e6a-4be7-9f1a-fb02cf9d9080"],
+ "\n\t\[Bullet] ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["z", "4"], " ", 
+    SubscriptBox["z", "1"]}], TraditionalForm]],ExpressionUUID->
+  "f827abea-f7ce-4a3b-8945-91d6c8ec11fc"],
+ "\n\t\[Bullet] ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    SubscriptBox["z", "1"], 
+    SubscriptBox["z", "2"]], TraditionalForm]],ExpressionUUID->
+  "c640ad84-0e20-41e3-8268-780ee27fd73d"],
+ "\t\n\t\[Bullet] ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    SubscriptBox["z", "4"], 
+    SubscriptBox["z", "3"]], TraditionalForm]],ExpressionUUID->
+  "a5ee246c-8094-4456-8aa6-acfd7e16dbef"],
+ "\n\t\[Bullet] ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["z", "2"], TraditionalForm]],ExpressionUUID->
+  "ecd75cec-a9d4-453e-82e1-172be5c29edd"],
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox[
+    SubscriptBox["z", "2"], "_"], TraditionalForm]],ExpressionUUID->
+  "e07f6cee-141d-4e19-90cd-f60fb87ad101"],
+ "\n\t\[Bullet] ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox[
+    SubscriptBox["z", "3"], "_"], TraditionalForm]],ExpressionUUID->
+  "fbc5e23a-c97e-4c2f-8dda-663babfafb5a"],
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["z", "3"], TraditionalForm]],ExpressionUUID->
+  "9cfb21f4-bb51-40c2-a5f5-6539871f7896"],
+ "\t\n\t\n8.- Calcular \n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Bullet]", " ", 
+    SuperscriptBox["\[ImaginaryI]", "2"]}], TraditionalForm]],ExpressionUUID->
+  "534b1756-efcd-4181-8a09-aea4b8636e25"],
+ "\n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Bullet]", " ", 
+    SuperscriptBox["\[ImaginaryI]", "3"]}], TraditionalForm]],ExpressionUUID->
+  "3dcaad14-9fac-4296-bb8d-965740a9d5cf"],
+ "\n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Bullet]", " ", 
+    SuperscriptBox["\[ImaginaryI]", "4"]}], TraditionalForm]],ExpressionUUID->
+  "17af2579-0a1c-4196-a428-2c05a7ee1970"],
+ "\n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Bullet]", " ", 
+    SuperscriptBox["\[ImaginaryI]", "27"]}], TraditionalForm]],ExpressionUUID->
+  "cc145151-9822-4c34-80b8-e287b9709251"],
+ "\n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Bullet]", " ", 
+    SuperscriptBox["\[ImaginaryI]", "246"]}], TraditionalForm]],
+  ExpressionUUID->"067942a4-702d-4da0-a59c-f74fc72b2a81"],
+ "\n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Bullet]", " ", 
+    SqrtBox["\[ImaginaryI]"]}], TraditionalForm]],ExpressionUUID->
+  "0e95592b-4246-47dc-9605-fb49436bcbe7"],
+ "\n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Bullet]", " ", 
+    RadicalBox["\[ImaginaryI]", "3"]}], TraditionalForm]],ExpressionUUID->
+  "560a5ffa-695f-42ce-aa0b-238dda06db7d"],
+ "\n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Bullet]", " ", 
+    RadicalBox["\[ImaginaryI]", "5"]}], TraditionalForm]],ExpressionUUID->
+  "ee3cbd8c-2de7-4d7e-bddf-53e76633f98d"],
+ "\n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Bullet]", " ", 
+    RadicalBox[
+     RowBox[{
+      RowBox[{"2", 
+       SqrtBox["2"]}], " ", "+", " ", 
+      RowBox[{"\[ImaginaryI]", " ", "2", 
+       SqrtBox["2"]}]}], "4"]}], TraditionalForm]],ExpressionUUID->
+  "430310bd-b84c-469f-a58d-edc2641f56ab"],
+ "\n\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Bullet]", " ", "("}], TraditionalForm]],ExpressionUUID->
+  "831468c0-f4a8-44d5-b608-5a3c034cb2a8"],
+ " ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"2", 
+     SqrtBox["2"]}], " ", "+", " ", 
+    RowBox[{"\[ImaginaryI]", " ", "2", 
+     SqrtBox["2"]}]}], TraditionalForm]],ExpressionUUID->
+  "c853d923-eb45-45f6-8639-3d1d0976cc0e"],
+ " ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[")", "4"], TraditionalForm]],ExpressionUUID->
+  "f15f1ac7-d653-4ab1-85ff-3be5d85ddf6e"],
+ "\n\t\[Bullet] ( ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    RowBox[{
+     FractionBox[
+      RowBox[{"1", " ", "-", " ", "\[ImaginaryI]"}], 
+      RowBox[{"1", " ", "+", " ", "\[ImaginaryI]"}]], " ", ")"}], "8"], 
+   TraditionalForm]],ExpressionUUID->"ea21ccf5-9f18-4a36-892f-d268389616fe"],
+ "\n\t\[Bullet] ( ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"cos", "(", 
+    FractionBox["\[Pi]", "12"], ")"}], TraditionalForm]],ExpressionUUID->
+  "9e6d4980-abfe-4506-b642-bd722dcd8f03"],
+ " + \[ImaginaryI] ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    RowBox[{
+     RowBox[{"sen", 
+      RowBox[{"(", 
+       RowBox[{"\[Pi]", "/", "12"}], ")"}]}], ")"}], "20"], TraditionalForm]],
+  ExpressionUUID->"660ad444-c9a8-4796-bb3c-31171ec3475c"],
+ "\n\t\n9.- Hallar el m\[OAcute]dulo y el argumento principal de los \
+siguientes n\[UAcute]meros complejos:\n\t\[Bullet] ( 1 + \[ImaginaryI] ) 8\
+\[ImaginaryI]\n\t\[Bullet] ( 1 +\[ImaginaryI] ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[")", "2"], TraditionalForm]],ExpressionUUID->
+  "81db4b0d-f6b8-49fc-89a7-4db5f4be3246"],
+ "\n\t\[Bullet] ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{"1", " ", "+", " ", "\[ImaginaryI]"}], 
+    SqrtBox["2"]], TraditionalForm]],ExpressionUUID->
+  "9e98f7e5-a630-4cfc-ad6c-54bfc26394ca"],
+ "\n\t\[Bullet] ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ImaginaryI]", "7"], TraditionalForm]],ExpressionUUID->
+  "d82da55e-4ca6-400d-bbed-9785f09d9b03"],
+ " + ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ImaginaryI]", "10"], TraditionalForm]],ExpressionUUID->
+  "7ea3a996-d1f7-49f5-a263-39e3075a5aca"],
+ "\n\t\[Bullet] ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{"1", " ", "+", " ", "\[ImaginaryI]"}], 
+    RowBox[{"8", " ", "\[ImaginaryI]"}]], TraditionalForm]],ExpressionUUID->
+  "bcc02ec9-2308-4d34-8cc1-782293003866"],
+ "\n\t\n10.- Dados los n\[UAcute]meros complejos  z = 5 - 3\[ImaginaryI],  w \
+= ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox["1", "2"], TraditionalForm]],ExpressionUUID->
+  "b8b6d54c-e879-467a-a430-da0c86cedbec"],
+ "+  ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox["\[ImaginaryI]", "2"], TraditionalForm]],ExpressionUUID->
+  "dde5c877-2523-465a-b8dc-2f8ab1c91186"],
+ ",  s = -1 + 2 \[ImaginaryI],  j = -4 - 2\[ImaginaryI]\n\t( a ) Representar \
+sus afijos en el plano complejo.\n\t( b ) Calcular :  ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["z", "1"], TraditionalForm]],ExpressionUUID->
+  "9f16c02a-7b86-4750-9292-c1fae34d7465"],
+ " =  z ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["1", 
+    FractionBox["\[Pi]", "2"]], TraditionalForm]],ExpressionUUID->
+  "da78077a-f015-4215-809e-0513ab64ef11"],
+ ",    ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{" ", 
+    SubscriptBox["w", 
+     RowBox[{"1", " "}]]}], TraditionalForm]],ExpressionUUID->
+  "190621e3-4c26-45ee-ba4b-ba76aa00c6a2"],
+ "= w ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["1", 
+    FractionBox[
+     RowBox[{"3", "\[Pi]"}], "2"]], TraditionalForm]],ExpressionUUID->
+  "62c62ec1-2261-45a3-807a-cf480797e6c2"],
+ " ,  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["s", 
+     RowBox[{"1", " "}]], " "}], TraditionalForm]],ExpressionUUID->
+  "5a5d1b75-1cb6-46ae-9bfa-cd9f163c6d21"],
+ "= s ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["1", "\[Pi]"], TraditionalForm]],ExpressionUUID->
+  "549b3006-61a4-4964-9038-a44556767dbc"],
+ ",   ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["j", "1"], TraditionalForm]],ExpressionUUID->
+  "3adfaacd-be87-4260-95da-0527c6d99769"],
+ " =  j ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["1", 
+    FractionBox["\[Pi]", "4"]], TraditionalForm]],ExpressionUUID->
+  "2f783de5-ec2f-4138-8bba-2106d49ca7a3"],
+ "\n11.- Escribir en forma bin\[OAcute]mica  ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["e", 
+    SqrtBox["\[ImaginaryI]"]], TraditionalForm]],ExpressionUUID->
+  "6c9aa537-b82c-4cec-a775-65dbb5eae797"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ImaginaryI]", 
+    RowBox[{" ", "5"}]], TraditionalForm]],ExpressionUUID->
+  "710156db-df80-4f4b-809e-fe5db7ea0a0b"],
+ "+ ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ImaginaryI]", 
+    RowBox[{" ", "16"}]], TraditionalForm]],ExpressionUUID->
+  "3abdef74-c1cd-438b-adbd-3ab6e4267867"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    RowBox[{
+     RowBox[{"(", " ", 
+      RowBox[{"1", " ", "+", " ", "\[ImaginaryI]"}], " ", ")"}], " "}], "2"], 
+   TraditionalForm]],ExpressionUUID->"670a8935-b5e9-4386-8a84-a3c4220738eb"],
+ "\n\n12.- Calcular  ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    RowBox[{"(", " ", 
+     RowBox[{"2", " ", "-", " ", 
+      RowBox[{"2", " ", "\[ImaginaryI]"}]}], " ", ")"}], "7"], 
+   TraditionalForm]],ExpressionUUID->"b71383f2-3aee-4dac-bb3a-06bde5b4146b"],
+ ",  ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    RowBox[{"(", 
+     FractionBox[
+      RowBox[{"1", " ", "-", " ", "\[ImaginaryI]"}], 
+      RowBox[{"1", " ", "+", " ", "\[ImaginaryI]"}]], ")"}], "8"], 
+   TraditionalForm]],ExpressionUUID->"d4d91567-b6f2-4952-be7e-0339226b97b4"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   RadicalBox[
+    RowBox[{" ", 
+     RowBox[{
+      RowBox[{"-", " ", "2"}], " ", "+", " ", 
+      RowBox[{"2", "\[ImaginaryI]"}]}]}], "3"], TraditionalForm]],
+  ExpressionUUID->"82e71cfd-badc-4e3a-95ea-b50d8dd73ca4"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   RadicalBox[
+    RowBox[{"81", " ", "\[ImaginaryI]"}], "4"], TraditionalForm]],
+  ExpressionUUID->"de309dd7-da1b-4822-9537-d408277e4a5f"],
+ "\n\n13.- Calcular Log(i ), Log( -i ), Log( -1 ), Log( 1 + i )\n\n14.- \
+Calcular ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    RowBox[{
+     RowBox[{"(", " ", "\[ImaginaryI]", " ", ")"}], " "}], 
+    RowBox[{"2", "\[ImaginaryI]"}]], TraditionalForm]],ExpressionUUID->
+  "5a949231-1fff-4e76-9e07-b43d477fa961"],
+ " , ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"-", "1"}], " ", ")"}], "\[ImaginaryI]"], TraditionalForm]],
+  ExpressionUUID->"92463dc4-59d6-4fe2-9d7c-267aa6624c39"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    SuperscriptBox[
+     RowBox[{
+      RowBox[{"(", " ", "\[ImaginaryI]", ")"}], " "}], "\[ImaginaryI]"], 
+    RowBox[{"1", " ", "-", " ", "\[ImaginaryI]"}]], TraditionalForm]],
+  ExpressionUUID->"7cd20954-b63b-4995-88d9-8acb6ef1ae04"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    RowBox[{
+     RowBox[{"(", " ", 
+      RowBox[{"1", " ", "-", " ", 
+       RowBox[{"\[ImaginaryI]", 
+        SqrtBox["3"]}]}], " ", ")"}], " "}], 
+    RowBox[{"3", " ", "-", " ", "\[ImaginaryI]"}]], TraditionalForm]],
+  ExpressionUUID->"a17e37a1-f53a-475e-ad5e-4dc26fe3b398"],
+ "\n\n15.- Comprobar que\n\t\[FilledVerySmallSquare] ( ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SqrtBox["2"], " ", "-", " ", "\[ImaginaryI]", " "}], TraditionalForm]],
+  ExpressionUUID->"715c30a1-9855-40a7-99c7-2e1598313ed4"],
+ ") -\[ImaginaryI] ( 1 - ",
+ Cell[BoxData[
+  FormBox[
+   SqrtBox["2"], TraditionalForm]],ExpressionUUID->
+  "6733fe2e-ca3d-488f-8d40-5fe3a8b1ae1e"],
+ "\[ImaginaryI] ) = - 2\[ImaginaryI]\n\t\n\t\[FilledVerySmallSquare] ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FractionBox["5", 
+     RowBox[{
+      RowBox[{"(", " ", 
+       RowBox[{"1", "-", " ", "\[ImaginaryI]"}], " ", ")"}], 
+      RowBox[{"(", " ", 
+       RowBox[{"2", " ", "-", " ", "\[ImaginaryI]"}], " ", ")"}], " ", 
+      RowBox[{"(", " ", 
+       RowBox[{"3", " ", "-", " ", "\[ImaginaryI]"}], ")"}]}]], " ", "=", " ", 
+    FractionBox["\[ImaginaryI]", "2"]}], TraditionalForm]],ExpressionUUID->
+  "f4a24ce2-5951-468d-82a5-cd95d714cb08"],
+ "\n\t\n\t\[FilledVerySmallSquare] ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     FractionBox[
+      RowBox[{"1", " ", "+", " ", 
+       RowBox[{"2", "\[ImaginaryI]"}]}], 
+      RowBox[{"3", " ", "-", " ", 
+       RowBox[{"4", "\[ImaginaryI]"}]}]], " ", "+", " ", 
+     FractionBox[
+      RowBox[{"2", " ", "-", " ", "\[ImaginaryI]"}], 
+      RowBox[{"5", " ", "\[ImaginaryI]"}]]}], " ", "=", " ", 
+    RowBox[{"-", " ", 
+     FractionBox["2", "5"]}]}], TraditionalForm]],ExpressionUUID->
+  "e451a59c-1109-4279-a441-744674e72265"],
+ "\n\t\n\t\[FilledVerySmallSquare] ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", " ", 
+      RowBox[{"1", " ", "-", " ", "\[ImaginaryI]"}], ")"}], "4"], " ", "=", 
+    " ", 
+    RowBox[{"-", "4"}]}], TraditionalForm]],ExpressionUUID->
+  "4a1054a2-db55-48cc-a5b0-9e534876dca5"],
+ "\n\t\n\t\[FilledVerySmallSquare] \[ImaginaryI] ( 1 - ",
+ Cell[BoxData[
+  FormBox[
+   SqrtBox["3"], TraditionalForm]],ExpressionUUID->
+  "d22fa15c-2ae8-4dfa-9b67-049aa4155f23"],
+ "\[ImaginaryI] ) ( ",
+ Cell[BoxData[
+  FormBox[
+   SqrtBox["3"], TraditionalForm]],ExpressionUUID->
+  "1d7ffa38-8ed1-440a-b72e-5c347e064a5b"],
+ "+ \[ImaginaryI] ) =2 (1 + ",
+ Cell[BoxData[
+  FormBox[
+   SqrtBox["3"], TraditionalForm]],ExpressionUUID->
+  "f492752e-f606-42aa-b52c-945273a9b1aa"],
+ "\[ImaginaryI] )\n\t\n\t\[FilledVerySmallSquare] ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FractionBox[
+     RowBox[{"5", "\[ImaginaryI]"}], 
+     RowBox[{"2", " ", "+", " ", "\[ImaginaryI]"}]], " ", "=", " ", 
+    RowBox[{"1", " ", "+", " ", 
+     RowBox[{"2", " ", "\[ImaginaryI]"}]}]}], TraditionalForm]],
+  ExpressionUUID->"4752c781-5550-47b7-a319-9f500c1124fe"],
+ " \n\t\n16.- Calcular y representar en el plano complejo  ",
+ Cell[BoxData[
+  FormBox[
+   SqrtBox["\[ImaginaryI]"], TraditionalForm]],ExpressionUUID->
+  "3884605c-59d5-4f21-86f5-a8d425944a06"],
+ ",  ",
+ Cell[BoxData[
+  FormBox[
+   RadicalBox["\[ImaginaryI]", "3"], TraditionalForm]],ExpressionUUID->
+  "8e484caf-0bda-484a-833e-9a5b00f59882"],
+ " , ",
+ Cell[BoxData[
+  FormBox[
+   RadicalBox["\[ImaginaryI]", "4"], TraditionalForm]],ExpressionUUID->
+  "9eb71193-1c50-49c1-a002-2498db348668"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   RadicalBox["1", "6"], TraditionalForm]],ExpressionUUID->
+  "63c7df30-0b51-47e6-84f5-ae5b5c8ca972"],
+ ".\t\n\n17.- Hallar y representar en el plano complejo  ",
+ Cell[BoxData[
+  FormBox[
+   RadicalBox["1", "4"], TraditionalForm]],ExpressionUUID->
+  "4d7aa1c3-ff67-4fb8-a123-1bc62a1fab4b"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   SqrtBox[
+    RowBox[{"-", " ", "\[ImaginaryI]"}]], TraditionalForm]],ExpressionUUID->
+  "7af8d225-aa31-449a-81e9-699f7b6732d1"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   RadicalBox[
+    RowBox[{
+     RowBox[{"-", "1"}], " ", "+", " ", "\[ImaginaryI]"}], "3"], 
+   TraditionalForm]],ExpressionUUID->"ff9d585e-59be-4879-a1dc-b0e54f4debd2"],
+ "\t\n\n18.- Resolver la ecuaci\[OAcute]n ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SuperscriptBox["z", "3"], "  ", "+", " ", 
+     RowBox[{"8", " ", "\[ImaginaryI]"}]}], " ", "=", " ", "0"}], 
+   TraditionalForm]],ExpressionUUID->"f32acb7b-c01e-4be1-9ef2-4294bbdc62da"],
+ " \t\n\n19.- Resolver la ecuaci\[OAcute]n  ( 1 + \[ImaginaryI] ) ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["z", "3"], " "}], TraditionalForm]],ExpressionUUID->
+  "dec5d038-8e25-4051-b936-41c9f6e28db0"],
+ "- 2\[ImaginaryI] = 0\n\n20.- Hallar todas las soluciones de la ecuaci\
+\[OAcute]n  ( ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["z", "2"], TraditionalForm]],ExpressionUUID->
+  "3a255a7f-5a94-454e-b173-2095b85ad8be"],
+ " - 7 ) ( ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["z", "3"], TraditionalForm]],ExpressionUUID->
+  "5798c1c5-eb78-410f-8b8b-4fcb1da6f68e"],
+ " +\[ImaginaryI] ) = 0.\n\n21.- Dados los n\[UAcute]meros complejos ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubscriptBox["z", "1"], " ", "=", " ", 
+     RowBox[{
+      RowBox[{"-", "1"}], " ", "+", " ", "\[ImaginaryI]"}]}], ",", " ", 
+    RowBox[{"z", " ", "=", " ", 
+     RowBox[{
+      RowBox[{"-", "2"}], " ", "+", " ", 
+      RowBox[{"3", " ", "\[ImaginaryI]"}]}]}], " ", ",", " ", 
+    RowBox[{
+    "hallar", " ", "otros", " ", "dos", " ", "n\[UAcute]meros", " ", 
+     "complejos", " ", 
+     SubscriptBox["z", "2"], " "}]}], TraditionalForm]],ExpressionUUID->
+  "ea6b5c09-9db7-4011-a5b9-8ac09174d821"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["z", "3"], TraditionalForm]],ExpressionUUID->
+  "9f7dc90c-396b-4460-8b34-80b6b7989cd9"],
+ " tales que los afijos de ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["z", "1"], TraditionalForm]],ExpressionUUID->
+  "076c94d8-996f-497e-8c97-69f718f56e1b"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["z", "2"], TraditionalForm]],ExpressionUUID->
+  "9d222213-defc-4ce1-886b-5c767206fcbd"],
+ " y ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["z", "3"], TraditionalForm]],ExpressionUUID->
+  "8ce97550-b916-4f52-b0b6-e5eac2c9a465"],
+ " formen un tri\[AAcute]ngulo equil\[AAcute]tero de centro el afijo de z."
+}], "Text",
+ CellChangeTimes->{{3.49477371090625*^9, 3.494773942265625*^9}, {
+   3.494773986625*^9, 3.49477401484375*^9}, {3.494775058015625*^9, 
+   3.49477523971875*^9}, {3.494775596125*^9, 3.4947755965625*^9}, {
+   3.496549077573*^9, 3.496549215463625*^9}, {3.496549259526125*^9, 
+   3.496549295182375*^9}, {3.7151775716278205`*^9, 3.7151775878438206`*^9}, {
+   3.7152548868459997`*^9, 3.715254912966*^9}, {3.715255332111*^9, 
+   3.7152554627460003`*^9}, {3.715255547719*^9, 3.715255580659*^9}, {
+   3.715255611244*^9, 3.715255647546*^9}, {3.715255686472*^9, 
+   3.715255817579*^9}, {3.715255858413*^9, 3.715255946085*^9}, {
+   3.715256062443*^9, 3.715256294973*^9}, {3.7152570032799997`*^9, 
+   3.715257032988*^9}, {3.715257262296*^9, 3.7152574470629997`*^9}, {
+   3.715257505925*^9, 3.715257509249*^9}, {3.715257759539*^9, 
+   3.715257925434*^9}, {3.715259369394*^9, 3.715259375219*^9}, {
+   3.7152596004519997`*^9, 3.71525966463*^9}, {3.715259702865*^9, 
+   3.715259897597*^9}, {3.7152600857130003`*^9, 3.7152601171879997`*^9}, {
+   3.715260292407*^9, 3.715260303401*^9}, 3.715261553909*^9, {
+   3.715262244402*^9, 3.715262245774*^9}, {3.715262301729*^9, 
+   3.715262305729*^9}, {3.7152623368310003`*^9, 3.715262437916*^9}, {
+   3.715262823759*^9, 3.715262825691*^9}, {3.724247538896228*^9, 
+   3.7242475591012278`*^9}, {3.724247592297228*^9, 3.7242475936732273`*^9}, {
+   3.7242483628542275`*^9, 3.724248369712228*^9}, {3.7242498115302277`*^9, 
+   3.7242498120482273`*^9}, {3.7242502299732275`*^9, 3.7242502622042274`*^9}},
+ FontFamily->
+  "Book Antiqua",ExpressionUUID->"e4f994af-deb0-4ba0-93ce-58507575a127"]
+}, Open  ]]
+},
+WindowSize->{1141.2, 579.6},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+PrintingPageRange->{Automatic, Automatic},
+Magnification:>1.5 Inherited,
+FrontEndVersion->"13.0 para Microsoft Windows (64-bit) (December 2, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"5279595f-e039-4e5b-a0bb-fe3f34c290f3"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[545, 20, 1569, 35, 156, "Text",ExpressionUUID->"01c3c157-898e-49c5-af53-621baf6bb0fc"],
+Cell[CellGroupData[{
+Cell[2139, 59, 1279, 25, 210, "Title",ExpressionUUID->"13408d0b-02be-416c-898e-d614f716e659"],
+Cell[3421, 86, 508, 9, 87, "Title",ExpressionUUID->"01f44805-ad21-4acc-8890-86881ae63a0e"],
+Cell[3932, 97, 83172, 1806, 9678, "Text",ExpressionUUID->"6315f9e3-4819-4598-972a-1343a178f4e2"],
+Cell[87107, 1905, 24867, 739, 4507, "Text",ExpressionUUID->"e4f994af-deb0-4ba0-93ce-58507575a127"]
+}, Open  ]]
+}
+]
+*)
+
