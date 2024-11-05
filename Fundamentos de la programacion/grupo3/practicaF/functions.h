@@ -18,6 +18,19 @@ int getInt(string message){
   return inter;
 }
 
+bool getBool(string message){
+  bool boleano = false;
+  string respuesta="";
+  cout << message << endl;
+  cin >> respuesta;
+
+  if(respuesta=="si"){
+    boleano = true;
+  }
+
+  return boleano;
+}
+
 double getDouble(string message){
   double doub;
 

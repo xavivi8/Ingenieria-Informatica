@@ -9,6 +9,7 @@ using namespace std;
 #ifndef EJERCICIOSREGISTROS_H
 #define EJERCICIOSREGISTROS_H
 
+const int MAX_LONGITUD=100;
 struct TIEMPO {
     int hora;
     int minuto;
@@ -63,17 +64,30 @@ int ejer2(){
     return 0;
 }
 
-PERSONA preguntarPersona(){
-    PERSONA laPersona = {"",false};
-
+PERSONA preguntarPersona(string mensaje){
+    bool alergia = getBool("Inserte si tiene alergia un si y sino un no:");
+    string nombre = getString(mensaje);
+    PERSONA laPersona = {nombre,alergia};
     return laPersona;
 };
 
 int ejer3(){
-    int pos_aler=0, pos_sin_aler=0;
+    int pos_aler=0, pos_sin_aler=0,personas=0;
     string pers_aler="", per_sin_aler="";
-    PERSONA persona_sin_aler[CANT_PERSON];
-    PERSONA persona_con_aler[CANT_PERSON];
+    PERSONA persona_sin_aler[MAX_LONGITUD];
+    PERSONA persona_con_aler[MAX_LONGITUD];
+
+    for(int i=0;i<=(MAX_LONGITUD-1);i++) {
+        PERSONA persona = preguntarPersona("Inserte un nombre: ");
+        if(persona.alergia) {
+            persona_con_aler[pos_aler]=persona;
+            pos_aler++;
+        } else {
+            persona_sin_aler[pos_sin_aler]=persona;
+            pos_sin_aler++;
+        }
+    }
+
 
     return 0;
 }
