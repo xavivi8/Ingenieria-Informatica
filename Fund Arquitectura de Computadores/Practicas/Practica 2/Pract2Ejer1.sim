@@ -4,11 +4,11 @@ LDA 0100 ;Coger el valor en 0100, comprobar si es cero y sino guardarlo en b
 CPI 00
 JZ Fin
 MOV b,a
-MOV H a
+MOV h a
 LDA 0101;Coger el valor en 0101, comprobar si es cero y sino guardarlo en c
 CPI 00
 JZ Fin
-MOV C,a
+MOV c,a
 
 MULTIPLICAR: MOV a l
 MOV d c
