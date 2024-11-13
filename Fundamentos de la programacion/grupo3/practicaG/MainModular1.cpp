@@ -11,7 +11,8 @@ using namespace std;
 std::string textoMenu()
 {
     return "Seleccione el ejercicio que desea probar de modular 1: "
-        "\nEjercicio 1: Tiempo toal que tarda un ciclista en correr las etapas."
+        "\nEjercicio 1: Pasar de real a absoluto."
+        "\nEjercicio 2: Entre dos cadenas obtener la mayor."
         "\nFin del programa: 0";
 };
 
@@ -34,7 +35,12 @@ int menu()
             }
         case 1:
             {
-
+                ejer1();
+                break;
+            }
+        case 2:
+            {
+                ejer2();
                 break;
             }
         default:

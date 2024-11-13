@@ -11,11 +11,9 @@ using namespace std;
 /*
 * Ejercicio 1
 * */
-int numeroRealAbsoluto(){
-  double real;
+int numeroRealAbsoluto(double real){
   int absoluto=0;
 
-  real = getDouble("Inserte el numero real: ");
   absoluto = real;
 
   return absoluto;
@@ -23,7 +21,13 @@ int numeroRealAbsoluto(){
 
 int ejer1() {
   int absoluto=0;
-  absoluto = numeroRealAbsoluto();
+  double real;
+
+  real = getDouble("Inserte el numero real: ");
+
+  absoluto = numeroRealAbsoluto(real);
+  cout << "El absoluto es: " << absoluto << endl;
+
   return 0;
 }
 
@@ -31,12 +35,7 @@ int ejer1() {
 * Ejercicio 2
 * */
 
-string mayorCadena() {
-  string cad1="", cad2="";
-
-  cad1 = getString("Inserte la cadena 1: ");
-  cad2 = getString("Inserte la cadena 2: ");
-
+string mayorCadena(string cad1, string cad2) {
   if(cad1.length() <= cad2.length() ){
     cad1 = cad2;
   }
@@ -45,9 +44,14 @@ string mayorCadena() {
 }
 
 int ejer2(){
-  string cadMasLarga="";
+  string cad1="", cad2="", cadMasLarga="";
 
-  
+  cad1 = getString("Inserte la cadena 1: ");
+  cad2 = getString("Inserte la cadena 2: ");
+
+  cadMasLarga = mayorCadena(cad1, cad2);
+
+  cout << "La cadema mas larga es: "<<cadMasLarga<<endl;
 
   return 0;
 }
