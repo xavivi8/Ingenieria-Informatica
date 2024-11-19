@@ -1,0 +1,30 @@
+MVI h 00
+LDA 0100
+CPI 00
+JZ fin
+MOV b a
+MOV l a
+LDA 0101
+CPI 00
+JZ fin
+MOV c a
+
+DIVIDIR: mov a l
+SUB c
+mov l a
+
+CONTADOR: INR h
+MOV a l
+CPI 00
+JZ fin
+JNZ resto
+
+RESTO: CPI 01
+JZ fin
+JNZ dividir
+
+FIN: mov a l
+STA 0103
+MOV a h
+STA 0102
+HLT
