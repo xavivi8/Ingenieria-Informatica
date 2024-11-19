@@ -19,9 +19,10 @@ CPI 00
 JZ fin
 JNZ resto
 
-RESTO: CPI 01
-JZ fin
-JNZ dividir
+RESTO: MOV a l
+CMP c
+JC fin
+JMP dividir
 
 FIN: mov a l
 STA 0103
