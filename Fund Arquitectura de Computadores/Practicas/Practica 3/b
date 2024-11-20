@@ -1,0 +1,30 @@
+IN 01
+MOV b a
+MVI a 00
+IN 00
+MOV c a
+LXI h 00FE
+MOV a m
+CALL comprobar
+
+SIGUIENTE: MOV a c
+ORA a
+JZ fin
+INX h
+mov a m
+CALL comprobar
+DCR c
+JMP siguiente
+
+COMPROBAR: CMP b
+JZ encontrado
+TERMINAR_ENCONTRADO: mov a a
+RET
+
+ENCONTRADO: INR e ; Contador de encontrados
+OUT 03
+MOV a e
+OUT 02
+JMP terminar_encontrado
+
+FIN: HLT
