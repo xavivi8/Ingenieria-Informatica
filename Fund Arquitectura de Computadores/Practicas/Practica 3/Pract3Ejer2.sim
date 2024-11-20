@@ -1,47 +1,49 @@
-; --- INICIALIZACIÓN ---
-IN 00           ; Leer número de elementos (N) desde el puerto 00h
-MOV B, A         ; Guardar N en B (contador de elementos)
-IN 01           ; Leer número a buscar desde el puerto 01h
-MOV D, A         ; Guardar número a buscar en D
+MVI e 00 ; Contador del mismo numero encontrado
+MVI d 00 ; Posicion relativa
 
-; --- CONFIGURAR LISTA ---
-LXI H, 00FE
-MVI E, 01       ; Contador de posición relativa (comienza en 1)
-MVI L, 00       ; Número de coincidencias
-MVI C, FF       ; Valor inicial para "posición no encontrada"
-
-; --- BÚSQUEDA ---
-BUSQUEDA: MOV A, M         ; Leer elemento actual de la lista
-CMP D            ; Comparar con el número buscado
-JNZ SIGUIENTE    ; Si no coincide, ir al siguiente elemento
-MOV C, E         ; Guardar posición relativa actual (última coincidencia)
-INR L            ; Incrementar número de coincidencias
-SIGUIENTE: INX H            ; Ir al siguiente elemento en la lista
-INR E            ; Incrementar contador de posición
-DCR B            ; Decrementar contador de elementos
-JNZ BUSQUEDA
-
-; --- RESULTADOS ---
-MOV A, L
-CPI 00
-JZ NO_EXISTE
-
-; --- SI HAY COINCIDENCIAS ---
-MOV A, C
+IN 01
+MOV b a
+MVI a 00
 OUT 02
-MOV A, L
 OUT 03
+IN 00
+MOV c a
+LXI h 00FE
+MOV a m
+INR d
+CALL comprobar
+
+SIGUIENTE: MOV a c
+ORA a
+JZ fin
+INX h
+mov a m
+INR d
+CALL comprobar
+DCR c
+JMP siguiente
+
+COMPROBAR: CMP b
+JZ encontrado
+TERMINAR_ENCONTRADO: mov a a
+RET
+
+ENCONTRADO: INR e
+MOV a d
+OUT 03
+MOV a e
+OUT 02
+JMP terminar_encontrado
+
+FIN: MOV a e
+CPI 00
+JZ no_encontrado
 HLT
 
-; --- SI NO EXISTE EL NÚMERO ---
-NO_EXISTE: LXI H, 00FE
-MOV A, B
-ADI 01
-MOV M, D
-INR B
-MOV A, B
-OUT 00
-MOV A, E
-OUT 02
-MVI A, 01
+NO_ENCONTRADO: INR c
+MOV m b
+MOV a d
 OUT 03
+MVI a 01
+OUT 02
+HLT
