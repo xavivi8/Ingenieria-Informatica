@@ -1,8 +1,11 @@
-MVI e 00
-MVI d 00
+MVI e 00 ; Contador del mismo numero encontrado
+MVI d 00 ; Posicion relativa
+
 IN 01
 MOV b a
 MVI a 00
+OUT 02
+OUT 03
 IN 00
 MOV c a
 LXI h 00FE
@@ -25,11 +28,22 @@ JZ encontrado
 TERMINAR_ENCONTRADO: mov a a
 RET
 
-ENCONTRADO: INR e ; Contador de encontrados
+ENCONTRADO: INR e
 MOV a d
 OUT 03
 MOV a e
 OUT 02
 JMP terminar_encontrado
 
-FIN: HLT
+FIN: MOV a e
+CPI 00
+JZ no_encontrado
+HLT
+
+NO_ENCONTRADO: INR c
+MOV m b
+MOV a d
+OUT 03
+MVI a 01
+OUT 02
+HLT
