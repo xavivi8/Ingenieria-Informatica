@@ -1,0 +1,17 @@
+IN 01
+MOV b a
+MVI a 00
+IN 00
+MOV c a
+LXI h 00FE
+MOV a m
+
+SIGUIENTE: MOV a c
+ORA a
+JZ fin
+INX h
+mov a m
+DCR c
+JMP siguiente
+
+FIN: HLT

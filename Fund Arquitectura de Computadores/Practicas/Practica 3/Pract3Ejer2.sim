@@ -1,0 +1,47 @@
+; --- INICIALIZACIÓN ---
+IN 00           ; Leer número de elementos (N) desde el puerto 00h
+MOV B, A         ; Guardar N en B (contador de elementos)
+IN 01           ; Leer número a buscar desde el puerto 01h
+MOV D, A         ; Guardar número a buscar en D
+
+; --- CONFIGURAR LISTA ---
+LXI H, 00FE
+MVI E, 01       ; Contador de posición relativa (comienza en 1)
+MVI L, 00       ; Número de coincidencias
+MVI C, FF       ; Valor inicial para "posición no encontrada"
+
+; --- BÚSQUEDA ---
+BUSQUEDA: MOV A, M         ; Leer elemento actual de la lista
+CMP D            ; Comparar con el número buscado
+JNZ SIGUIENTE    ; Si no coincide, ir al siguiente elemento
+MOV C, E         ; Guardar posición relativa actual (última coincidencia)
+INR L            ; Incrementar número de coincidencias
+SIGUIENTE: INX H            ; Ir al siguiente elemento en la lista
+INR E            ; Incrementar contador de posición
+DCR B            ; Decrementar contador de elementos
+JNZ BUSQUEDA
+
+; --- RESULTADOS ---
+MOV A, L
+CPI 00
+JZ NO_EXISTE
+
+; --- SI HAY COINCIDENCIAS ---
+MOV A, C
+OUT 02
+MOV A, L
+OUT 03
+HLT
+
+; --- SI NO EXISTE EL NÚMERO ---
+NO_EXISTE: LXI H, 00FE
+MOV A, B
+ADI 01
+MOV M, D
+INR B
+MOV A, B
+OUT 00
+MOV A, E
+OUT 02
+MVI A, 01
+OUT 03
