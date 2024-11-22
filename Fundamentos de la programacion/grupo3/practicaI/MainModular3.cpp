@@ -6,8 +6,6 @@
 #include "functions.h"
 #include "EJERCICIOSMODULAR3.h"
 
-namespace std;
-
 std::string textoMenu()
 {
     return "Seleccione el ejercicio que desea probar de modular 1: "
