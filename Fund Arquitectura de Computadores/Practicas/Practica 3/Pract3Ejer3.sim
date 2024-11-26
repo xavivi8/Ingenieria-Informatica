@@ -7,6 +7,7 @@ MVI l 00
 ; Inicialización de registros
 LDA 0100 ; Carga inicio fin
 MOV c a
+DCR c
 LDA 0101 ; Carga fin fin
 MOV b a
 LDA 0102 ; Carga final fin
@@ -31,6 +32,7 @@ INR l
 LDAX b
 IN 00
 CMP m
+MOV a m
 JZ encontrado
 MOV a c
 CMP e
