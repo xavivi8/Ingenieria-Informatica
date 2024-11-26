@@ -59,14 +59,30 @@ int ejer2(){
    *         arreglo (ya que todos los elementos tienen el mismo tamaño).
    *  La división calcula cuántos elementos hay en el arreglo.
    * */
-  int tamaño = sizeof(vector) / sizeof(vector[0]);
+  int tamanyo = sizeof(vector) / sizeof(vector[0]);
   int maximo, minimo;
 
-  calcularMaxMin(vector, tamaño, &maximo, &minimo);
+  std::cout << "Elementos del vector: ";
+  for(int i=0; i< tamanyo;i++) {
+    std::cout << vector[i] << " ";
+  }
+  std::cout << std::endl;
 
-  cout << "Máximo: " << maximo << endl;
-  cout << "Mínimo: " << minimo << endl;
+  calcularMaxMin(vector, tamanyo, &maximo, &minimo);
 
+  cout << "Maximo: " << maximo << endl;
+  cout << "Minimo: " << minimo << endl;
+
+  return 0;
+};
+
+struct FECHA {
+  int dia;
+  int mes;
+  int anyo;
+};
+
+int ejer3(){
   return 0;
 };
 
