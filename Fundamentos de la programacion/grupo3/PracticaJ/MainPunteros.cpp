@@ -7,7 +7,7 @@
 
 std::string textoMenu() {
     return "Seleccione el ejercicio que desea probar de Punteros: "
-        "\nEjercicio 1: "
+        "\nEjercicio 1: Intercambiar contenido de las zonas de memoria de dos punteros."
         "\nFin del programa: 0";
 };
 
