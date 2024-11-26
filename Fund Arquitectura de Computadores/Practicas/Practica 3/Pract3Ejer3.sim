@@ -6,4 +6,32 @@ LDA 0102 ; Carga LSB final
 MOV d a
 LDA 0103 ; Carga msb en fin
 MOV e a
-LDA 00
+
+; Cargar el valor a buscar desde el puerto de E/S 00h
+IN 00
+MOV M, A ; Guardar el valor a buscar en M
+
+; Inicializar contador de coincidencias a cero
+MOV h b
+MOV l c
+MVI a 00
+
+;Bucle de busqueda
+LOOP: LDAX d
+CMP m
+JZ encontrado
+INx h
+MOV a h
+CMP c
+JC fin
+MOV a l
+CMP e
+JC fin
+JMP loop
+
+ENCONTRADO: INR h
+JMP loop
+
+FIN: MOV a h
+OUT 01
+HLT
