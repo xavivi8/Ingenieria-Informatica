@@ -1,46 +1,9 @@
-
-MVI A, 00         ; Puerto de entrada para el dato a buscar
-IN 00             ; Leer dato desde el puerto 00h
-MOV C, A           ; Guardar dato a buscar en el registro C
-
-LDA 0100          ; Cargar LSB de la dirección de inicio
-MOV E, A           ; Guardar LSB en E
-LDA 0101          ; Cargar MSB de la dirección de inicio
-MOV D, A           ; Guardar MSB en D
-
-LDA 0102          ; Cargar LSB de la dirección de fin
-MOV L, A           ; Guardar LSB en L
-LDA 0103          ; Cargar MSB de la dirección de fin
-MOV H, A           ; Guardar MSB en H
-MOV A, D           ; Cargar MSB de inicio
-CMP H              ; Comparar con MSB de fin
-JC ERROR           ; Si inicio > fin, ir a ERROR
-MOV A, E           ; Cargar LSB de inicio
-CMP L              ; Comparar con LSB de fin
-JC ERROR           ; Si inicio > fin, ir a ERROR
-
-MOV A, H           ; Cargar MSB de fin
-CPI 01            ; Comparar con 0x01 (MSB de 0x0103)
-JC ERROR           ; Si fin < 0x0103, ir a ERROR
-XCHG               ; Intercambiar HL con DE (inicio en HL)
-MVI B, 00         ; Contador de coincidencias en B
-
-SEARCH_LOOP: MOV A, M           ; Cargar dato de la memoria
-CMP C              ; Comparar con el número buscado
-JNZ NEXT           ; Si no coincide, ir a la siguiente posición
-INR B              ; Incrementar contador de coincidencias
-
-NEXT: INX H              ; Incrementar la dirección en HL
-MOV A, H           ; Comprobar si fin fue alcanzado
-CMP D              ; Comparar con MSB de fin
-JNZ SEARCH_LOOP
-MOV A, L           ; Comparar LSB de fin
-CMP E              ; Comparar con LSB de fin
-JC SEARCH_LOOP
-MOV A, B           ; Cargar el contador de coincidencias
-OUT 01            ; Enviar el resultado al puerto 01h
-HLT                ; Terminar el programa
-ERROR:MVI A, FF        ; Cargar valor FFh en A
-OUT 01            ; Enviar al puerto 01h
-HLT                ; Terminar el programa
-
+LDA 0100 ; Carga LSB inicio
+MOV b a
+LDA 0101 ; Carga MSB inicio
+MOV c a
+LDA 0102 ; Carga LSB final
+MOV d a
+LDA 0103 ; Carga msb en fin
+MOV e a
+LDA 00
