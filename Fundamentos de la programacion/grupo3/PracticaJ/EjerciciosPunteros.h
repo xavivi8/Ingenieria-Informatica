@@ -82,7 +82,65 @@ struct FECHA {
   int anyo;
 };
 
+void cogerFecha(FECHA* ptr, string message){
+  int dia=0,mes=0,anyo=0;
+
+  std::cout << message << std::endl;
+
+  ptr->dia = getInt("Inserte el dia de la fecha.");
+  ptr->mes = getInt("Inserte el mes de la fecha.");
+  ptr->anyo = getInt("Inserte el anyo de la fecha.");
+}
+
+void pipeFecha(const FECHA* ptr) {
+  std::cout << ptr->dia << "/" << ptr->mes << "/" << ptr->anyo << std::endl;
+}
+
+bool esAnterior (const FECHA* fecha1, const FECHA* fecha2) {
+  if (fecha1->anyo < fecha2->anyo) {
+    return true;
+  } else if (fecha1->anyo == fecha2->anyo) {
+    if (fecha1->mes < fecha2->mes) {
+      return true;
+    } else if (fecha1->mes == fecha2->mes) {
+      return fecha1->dia < fecha2->dia;
+    }
+  }
+  return false;
+}
+
+void incrementarAnyo(FECHA* fecha) {
+  // Verificar si es 29 de febrero y el año es bisiesto
+  if (fecha->mes == 2 && fecha->dia == 29) {
+    // Comprobar si el siguiente año es bisiesto
+    int siguienteAnio = fecha->anyo + 1;
+    if ((siguienteAnio % 4 == 0 && siguienteAnio % 100 != 0) || (siguienteAnio % 400 == 0)) {
+      fecha->anyo = siguienteAnio;
+    } else {
+      // Si no es bisiesto, pasar al 28 de febrero
+      fecha->dia = 28;
+      fecha->anyo = siguienteAnio;
+    }
+  } else {
+    // Incrementar normalmente
+    fecha->anyo++;
+  }
+}
+
 int ejer3(){
+  FECHA fecha1, fecha2;
+  cogerFecha(&fecha1,"Fecha 1: ");
+  cogerFecha(&fecha2,"Fecha 2: ");
+
+  if (esAnterior(&fecha1, &fecha2)) {
+    cout << "La primera fecha es anterior a la segunda.\n" << std::endl;
+  } else {
+    cout << "La primera fecha no es anterior a la segunda.\n" << std::endl;
+  }
+
+  std::cout << "\nIncrementando un anyo a la primera fecha...\n" << std::endl;
+  incrementarAnyo(&fecha1);
+  pipeFecha(&fecha1);
   return 0;
 };
 
