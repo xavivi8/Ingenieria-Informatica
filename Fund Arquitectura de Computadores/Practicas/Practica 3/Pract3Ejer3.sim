@@ -1,4 +1,5 @@
 MVI h 00
+MVI m 00
 MVI l 00
 LDA 0100 ; Carga inicio fin
 MOV c a
@@ -11,7 +12,7 @@ MOV d a
 
 ; Cargar el valor a buscar desde el puerto de E/S 00h
 IN 00
-MOV M, A ; Guardar el valor a buscar en M
+MOV m a ; Guardar el valor a buscar en M
 
 ; Inicializar contador de coincidencias a cero
 MOV h b
