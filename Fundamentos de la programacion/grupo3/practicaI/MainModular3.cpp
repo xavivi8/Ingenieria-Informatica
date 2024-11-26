@@ -42,8 +42,7 @@ int menu()
     return 0;
 }
 
-int main()
-{
+int main() {
     menu();
     return 0;
-
+};
