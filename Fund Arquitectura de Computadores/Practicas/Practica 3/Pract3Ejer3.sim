@@ -7,14 +7,13 @@ MVI l 00
 ; Inicialización de registros
 LDA 0100 ; Carga inicio fin
 MOV c a
-DCR c
 LDA 0101 ; Carga fin fin
 MOV b a
 LDA 0102 ; Carga final fin
 MOV e a
 LDA 0103 ; Carga final inicio
 MOV d a
-
+DCR c
 
 ; Cargar el valor a buscar desde el puerto de E/S 00h
 IN 00
