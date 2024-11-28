@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[   1444804,      24341]
-NotebookOptionsPosition[   1438918,      24242]
-NotebookOutlinePosition[   1439367,      24259]
-CellTagsIndexPosition[   1439324,      24256]
+NotebookDataLength[   1445827,      24368]
+NotebookOptionsPosition[   1439872,      24269]
+NotebookOutlinePosition[   1440292,      24285]
+CellTagsIndexPosition[   1440249,      24282]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -24049,7 +24049,7 @@ Cell[BoxData[
   "Durante la evaluaci\[OAcute]n de \
 In[27]:=",ExpressionUUID->"1107cfbc-f5e9-f344-8aeb-aa53b87640e6"]
 }, Open  ]]
-}, Open  ]],
+}, Closed]],
 
 Cell[CellGroupData[{
 
@@ -24208,8 +24208,8 @@ Cell[BoxData[
  CellLabel->
   "Durante la evaluaci\[OAcute]n de \
 In[29]:=",ExpressionUUID->"f9f9476f-caab-3d42-b1a1-7c7c58c7c6da"]
-}, Open  ]]
-}, Open  ]],
+}, Closed]]
+}, Closed]],
 
 Cell["\<\
 b) Encontrar expresiones equivalentes en las que s\[OAcute]lo se usen los \
@@ -24231,10 +24231,37 @@ Cell["Caso a parte {\[Not],\[And],\[Or]}", "Text",
   3.9417828131397877`*^9}},ExpressionUUID->"e8c7e617-c488-0546-8ff0-\
 f3dfd6efe6ee"],
 
-Cell["c) El polinomio de Gegalikine", "Text",
- CellChangeTimes->{{3.9417828241253796`*^9, 
-  3.94178283644668*^9}},ExpressionUUID->"2352467f-fcd3-5549-9683-\
-9f1e0d163d69"]
+Cell["\<\
+c) El polinomio de Gegalkine de f (\[Not]((x\[And](\[Not]y)) \[Or] ((\[Not]x)\
+\[And]y) )\[Or](x\[And]z))\
+\>", "Text",
+ CellChangeTimes->{{3.9417828241253796`*^9, 3.94178283644668*^9}, {
+  3.941784333780714*^9, 3.9417843346651955`*^9}, {3.941784610741186*^9, 
+  3.941784689189886*^9}, {3.941784740232073*^9, 
+  3.941784787350416*^9}},ExpressionUUID->"2352467f-fcd3-5549-9683-\
+9f1e0d163d69"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ffGegalkine", "[", 
+   RowBox[{"{", 
+    RowBox[{"x_", ",", "y_", ",", "z_"}], "}"}], "]"}], ":=", 
+  RowBox[{"BitAnd", "[", 
+   RowBox[{
+    RowBox[{"Not", "[", 
+     RowBox[{"BitOr", "[", 
+      RowBox[{
+       RowBox[{"BitAnd", "[", 
+        RowBox[{"x", ",", 
+         RowBox[{"Not", "[", "y", "]"}]}], "]"}], ",", 
+       RowBox[{"BitAnd", "[", 
+        RowBox[{
+         RowBox[{"Not", "[", "x", "]"}], ",", "y"}], "]"}]}], "]"}], "]"}], 
+    ",", 
+    RowBox[{"BitXor", "[", 
+     RowBox[{"x", ",", "z"}], "]"}]}], "]"}]}]], "Code",
+ CellChangeTimes->{{3.941784774097471*^9, 3.9417848988714046`*^9}},
+ CellLabel->"In[31]:=",ExpressionUUID->"2fc1d8c3-4591-534c-b25d-dcaef0aa1376"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
@@ -24242,7 +24269,6 @@ Cell["c) El polinomio de Gegalikine", "Text",
 },
 WindowSize->{574.8, 573.6},
 WindowMargins->{{Automatic, -4.7999999999999545`}, {Automatic, 0}},
-Magnification:>1. Inherited,
 FrontEndVersion->"14.1 para Microsoft Windows (64-bit) (July 16, 2024)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"fd0cd67a-a225-6c43-8621-158809ce6861"
@@ -24325,20 +24351,21 @@ Cell[1427942, 23949, 1026, 26, 22, "Print",ExpressionUUID->"9a2895e2-b2a5-fa43-8
 Cell[1428971, 23977, 1803, 41, 39, "Print",ExpressionUUID->"17faa940-bf41-d34d-9ce6-501704c174cf"],
 Cell[1430777, 24020, 1262, 29, 39, "Print",ExpressionUUID->"1107cfbc-f5e9-f344-8aeb-aa53b87640e6"]
 }, Open  ]]
-}, Open  ]],
+}, Closed]],
 Cell[CellGroupData[{
-Cell[1432088, 24055, 477, 12, 67, "Code",ExpressionUUID->"13f5c4f5-b006-5f4a-b5dd-bfa23fadb7f9"],
+Cell[1432088, 24055, 477, 12, 61, "Code",ExpressionUUID->"13f5c4f5-b006-5f4a-b5dd-bfa23fadb7f9"],
 Cell[CellGroupData[{
 Cell[1432590, 24071, 1229, 32, 40, "Print",ExpressionUUID->"7bb3ef7d-d56e-de42-888e-d476e62a3c82"],
 Cell[1433822, 24105, 1006, 26, 22, "Print",ExpressionUUID->"38c6e01c-463a-2648-978b-1285f3ab0388"],
 Cell[1434831, 24133, 1827, 43, 39, "Print",ExpressionUUID->"d7c339b6-393d-8447-a82e-a74db123e8c1"],
 Cell[1436661, 24178, 1285, 31, 39, "Print",ExpressionUUID->"f9f9476f-caab-3d42-b1a1-7c7c58c7c6da"]
-}, Open  ]]
-}, Open  ]],
-Cell[1437973, 24213, 371, 8, 77, "Text",ExpressionUUID->"1efb92d4-1806-464f-ba5a-667a59c002a1"],
+}, Closed]]
+}, Closed]],
+Cell[1437973, 24213, 371, 8, 73, "Text",ExpressionUUID->"1efb92d4-1806-464f-ba5a-667a59c002a1"],
 Cell[1438347, 24223, 163, 3, 33, "Text",ExpressionUUID->"bb5f0afb-6d9a-5f46-a020-52755b1df5cd"],
 Cell[1438513, 24228, 178, 3, 33, "Text",ExpressionUUID->"e8c7e617-c488-0546-8ff0-f3dfd6efe6ee"],
-Cell[1438694, 24233, 172, 3, 33, "Text",ExpressionUUID->"2352467f-fcd3-5549-9683-9f1e0d163d69"]
+Cell[1438694, 24233, 402, 8, 33, "Text",ExpressionUUID->"2352467f-fcd3-5549-9683-9f1e0d163d69"],
+Cell[1439099, 24243, 721, 20, 50, "Code",ExpressionUUID->"2fc1d8c3-4591-534c-b25d-dcaef0aa1376"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
