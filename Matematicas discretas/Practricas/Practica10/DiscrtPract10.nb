@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[   1445827,      24368]
-NotebookOptionsPosition[   1439872,      24269]
-NotebookOutlinePosition[   1440292,      24285]
-CellTagsIndexPosition[   1440249,      24282]
+NotebookDataLength[   1451950,      24541]
+NotebookOptionsPosition[   1445067,      24426]
+NotebookOutlinePosition[   1445487,      24442]
+CellTagsIndexPosition[   1445444,      24439]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -24221,15 +24221,145 @@ b .1) {\[And] , \[Not]}\
   3.941782817461899*^9}},ExpressionUUID->"1efb92d4-1806-464f-ba5a-\
 667a59c002a1"],
 
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{" ", 
+  RowBox[{"BooleanConvert", "[", 
+   RowBox[{
+    RowBox[{"Equivalent", "[", 
+     RowBox[{
+      RowBox[{"Xor", "[", 
+       RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "]"}], ",", 
+      RowBox[{"And", "[", 
+       RowBox[{"\"\<x\>\"", ",", "\"\<z\>\""}], "]"}]}], "]"}], ",", 
+    "\"\<AND\>\""}], "]"}]}]], "Code",
+ CellChangeTimes->{
+  3.941785289119095*^9, {3.941785322729971*^9, 3.941785448880146*^9}, {
+   3.941785488793604*^9, 3.941785494530264*^9}},
+ CellLabel->"In[37]:=",ExpressionUUID->"0f03db49-540e-c14b-8c1d-5e05ac6d7e8e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"!", 
+   RowBox[{"(", 
+    RowBox[{"\<\"x\"\>", "&&", 
+     RowBox[{"!", "\<\"y\"\>"}], "&&", 
+     RowBox[{"!", "\<\"z\"\>"}]}], ")"}]}], "&&", 
+  RowBox[{"!", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"!", "\<\"x\"\>"}], "&&", "\<\"y\"\>"}], ")"}]}], "&&", 
+  RowBox[{"!", 
+   RowBox[{"(", 
+    RowBox[{"\<\"y\"\>", "&&", "\<\"z\"\>"}], ")"}]}]}]], "Output",
+ CellChangeTimes->{3.941785449771242*^9, 3.941785496646059*^9},
+ CellLabel->"Out[37]=",ExpressionUUID->"47f15bf1-3391-834c-8131-5b851df42872"]
+}, Open  ]],
+
 Cell["b .4) { \[Nand] }", "Text",
  CellChangeTimes->{{3.9417827372458916`*^9, 
   3.9417827771653576`*^9}},ExpressionUUID->"bb5f0afb-6d9a-5f46-a020-\
 52755b1df5cd"],
 
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", 
+  RowBox[{"x", ",", "y", ",", "z", ",", "ExpNor"}], "]"}], "\n", 
+ RowBox[{"ExpNor", "=", 
+  RowBox[{"BooleanConvert", "[", 
+   RowBox[{
+    RowBox[{"Equivalent", "[", 
+     RowBox[{
+      RowBox[{"Xor", "[", 
+       RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "]"}], ",", 
+      RowBox[{"And", "[", 
+       RowBox[{"\"\<x\>\"", ",", "\"\<z\>\""}], "]"}]}], "]"}], ",", 
+    "\"\<NOR\>\""}], "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"A", "=", 
+   RowBox[{"ExpNor", "/.", " ", 
+    RowBox[{
+     RowBox[{"Not", "[", "x_", "]"}], "\[RuleDelayed]", 
+     RowBox[{"(", 
+      RowBox[{"x", "\[Nor]", "x"}], ")"}]}]}]}], ";"}], "\n", "A"}], "Code",
+ CellChangeTimes->{{3.941785554541046*^9, 3.9417855549959927`*^9}, {
+  3.941785591104908*^9, 3.9417856300777473`*^9}},
+ CellLabel->"In[40]:=",ExpressionUUID->"7a9d268f-30dc-3047-89f6-894c0c5f7136"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"!", "\<\"x\"\>"}], "\[Nor]", "\<\"y\"\>", 
+    "\[Nor]", "\<\"z\"\>"}], ")"}], "\[Nor]", 
+  RowBox[{"(", 
+   RowBox[{"\<\"x\"\>", "\[Nor]", 
+    RowBox[{"!", "\<\"y\"\>"}]}], ")"}], "\[Nor]", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"!", "\<\"y\"\>"}], "\[Nor]", 
+    RowBox[{"!", "\<\"z\"\>"}]}], ")"}]}]], "Output",
+ CellChangeTimes->{3.9417855568321304`*^9, 3.9417856310153027`*^9},
+ CellLabel->"Out[41]=",ExpressionUUID->"59c3cf26-faf6-5f40-a95b-28eb5732a55d"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"\<\"x\"\>", "\[Nor]", "\<\"x\"\>"}], ")"}], 
+    "\[Nor]", "\<\"y\"\>", "\[Nor]", "\<\"z\"\>"}], ")"}], "\[Nor]", 
+  RowBox[{"(", 
+   RowBox[{"\<\"x\"\>", "\[Nor]", 
+    RowBox[{"(", 
+     RowBox[{"\<\"y\"\>", "\[Nor]", "\<\"y\"\>"}], ")"}]}], ")"}], "\[Nor]", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"\<\"y\"\>", "\[Nor]", "\<\"y\"\>"}], ")"}], "\[Nor]", 
+    RowBox[{"(", 
+     RowBox[{"\<\"z\"\>", "\[Nor]", "\<\"z\"\>"}], ")"}]}], ")"}]}]], "Output",
+ CellChangeTimes->{3.9417855568321304`*^9, 3.9417856310179176`*^9},
+ CellLabel->"Out[43]=",ExpressionUUID->"ca5a2482-1724-8f40-abfb-d2ffe9d882b2"]
+}, Open  ]],
+
 Cell["Caso a parte {\[Not],\[And],\[Or]}", "Text",
  CellChangeTimes->{{3.941782788131836*^9, 
   3.9417828131397877`*^9}},ExpressionUUID->"e8c7e617-c488-0546-8ff0-\
 f3dfd6efe6ee"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"BooleanConvert", "[", 
+  RowBox[{"Equivalent", "[", 
+   RowBox[{
+    RowBox[{"Xor", "[", 
+     RowBox[{"x", ",", " ", "y"}], "]"}], ",", " ", 
+    RowBox[{"And", "[", 
+     RowBox[{"x", ",", " ", "z"}], "]"}]}], "]"}], "]"}]], "Code",
+ CellChangeTimes->{{3.941785678383812*^9, 3.9417857030328064`*^9}, 
+   3.941785818867199*^9, {3.9417858834068947`*^9, 3.9417858843837337`*^9}},
+ CellLabel->"In[48]:=",ExpressionUUID->"0dfd7163-689d-854f-96d0-546da50330b2"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{"x", "&&", "y", "&&", 
+    RowBox[{"!", "z"}]}], ")"}], "||", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"!", "x"}], "&&", 
+    RowBox[{"!", "y"}]}], ")"}], "||", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"!", "y"}], "&&", "z"}], ")"}]}]], "Output",
+ CellChangeTimes->{{3.9417856843001823`*^9, 3.9417856965091743`*^9}, 
+   3.9417858204335365`*^9, 3.941785884700186*^9},
+ CellLabel->"Out[48]=",ExpressionUUID->"bce5da7c-7a7f-ea4a-acb7-69380454f8e4"]
+}, Open  ]],
 
 Cell["\<\
 c) El polinomio de Gegalkine de f (\[Not]((x\[And](\[Not]y)) \[Or] ((\[Not]x)\
@@ -24241,27 +24371,54 @@ c) El polinomio de Gegalkine de f (\[Not]((x\[And](\[Not]y)) \[Or] ((\[Not]x)\
   3.941784787350416*^9}},ExpressionUUID->"2352467f-fcd3-5549-9683-\
 9f1e0d163d69"],
 
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ffGegalkine", "[", 
+    RowBox[{"{", 
+     RowBox[{"x_", ",", "y_", ",", "z_"}], "}"}], "]"}], ":=", 
+   RowBox[{"BitAnd", "[", 
+    RowBox[{
+     RowBox[{"Not", "[", 
+      RowBox[{"BitOr", "[", 
+       RowBox[{
+        RowBox[{"BitAnd", "[", 
+         RowBox[{"x", ",", 
+          RowBox[{"Not", "[", "y", "]"}]}], "]"}], ",", 
+        RowBox[{"BitAnd", "[", 
+         RowBox[{
+          RowBox[{"Not", "[", "x", "]"}], ",", "y"}], "]"}]}], "]"}], "]"}], 
+     ",", 
+     RowBox[{"BitXor", "[", 
+      RowBox[{"x", ",", "z"}], "]"}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{"BooleanConvert", "[", 
+  RowBox[{"Equivalent", "[", 
+   RowBox[{
+    RowBox[{"Xor", "[", 
+     RowBox[{"\"\<x\>\"", ",", "\"\<y\>\""}], "]"}], ",", 
+    RowBox[{"And", "[", 
+     RowBox[{"\"\<x\>\"", ",", "\"\<z\>\""}], "]"}]}], "]"}], "]"}]}], "Code",
+ CellChangeTimes->{{3.941784774097471*^9, 3.9417848988714046`*^9}, {
+  3.9417859202858334`*^9, 3.9417859349695244`*^9}},
+ CellLabel->"In[52]:=",ExpressionUUID->"2fc1d8c3-4591-534c-b25d-dcaef0aa1376"],
+
 Cell[BoxData[
  RowBox[{
-  RowBox[{"ffGegalkine", "[", 
-   RowBox[{"{", 
-    RowBox[{"x_", ",", "y_", ",", "z_"}], "}"}], "]"}], ":=", 
-  RowBox[{"BitAnd", "[", 
+  RowBox[{"(", 
+   RowBox[{"\<\"x\"\>", "&&", "\<\"y\"\>", "&&", 
+    RowBox[{"!", "\<\"z\"\>"}]}], ")"}], "||", 
+  RowBox[{"(", 
    RowBox[{
-    RowBox[{"Not", "[", 
-     RowBox[{"BitOr", "[", 
-      RowBox[{
-       RowBox[{"BitAnd", "[", 
-        RowBox[{"x", ",", 
-         RowBox[{"Not", "[", "y", "]"}]}], "]"}], ",", 
-       RowBox[{"BitAnd", "[", 
-        RowBox[{
-         RowBox[{"Not", "[", "x", "]"}], ",", "y"}], "]"}]}], "]"}], "]"}], 
-    ",", 
-    RowBox[{"BitXor", "[", 
-     RowBox[{"x", ",", "z"}], "]"}]}], "]"}]}]], "Code",
- CellChangeTimes->{{3.941784774097471*^9, 3.9417848988714046`*^9}},
- CellLabel->"In[31]:=",ExpressionUUID->"2fc1d8c3-4591-534c-b25d-dcaef0aa1376"]
+    RowBox[{"!", "\<\"x\"\>"}], "&&", 
+    RowBox[{"!", "\<\"y\"\>"}]}], ")"}], "||", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"!", "\<\"y\"\>"}], "&&", "\<\"z\"\>"}], ")"}]}]], "Output",
+ CellChangeTimes->{{3.9417859214765816`*^9, 3.941785937364765*^9}},
+ CellLabel->"Out[53]=",ExpressionUUID->"52bc4c1a-8154-584a-af4e-51b18b7151a3"]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
@@ -24362,10 +24519,26 @@ Cell[1436661, 24178, 1285, 31, 39, "Print",ExpressionUUID->"f9f9476f-caab-3d42-b
 }, Closed]]
 }, Closed]],
 Cell[1437973, 24213, 371, 8, 73, "Text",ExpressionUUID->"1efb92d4-1806-464f-ba5a-667a59c002a1"],
-Cell[1438347, 24223, 163, 3, 33, "Text",ExpressionUUID->"bb5f0afb-6d9a-5f46-a020-52755b1df5cd"],
-Cell[1438513, 24228, 178, 3, 33, "Text",ExpressionUUID->"e8c7e617-c488-0546-8ff0-f3dfd6efe6ee"],
-Cell[1438694, 24233, 402, 8, 33, "Text",ExpressionUUID->"2352467f-fcd3-5549-9683-9f1e0d163d69"],
-Cell[1439099, 24243, 721, 20, 50, "Code",ExpressionUUID->"2fc1d8c3-4591-534c-b25d-dcaef0aa1376"]
+Cell[CellGroupData[{
+Cell[1438369, 24225, 564, 14, 50, "Code",ExpressionUUID->"0f03db49-540e-c14b-8c1d-5e05ac6d7e8e"],
+Cell[1438936, 24241, 539, 15, 32, "Output",ExpressionUUID->"47f15bf1-3391-834c-8131-5b851df42872"]
+}, Open  ]],
+Cell[1439490, 24259, 163, 3, 33, "Text",ExpressionUUID->"bb5f0afb-6d9a-5f46-a020-52755b1df5cd"],
+Cell[CellGroupData[{
+Cell[1439678, 24266, 871, 22, 102, "Code",ExpressionUUID->"7a9d268f-30dc-3047-89f6-894c0c5f7136"],
+Cell[1440552, 24290, 529, 14, 32, "Output",ExpressionUUID->"59c3cf26-faf6-5f40-a95b-28eb5732a55d"],
+Cell[1441084, 24306, 705, 18, 32, "Output",ExpressionUUID->"ca5a2482-1724-8f40-abfb-d2ffe9d882b2"]
+}, Open  ]],
+Cell[1441804, 24327, 178, 3, 33, "Text",ExpressionUUID->"e8c7e617-c488-0546-8ff0-f3dfd6efe6ee"],
+Cell[CellGroupData[{
+Cell[1442007, 24334, 481, 10, 50, "Code",ExpressionUUID->"0dfd7163-689d-854f-96d0-546da50330b2"],
+Cell[1442491, 24346, 496, 14, 32, "Output",ExpressionUUID->"bce5da7c-7a7f-ea4a-acb7-69380454f8e4"]
+}, Open  ]],
+Cell[1443002, 24363, 402, 8, 33, "Text",ExpressionUUID->"2352467f-fcd3-5549-9683-9f1e0d163d69"],
+Cell[CellGroupData[{
+Cell[1443429, 24375, 1071, 29, 67, "Code",ExpressionUUID->"2fc1d8c3-4591-534c-b25d-dcaef0aa1376"],
+Cell[1444503, 24406, 500, 13, 32, "Output",ExpressionUUID->"52bc4c1a-8154-584a-af4e-51b18b7151a3"]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
