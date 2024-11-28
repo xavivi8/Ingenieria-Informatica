@@ -14,11 +14,10 @@ MOV c a
 CPI 00
 JZ fin
 CMP b
-JNZ dividendo_menor
+JNZ dividir
 
-DIVIDENDO_MENOR: MOV a h
-MOV l b
-CPI 00
+DIVIDENDO_MENOR: MVI l 01
+MVI h 00
 JMP fin
 
 DIVIDIR: mov a l
