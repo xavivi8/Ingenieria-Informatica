@@ -2,19 +2,20 @@ MVI b 00 ; b dividendo
 MVI c 00 ; c divisor
 MVI h 00  ; h cociente
 MVI l 00 ; l resto
+LDA 0101
+CPI 00
+JZ error
+MOV c a
+CPI 00
+JZ fin
 LDA 0100
 CPI 00
 JZ fin
 MOV b a 
 MOV l a 
-LDA 0101
-CPI 00
-JZ fin
-MOV c a
-CPI 00
-JZ fin
 CMP b
-JNZ dividir
+JC dividendo_menor
+JMP dividir
 
 DIVIDENDO_MENOR: MVI l 01
 MVI h 00
@@ -38,5 +39,9 @@ JMP dividir
 FIN: mov a l
 STA 0103
 MOV a h
+STA 0102
+HLT
+ERROR: MVI a FF
+STA 0103
 STA 0102
 HLT
