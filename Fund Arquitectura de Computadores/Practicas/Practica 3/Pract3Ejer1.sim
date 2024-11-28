@@ -13,6 +13,13 @@ JZ fin
 MOV c a
 CPI 00
 JZ fin
+CMP b
+JNZ dividendo_menor
+
+DIVIDENDO_MENOR: MOV a h
+MOV l b
+CPI 00
+JMP fin
 
 DIVIDIR: mov a l
 SUB c
