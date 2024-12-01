@@ -40,14 +40,10 @@ JMP dividir
 FIN: mov a l
 STA 0103
 MOV a h
-CALL arreglar_cociente
 STA 0102
 HLT
 ERROR: MVI a FF
 STA 0103
 STA 0102
 HLT
-ARREGLAR_COCIENTE: CPI 00
-JZ no
-DCR a
 NO: RET
