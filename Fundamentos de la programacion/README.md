@@ -102,7 +102,7 @@ Nuevo valor de x: 25
    int* ptr1 = &x;
    int** ptr2 = &ptr1; // ptr2 apunta a ptr1
    ```
-4. **Arreglos y punteros: **
+4. **Arreglos y punteros:**
    Los punteros y arreglos están relacionados: el nmbre del arreglo es la dirección del primer elemento.
 
    ```cpp
