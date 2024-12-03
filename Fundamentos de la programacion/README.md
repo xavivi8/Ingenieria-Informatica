@@ -43,7 +43,7 @@ int* ptr; // ptr es un puntero a un entero
    cout << *ptr; // Muestra el valor de x (10)
    *ptr = 20;    // Cambia el valor de x a 20
    ``` 
-   3. **Puntero nulo:**
+3. **Puntero nulo:**
    Un puntero que no apunta a ninguna dirección válida puede inicializarse como `nullptr`:
 
    ```cpp
