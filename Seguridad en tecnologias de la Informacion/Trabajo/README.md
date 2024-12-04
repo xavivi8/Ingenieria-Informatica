@@ -2,7 +2,7 @@
 pip install pycryptodome
 
 ## Análisis del Código de DSA
-### Importación de librerías
+**Importación de librerías**
 ``` py
 from Crypto.PublicKey import DSA
 from Crypto.Signature import DSS
@@ -44,6 +44,16 @@ h = SHA256.new(message)
 ```
 - Convierte el mensaje de entrada (`messageA`) en un hash SHA-256. Este hash es lo que será firmado, asegurando integridad y compatibilidad con el estándar DSA.
 #
+**Mostrar las claves publicas y privadas**
+```py
+private_key = key.export_key()
+public_key = key.publickey().export_key()
+print(f"\nPrivate Key: \n{private_key.decode()}")
+print(f"\nPublic Key: \n{public_key.decode()}")
+```
+- `key.export_key()`: Este método exporta la clave en formato PEM (un formato textual que contiene la clave codificada en base64), que es un formato estándar ampliamente utilizado.
+- `key.publickey().export_key()`: Este método exporta la clave pública en formato PEM.
+#
 **Firma del hash:**
 ```py
 signer = DSS.new(key, 'fips-186-3')
@@ -64,3 +74,14 @@ verifier.verify(h, signature)
 end = time.time()
 print(f"Verification Time: {end - start:.6f} seconds")
 ```
+- `key.publickey()`: Obtiene la clave pública asociada a la clave privada generada previamente.
+- `verifier.verify(h, signature)`: Verifica si la firma es válida comparando el hash firmado y la clave pública.
+- **Tiempo de ejecución**: Mide el tiempo necesario para verificar la firma.
+#
+**LLamadas a la función**
+```py
+evaluate_dsa("\n--- Evaluación de DSA SHORT ---", b"Hola")
+evaluate_dsa("\n--- Evaluación de DSA LONG ---", b"Quillo el DSA parece que esta mas guapo")
+```
+- Evalúa el rendimiento con dos mensajes:
+- Permite comparar cómo el tamaño del mensaje afecta los tiempos de firmado y verificación.
