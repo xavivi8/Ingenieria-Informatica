@@ -18,6 +18,12 @@ def evaluate_dsa(title, messageA):
         key = DSA.generate(key_size)
         end = time.time()
         print(f"Key Generation Time: {end - start:.6f} seconds")
+
+        # Mostrar la clave privada y pública en formato PEM
+        private_key = key.export_key()
+        public_key = key.publickey().export_key()
+        print(f"\nPrivate Key: \n{private_key.decode()}")
+        print(f"\nPublic Key: \n{public_key.decode()}")
         
         # Firmar/Verificar
         message = messageA
