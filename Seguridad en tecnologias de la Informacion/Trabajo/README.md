@@ -1,0 +1,2 @@
+# Instalaciones
+pip install pycryptodome
