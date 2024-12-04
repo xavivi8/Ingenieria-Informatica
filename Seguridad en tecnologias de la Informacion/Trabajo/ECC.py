@@ -32,5 +32,5 @@ def evaluate_ecc(title, messageA):
         end = time.time()
         print(f"Verification Time: {end - start:.6f} seconds")
 
-evaluate_ecc("\n--- DSA Evaluation SHORT ---",b"Hola")
-evaluate_ecc("\n--- DSA Evaluation LONG ---",b"Quillo el ECC va mas rapido que flash")
+evaluate_ecc("\n--- Evaluación de ECC SHORT ---",b"Hola")
+evaluate_ecc("\n--- Evaluación de ECC LONG ---",b"Quillo el ECC va mas rapido que flash")

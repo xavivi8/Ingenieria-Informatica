@@ -32,5 +32,5 @@ def evaluate_dsa(title, messageA):
         end = time.time()
         print(f"Verification Time: {end - start:.6f} seconds")
 
-evaluate_dsa("\n--- DSA Evaluation SHORT ---",b"Hola")
-evaluate_dsa("\n--- DSA Evaluation LONG ---",b"Quillo el DSA parece que esta mas guapo")
+evaluate_dsa("\n--- Evaluación de DSA SHORT ---",b"Hola")
+evaluate_dsa("\n--- Evaluación de DSA LONG ---",b"Quillo el DSA parece que esta mas guapo")
