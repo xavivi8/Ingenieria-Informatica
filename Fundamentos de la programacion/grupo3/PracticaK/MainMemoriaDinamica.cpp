@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "functions.h"
+#include "EjerciciosMemoriaDinamica.h"
 
 std::string textoMenu() {
     return "Seleccione el ejercicio que desea probar de Punteros: "
@@ -27,6 +28,11 @@ int menu() {
                 cout << "Fin" << endl;
                 break;
             }
+        case 4:
+            {
+          		ejer4();
+          		break;
+        	}
         default:
             {
                 cout << "Opcion invalida \n\n" << endl;

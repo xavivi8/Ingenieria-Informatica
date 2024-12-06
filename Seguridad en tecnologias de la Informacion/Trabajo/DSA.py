@@ -5,11 +5,6 @@ import time #Se usa para medir los tiempos de ejecucuón de distintas operacione
 
 def evaluate_dsa(title, messageA):
     print(title)
-    '''
-    El código evalúa el rendimiento para las claves 1024, 2048 y 3072 bits, donde:
-        -Claves más grandes proporcionan mayor seguridad
-        -Claves más pequeñas son más rápidas en términos de generación t procesamiento
-    '''
     for key_size in [1024, 2048, 3072]:
         print(f"\nKey Size: {key_size} bits")
         

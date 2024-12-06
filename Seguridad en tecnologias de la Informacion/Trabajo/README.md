@@ -11,7 +11,7 @@ import time
 ```
 - `DSA`: Proporciona funcionalidad prar generar claves DSA.
 - `DSS`: Gestiona las firmas y verificaciones según el estándar FIPS-186-3
-- `SHA256`: Algoritmo de hash utlizado para crear un resumen del mensaje.
+- `SHA256`: Algoritmo de hash utilizado  para crear un resumen del mensaje.
 - `time`: Se usa para medir los tiempos de ejecución de distintas operaciones.
 #
 **Difinición de la función** `evaluate_dsa`<br>
