@@ -28,6 +28,11 @@ int menu() {
                 cout << "Fin" << endl;
                 break;
             }
+        case 3:
+            {
+                ejer3();
+                break;
+            }
         case 4:
             {
           		ejer4();
