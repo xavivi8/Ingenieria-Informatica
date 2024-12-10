@@ -55,6 +55,9 @@ int ejer3(){
   return 0;
 }
 
+std::string concatenar_strings(std::string str1, std::string str2){
+  return (str1 + str2 + "\n");
+}
 
 void hacer_vector(const int tam, std::string *&v){
   v=new std::string[tam];
@@ -64,14 +67,25 @@ void hacer_vector(const int tam, std::string *&v){
   v[3]="rosa";
   v[4]="morado";
 }
+
 std::string* hacer_vector(const int tam) {
-    return new std::string[tam];
+  return new std::string[tam];
 }
 
 void mostrar_vector(const std::string* v, const int tam) {
   for(int i=0; i<tam; ++i) {
     std::cout<<v[i]<<std::endl;
   }
+}
+
+std::string mostrar_vector(const string* v[],const int tam){
+  std::string strings="";
+  
+  for(int i=0;i<tam;i++){
+    strings = concatenar_strings(strings,*v[i]);
+  }
+
+  return strings;
 }
 
 void direccion_nuevo_vector( int tam1, std::string v1[], const int tam2, std::string *&v2) {
@@ -102,6 +116,9 @@ void copia_vector(std::string v1[], int tam1, std::string v2[], int *tam2) {
 int ejer4(){
   int tam1=5,tam=5;
   std::string* vector = hacer_vector(tam);
+  vector[0] = "ddd";
+  vector[1] = "dwafa";
+  vector[4] = "ultimo";
   //std::string *vector=nullptr;
   std::string *vector2=nullptr;
 
