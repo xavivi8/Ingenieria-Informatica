@@ -68,6 +68,9 @@ void hacer_vector(const int tam, std::string *&v){
   v[4]="morado";
 }
 
+// bool esCero;
+// esCero = esCero and (m[f][c]==) 
+
 std::string* hacer_vector(const int tam) {
   return new std::string[tam];
 }
