@@ -1,4 +1,6 @@
-#include <iostream>
+//
+// Created by jmart on 19/12/2024.
+//
 #include "Tablero.h"
 
 int main() {
@@ -29,3 +31,4 @@ int main() {
 
     return 0;
 }
+
