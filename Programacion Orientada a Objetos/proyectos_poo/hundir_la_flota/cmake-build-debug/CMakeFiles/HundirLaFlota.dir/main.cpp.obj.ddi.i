@@ -41657,6 +41657,7 @@ int main() {
 
 
     jugador1.disparar(0, 0);
+    jugador1.disparar(0, 1);
     jugador1.disparar(1, 1);
     jugador1.disparar(2, 3);
 

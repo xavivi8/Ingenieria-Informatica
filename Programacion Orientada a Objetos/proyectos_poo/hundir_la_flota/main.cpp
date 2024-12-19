@@ -15,6 +15,7 @@ int main() {
 
     // Simular disparos
     jugador1.disparar(0, 0); // Impacto
+    jugador1.disparar(0, 1);
     jugador1.disparar(1, 1); // Agua
     jugador1.disparar(2, 3); // Impacto
 
