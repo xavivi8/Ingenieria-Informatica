@@ -15,4 +15,10 @@ struct Coordenadas {
   int columna;
 };
 
+Coordenadas cord1[MAX_DATOS]={};
+Coordenadas cord2[MAX_DATOS]={};
+
+char flota1[MAX_FILAS][MAX_COLUMNAS]={};
+char flota2[MAX_FILAS][MAX_COLUMNAS]={};
+
 #endif //MIS_DATOS_H

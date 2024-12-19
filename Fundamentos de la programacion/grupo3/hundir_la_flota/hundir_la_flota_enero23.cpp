@@ -15,15 +15,13 @@ int main(){
 
   char matriz[MAX_FILAS][MAX_COLUMNAS]={};
   int m=5;
-  Coordenadas flota1[MAX_DATOS]={};
-  Coordenadas flota2[MAX_DATOS]={};
 
-  insertarDatos(flota1);
-  insertarDatos(flota2);
+  insertarDatos(cord1);
+  insertarDatos(cord2);
 
   int tam=10;
 
-  colocar_barcos(m,flota1,tam,matriz);
+  colocar_barcos(m,cord1,tam,matriz);
 
   for(int i=0; i<m; ++i) {
     for(int j=0; j<m; ++j) {
