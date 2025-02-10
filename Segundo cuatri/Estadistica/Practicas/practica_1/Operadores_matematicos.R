@@ -9,8 +9,8 @@ print(mi_lista)
 mi_lista$numeros
 
 mi_dataFrame<-data.frame(
-  nombres=c("Ana","Juan","Maria")
-  edades=c(23,35,28)
+  nombres=c("Ana","Juan","Maria"),
+  edades=c(23,35,28),
   alturas=c(1.65,1.8,1.7)
 )
 print(mi_dataFrame)
