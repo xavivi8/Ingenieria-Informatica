@@ -69,10 +69,10 @@ prunt(resultado10)
 #11. Programe una función llamada coef.asimetria que acepte un vector x y devuelva
 # el coeficiente de asimetría de Fisher, esto es
 coef.asimetria <- function(x){
-  n<-lenght(x)
+  n<-length(x)
   media<-mean(x)
   S<-sd(x)
-  asim<-(sum(x-media)^3)/n*S^3
+  asim<-(sum((x-media)^3))/(n*(S^3))
   return(asim)
 }
 
@@ -82,7 +82,7 @@ print(resultado_asimetria)
 #12.  Programe una función llamada coef.curtosis que acepte un vector x y 
 # devuelva el coeficiente de curtosis de Fisher, esto es
 coef.curtosis <- function(x) {
-  n<-lenght(x)
+  n<-length(x)
   media_x<-mean(x)
   sd_x<-sd(x)
   curtosis<-sum((x-media_x)^4)/(n*sd_x^4) - 3
