@@ -27,3 +27,16 @@ practica2$TasaMujeres23<-(practica2$Pob_total-practica2$Pob_homb)/practica2$Pob_
 
 Jaen_Municipios <- practica2[practica2$CodMun >= 23001 & practica2$CodMun <= 23009, ]
 
+#5. Recupere el fichero creado en la práctica anterior y muestra en pantalla la 
+# EdadMedia22 de los municipios que están a altura superior a 850 m.
+
+Edad_media850<-Jaen_Municipios[Jaen_Municipios$Altitud > 850,]
+str(Edad_media850)
+
+#6. A partir de los datos del fichero practica2.xlsx visualice los valores 
+#que toma la variable Principal procedencia de los extranjeros residentes. 2022.
+#¿Qué observas en los datos? Cambie los valores faltantes por NA
+
+practica2[is.na(practica2)] <- "NA"
+practica2[practica2 == "se"] <- "NA"
+
