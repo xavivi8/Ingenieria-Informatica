@@ -1,0 +1,4197 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[    157215,       4189]
+NotebookOptionsPosition[    148536,       4028]
+NotebookOutlinePosition[    149106,       4049]
+CellTagsIndexPosition[    149063,       4046]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Universidad de Ja\[EAcute]n. EPS Ja\[EAcute]n.
+Departamento de Matem\[AAcute]ticas. Grado en Ingenier\[IAcute]a Inform\
+\[AAcute]tica
+An\[AAcute]lisis y M\[EAcute]todos Num\[EAcute]ricos. 
+F. Javier Mu\[NTilde]oz Delgado\
+\>", "Text",
+ CellChangeTimes->{{3.610967983265625*^9, 3.610968082640625*^9}, {
+  3.6109681208125*^9, 3.61096812653125*^9}, {3.6424687631628585`*^9, 
+  3.6424688524189634`*^9}, {3.6424768284314632`*^9, 3.642476870440866*^9}, {
+  3.645380837468239*^9, 3.6453808480578446`*^9}, {3.6624024369441547`*^9, 
+  3.6624024842138586`*^9}, {3.662413278947282*^9, 3.662413285872678*^9}, {
+  3.6938387361358757`*^9, 3.693838740017098*^9}, {3.7076623057608204`*^9, 
+  3.7076623113258204`*^9}, {3.724511942733601*^9, 3.7245119944476013`*^9}, {
+  3.725424486611616*^9, 3.725424514364016*^9}, {3.8725107934177923`*^9, 
+  3.872510801297286*^9}},
+ FontSize->18,ExpressionUUID->"df2cc2e9-54c5-42cf-888a-b7dc81967b7c"],
+
+Cell["Problemas de examen. Tema 3. Sucesiones", "Section",
+ CellChangeTimes->{{3.872510817147561*^9, 3.872510846096264*^9}, {
+  3.873124073700885*^9, 3.8731240820469475`*^9}, {3.873939693585183*^9, 
+  3.8739397042742596`*^9}},ExpressionUUID->"d9f30a8c-c869-4feb-8324-\
+91710fe67588"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "\n \t4.- Calcular, si existe, el l\[IAcute]mite de la sucesi\[OAcute]n ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    RowBox[{"n", "+", "1", "-", " ", 
+     SqrtBox[
+      RowBox[{
+       SuperscriptBox["n", "2"], "+", "1"}]]}], " ", "}"}], TraditionalForm]],
+  ExpressionUUID->"45d01be4-0eb4-4842-a7e9-e3b9bd8a54cf"],
+ " \n \tJulio 24"
+}], "Section",
+ CellChangeTimes->{{3.500751345359375*^9, 3.500751379984375*^9}, {
+   3.500790035609375*^9, 3.500790048953125*^9}, {3.569509423875*^9, 
+   3.56950942659375*^9}, {3.570537368580125*^9, 3.57053737997075*^9}, {
+   3.599199111625*^9, 3.5991991196875*^9}, {3.723477468774*^9, 
+   3.723477473212*^9}, {3.723478212648*^9, 3.723478232406*^9}, {
+   3.723478462157*^9, 3.723478463176*^9}, {3.723478670633*^9, 
+   3.723478671652*^9}, {3.72356892631*^9, 3.7235690780550003`*^9}, {
+   3.723569130146*^9, 3.723569177783*^9}, {3.7235692175769997`*^9, 
+   3.723569247399*^9}, {3.723569308648*^9, 3.723569328826*^9}, {
+   3.723569485984*^9, 3.723569513233*^9}, {3.7236081819960003`*^9, 
+   3.7236083309300003`*^9}, {3.7236509376520233`*^9, 3.7236509459610233`*^9}, 
+   3.7236517258530235`*^9, 3.723651765606024*^9, {3.7236521565550237`*^9, 
+   3.7236522309350233`*^9}, {3.7238353873130035`*^9, 3.723835410693304*^9}, {
+   3.7239071598070183`*^9, 3.723907162602418*^9}, {3.724158365534717*^9, 
+   3.724158429733717*^9}, {3.724164938261321*^9, 3.724164963029321*^9}, 
+   3.7254239244656124`*^9, {3.819906851493*^9, 3.8199068540039997`*^9}, 
+   3.85221277501379*^9, {3.8826734491183653`*^9, 3.882673472996007*^9}, {
+   3.914701409076379*^9, 3.9147014454467764`*^9}, {3.929859591412386*^9, 
+   3.929859606451701*^9}, 3.92987374419495*^9, 3.9298738823117237`*^9, {
+   3.9359866685064354`*^9, 3.9359866743191257`*^9}},
+ FontFamily->"Arial",
+ FontSize->14,
+ FontColor->RGBColor[0., 0.25098039215686274`, 0.5019607843137255],
+ Background->RGBColor[
+  0.807843137254902, 0.9058823529411765, 
+   1.],ExpressionUUID->"fdbf0eb0-62a9-4e41-8efa-d28708101da3"],
+
+Cell[TextData[{
+ "Soluci\[OAcute]n:\nNos encontramos con la diferencia de dos expresiones que \
+se hacen cada vez mas grandes y tienden a infinito: tendr\[IAcute]amos una \
+indeterminaci\[OAcute]n.\n\nPara tratar de resolver el problema, \
+multiplicamos y dividimos por el \[OpenCurlyDoubleQuote]conjugado\
+\[CloseCurlyDoubleQuote]:\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"n", "+", "1", "-", " ", 
+    SqrtBox[
+     RowBox[{
+      SuperscriptBox["n", "2"], "+", "1"}]]}], TraditionalForm]],
+  ExpressionUUID->"72ee21f1-5412-4916-a660-c395376bd78b"],
+ " = ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"n", "+", "1", "-", " ", 
+       SqrtBox[
+        RowBox[{
+         SuperscriptBox["n", "2"], "+", "1"}]]}], ")"}], 
+     RowBox[{"(", 
+      RowBox[{"n", "+", "1", "+", 
+       SqrtBox[
+        RowBox[{
+         SuperscriptBox["n", "2"], "+", "1"}]]}], ")"}]}], 
+    RowBox[{"n", "+", "1", "+", " ", 
+     SqrtBox[
+      RowBox[{
+       SuperscriptBox["n", "2"], "+", "1"}]]}]], TraditionalForm]],
+  ExpressionUUID->"129ea7d7-1c1e-4bc1-b6ed-ce1d904c202a"],
+ "= ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{
+     SuperscriptBox["n", "2"], "+", 
+     RowBox[{"2", "n"}], "+", "1", "-", " ", 
+     RowBox[{"(", 
+      RowBox[{
+       SuperscriptBox["n", "2"], "+", "1"}], ")"}]}], 
+    RowBox[{"n", "+", "1", "+", " ", 
+     SqrtBox[
+      RowBox[{
+       SuperscriptBox["n", "2"], "+", "1"}]]}]], TraditionalForm]],
+  ExpressionUUID->"71ecc375-4fd8-40ee-bb1f-02dab18f1f3e"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{"2", "n"}], 
+    RowBox[{"n", "+", "1", "+", " ", 
+     SqrtBox[
+      RowBox[{
+       SuperscriptBox["n", "2"], "+", "2"}]]}]], TraditionalForm]],
+  ExpressionUUID->"f61d7eb8-8af2-4940-ab6a-d0fb26baa6e2"],
+ "\nEl numerador es un polinomio de grado 1. El denominador no es un \
+polinomio, pero es una suma de un polinomio de grado 1 y una ra\[IAcute]z \
+cuadrada de un polinomio de grado dos, es decir, en cierta medida \
+ser\[IAcute]a parecido a un polinomio de grado 1, por ello dividimos por n, \
+numerador y denominador:\n\t",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{"2", "n"}], 
+    RowBox[{"n", "+", "1", "+", " ", 
+     SqrtBox[
+      RowBox[{
+       SuperscriptBox["n", "2"], "+", "1"}]]}]], TraditionalForm]],
+  ExpressionUUID->"5c976dad-fb0c-4dbf-8e64-999f178a446d"],
+ "= ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    FractionBox[
+     RowBox[{"2", "n"}], "n"], 
+    RowBox[{
+     FractionBox[
+      RowBox[{"n", "+", "1"}], "n"], "+", " ", 
+     FractionBox[
+      SqrtBox[
+       RowBox[{
+        SuperscriptBox["n", "2"], "+", "1"}]], "n"]}]], TraditionalForm]],
+  ExpressionUUID->"3598e74d-11d7-4ca4-a780-ace3566fb2d4"],
+ " = ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox["2", 
+    RowBox[{"1", " ", "+", " ", 
+     FractionBox["1", "n"], " ", "+", " ", 
+     SqrtBox[
+      FractionBox[
+       RowBox[{
+        SuperscriptBox["n", "2"], "+", "1"}], 
+       SuperscriptBox["n", "2"]]]}]], TraditionalForm]],ExpressionUUID->
+  "4f6d9987-e654-4f01-9585-a9b6c28f3607"],
+ " = ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox["2", 
+    RowBox[{"1", "+", 
+     FractionBox["1", "n"], " ", "+", " ", 
+     SqrtBox[
+      RowBox[{"1", "+", 
+       FractionBox["1", 
+        SuperscriptBox["n", "2"]]}]]}]], TraditionalForm]],ExpressionUUID->
+  "aad3c995-8d7b-495e-bb5f-d7b9b0a3a3d8"],
+ "\[LongRightArrow]",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FractionBox["2", 
+     RowBox[{" ", 
+      RowBox[{"1", "+", "0", "+", " ", 
+       SqrtBox[
+        RowBox[{"1", "+", "0"}]]}]}]], "=", "1"}], TraditionalForm]],
+  ExpressionUUID->"d85492d5-ba64-4daa-9e2f-9c39bcc5b41d"],
+ ".\nLa n puede entrar en la ra\[IAcute]z como ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["n", "2"], TraditionalForm]],ExpressionUUID->
+  "a82c08de-db94-42b3-86a4-85af3aeb07df"],
+ ". Simplificando y haciendo que n tienda a infinito, nos encontramos que el \
+l\[IAcute]mite vale 1.\nCon el Mathematica,"
+}], "Text",
+ CellChangeTimes->{{3.610967983265625*^9, 3.610968082640625*^9}, {
+   3.6109681208125*^9, 3.61096812653125*^9}, {3.610976777453125*^9, 
+   3.610976922484375*^9}, {3.610977092296875*^9, 3.610977128578125*^9}, {
+   3.6109952425648575`*^9, 3.6109952441248603`*^9}, {3.6109955953906775`*^9, 
+   3.6109956552947826`*^9}, {3.610995687243639*^9, 3.6109956973836565`*^9}, {
+   3.6109957323901176`*^9, 3.6109957330453196`*^9}, 3.6109957666321783`*^9, {
+   3.642469141291486*^9, 3.6424691492309403`*^9}, {3.6424692330177326`*^9, 
+   3.6424692354268703`*^9}, {3.64247036590553*^9, 3.642470403419676*^9}, {
+   3.6424704600409145`*^9, 3.642470472884649*^9}, {3.64247051766121*^9, 
+   3.64247051836325*^9}, {3.645409285711751*^9, 3.645409289405963*^9}, 
+   3.645410413052232*^9, {3.662404601931985*^9, 3.662404604793149*^9}, {
+   3.662404953031067*^9, 3.6624049846848774`*^9}, {3.6624050879007807`*^9, 
+   3.66240514732718*^9}, {3.6624054345386076`*^9, 3.6624055559915543`*^9}, {
+   3.6624330870778337`*^9, 3.6624331173382874`*^9}, {3.6938531208416343`*^9, 
+   3.6938532058634973`*^9}, {3.693853273181348*^9, 3.6938533831556377`*^9}, 
+   3.6938544672256427`*^9, {3.70766493326482*^9, 3.7076650302488203`*^9}, {
+   3.7076651552308207`*^9, 3.7076651591438203`*^9}, 3.7076656692078204`*^9, 
+   3.7245120852084017`*^9, {3.7245141043476152`*^9, 3.7245141583860154`*^9}, {
+   3.7245159893912263`*^9, 3.724515989891426*^9}, {3.81990105706*^9, 
+   3.81990106051*^9}, {3.8199014056730003`*^9, 3.8199014923310003`*^9}, {
+   3.8199018157939997`*^9, 3.819901829557*^9}, {3.8521057559205556`*^9, 
+   3.852105794018359*^9}, {3.8826807367573843`*^9, 3.8826807449057484`*^9}, {
+   3.882680787711773*^9, 3.882680851884059*^9}, {3.9141779630871305`*^9, 
+   3.9141780065408087`*^9}, {3.9141790118959465`*^9, 
+   3.9141790543839283`*^9}, {3.9141791236276255`*^9, 3.91417912397209*^9}, {
+   3.914255104923953*^9, 3.9142552114720764`*^9}, {3.914255270485563*^9, 
+   3.9142553536326156`*^9}, {3.9280686169989166`*^9, 3.928068649410675*^9}, {
+   3.9281555354969835`*^9, 3.9281556921133146`*^9}, {3.9281557292912073`*^9, 
+   3.928155972841553*^9}, {3.9297671741350093`*^9, 3.9297672019651957`*^9}, {
+   3.929767232483977*^9, 3.9297674338933954`*^9}, 3.929767467605322*^9, {
+   3.929767521258253*^9, 3.9297675668707237`*^9}, {3.929854970179596*^9, 
+   3.9298549732319794`*^9}, {3.929876981886732*^9, 3.9298770979806604`*^9}, {
+   3.929877177261154*^9, 3.9298772773190904`*^9}, {3.929877332955606*^9, 
+   3.9298774272822094`*^9}},
+ FontSize->16,ExpressionUUID->"aa494a01-02c7-4182-9fee-7de873cbb481"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Limit", "[", 
+  RowBox[{
+   RowBox[{"n", "+", "1", "-", 
+    SqrtBox[
+     RowBox[{
+      SuperscriptBox["n", "2"], "+", "1"}]]}], ",", 
+   RowBox[{"n", "->", "\[Infinity]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.9298774293743477`*^9, 3.929877464233362*^9}},
+ CellLabel->"In[17]:=",ExpressionUUID->"a1a56a67-094f-4c96-810a-1baed1e9f9e2"],
+
+Cell[BoxData["1"], "Output",
+ CellChangeTimes->{{3.929877465941496*^9, 3.929877475655922*^9}},
+ CellLabel->"Out[17]=",ExpressionUUID->"341d98c2-8687-4223-b8a3-30485c9041df"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "\n \t3.- Calcular, si existe, el l\[IAcute]mite de la sucesi\[OAcute]n  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        FractionBox["1", "1"], "+", 
+        FractionBox["1", "2"], "+"}], "..."}], "+", 
+      FractionBox["1", "n"]}], "n"], "}"}], TraditionalForm]],ExpressionUUID->
+  "e26f7f3e-8c1d-419c-8ec1-577403e5f9a7"],
+ " \n\tEnero 24 \t"
+}], "Section",
+ CellChangeTimes->{{3.500751345359375*^9, 3.500751379984375*^9}, {
+   3.500790035609375*^9, 3.500790048953125*^9}, {3.569509423875*^9, 
+   3.56950942659375*^9}, {3.570537368580125*^9, 3.57053737997075*^9}, {
+   3.599199111625*^9, 3.5991991196875*^9}, {3.723477468774*^9, 
+   3.723477473212*^9}, {3.723478212648*^9, 3.723478232406*^9}, {
+   3.723478462157*^9, 3.723478463176*^9}, {3.723478670633*^9, 
+   3.723478671652*^9}, {3.72356892631*^9, 3.7235690780550003`*^9}, {
+   3.723569130146*^9, 3.723569177783*^9}, {3.7235692175769997`*^9, 
+   3.723569247399*^9}, {3.723569308648*^9, 3.723569328826*^9}, {
+   3.723569485984*^9, 3.723569513233*^9}, {3.7236081819960003`*^9, 
+   3.7236083309300003`*^9}, {3.7236509376520233`*^9, 3.7236509459610233`*^9}, 
+   3.7236517258530235`*^9, 3.723651765606024*^9, {3.7236521565550237`*^9, 
+   3.7236522309350233`*^9}, {3.7238353873130035`*^9, 3.723835410693304*^9}, {
+   3.7239071598070183`*^9, 3.723907162602418*^9}, {3.724158365534717*^9, 
+   3.724158429733717*^9}, {3.724164938261321*^9, 3.724164963029321*^9}, 
+   3.7254239244656124`*^9, {3.819906851493*^9, 3.8199068540039997`*^9}, 
+   3.85221277501379*^9, {3.8826734491183653`*^9, 3.882673472996007*^9}, 
+   3.9147651472529464`*^9, 3.9147652143929834`*^9, 3.91476531055907*^9, {
+   3.9359865292091246`*^9, 3.935986535006409*^9}},
+ FontFamily->"Arial",
+ FontSize->14,
+ FontColor->RGBColor[0., 0.25098039215686274`, 0.5019607843137255],
+ Background->RGBColor[
+  0.807843137254902, 0.9058823529411765, 
+   1.],ExpressionUUID->"b2c0c9d0-3478-47d8-8788-9f507e5b7164"],
+
+Cell[TextData[{
+ "Soluci\[OAcute]n:\nLlamando ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["a", "n"], "=", " ", 
+    FractionBox["1", "n"]}], TraditionalForm]],ExpressionUUID->
+  "4132cc9d-38bf-46da-bf17-4d8b623724d6"],
+ ", el l\[IAcute]mite que debemos calcular se escribe como ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        FractionBox["1", "1"], "+", 
+        FractionBox["1", "2"], "+"}], "..."}], "+", 
+      FractionBox["1", "n"]}], "n"], "}"}], TraditionalForm]],ExpressionUUID->
+  "392c5623-b23d-4f5d-860f-37874ca26ab4"],
+ " = ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        SubscriptBox["a", "1"], " ", "+", " ", 
+        SubscriptBox["a", "2"], " ", "+"}], " ", "..."}], " ", "+", " ", 
+      SubscriptBox["a", "n"]}], "n"], "}"}], TraditionalForm]],ExpressionUUID->
+  "09f0863e-910f-48cf-a01b-1b202c0a4c84"],
+ ".\nSe trata de la media aritm\[EAcute]tica de los primeros n \
+t\[EAcute]rminos de la sucesi\[OAcute]n {",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["a", "n"], TraditionalForm]],ExpressionUUID->
+  "982e36f9-fdda-4634-97f0-72cf7b269753"],
+ "}. Por el Criterio de la media aritm\[EAcute]tica, como ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    SubscriptBox["a", "n"], "}"}], TraditionalForm]],ExpressionUUID->
+  "79e71cab-edea-4179-a83e-886d58f4f5c7"],
+ " \[LongRightArrow] 0 , ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        FractionBox["1", "1"], "+", 
+        FractionBox["1", "2"], "+"}], "..."}], "+", 
+      FractionBox["1", "n"]}], "n"], "}"}], TraditionalForm]],ExpressionUUID->
+  "2724d743-bcce-43e2-a12c-58770e792446"],
+ " = ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        SubscriptBox["a", "1"], " ", "+", " ", 
+        SubscriptBox["a", "2"], " ", "+"}], " ", "..."}], " ", "+", " ", 
+      SubscriptBox["a", "n"]}], "n"], "}"}], TraditionalForm]],ExpressionUUID->
+  "6e1eae3b-329e-44a2-b20e-f761af3efab1"],
+ "\[LongRightArrow]0.\nTambi\[EAcute]n podr\[IAcute]amos utilizar el Criterio \
+de Stolz, \nSe trata de un cociente, donde tanto el numerador como el \
+denominador tienden a infinito. \n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["a", "n"], "=", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       FractionBox["1", "1"], "+", 
+       FractionBox["1", "2"], "+"}], "..."}], "+", 
+     FractionBox["1", "n"]}]}], TraditionalForm]],ExpressionUUID->
+  "da3d562a-ed7b-43b7-a94c-9375fe708fc0"],
+ "\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["b", "n"], "=", " ", "n"}], TraditionalForm]],ExpressionUUID->
+  "4e4fcb92-d2b0-4e74-bbb7-ab90da8f3d03"],
+ "\nAplicamos el criterio de Stolz\n",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{" ", 
+     RowBox[{
+      SubscriptBox["a", 
+       RowBox[{"n", "+", "1"}]], "-", 
+      SubscriptBox["a", "n"]}]}], 
+    RowBox[{
+     SubscriptBox["b", 
+      RowBox[{"n", "+", "1"}]], " ", "-", " ", 
+     SubscriptBox["b", "n"]}]], TraditionalForm]],ExpressionUUID->
+  "13bbbfb5-2401-45eb-98e0-78f61e7cbf47"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{" ", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          FractionBox["1", "1"], "+", 
+          FractionBox["1", "2"], "+"}], "..."}], "+", 
+        FractionBox["1", "n"], "+", 
+        FractionBox["1", 
+         RowBox[{"n", "+", "1"}]]}], ")"}], " ", "-", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          FractionBox["1", "1"], "+", 
+          FractionBox["1", "2"], "+"}], "..."}], "+", 
+        FractionBox["1", "n"]}], ")"}]}]}], 
+    RowBox[{"n", "+", "1", "-", "n"}]], TraditionalForm]],ExpressionUUID->
+  "957538a7-1ae2-44c0-bb98-81912ce39699"],
+ "= ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{" ", 
+     FractionBox["1", 
+      RowBox[{"n", "+", "1"}]]}], "1"], TraditionalForm]],ExpressionUUID->
+  "9d3fd626-b259-4fb7-acbb-ffdedc99b2b4"],
+ "\[LongRightArrow]",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{" ", "0"}], "1"], TraditionalForm]],ExpressionUUID->
+  "decddc65-7061-4b5a-9c54-830d240c32b8"],
+ " = 0\nComo este l\[IAcute]mite existe, tambi\[EAcute]n existe el \
+l\[IAcute]mite propuesto y vale igual. Por tanto, el l\[IAcute]mite pedido es \
+0.\nCon el Mathematica,"
+}], "Text",
+ CellChangeTimes->{{3.610967983265625*^9, 3.610968082640625*^9}, {
+   3.6109681208125*^9, 3.61096812653125*^9}, {3.610976777453125*^9, 
+   3.610976922484375*^9}, {3.610977092296875*^9, 3.610977128578125*^9}, {
+   3.6109952425648575`*^9, 3.6109952441248603`*^9}, 3.6109960809103303`*^9, {
+   3.642469122350403*^9, 3.642469129909835*^9}, {3.6424702277816296`*^9, 
+   3.642470339714032*^9}, {3.6454091660499067`*^9, 3.6454091779505873`*^9}, {
+   3.64540920858634*^9, 3.6454092670616846`*^9}, {3.6624042685629177`*^9, 
+   3.662404487045414*^9}, {3.662404538610363*^9, 3.6624045830899076`*^9}, {
+   3.6624330552211766`*^9, 3.662433061680588*^9}, {3.6938538708665333`*^9, 
+   3.693854040902259*^9}, {3.693854079487466*^9, 3.6938540794884653`*^9}, {
+   3.6938544445573463`*^9, 3.693854450866707*^9}, {3.7076653520288205`*^9, 
+   3.7076655065988207`*^9}, {3.7076656135488205`*^9, 3.7076656188958206`*^9}, 
+   3.724512079592402*^9, {3.7245143272248163`*^9, 3.724514340438017*^9}, {
+   3.724515015543621*^9, 3.724515075291621*^9}, {3.7245159676384263`*^9, 
+   3.7245159875434265`*^9}, {3.8198815277012*^9, 3.8198815707792*^9}, {
+   3.8520984852392845`*^9, 3.8520984984181566`*^9}, {3.8520986409593077`*^9, 
+   3.8520986467859945`*^9}, {3.852098680861842*^9, 3.8520986824472866`*^9}, {
+   3.882677003554729*^9, 3.8826770392357426`*^9}, {3.9146024693508067`*^9, 
+   3.9146024698361416`*^9}, {3.914602724410307*^9, 3.9146027896040916`*^9}, 
+   3.914602878336661*^9, 3.9146029179315977`*^9, {3.91460771834628*^9, 
+   3.9146077203327875`*^9}, {3.9147683754403996`*^9, 
+   3.9147685388347874`*^9}, {3.914768587679159*^9, 3.914768640773531*^9}, {
+   3.9147686798011107`*^9, 3.9147687273111725`*^9}, {3.914768777820791*^9, 
+   3.914769062671281*^9}, {3.9148487716064377`*^9, 3.914848775822461*^9}},
+ FontSize->14,ExpressionUUID->"91320c4f-8adf-4a99-bf83-9b781eca0eae"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Limit", "[", 
+  RowBox[{
+   FractionBox[
+    RowBox[{
+     UnderoverscriptBox["\[Sum]", 
+      RowBox[{"i", "=", "1"}], "n"], 
+     RowBox[{"(", 
+      FractionBox["1", "i"], ")"}]}], "n"], ",", " ", 
+   RowBox[{"n", "\[Rule]", "\[Infinity]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.914769073412484*^9, 3.9147691354911633`*^9}},
+ CellLabel->"In[6]:=",ExpressionUUID->"36a330ad-ccf3-45f3-84fe-dd2fdfd145a9"],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{3.9147691418235226`*^9},
+ CellLabel->"Out[6]=",ExpressionUUID->"8ed739bf-49ca-4e2d-8db0-3b4c6b294deb"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "\n \t3.- Calcular el l\[IAcute]mite de la sucesi\[OAcute]n",
+ StyleBox[" ",
+  FontSize->16],
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    RowBox[{"{", 
+     FractionBox[
+      RowBox[{
+       SuperscriptBox["n", "2"], "-", "n"}], 
+      RowBox[{
+       SuperscriptBox["2", "n"], "+", "1"}]], "}"}],
+    FontSize->18], TraditionalForm]],
+  FontSize->16,ExpressionUUID->"d6004c83-4bf4-45a2-9988-e170cbfcdbd8"],
+ " \n \tJulio 23 \t"
+}], "Section",
+ CellChangeTimes->{{3.500751345359375*^9, 3.500751379984375*^9}, {
+   3.500790035609375*^9, 3.500790048953125*^9}, {3.569509423875*^9, 
+   3.56950942659375*^9}, {3.570537368580125*^9, 3.57053737997075*^9}, {
+   3.599199111625*^9, 3.5991991196875*^9}, {3.723477468774*^9, 
+   3.723477473212*^9}, {3.723478212648*^9, 3.723478232406*^9}, {
+   3.723478462157*^9, 3.723478463176*^9}, {3.723478670633*^9, 
+   3.723478671652*^9}, {3.72356892631*^9, 3.7235690780550003`*^9}, {
+   3.723569130146*^9, 3.723569177783*^9}, {3.7235692175769997`*^9, 
+   3.723569247399*^9}, {3.723569308648*^9, 3.723569328826*^9}, {
+   3.723569485984*^9, 3.723569513233*^9}, {3.7236081819960003`*^9, 
+   3.7236083309300003`*^9}, {3.7236509376520233`*^9, 3.7236509459610233`*^9}, 
+   3.7236517258530235`*^9, 3.723651765606024*^9, {3.7236521565550237`*^9, 
+   3.7236522309350233`*^9}, {3.7238353873130035`*^9, 3.723835410693304*^9}, {
+   3.7239071598070183`*^9, 3.723907162602418*^9}, {3.724158365534717*^9, 
+   3.724158429733717*^9}, {3.724164938261321*^9, 3.724164963029321*^9}, 
+   3.7254239244656124`*^9, {3.819906851493*^9, 3.8199068540039997`*^9}, 
+   3.8210786023066006`*^9, {3.8522146400462027`*^9, 3.8522146400462027`*^9}, {
+   3.8826772419100695`*^9, 3.8826772419100695`*^9}, 3.897734912684645*^9, {
+   3.9049715087900114`*^9, 3.9049715130689416`*^9}, {3.9125964033477335`*^9, 
+   3.912596407369752*^9}},
+ FontFamily->"Arial",
+ FontSize->14,
+ FontColor->RGBColor[0., 0.25098039215686274`, 0.5019607843137255],
+ Background->RGBColor[
+  0.807843137254902, 0.9058823529411765, 
+   1.],ExpressionUUID->"311f88a5-78d6-4e91-9f32-84e3f5bcb54d"],
+
+Cell[TextData[{
+ "Soluci\[OAcute]n: \nComo numerador y denominador tienden a infinito, siendo \
+",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["2", "n"], "+", "1"}], TraditionalForm]],ExpressionUUID->
+  "70a2f80b-213b-4821-848e-8ef7a97331b4"],
+ " estrictamente creciente, aplicamos el m\[EAcute]todo de Stolz.\n\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     SubscriptBox["a", "n"], 
+     SubscriptBox["b", "n"]], "}"}], TraditionalForm]],ExpressionUUID->
+  "4fe721be-3dd1-4054-99ec-a26dd8e367bc"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["n", "2"], "-", "n"}], 
+     RowBox[{
+      SuperscriptBox["2", "n"], "+", "1"}]], "}"}], TraditionalForm]],
+  ExpressionUUID->"574337dd-a511-446e-bcac-913246144df3"],
+ ",  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      SubscriptBox["a", 
+       RowBox[{"n", "+", "1"}]], "-", 
+      SubscriptBox["a", "n"]}], 
+     RowBox[{
+      SubscriptBox["b", 
+       RowBox[{"n", "+", "1"}]], "-", 
+      SubscriptBox["b", "n"]}]], "}"}], TraditionalForm]],ExpressionUUID->
+  "77229536-72be-4ecc-9e9a-c4655fb5caac"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"n", "+", "1"}], ")"}], "2"], "-", 
+      RowBox[{"(", 
+       RowBox[{"n", "+", "1"}], ")"}], "-", 
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox["n", "2"], "-", "n"}], ")"}]}], 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox["2", 
+         RowBox[{"(", 
+          RowBox[{"n", "+", "1"}], ")"}]], "+", "1"}], ")"}], " ", "-", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox["2", "n"], "+", "1"}], ")"}]}]], "}"}], 
+   TraditionalForm]],ExpressionUUID->"4a340572-8c2a-46ae-80e2-0ca327ef9a77"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["n", "2"], "+", 
+      RowBox[{"2", "n"}], "+", "1", " ", "-", "n", "-", "1", "-", " ", 
+      SuperscriptBox["n", "2"], "+", " ", "n"}], 
+     RowBox[{
+      RowBox[{"2", "*", 
+       SuperscriptBox["2", "n"]}], "+", "1", " ", "-", " ", 
+      SuperscriptBox["2", "n"], "-", "1"}]], "}"}], TraditionalForm]],
+  ExpressionUUID->"c19220eb-bccb-4b37-9314-7b369271bcbb"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{"2", "n"}], 
+     RowBox[{
+      SuperscriptBox["2", "n"], " "}]], "}"}], TraditionalForm]],
+  ExpressionUUID->"202a32a4-b9d0-4f2d-9817-f29c3603ae21"],
+ " .  Nos aparece una nueva sucesi\[OAcute]n, donde tanto numerador como \
+denominador son estrictamente crecientes y tienden a infinito. Volvemos a \
+aplicar el m\[EAcute]todo de Stolz.\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     SubscriptBox["c", "n"], 
+     SubscriptBox["d", "n"]], "}"}], TraditionalForm]],ExpressionUUID->
+  "a7c4230b-04df-47e6-8af4-adbf819a8746"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{"2", "n"}], 
+     SuperscriptBox["2", "n"]], "}"}], TraditionalForm]],ExpressionUUID->
+  "2e43a561-7f80-4ee1-9850-64655e455161"],
+ ",  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      SubscriptBox["c", 
+       RowBox[{"n", "+", "1"}]], "-", 
+      SubscriptBox["c", "n"]}], 
+     RowBox[{
+      SubscriptBox["d", 
+       RowBox[{"n", "+", "1"}]], "-", 
+      SubscriptBox["d", "n"]}]], "}"}], TraditionalForm]],ExpressionUUID->
+  "399df885-75be-40af-98d3-a0702034e7bb"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      RowBox[{"2", 
+       RowBox[{"(", 
+        RowBox[{"n", "+", "1"}], ")"}]}], "-", 
+      RowBox[{"2", "n"}]}], 
+     RowBox[{
+      SuperscriptBox["2", 
+       RowBox[{"(", 
+        RowBox[{"n", "+", "1"}], ")"}]], "-", " ", 
+      SuperscriptBox["2", "n"]}]], "}"}], TraditionalForm]],ExpressionUUID->
+  "35b094be-3679-4eb6-919d-d5dbd1f65804"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      RowBox[{"2", "n"}], "+", "2", " ", "-", 
+      RowBox[{"2", "n"}]}], 
+     RowBox[{
+      RowBox[{"2", "*", 
+       SuperscriptBox["2", "n"]}], "-", " ", 
+      SuperscriptBox["2", "n"]}]], "}"}], TraditionalForm]],ExpressionUUID->
+  "a1383740-2a4e-43dd-974e-9f6e0fdbb23b"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox["2", 
+     RowBox[{
+      SuperscriptBox["2", "n"], " "}]], "}"}], TraditionalForm]],
+  ExpressionUUID->"13c3f3f5-31f2-4caf-bf99-4d8e8a24d165"],
+ "\n\nAhora tenemos un cociente donde el numerador es constante y el \
+denominador tiende a infinito. El l\[IAcute]mite vale 0. Por tanto, el l\
+\[IAcute]mite de ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{"2", "n"}], 
+     SuperscriptBox["2", "n"]], "}"}], TraditionalForm]],ExpressionUUID->
+  "5a4c137b-8e62-41de-aecc-3172e69a4115"],
+ " y el de ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["n", "2"], "-", "n"}], 
+     RowBox[{
+      SuperscriptBox["2", "n"], "+", "1"}]], "}"}], TraditionalForm]],
+  ExpressionUUID->"2185d32d-e1c8-4d3d-993e-94985aea030f"],
+ " tambi\[EAcute]n existen y valen tambi\[EAcute]n 0.\nCon el Mathematica:"
+}], "Text",
+ CellChangeTimes->{{3.610967983265625*^9, 3.610968082640625*^9}, {
+   3.6109681208125*^9, 3.61096812653125*^9}, {3.610976777453125*^9, 
+   3.610976922484375*^9}, {3.610977092296875*^9, 3.610977128578125*^9}, {
+   3.6109952425648575`*^9, 3.6109952441248603`*^9}, 3.6109960809103303`*^9, {
+   3.642469122350403*^9, 3.642469129909835*^9}, {3.6424702277816296`*^9, 
+   3.642470339714032*^9}, {3.6454091660499067`*^9, 3.6454091779505873`*^9}, {
+   3.64540920858634*^9, 3.6454092670616846`*^9}, {3.6624042685629177`*^9, 
+   3.662404487045414*^9}, {3.662404538610363*^9, 3.6624045830899076`*^9}, {
+   3.6624330552211766`*^9, 3.662433061680588*^9}, {3.6938538708665333`*^9, 
+   3.693854040902259*^9}, {3.693854079487466*^9, 3.6938540794884653`*^9}, {
+   3.6938544445573463`*^9, 3.693854450866707*^9}, {3.7076653520288205`*^9, 
+   3.7076655065988207`*^9}, {3.7076656135488205`*^9, 3.7076656188958206`*^9}, 
+   3.724512079592402*^9, {3.7245143272248163`*^9, 3.724514340438017*^9}, {
+   3.724515015543621*^9, 3.724515075291621*^9}, {3.7245159676384263`*^9, 
+   3.7245159875434265`*^9}, {3.8198815277012*^9, 3.8198815707792*^9}, {
+   3.819902588091*^9, 3.819902592531*^9}, {3.8199026373900003`*^9, 
+   3.819902669885*^9}, {3.8199028798050003`*^9, 3.819902891249*^9}, {
+   3.8199029341140003`*^9, 3.819903191801*^9}, {3.819903223684*^9, 
+   3.819903231458*^9}, {3.819903264837*^9, 3.819903560182*^9}, {
+   3.8210786089484005`*^9, 3.821078610551401*^9}, {3.852214665316964*^9, 
+   3.8522150681071844`*^9}, 3.8522544003687677`*^9, 3.852296585522735*^9, {
+   3.8826773131833596`*^9, 3.882677655479652*^9}, {3.8826776892827177`*^9, 
+   3.8826777695675416`*^9}, {3.882678188979995*^9, 3.882678409593974*^9}, {
+   3.8977349306475725`*^9, 3.8977354772760696`*^9}, {3.898918154437646*^9, 
+   3.8989181559231772`*^9}},
+ FontSize->16,ExpressionUUID->"db12c5bc-3c57-4d20-bedb-bebf5717c145"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Limit", "[", 
+  RowBox[{
+   FractionBox[
+    RowBox[{
+     SuperscriptBox["n", "2"], "-", "n"}], 
+    RowBox[{
+     SuperscriptBox["2", "n"], "+", "1"}]], ",", " ", 
+   RowBox[{"n", "\[Rule]", "\[Infinity]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.852215069939936*^9, 3.8522151371003084`*^9}, {
+  3.882677777487885*^9, 3.882677791858407*^9}, {3.897735493721773*^9, 
+  3.8977355255376863`*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"8536cf7e-800d-4542-8c7e-8b3bc12e8bf2"],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{3.8522151393112497`*^9, 3.882677793516967*^9, 
+  3.897735528327182*^9, 3.9410222163794746`*^9},
+ CellLabel->"Out[1]=",ExpressionUUID->"3bc499b4-6a07-934c-9fb4-a0eb231de048"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Limit", "[", 
+  RowBox[{
+   FractionBox["2", 
+    SuperscriptBox["2", "n"]], ",", " ", 
+   RowBox[{"n", "\[Rule]", "\[Infinity]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.9410226395985165`*^9, 3.9410226440034447`*^9}},
+ CellLabel->"In[2]:=",ExpressionUUID->"077cad4e-e294-e34f-a929-f78bbf932eb0"],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{3.9410226444580364`*^9},
+ CellLabel->"Out[2]=",ExpressionUUID->"93b44560-96cf-5b47-8852-238ace3fca35"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "\n \t3.- Calcular el l\[IAcute]mite de la sucesi\[OAcute]n ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["n", "2"], "+", "3"}], 
+     SuperscriptBox["2", "n"]], "}"}], TraditionalForm]],ExpressionUUID->
+  "79510bc1-13a8-44a8-b9ef-51314139da61"],
+ " \n \tEnero 21 \t"
+}], "Section",
+ CellChangeTimes->{{3.500751345359375*^9, 3.500751379984375*^9}, {
+   3.500790035609375*^9, 3.500790048953125*^9}, {3.569509423875*^9, 
+   3.56950942659375*^9}, {3.570537368580125*^9, 3.57053737997075*^9}, {
+   3.599199111625*^9, 3.5991991196875*^9}, {3.723477468774*^9, 
+   3.723477473212*^9}, {3.723478212648*^9, 3.723478232406*^9}, {
+   3.723478462157*^9, 3.723478463176*^9}, {3.723478670633*^9, 
+   3.723478671652*^9}, {3.72356892631*^9, 3.7235690780550003`*^9}, {
+   3.723569130146*^9, 3.723569177783*^9}, {3.7235692175769997`*^9, 
+   3.723569247399*^9}, {3.723569308648*^9, 3.723569328826*^9}, {
+   3.723569485984*^9, 3.723569513233*^9}, {3.7236081819960003`*^9, 
+   3.7236083309300003`*^9}, {3.7236509376520233`*^9, 3.7236509459610233`*^9}, 
+   3.7236517258530235`*^9, 3.723651765606024*^9, {3.7236521565550237`*^9, 
+   3.7236522309350233`*^9}, {3.7238353873130035`*^9, 3.723835410693304*^9}, {
+   3.7239071598070183`*^9, 3.723907162602418*^9}, {3.724158365534717*^9, 
+   3.724158429733717*^9}, {3.724164938261321*^9, 3.724164963029321*^9}, 
+   3.7254239244656124`*^9, {3.819906851493*^9, 3.8199068540039997`*^9}, 
+   3.8210786023066006`*^9, {3.8739401358797693`*^9, 3.8739401397260075`*^9}, {
+   3.9125977081996546`*^9, 3.912597711648944*^9}},
+ FontFamily->"Arial",
+ FontSize->14,
+ FontColor->RGBColor[0., 0.25098039215686274`, 0.5019607843137255],
+ Background->RGBColor[
+  0.807843137254902, 0.9058823529411765, 
+   1.],ExpressionUUID->"7ea06f70-e067-4b8c-bf94-f8ccb4b3c62c"],
+
+Cell[TextData[{
+ "Soluci\[OAcute]n: Como numerador y denominador tienden a infinito, siendo ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["2", "n"], TraditionalForm]],ExpressionUUID->
+  "6c0467e9-8bb4-43fb-9638-d1107248fe1a"],
+ " estrictamente creciente, aplicamos el m\[EAcute]todo de Stolz.\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     SubscriptBox["a", "n"], 
+     SubscriptBox["b", "n"]], "}"}], TraditionalForm]],ExpressionUUID->
+  "d58330ba-3e2a-4863-bc2e-471f40c32d14"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["n", "2"], "+", "3"}], 
+     SuperscriptBox["2", "n"]], "}"}], TraditionalForm]],ExpressionUUID->
+  "e475891e-6551-4d26-81dc-142c58a6d816"],
+ ",  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      SubscriptBox["a", 
+       RowBox[{"n", "+", "1"}]], "-", 
+      SubscriptBox["a", "n"]}], 
+     RowBox[{
+      SubscriptBox["b", 
+       RowBox[{"n", "+", "1"}]], "-", 
+      SubscriptBox["b", "n"]}]], "}"}], TraditionalForm]],ExpressionUUID->
+  "b7b104c6-de14-4ad2-ba6c-2c0f792b62c9"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"n", "+", "1"}], ")"}], "2"], "+", "3", "-", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox["n", "2"], "+", "3"}], ")"}]}], 
+     RowBox[{
+      SuperscriptBox["2", 
+       RowBox[{"n", "+", "1"}]], "-", 
+      SuperscriptBox["2", "n"]}]], "}"}], TraditionalForm]],ExpressionUUID->
+  "274a2669-f8c0-4b14-8139-347c8fc7b712"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["n", "2"], "+", 
+      RowBox[{"2", "n"}], "+", "1", "+", "3", "-", " ", 
+      SuperscriptBox["n", "2"], "-", "3"}], 
+     RowBox[{
+      RowBox[{"2", "*", 
+       SuperscriptBox["2", "n"]}], "-", 
+      SuperscriptBox["2", "n"]}]], "}"}], TraditionalForm]],ExpressionUUID->
+  "25b17c19-d7ee-47b9-8a03-876b1325521c"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      RowBox[{"2", "n"}], "+", "1"}], 
+     SuperscriptBox["2", "n"]], "}"}], TraditionalForm]],ExpressionUUID->
+  "06d9bfe9-ef42-42c6-aa0d-14930048d52d"],
+ ". Nos aparece una nueva sucesi\[OAcute]n, que es un cociente de dos \
+sucesiones que de nuevo tienden a infinito, siendo el denominador \
+estrictamente creciente. Volvemos aplicar el m\[EAcute]todo de Stolz\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     SubscriptBox["c", "n"], 
+     SubscriptBox["d", "n"]], "}"}], TraditionalForm]],ExpressionUUID->
+  "9545d64f-2064-44d8-87f9-176b3af2e24f"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      RowBox[{"2", "n"}], "+", "1"}], 
+     SuperscriptBox["2", "n"]], "}"}], TraditionalForm]],ExpressionUUID->
+  "fbb22f86-82b5-4baf-ac4b-020a76eab017"],
+ ",  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      SubscriptBox["c", 
+       RowBox[{"n", "+", "1"}]], "-", 
+      SubscriptBox["c", "n"]}], 
+     RowBox[{
+      SubscriptBox["d", 
+       RowBox[{"n", "+", "1"}]], "-", 
+      SubscriptBox["d", "n"]}]], "}"}], TraditionalForm]],ExpressionUUID->
+  "b48a7b1d-8d13-4b48-9847-c889732debc1"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      RowBox[{"2", 
+       RowBox[{"(", 
+        RowBox[{"n", "+", "1"}], ")"}]}], "+", "1", "-", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"2", "n"}], "+", "1"}], ")"}]}], 
+     RowBox[{
+      SuperscriptBox["2", 
+       RowBox[{"n", "+", "1"}]], "-", 
+      SuperscriptBox["2", "n"]}]], "}"}], TraditionalForm]],ExpressionUUID->
+  "5f7a321b-7d12-4db9-8ef3-bba4530c8dad"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      RowBox[{"2", "n"}], "+", "2", "+", "1", "-", 
+      RowBox[{"2", "n"}], "-", "1"}], 
+     RowBox[{
+      RowBox[{"2", "*", 
+       SuperscriptBox["2", "n"]}], "-", 
+      SuperscriptBox["2", "n"]}]], "}"}], TraditionalForm]],ExpressionUUID->
+  "989179b3-99a6-4f56-87b9-169f69445f1b"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox["2", 
+     SuperscriptBox["2", "n"]], "}"}], TraditionalForm]],ExpressionUUID->
+  "67190dcd-fb57-4aed-8517-5c08147339be"],
+ ". Dado que ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox["2", 
+     SuperscriptBox["2", "n"]], "}"}], TraditionalForm]],ExpressionUUID->
+  "2ca14d31-b51b-497a-aa52-fdd86e8b1a57"],
+ "\[RightArrow]0, entonces ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      RowBox[{"2", "n"}], "+", "1"}], 
+     SuperscriptBox["2", "n"]], "}"}], TraditionalForm]],ExpressionUUID->
+  "b941ba17-19e5-4130-b143-2bb59e1b72d6"],
+ "\[RightArrow]0, y por tanto, el l\[IAcute]mite buscado es cero, ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["n", "2"], "+", "3"}], 
+     SuperscriptBox["2", "n"]], "}"}], TraditionalForm]],ExpressionUUID->
+  "6c37eb03-1f16-4999-a37c-a8be8f1a79bf"],
+ "\[RightArrow]0.\n\nCon el Mathematica,"
+}], "Text",
+ CellChangeTimes->{{3.610967983265625*^9, 3.610968082640625*^9}, {
+   3.6109681208125*^9, 3.61096812653125*^9}, {3.610976777453125*^9, 
+   3.610976922484375*^9}, {3.610977092296875*^9, 3.610977128578125*^9}, {
+   3.6109952425648575`*^9, 3.6109952441248603`*^9}, 3.6109960809103303`*^9, {
+   3.642469122350403*^9, 3.642469129909835*^9}, {3.6424702277816296`*^9, 
+   3.642470339714032*^9}, {3.6454091660499067`*^9, 3.6454091779505873`*^9}, {
+   3.64540920858634*^9, 3.6454092670616846`*^9}, {3.6624042685629177`*^9, 
+   3.662404487045414*^9}, {3.662404538610363*^9, 3.6624045830899076`*^9}, {
+   3.6624330552211766`*^9, 3.662433061680588*^9}, {3.6938538708665333`*^9, 
+   3.693854040902259*^9}, {3.693854079487466*^9, 3.6938540794884653`*^9}, {
+   3.6938544445573463`*^9, 3.693854450866707*^9}, {3.7076653520288205`*^9, 
+   3.7076655065988207`*^9}, {3.7076656135488205`*^9, 3.7076656188958206`*^9}, 
+   3.724512079592402*^9, {3.7245143272248163`*^9, 3.724514340438017*^9}, {
+   3.724515015543621*^9, 3.724515075291621*^9}, {3.7245159676384263`*^9, 
+   3.7245159875434265`*^9}, {3.8198815277012*^9, 3.8198815707792*^9}, {
+   3.819902588091*^9, 3.819902592531*^9}, {3.8199026373900003`*^9, 
+   3.819902669885*^9}, {3.8199028798050003`*^9, 3.819902891249*^9}, {
+   3.8199029341140003`*^9, 3.819903191801*^9}, {3.819903223684*^9, 
+   3.819903231458*^9}, {3.819903264837*^9, 3.819903560182*^9}, {
+   3.8210786089484005`*^9, 3.821078610551401*^9}, {3.905441518987923*^9, 
+   3.905441525932036*^9}},
+ FontSize->16,ExpressionUUID->"b1d7cf5f-ddbe-4a02-9ea6-3d55600fbcf3"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Limit", "[", 
+  RowBox[{
+   FractionBox[
+    RowBox[{
+     SuperscriptBox["n", "2"], "+", "3"}], 
+    SuperscriptBox["2", "n"]], ",", 
+   RowBox[{"n", "\[Rule]", "\[Infinity]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.9054415274106965`*^9, 3.9054415665235124`*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"99e56dea-611a-4f87-a5bb-0e1153c4d4ed"],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{3.9136375236946597`*^9},
+ CellLabel->"Out[1]=",ExpressionUUID->"61e78ae1-38ab-483c-a3a2-7ddcf6391ca2"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "\n \t3.- Calcular el l\[IAcute]mite de la sucesi\[OAcute]n ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      RowBox[{
+       RowBox[{"1", " ", "+", " ", "2", " ", "+", " ", "3", " ", "+"}], " ", 
+       "..."}], " ", "+", " ", "n"}], 
+     RowBox[{
+      RowBox[{"2", 
+       SuperscriptBox["n", "2"]}], "-", 
+      RowBox[{"3", "n"}], "+", "7"}]], "}"}], TraditionalForm]],
+  ExpressionUUID->"3b11fe44-f9bc-46dd-b552-a89a07b361c4"],
+ " \n \tEnero 23 \t"
+}], "Section",
+ CellChangeTimes->{{3.500751345359375*^9, 3.500751379984375*^9}, {
+   3.500790035609375*^9, 3.500790048953125*^9}, {3.569509423875*^9, 
+   3.56950942659375*^9}, {3.570537368580125*^9, 3.57053737997075*^9}, {
+   3.599199111625*^9, 3.5991991196875*^9}, {3.723477468774*^9, 
+   3.723477473212*^9}, {3.723478212648*^9, 3.723478232406*^9}, {
+   3.723478462157*^9, 3.723478463176*^9}, {3.723478670633*^9, 
+   3.723478671652*^9}, {3.72356892631*^9, 3.7235690780550003`*^9}, {
+   3.723569130146*^9, 3.723569177783*^9}, {3.7235692175769997`*^9, 
+   3.723569247399*^9}, {3.723569308648*^9, 3.723569328826*^9}, {
+   3.723569485984*^9, 3.723569513233*^9}, {3.7236081819960003`*^9, 
+   3.7236083309300003`*^9}, {3.7236509376520233`*^9, 3.7236509459610233`*^9}, 
+   3.7236517258530235`*^9, 3.723651765606024*^9, {3.7236521565550237`*^9, 
+   3.7236522309350233`*^9}, {3.7238353873130035`*^9, 3.723835410693304*^9}, {
+   3.7239071598070183`*^9, 3.723907162602418*^9}, {3.724158365534717*^9, 
+   3.724158429733717*^9}, {3.724164938261321*^9, 3.724164963029321*^9}, 
+   3.7254239244656124`*^9, {3.819906851493*^9, 3.8199068540039997`*^9}, 
+   3.8210786023066006`*^9, {3.8522146400462027`*^9, 3.8522146400462027`*^9}, {
+   3.8826772419100695`*^9, 3.8826772419100695`*^9}, {3.9051673220328784`*^9, 
+   3.9051673258332496`*^9}, {3.9125965155498133`*^9, 3.912596519240033*^9}},
+ FontFamily->"Arial",
+ FontSize->14,
+ FontColor->RGBColor[0., 0.25098039215686274`, 0.5019607843137255],
+ Background->RGBColor[
+  0.807843137254902, 0.9058823529411765, 
+   1.],ExpressionUUID->"64b4f804-cb49-468c-83e6-9f0cbd08443c"],
+
+Cell[TextData[{
+ "Soluci\[OAcute]n: \nComo numerador y denominador tienden a infinito, siendo \
+",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"2", 
+     SuperscriptBox["n", "2"]}], "-", 
+    RowBox[{"3", "n"}], "+", "7"}], TraditionalForm]],ExpressionUUID->
+  "ac1a4d71-185c-43a8-808a-fc08f2d5b73e"],
+ " estrictamente creciente, aplicamos el m\[EAcute]todo de Stolz.\n\n(Para \
+ver que ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"2", 
+     SuperscriptBox["n", "2"]}], "-", 
+    RowBox[{"3", "n"}], "+", "7"}], TraditionalForm]],ExpressionUUID->
+  "54f5ded3-f2da-427e-aa26-cf28f6a0224a"],
+ " es estrictamente creciente, podemos considerar la funci\[OAcute]n f(x) = ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"2", 
+     SuperscriptBox["x", "2"]}], "-", 
+    RowBox[{"3", "x"}], "+", "7"}], TraditionalForm]],ExpressionUUID->
+  "7f1e2662-e6a6-40b0-9325-7a06a9abdfdf"],
+ ", cuya derivada es f\[CloseCurlyQuote](x) = ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"4", "x"}], "-", "3"}], TraditionalForm]],ExpressionUUID->
+  "eab5ad13-ae12-4e48-a085-e516c1a4ddf4"],
+ " que es mayor que cero cuando 4x>3, es decir, x>3/4. Por tanto, la sucesi\
+\[OAcute]n ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"2", 
+     SuperscriptBox["n", "2"]}], "-", 
+    RowBox[{"3", "n"}], "+", "7"}], TraditionalForm]],ExpressionUUID->
+  "ba13c4e6-3e87-4e8b-b0bf-bb4cbf7c35d5"],
+ " es estrictamente creciente para n\[GreaterEqual]1. )\n\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     SubscriptBox["a", "n"], 
+     SubscriptBox["b", "n"]], "}"}], TraditionalForm]],ExpressionUUID->
+  "93c9db56-849b-4272-bade-e27964904180"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      RowBox[{
+       RowBox[{"1", " ", "+", " ", "2", " ", "+", " ", "3", " ", "+"}], " ", 
+       "..."}], " ", "+", " ", "n"}], 
+     RowBox[{
+      RowBox[{"2", 
+       SuperscriptBox["n", "2"]}], "-", 
+      RowBox[{"3", "n"}], "+", "7"}]], "}"}], TraditionalForm]],
+  ExpressionUUID->"e8bec67b-7bc1-4d39-917e-2b17afd77d74"],
+ ",  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      SubscriptBox["a", 
+       RowBox[{"n", "+", "1"}]], "-", 
+      SubscriptBox["a", "n"]}], 
+     RowBox[{
+      SubscriptBox["b", 
+       RowBox[{"n", "+", "1"}]], "-", 
+      SubscriptBox["b", "n"]}]], "}"}], TraditionalForm]],ExpressionUUID->
+  "814145d3-67bf-4bdc-bc35-41bd3d85b915"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"1", "+", "2", "+", "3", "+"}], "..."}], "+", "n", "+", 
+        RowBox[{"(", 
+         RowBox[{"n", "+", "1"}], ")"}]}], ")"}], "-", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"1", "+", "2", "+", "3", "+"}], "..."}], "+", "n"}], ")"}]}], 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"2", 
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"n", "+", "1"}], ")"}], "2"]}], "-", 
+        RowBox[{"3", 
+         RowBox[{"(", 
+          RowBox[{"n", "+", "1"}], ")"}]}], "+", "7"}], ")"}], "-", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"2", 
+         SuperscriptBox["n", "2"]}], "-", 
+        RowBox[{"3", "n"}], "+", "7"}], ")"}]}]], "}"}], TraditionalForm]],
+  ExpressionUUID->"6dfd1e16-42d2-403f-a3e3-86a825f66c70"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{"n", "+", "1"}], 
+     RowBox[{
+      RowBox[{"2", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"n", "+", "1"}], ")"}], "2"]}], "-", 
+      RowBox[{"3", 
+       RowBox[{"(", 
+        RowBox[{"n", "+", "1"}], ")"}]}], "+", "7", "-", 
+      RowBox[{"2", 
+       SuperscriptBox["n", "2"]}], "+", 
+      RowBox[{"3", "n"}], "-", "7", " "}]], "}"}], TraditionalForm]],
+  ExpressionUUID->"36307f36-603e-441d-a71c-db38ebb60961"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{"n", "+", "1"}], 
+     RowBox[{
+      RowBox[{"2", 
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["n", "2"], "+", 
+         RowBox[{"2", "n"}], "+", "1"}], ")"}]}], "-", 
+      RowBox[{"3", "n"}], "-", "3", "-", 
+      RowBox[{"2", 
+       SuperscriptBox["n", "2"]}], "+", 
+      RowBox[{"3", "n", "   "}]}]], "}"}], TraditionalForm]],ExpressionUUID->
+  "a2c87b95-a2be-4176-8831-08b7d031c7a8"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{"n", "+", "1"}], 
+     RowBox[{
+      RowBox[{"2", 
+       SuperscriptBox["n", "2"]}], "+", 
+      RowBox[{"4", "n"}], "+", "2", "-", "3", "-", 
+      RowBox[{"2", 
+       SuperscriptBox["n", "2"], "   "}]}]], "}"}], TraditionalForm]],
+  ExpressionUUID->"167803e4-47cd-4f80-a383-27910a931b03"],
+ " =",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{"n", "+", "1"}], 
+     RowBox[{
+      RowBox[{"4", "n"}], "-", "1", "   "}]], "}"}], TraditionalForm]],
+  ExpressionUUID->"6c0fe749-8f8b-4ae4-9a6e-1211505d2fc9"],
+ ". Nos aparece una nueva sucesi\[OAcute]n, que es un cociente de dos \
+polinomios de igual grado. Dividiendo por la potencia de mayor grado,\n\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      RowBox[{"n", "/", "n"}], " ", "+", 
+      RowBox[{"1", "/", "n"}]}], 
+     RowBox[{
+      RowBox[{"4", 
+       RowBox[{"n", "/", "n"}]}], " ", "-", " ", 
+      RowBox[{"1", "/", "n", "   "}]}]], "}"}], TraditionalForm]],
+  ExpressionUUID->"ae2738f4-975c-4374-b287-60ff89d58efc"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{"1", " ", "+", " ", 
+      RowBox[{"1", "/", "n", " "}]}], 
+     RowBox[{"4", "-", 
+      RowBox[{"1", "/", "n", "   "}]}]], "}"}], TraditionalForm]],
+  ExpressionUUID->"5f483422-164b-4e9d-866d-38a0451a5649"],
+ " \[RightArrow]",
+ Cell[BoxData[
+  FormBox[
+   FractionBox["1", "4"], TraditionalForm]],ExpressionUUID->
+  "47ff3279-257e-4862-8d2e-2bde80e59705"],
+ "\n\nDado que el l\[IAcute]mite existe y vale 1/4, concluimos que la sucesi\
+\[OAcute]n inicial tambi\[EAcute]n converge y lo hace al mismo \
+l\[IAcute]mite.\nCon el Mathematica:"
+}], "Text",
+ CellChangeTimes->{{3.610967983265625*^9, 3.610968082640625*^9}, {
+   3.6109681208125*^9, 3.61096812653125*^9}, {3.610976777453125*^9, 
+   3.610976922484375*^9}, {3.610977092296875*^9, 3.610977128578125*^9}, {
+   3.6109952425648575`*^9, 3.6109952441248603`*^9}, 3.6109960809103303`*^9, {
+   3.642469122350403*^9, 3.642469129909835*^9}, {3.6424702277816296`*^9, 
+   3.642470339714032*^9}, {3.6454091660499067`*^9, 3.6454091779505873`*^9}, {
+   3.64540920858634*^9, 3.6454092670616846`*^9}, {3.6624042685629177`*^9, 
+   3.662404487045414*^9}, {3.662404538610363*^9, 3.6624045830899076`*^9}, {
+   3.6624330552211766`*^9, 3.662433061680588*^9}, {3.6938538708665333`*^9, 
+   3.693854040902259*^9}, {3.693854079487466*^9, 3.6938540794884653`*^9}, {
+   3.6938544445573463`*^9, 3.693854450866707*^9}, {3.7076653520288205`*^9, 
+   3.7076655065988207`*^9}, {3.7076656135488205`*^9, 3.7076656188958206`*^9}, 
+   3.724512079592402*^9, {3.7245143272248163`*^9, 3.724514340438017*^9}, {
+   3.724515015543621*^9, 3.724515075291621*^9}, {3.7245159676384263`*^9, 
+   3.7245159875434265`*^9}, {3.8198815277012*^9, 3.8198815707792*^9}, {
+   3.819902588091*^9, 3.819902592531*^9}, {3.8199026373900003`*^9, 
+   3.819902669885*^9}, {3.8199028798050003`*^9, 3.819902891249*^9}, {
+   3.8199029341140003`*^9, 3.819903191801*^9}, {3.819903223684*^9, 
+   3.819903231458*^9}, {3.819903264837*^9, 3.819903560182*^9}, {
+   3.8210786089484005`*^9, 3.821078610551401*^9}, {3.852214665316964*^9, 
+   3.8522150681071844`*^9}, 3.8522544003687677`*^9, 3.852296585522735*^9, {
+   3.8826773131833596`*^9, 3.882677655479652*^9}, {3.8826776892827177`*^9, 
+   3.8826777695675416`*^9}, {3.882678188979995*^9, 3.882678409593974*^9}},
+ FontSize->16,ExpressionUUID->"2f098d80-e291-42a2-a5b1-fbd87d383b64"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Limit", "[", 
+  RowBox[{
+   FractionBox[
+    RowBox[{
+     UnderoverscriptBox["\[Sum]", 
+      RowBox[{"i", "=", "1"}], "n"], "i"}], 
+    RowBox[{
+     RowBox[{"2", 
+      SuperscriptBox["n", "2"]}], "-", 
+     RowBox[{"3", "n"}], "+", "7"}]], ",", " ", 
+   RowBox[{"n", "\[Rule]", "\[Infinity]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.852215069939936*^9, 3.8522151371003084`*^9}, {
+  3.882677777487885*^9, 3.882677791858407*^9}},
+ CellLabel->"In[4]:=",ExpressionUUID->"ab19df5b-db98-4e19-b586-bb5aaa9bc6f7"],
+
+Cell[BoxData[
+ FractionBox["1", "4"]], "Output",
+ CellChangeTimes->{3.8522151393112497`*^9, 3.882677793516967*^9},
+ CellLabel->"Out[4]=",ExpressionUUID->"0f5fec26-f66f-4e42-b8b8-ce22445ca262"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "\n \t3.- Calcular el l\[IAcute]mite de la sucesi\[OAcute]n ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{" ", 
+      RowBox[{
+       SuperscriptBox["n", "2"], " ", "+", " ", 
+       RowBox[{"cos", "(", "n", ")"}]}]}], 
+     RowBox[{
+      RowBox[{
+       RowBox[{"1", " ", "+", " ", "2", "  ", "+", " ", "3", " ", "+"}], " ", 
+       "..."}], " ", "+", " ", "n"}]], "}"}], TraditionalForm]],
+  ExpressionUUID->"fce36e4a-a649-4187-b663-93f3d75a9cbb"],
+ "\n \tJulio 22 \t"
+}], "Section",
+ CellChangeTimes->{{3.500751345359375*^9, 3.500751379984375*^9}, {
+   3.500790035609375*^9, 3.500790048953125*^9}, {3.569509423875*^9, 
+   3.56950942659375*^9}, {3.570537368580125*^9, 3.57053737997075*^9}, {
+   3.599199111625*^9, 3.5991991196875*^9}, {3.723477468774*^9, 
+   3.723477473212*^9}, {3.723478212648*^9, 3.723478232406*^9}, {
+   3.723478462157*^9, 3.723478463176*^9}, {3.723478670633*^9, 
+   3.723478671652*^9}, {3.72356892631*^9, 3.7235690780550003`*^9}, {
+   3.723569130146*^9, 3.723569177783*^9}, {3.7235692175769997`*^9, 
+   3.723569247399*^9}, {3.723569308648*^9, 3.723569328826*^9}, {
+   3.723569485984*^9, 3.723569513233*^9}, {3.7236081819960003`*^9, 
+   3.7236083309300003`*^9}, {3.7236509376520233`*^9, 3.7236509459610233`*^9}, 
+   3.7236517258530235`*^9, 3.723651765606024*^9, {3.7236521565550237`*^9, 
+   3.7236522309350233`*^9}, {3.7238353873130035`*^9, 3.723835410693304*^9}, {
+   3.7239071598070183`*^9, 3.723907162602418*^9}, {3.724158365534717*^9, 
+   3.724158429733717*^9}, {3.724164938261321*^9, 3.724164963029321*^9}, 
+   3.7254239244656124`*^9, {3.819906851493*^9, 3.8199068540039997`*^9}, 
+   3.85221277501379*^9, 3.8669575609127645`*^9, {3.8739397979463215`*^9, 
+   3.873939801888797*^9}, {3.9125973116943903`*^9, 3.9125973153615494`*^9}},
+ FontFamily->"Arial",
+ FontSize->14,
+ FontColor->RGBColor[0., 0.25098039215686274`, 0.5019607843137255],
+ Background->RGBColor[
+  0.807843137254902, 0.9058823529411765, 
+   1.],ExpressionUUID->"786bd067-bb1f-4cbb-99dd-b6fe65bcf4d2"],
+
+Cell[TextData[{
+ "Soluci\[OAcute]n:\nSe trata de un cociente, donde tanto el numerador como \
+el denominador tienden a infinito.  El denominador es, obviamente, creciente \
+(pues cada vez aparecen m\[AAcute]s sumandos positivos)\na(n)= ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{" ", 
+    RowBox[{
+     SuperscriptBox["n", "2"], " ", "+", " ", 
+     RowBox[{"cos", "(", "n", ")"}]}]}], TraditionalForm]],ExpressionUUID->
+  "309a77cd-8ce6-4a5f-9d5d-67d174d2c80e"],
+ "\nb(n)= 1 + 2  + 3 + ... + n\nAplicamos el criterio de Stolz\n",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{" ", 
+     RowBox[{
+      RowBox[{"a", "(", 
+       RowBox[{"n", "+", "1"}], ")"}], "-", 
+      RowBox[{"a", "(", "n", ")"}]}]}], 
+    RowBox[{
+     RowBox[{"b", "(", 
+      RowBox[{"n", "+", "1"}], ")"}], "-", 
+     RowBox[{"b", "(", "n", ")"}]}]], TraditionalForm]],ExpressionUUID->
+  "350bfe15-41a0-4282-b015-51252cb0bc70"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{" ", 
+     RowBox[{
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"n", "+", "1"}], ")"}], "2"], " ", "+", " ", 
+      RowBox[{"cos", "(", 
+       RowBox[{"n", "+", "1"}], ")"}], "-", 
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox["n", "2"], " ", "+", " ", 
+        RowBox[{"cos", "(", "n", ")"}]}], ")"}]}]}], 
+    RowBox[{
+     RowBox[{
+      RowBox[{"1", " ", "+", " ", "2", "  ", "+", " ", "3", " ", "+"}], " ", 
+      "..."}], " ", "+", "n", " ", "+", " ", "n", "+", "1", "-", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"1", "+", "2", "+", "3", "+"}], "..."}], "+", "n"}], ")"}]}]],
+    TraditionalForm]],ExpressionUUID->"6c3776e4-50f1-4bff-b9d8-ee0a3f14ffd5"],
+ "= ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{" ", 
+     RowBox[{
+      RowBox[{"2", "n"}], "+", "1", " ", "+", " ", 
+      RowBox[{"cos", "(", 
+       RowBox[{"n", "+", "1"}], ")"}], "-", 
+      RowBox[{"cos", "(", "n", ")"}]}]}], 
+    RowBox[{"n", "+", "1"}]], TraditionalForm]],ExpressionUUID->
+  "6c06e16d-6b2a-4b91-b31e-65ce277029ba"],
+ "= ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{" ", 
+     RowBox[{"2", "+", " ", 
+      FractionBox[
+       RowBox[{" ", "1"}], "n"], "+", " ", 
+      FractionBox[
+       RowBox[{" ", 
+        RowBox[{"cos", "(", 
+         RowBox[{"n", "+", "1"}], ")"}]}], "n"], "-", 
+      FractionBox[
+       RowBox[{" ", 
+        RowBox[{"cos", "(", "n", ")"}]}], "n"]}]}], 
+    RowBox[{"1", " ", "+", 
+     FractionBox[
+      RowBox[{" ", "1"}], "n"]}]], TraditionalForm]],ExpressionUUID->
+  "c95fcbf8-aac0-4593-9831-a9269dd4ca22"],
+ "\[LongRightArrow]",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{" ", "2"}], "1"], TraditionalForm]],ExpressionUUID->
+  "4e79c4d4-709b-4aea-9f22-f41a8fae9132"],
+ " = 2\nComo este l\[IAcute]mite existe, tambi\[EAcute]n existe el \
+l\[IAcute]mite propuesto y vale igual. Por tanto, el l\[IAcute]mite pedido es \
+2.\n\nOtra forma es calcular la suma del denominador. Al tratarse de una \
+progresi\[OAcute]n aritm\[EAcute]tica podemos sumar el primero y el \
+\[UAcute]ltimo y multiplicar por el n\[UAcute]mero de parejas que hay.\n\n\
+1+2+3+...+n= (n+1)*",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{" ", "n"}], "2"], TraditionalForm]],ExpressionUUID->
+  "efdf5c27-b11d-4ff1-9495-d194c0658cd1"],
+ "\n\nDe esta forma el l\[IAcute]mite a calcular quedar\[IAcute]a de la \
+forma:\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{" ", 
+      RowBox[{
+       SuperscriptBox["n", "2"], " ", "+", " ", 
+       RowBox[{"cos", "(", "n", ")"}]}]}], 
+     RowBox[{
+      RowBox[{
+       RowBox[{"1", " ", "+", " ", "2", "  ", "+", " ", "3", " ", "+"}], " ", 
+       "..."}], " ", "+", " ", "n"}]], "}"}], TraditionalForm]],
+  ExpressionUUID->"4f837428-acc5-4e6b-88b5-898a6f5e585b"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{" ", 
+      RowBox[{
+       SuperscriptBox["n", "2"], " ", "+", " ", 
+       RowBox[{"cos", "(", "n", ")"}]}]}], 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"n", "+", "1"}], ")"}], 
+      FractionBox["n", "2"]}]], "}"}], TraditionalForm]],ExpressionUUID->
+  "0fb5d815-5372-42df-ad92-983543dac42d"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{" ", 
+      RowBox[{
+       SuperscriptBox["n", "2"], " ", "+", " ", 
+       RowBox[{"cos", "(", "n", ")"}]}]}], 
+     RowBox[{
+      FractionBox[
+       SuperscriptBox["n", "2"], "2"], "+", 
+      FractionBox["n", "2"]}]], "}"}], TraditionalForm]],ExpressionUUID->
+  "1d632320-69af-4399-b946-b24041494870"],
+ " Dividiendo entre ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["n", "2"], TraditionalForm]],ExpressionUUID->
+  "74541ef6-66f7-47f2-a990-77c6ff524390"],
+ " que dar\[IAcute]a ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{" ", 
+      RowBox[{"1", " ", "+", " ", 
+       FractionBox[
+        RowBox[{"cos", "(", "n", ")"}], 
+        SuperscriptBox["n", "2"]]}]}], 
+     RowBox[{
+      FractionBox["1", "2"], "+", 
+      FractionBox["1", 
+       RowBox[{"2", "n"}]]}]], "}"}], TraditionalForm]],ExpressionUUID->
+  "6b87d132-c053-4687-b6ca-3df5ee5dc1d1"],
+ " que cuando n tiende a infinito tender\[IAcute]a a ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FractionBox[
+     RowBox[{" ", 
+      RowBox[{"1", " ", "+", " ", "0"}]}], 
+     RowBox[{
+      FractionBox["1", "2"], "+", "0"}]], "=", "2"}], TraditionalForm]],
+  ExpressionUUID->"cef3831d-837d-4dfd-a60b-beb26317289a"],
+ "\n\nCon el Mathematica"
+}], "Text",
+ CellChangeTimes->{{3.610967983265625*^9, 3.610968082640625*^9}, {
+   3.6109681208125*^9, 3.61096812653125*^9}, {3.610976777453125*^9, 
+   3.610976922484375*^9}, {3.610977092296875*^9, 3.610977128578125*^9}, {
+   3.6109952425648575`*^9, 3.6109952441248603`*^9}, 3.6109960809103303`*^9, {
+   3.642469122350403*^9, 3.642469129909835*^9}, {3.6424702277816296`*^9, 
+   3.642470339714032*^9}, {3.6454091660499067`*^9, 3.6454091779505873`*^9}, {
+   3.64540920858634*^9, 3.6454092670616846`*^9}, {3.6624042685629177`*^9, 
+   3.662404487045414*^9}, {3.662404538610363*^9, 3.6624045830899076`*^9}, {
+   3.6624330552211766`*^9, 3.662433061680588*^9}, {3.6938538708665333`*^9, 
+   3.693854040902259*^9}, {3.693854079487466*^9, 3.6938540794884653`*^9}, {
+   3.6938544445573463`*^9, 3.693854450866707*^9}, {3.7076653520288205`*^9, 
+   3.7076655065988207`*^9}, {3.7076656135488205`*^9, 3.7076656188958206`*^9}, 
+   3.724512079592402*^9, {3.7245143272248163`*^9, 3.724514340438017*^9}, {
+   3.724515015543621*^9, 3.724515075291621*^9}, {3.7245159676384263`*^9, 
+   3.7245159875434265`*^9}, {3.8198815277012*^9, 3.8198815707792*^9}, {
+   3.8520984852392845`*^9, 3.8520984984181566`*^9}, {3.8520986409593077`*^9, 
+   3.8520986467859945`*^9}, {3.852098680861842*^9, 3.8520986824472866`*^9}, {
+   3.866821762717526*^9, 3.866821762717526*^9}, {3.8668220738783064`*^9, 
+   3.866822089717884*^9}, {3.86682214115371*^9, 3.8668221615394554`*^9}, {
+   3.8668222017034035`*^9, 3.8668222413478823`*^9}, {3.866957566662753*^9, 
+   3.8669580367440243`*^9}, {3.9053445720977445`*^9, 3.905344598558634*^9}, {
+   3.9054409132375493`*^9, 3.905441136822027*^9}, {3.905441180127497*^9, 
+   3.9054412910260105`*^9}, {3.9125973414200907`*^9, 3.9125973643125906`*^9}},
+ FontSize->16,ExpressionUUID->"a469c87f-1280-40c1-aef6-2bce3e18e290"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Limit", "[", 
+  RowBox[{
+   FractionBox[
+    RowBox[{
+     SuperscriptBox["n", "2"], "+", 
+     RowBox[{"Cos", "[", "n", "]"}]}], 
+    RowBox[{
+     UnderoverscriptBox["\[Sum]", 
+      RowBox[{"i", "=", "1"}], "n"], "i"}]], ",", 
+   RowBox[{"n", "\[Rule]", "\[Infinity]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.905440907983055*^9, 3.905440909944973*^9}, {
+  3.9054413008267417`*^9, 3.9054413518961587`*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"a7cdadf1-1165-4479-a124-a94fe7f81ad2"],
+
+Cell[BoxData["2"], "Output",
+ CellChangeTimes->{3.9054413552743797`*^9},
+ CellLabel->"Out[1]=",ExpressionUUID->"a1a436d7-fa66-4333-8829-49cd0ca0fbe5"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "\n \t3.- Calcular el l\[IAcute]mite de la sucesi\[OAcute]n ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["1", "2"], " ", "+", " ", 
+        SuperscriptBox["2", "2"], " ", "+", " ", 
+        SuperscriptBox["3", "2"], " ", "+"}], " ", "..."}], " ", "+", " ", 
+      SuperscriptBox["n", "2"]}], 
+     RowBox[{
+      SuperscriptBox["n", "3"], "+", "1"}]], "}"}], TraditionalForm]],
+  ExpressionUUID->"e2d72e4f-134e-4ce3-9e1b-7cf03d5522c2"],
+ " \n \tEnero 22 \t"
+}], "Section",
+ CellChangeTimes->{{3.500751345359375*^9, 3.500751379984375*^9}, {
+   3.500790035609375*^9, 3.500790048953125*^9}, {3.569509423875*^9, 
+   3.56950942659375*^9}, {3.570537368580125*^9, 3.57053737997075*^9}, {
+   3.599199111625*^9, 3.5991991196875*^9}, {3.723477468774*^9, 
+   3.723477473212*^9}, {3.723478212648*^9, 3.723478232406*^9}, {
+   3.723478462157*^9, 3.723478463176*^9}, {3.723478670633*^9, 
+   3.723478671652*^9}, {3.72356892631*^9, 3.7235690780550003`*^9}, {
+   3.723569130146*^9, 3.723569177783*^9}, {3.7235692175769997`*^9, 
+   3.723569247399*^9}, {3.723569308648*^9, 3.723569328826*^9}, {
+   3.723569485984*^9, 3.723569513233*^9}, {3.7236081819960003`*^9, 
+   3.7236083309300003`*^9}, {3.7236509376520233`*^9, 3.7236509459610233`*^9}, 
+   3.7236517258530235`*^9, 3.723651765606024*^9, {3.7236521565550237`*^9, 
+   3.7236522309350233`*^9}, {3.7238353873130035`*^9, 3.723835410693304*^9}, {
+   3.7239071598070183`*^9, 3.723907162602418*^9}, {3.724158365534717*^9, 
+   3.724158429733717*^9}, {3.724164938261321*^9, 3.724164963029321*^9}, 
+   3.7254239244656124`*^9, {3.819906851493*^9, 3.8199068540039997`*^9}, 
+   3.8210786023066006`*^9, {3.8522146400462027`*^9, 3.8522146400462027`*^9}, {
+   3.8739402181391444`*^9, 3.873940221790393*^9}, {3.912597391985094*^9, 
+   3.912597395771402*^9}},
+ FontFamily->"Arial",
+ FontSize->14,
+ FontColor->RGBColor[0., 0.25098039215686274`, 0.5019607843137255],
+ Background->RGBColor[
+  0.807843137254902, 0.9058823529411765, 
+   1.],ExpressionUUID->"7211b076-df63-4eb8-b19f-b1a04c339045"],
+
+Cell[TextData[{
+ "Soluci\[OAcute]n: \nComo numerador y denominador tienden a infinito, siendo \
+",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["n", "3"], "+", "1"}], TraditionalForm]],ExpressionUUID->
+  "485cff1a-f6ac-44b1-bbe5-c031ba2a6b3e"],
+ " estrictamente creciente, aplicamos el m\[EAcute]todo de Stolz.\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     SubscriptBox["a", "n"], 
+     SubscriptBox["b", "n"]], "}"}], TraditionalForm]],ExpressionUUID->
+  "f3fe2905-0194-4321-bc3e-243ca575a0ab"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["1", "2"], " ", "+", " ", 
+        SuperscriptBox["2", "2"], " ", "+", " ", 
+        SuperscriptBox["3", "2"], " ", "+"}], " ", "..."}], " ", "+", " ", 
+      SuperscriptBox["n", "2"]}], 
+     RowBox[{
+      SuperscriptBox["n", "3"], "+", "1"}]], "}"}], TraditionalForm]],
+  ExpressionUUID->"5e1bf99f-526e-4caf-8049-444d47286b66"],
+ ",  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      SubscriptBox["a", 
+       RowBox[{"n", "+", "1"}]], "-", 
+      SubscriptBox["a", "n"]}], 
+     RowBox[{
+      SubscriptBox["b", 
+       RowBox[{"n", "+", "1"}]], "-", 
+      SubscriptBox["b", "n"]}]], "}"}], TraditionalForm]],ExpressionUUID->
+  "e9edd713-ac04-43a2-8ac8-f3a8c6f46e3d"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"n", "+", "1"}], ")"}], "2"], 
+     RowBox[{
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"n", "+", "1"}], ")"}], "3"], "+", "1", "-", 
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox["n", "3"], "+", "1"}], ")"}]}]], "}"}], 
+   TraditionalForm]],ExpressionUUID->"5286cee8-1d92-42b5-8787-f976e1cbb30e"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["n", "2"], "+", 
+      RowBox[{"2", "n"}], "+", "1"}], 
+     RowBox[{
+      SuperscriptBox["n", "3"], "+", 
+      RowBox[{"3", 
+       SuperscriptBox["n", "2"]}], "+", 
+      RowBox[{"3", "n"}], "+", "1", " ", "+", " ", "1", "-", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox["n", "3"], "+", "1"}], ")"}], " "}]], "}"}], 
+   TraditionalForm]],ExpressionUUID->"789ff0f3-c47e-4a07-b6a8-305329d94317"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["n", "2"], "+", 
+      RowBox[{"2", "n"}], "+", "1"}], 
+     RowBox[{
+      RowBox[{"3", 
+       SuperscriptBox["n", "2"]}], "+", 
+      RowBox[{"3", "n"}], "+", "1", "   "}]], "}"}], TraditionalForm]],
+  ExpressionUUID->"d961fc8c-bb90-4c2d-80ae-e8343520a61a"],
+ ". Nos aparece una nueva sucesi\[OAcute]n, que es un cociente de dos \
+polinomios de igual grado. Dividiendo por la potencia de mayor grado,\n\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["n", "2"], "/", 
+       SuperscriptBox["n", "2"]}], "+", 
+      RowBox[{"2", 
+       RowBox[{"n", "/", 
+        SuperscriptBox["n", "2"]}]}], "+", 
+      RowBox[{"1", "/", 
+       SuperscriptBox["n", "2"]}]}], 
+     RowBox[{
+      RowBox[{"3", 
+       RowBox[{
+        SuperscriptBox["n", "2"], "/", 
+        SuperscriptBox["n", "2"]}]}], "+", 
+      RowBox[{"3", 
+       RowBox[{"n", "/", 
+        SuperscriptBox["n", "2"]}]}], "+", 
+      RowBox[{"1", "/", 
+       SuperscriptBox["n", "2"], "   "}]}]], "}"}], TraditionalForm]],
+  ExpressionUUID->"34ca8376-2d90-45a5-a730-cb6a3290ca9a"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{"1", " ", "+", " ", 
+      RowBox[{"2", "/", "n"}], " ", "+", " ", 
+      RowBox[{"1", "/", 
+       SuperscriptBox["n", "2"]}]}], 
+     RowBox[{"3", " ", "+", 
+      RowBox[{"3", "/", "n"}], "+", 
+      RowBox[{"1", "/", 
+       SuperscriptBox["n", "2"], "   "}]}]], "}"}], TraditionalForm]],
+  ExpressionUUID->"66abf757-8309-4d01-ab38-23d8350b9cb8"],
+ " \[RightArrow]",
+ Cell[BoxData[
+  FormBox[
+   FractionBox["1", 
+    RowBox[{"3", " "}]], TraditionalForm]],ExpressionUUID->
+  "7f532314-edcf-4ffb-a777-0646fc50f3b6"],
+ "\n\nDado que el l\[IAcute]mite existe y vale 1/3, concluimos que la sucesi\
+\[OAcute]n inicial tambi\[EAcute]n converge y lo hace al mismo \
+l\[IAcute]mite.\nCon el Mathematica:"
+}], "Text",
+ CellChangeTimes->{{3.610967983265625*^9, 3.610968082640625*^9}, {
+   3.6109681208125*^9, 3.61096812653125*^9}, {3.610976777453125*^9, 
+   3.610976922484375*^9}, {3.610977092296875*^9, 3.610977128578125*^9}, {
+   3.6109952425648575`*^9, 3.6109952441248603`*^9}, 3.6109960809103303`*^9, {
+   3.642469122350403*^9, 3.642469129909835*^9}, {3.6424702277816296`*^9, 
+   3.642470339714032*^9}, {3.6454091660499067`*^9, 3.6454091779505873`*^9}, {
+   3.64540920858634*^9, 3.6454092670616846`*^9}, {3.6624042685629177`*^9, 
+   3.662404487045414*^9}, {3.662404538610363*^9, 3.6624045830899076`*^9}, {
+   3.6624330552211766`*^9, 3.662433061680588*^9}, {3.6938538708665333`*^9, 
+   3.693854040902259*^9}, {3.693854079487466*^9, 3.6938540794884653`*^9}, {
+   3.6938544445573463`*^9, 3.693854450866707*^9}, {3.7076653520288205`*^9, 
+   3.7076655065988207`*^9}, {3.7076656135488205`*^9, 3.7076656188958206`*^9}, 
+   3.724512079592402*^9, {3.7245143272248163`*^9, 3.724514340438017*^9}, {
+   3.724515015543621*^9, 3.724515075291621*^9}, {3.7245159676384263`*^9, 
+   3.7245159875434265`*^9}, {3.8198815277012*^9, 3.8198815707792*^9}, {
+   3.819902588091*^9, 3.819902592531*^9}, {3.8199026373900003`*^9, 
+   3.819902669885*^9}, {3.8199028798050003`*^9, 3.819902891249*^9}, {
+   3.8199029341140003`*^9, 3.819903191801*^9}, {3.819903223684*^9, 
+   3.819903231458*^9}, {3.819903264837*^9, 3.819903560182*^9}, {
+   3.8210786089484005`*^9, 3.821078610551401*^9}, {3.852214665316964*^9, 
+   3.8522150681071844`*^9}, 3.8522544003687677`*^9, 3.852296585522735*^9},
+ FontSize->16,ExpressionUUID->"c890eafc-e112-49e4-b0c4-cac95710b79d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Limit", "[", 
+  RowBox[{
+   FractionBox[
+    RowBox[{
+     UnderoverscriptBox["\[Sum]", 
+      RowBox[{"i", "=", "1"}], "n"], 
+     SuperscriptBox["i", "2"]}], 
+    RowBox[{
+     SuperscriptBox["n", "3"], "+", "1"}]], ",", " ", 
+   RowBox[{"n", "\[Rule]", "\[Infinity]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.852215069939936*^9, 3.8522151371003084`*^9}},
+ CellLabel->"In[3]:=",ExpressionUUID->"288697ab-ae11-4000-9a81-e5f6cd9fdda9"],
+
+Cell[BoxData[
+ FractionBox["1", "3"]], "Output",
+ CellChangeTimes->{3.8522151393112497`*^9},
+ CellLabel->"Out[3]=",ExpressionUUID->"d81559fe-2539-44b2-a1d0-b8b9ca8ff40b"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "\n \t3.- Estudiar la convergencia de la sucesi\[OAcute]n ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    StyleBox[
+     FractionBox[
+      RowBox[{
+       RowBox[{
+        RowBox[{"1", "+", "3", "+", "5", "+", "7", "+"}], "..."}], "+", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"2", "n"}], "+", "1"}], ")"}]}], 
+      SuperscriptBox["n", "2"]],
+     FontSize->18], "}"}], TraditionalForm]],ExpressionUUID->
+  "f79d6e92-3489-48d9-914f-645ac360e7cc"],
+ " .\n \tEnero 20 \t"
+}], "Section",
+ CellChangeTimes->{{3.500751345359375*^9, 3.500751379984375*^9}, {
+   3.500790035609375*^9, 3.500790048953125*^9}, {3.569509423875*^9, 
+   3.56950942659375*^9}, {3.570537368580125*^9, 3.57053737997075*^9}, {
+   3.599199111625*^9, 3.5991991196875*^9}, {3.723477468774*^9, 
+   3.723477473212*^9}, {3.723478212648*^9, 3.723478232406*^9}, {
+   3.723478462157*^9, 3.723478463176*^9}, {3.723478670633*^9, 
+   3.723478671652*^9}, {3.72356892631*^9, 3.7235690780550003`*^9}, {
+   3.723569130146*^9, 3.723569177783*^9}, {3.7235692175769997`*^9, 
+   3.723569247399*^9}, {3.723569308648*^9, 3.723569328826*^9}, {
+   3.723569485984*^9, 3.723569513233*^9}, {3.7236081819960003`*^9, 
+   3.7236083309300003`*^9}, {3.7236509376520233`*^9, 3.7236509459610233`*^9}, 
+   3.7236517258530235`*^9, 3.723651765606024*^9, {3.7236521565550237`*^9, 
+   3.7236522309350233`*^9}, {3.7238353873130035`*^9, 3.723835410693304*^9}, {
+   3.7239071598070183`*^9, 3.723907162602418*^9}, {3.724158365534717*^9, 
+   3.724158429733717*^9}, {3.724164938261321*^9, 3.724164963029321*^9}, 
+   3.7254239244656124`*^9, {3.819906851493*^9, 3.8199068540039997`*^9}, 
+   3.8210786023066006`*^9, {3.834931572111122*^9, 3.834931572111122*^9}, {
+   3.873939712917802*^9, 3.8739397234011464`*^9}, {3.8739400054645915`*^9, 
+   3.873940029903105*^9}, {3.9125987638055153`*^9, 3.912598768345269*^9}},
+ FontFamily->"Arial",
+ FontSize->14,
+ FontColor->RGBColor[0., 0.25098039215686274`, 0.5019607843137255],
+ Background->RGBColor[
+  0.807843137254902, 0.9058823529411765, 
+   1.],ExpressionUUID->"55900b1a-f4a9-4948-921c-35009621004a"],
+
+Cell[TextData[{
+ "Soluci\[OAcute]n:\nPuede hacerse sumando el numerador, que es una progresi\
+\[OAcute]n aritm\[EAcute]tica (La suma ser\[AAcute]: Primero m\[AAcute]s \
+\[CapitalUAcute]ltimo por el n\[UAcute]mero de t\[EAcute]rminos entre dos),  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    StyleBox[
+     FractionBox[
+      RowBox[{
+       RowBox[{
+        RowBox[{"1", "+", "3", "+", "5", "+", "7", "+"}], "..."}], "+", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"2", "n"}], "+", "1"}], ")"}]}], 
+      SuperscriptBox["n", "2"]],
+     FontSize->18], "}"}], TraditionalForm]],ExpressionUUID->
+  "7fadd619-e642-4272-a0c7-26722303a0f2"],
+ "= ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    StyleBox[
+     FractionBox[
+      RowBox[{
+       FractionBox[
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"2", "n"}], "+", "1", "+", "1"}], ")"}], "2"], "*", 
+       RowBox[{"(", 
+        RowBox[{"n", "+", "1"}], ")"}]}], 
+      SuperscriptBox["n", "2"]],
+     FontSize->18], "}"}], TraditionalForm]],ExpressionUUID->
+  "bed98eb9-e9fa-4dce-a2af-31bfc215a16d"],
+ "= ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    StyleBox[
+     FractionBox[
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"n", "+", "1"}], ")"}], "*", 
+       RowBox[{"(", 
+        RowBox[{"n", "+", "1"}], ")"}]}], 
+      SuperscriptBox["n", "2"]],
+     FontSize->18], "}"}], TraditionalForm]],ExpressionUUID->
+  "f1883549-87bb-4083-8e9e-0b0d954e02fb"],
+ "= ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    StyleBox[
+     FractionBox[
+      RowBox[{
+       SuperscriptBox["n", "2"], "+", 
+       RowBox[{"2", "n"}], "+", "1"}], 
+      SuperscriptBox["n", "2"]],
+     FontSize->18], "}"}], TraditionalForm]],ExpressionUUID->
+  "1845b88c-0faa-4322-851f-4665ac1939e4"],
+ "\[LongRightArrow] 1. \n\nTambi\[EAcute]n puede utilizarse el criterio de \
+Stolz, pues numerador y denominador tienden a infinito, con el denominador \
+estrictamente creciente. \nL\[IAcute]m ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    StyleBox[
+     FractionBox[
+      RowBox[{
+       RowBox[{
+        RowBox[{"1", "+", "3", "+", "5", "+", "7", "+"}], "..."}], "+", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"2", "n"}], "+", "1"}], ")"}]}], 
+      SuperscriptBox["n", "2"]],
+     FontSize->18], "}"}], TraditionalForm]],ExpressionUUID->
+  "a79cb826-079f-412b-ab8a-4c19785a826d"],
+ "= L\[IAcute]m ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    StyleBox[
+     FractionBox[
+      RowBox[{
+       RowBox[{
+        RowBox[{"1", "+", "3", "+", "5", "+", "7", "+"}], "..."}], "+", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"2", "n"}], "+", "1"}], ")"}], "+", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"2", 
+          RowBox[{"(", 
+           RowBox[{"n", "+", "1"}], ")"}]}], "+", "1"}], ")"}], " ", "-", " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"1", "+", "3", "+", "5", "+", "7", "+"}], "..."}], "+", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"2", "n"}], "+", "1"}], ")"}]}], ")"}]}], 
+      RowBox[{
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"n", "+", "1"}], ")"}], "2"], "-", 
+       SuperscriptBox["n", "2"]}]],
+     FontSize->18], "}"}], TraditionalForm]],ExpressionUUID->
+  "748b0e2f-e683-4bfa-8d28-5238e3a0722f"],
+ "= L\[IAcute]m  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    StyleBox[
+     FractionBox[
+      RowBox[{
+       RowBox[{"2", "n"}], "+", "3", " "}], 
+      RowBox[{
+       RowBox[{"2", "n"}], "+", "1"}]],
+     FontSize->18], "}"}], TraditionalForm]],ExpressionUUID->
+  "793a921c-b72d-483d-b0da-aeea88240318"],
+ "=1\n\nCon el Mathematica,"
+}], "Text",
+ CellChangeTimes->{{3.610967983265625*^9, 3.610968082640625*^9}, {
+   3.6109681208125*^9, 3.61096812653125*^9}, {3.610976777453125*^9, 
+   3.610976922484375*^9}, {3.610977092296875*^9, 3.610977128578125*^9}, {
+   3.6109952425648575`*^9, 3.6109952441248603`*^9}, 3.6109960809103303`*^9, {
+   3.642469122350403*^9, 3.642469129909835*^9}, {3.6424702277816296`*^9, 
+   3.642470339714032*^9}, {3.6454091660499067`*^9, 3.6454091779505873`*^9}, {
+   3.64540920858634*^9, 3.6454092670616846`*^9}, {3.6624042685629177`*^9, 
+   3.662404487045414*^9}, {3.662404538610363*^9, 3.6624045830899076`*^9}, {
+   3.6624330552211766`*^9, 3.662433061680588*^9}, {3.6938538708665333`*^9, 
+   3.693854040902259*^9}, {3.693854079487466*^9, 3.6938540794884653`*^9}, {
+   3.6938544445573463`*^9, 3.693854450866707*^9}, {3.7076653520288205`*^9, 
+   3.7076655065988207`*^9}, {3.7076656135488205`*^9, 3.7076656188958206`*^9}, 
+   3.724512079592402*^9, {3.7245143272248163`*^9, 3.724514340438017*^9}, {
+   3.724515015543621*^9, 3.724515075291621*^9}, {3.7245159676384263`*^9, 
+   3.7245159875434265`*^9}, {3.7876465974914417`*^9, 
+   3.7876466565425863`*^9}, {3.788961800961502*^9, 3.7889618211515017`*^9}, {
+   3.788962995632502*^9, 3.788963000650502*^9}, {3.788963034501502*^9, 
+   3.788963150811502*^9}, {3.788963245926502*^9, 3.788963258238502*^9}, {
+   3.788963315168502*^9, 3.788963327661502*^9}, {3.789730594734*^9, 
+   3.78973060171*^9}, 3.789731859999*^9, {3.78973199823*^9, 
+   3.7897321539440002`*^9}, {3.789732894683*^9, 3.789732894683*^9}, {
+   3.789732929468*^9, 3.789732930459*^9}, {3.8739400385349593`*^9, 
+   3.873940094532823*^9}, {3.905344641598567*^9, 3.9053446491243076`*^9}, {
+   3.9054415869372916`*^9, 3.9054415929762583`*^9}, {3.9125987725666227`*^9, 
+   3.912598772901126*^9}, {3.9125989001234627`*^9, 3.9125990039875*^9}},
+ FontSize->16,ExpressionUUID->"81287aa3-f6bd-4f0f-b825-1dea9fcb12d8"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Limit", "[", 
+  RowBox[{
+   FractionBox[
+    RowBox[{
+     RowBox[{
+      UnderoverscriptBox["\[Sum]", 
+       RowBox[{"i", "=", "0"}], "n"], 
+      RowBox[{"2", "i"}]}], "+", "1"}], 
+    SuperscriptBox["n", "2"]], ",", 
+   RowBox[{"n", "\[Rule]", "\[Infinity]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.905441595598214*^9, 3.905441642684452*^9}},
+ CellLabel->"In[4]:=",ExpressionUUID->"233e0d51-43d1-46c8-ad7e-59c7f101fb71"],
+
+Cell[BoxData["1"], "Output",
+ CellChangeTimes->{3.905441646424577*^9},
+ CellLabel->"Out[4]=",ExpressionUUID->"357aec45-0be5-42bf-9a3b-2c840f0edf28"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "\n \t4.- Calcular, si existe, el l\[IAcute]mite de la sucesi\[OAcute]n  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    RadicalBox[
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        SuperscriptBox[
+         RowBox[{"(", 
+          RowBox[{"1", "+", 
+           FractionBox["1", "1"]}], ")"}], "1"], "*", 
+        SuperscriptBox[
+         RowBox[{"(", 
+          RowBox[{"1", "+", 
+           FractionBox["1", "2"]}], ")"}], "2"], "*", 
+        SuperscriptBox[
+         RowBox[{"(", 
+          RowBox[{"1", "+", 
+           FractionBox["1", "3"]}], ")"}], "3"], "*"}], "..."}], "*", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         FractionBox["1", "n"]}], ")"}], "n"]}], "n"], "}"}], 
+   TraditionalForm]],ExpressionUUID->"9a5300fc-dad6-452a-b424-865af03ee951"],
+ "\n\tEnero 24 \t"
+}], "Section",
+ CellChangeTimes->{{3.500751345359375*^9, 3.500751379984375*^9}, {
+   3.500790035609375*^9, 3.500790048953125*^9}, {3.569509423875*^9, 
+   3.56950942659375*^9}, {3.570537368580125*^9, 3.57053737997075*^9}, {
+   3.599199111625*^9, 3.5991991196875*^9}, {3.723477468774*^9, 
+   3.723477473212*^9}, {3.723478212648*^9, 3.723478232406*^9}, {
+   3.723478462157*^9, 3.723478463176*^9}, {3.723478670633*^9, 
+   3.723478671652*^9}, {3.72356892631*^9, 3.7235690780550003`*^9}, {
+   3.723569130146*^9, 3.723569177783*^9}, {3.7235692175769997`*^9, 
+   3.723569247399*^9}, {3.723569308648*^9, 3.723569328826*^9}, {
+   3.723569485984*^9, 3.723569513233*^9}, {3.7236081819960003`*^9, 
+   3.7236083309300003`*^9}, {3.7236509376520233`*^9, 3.7236509459610233`*^9}, 
+   3.7236517258530235`*^9, 3.723651765606024*^9, {3.7236521565550237`*^9, 
+   3.7236522309350233`*^9}, {3.7238353873130035`*^9, 3.723835410693304*^9}, {
+   3.7239071598070183`*^9, 3.723907162602418*^9}, {3.724158365534717*^9, 
+   3.724158429733717*^9}, {3.724164938261321*^9, 3.724164963029321*^9}, 
+   3.7254239244656124`*^9, {3.819906851493*^9, 3.8199068540039997`*^9}, 
+   3.85221277501379*^9, {3.8826734491183653`*^9, 3.882673472996007*^9}, 
+   3.9147651472529464`*^9, 3.9147652143929834`*^9, 3.914765324079404*^9, {
+   3.9359865408753567`*^9, 3.9359865435631695`*^9}},
+ FontFamily->"Arial",
+ FontSize->14,
+ FontColor->RGBColor[0., 0.25098039215686274`, 0.5019607843137255],
+ Background->RGBColor[
+  0.807843137254902, 0.9058823529411765, 
+   1.],ExpressionUUID->"55f1fd5c-d0c0-4ed6-ac7c-e89896760bfa"],
+
+Cell[TextData[{
+ "Soluci\[OAcute]n:\nLlamando ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["a", "n"], "=", " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       FractionBox["1", "n"]}], ")"}], "n"]}], TraditionalForm]],
+  ExpressionUUID->"99918c4f-772c-4fdd-ad5f-dc427d7ff2cd"],
+ ", el l\[IAcute]mite que debemos calcular se escribe como ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"{", 
+     RadicalBox[
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            FractionBox["1", "1"]}], ")"}], "1"], "*", 
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            FractionBox["1", "2"]}], ")"}], "2"], "*", 
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            FractionBox["1", "3"]}], ")"}], "3"], "*"}], "..."}], "*", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          FractionBox["1", "n"]}], ")"}], "n"]}], "n"], "}"}], " "}], 
+   TraditionalForm]],ExpressionUUID->"5dd3e1d7-87ad-4314-8d85-4137b53c495c"],
+ "= ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    RadicalBox[
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        SubscriptBox["a", "1"], "*", 
+        SubscriptBox["a", "2"], "*", 
+        SubscriptBox["a", "3"], "*"}], "..."}], "*", 
+      SubscriptBox["a", "n"]}], "n"], "}"}], TraditionalForm]],ExpressionUUID->
+  "7e2d5ee7-efbe-4b1f-b60b-fc90868c9a8b"],
+ "\n\nSe trata de la media geom\[EAcute]trica de los primeros n \
+t\[EAcute]rminos de la sucesi\[OAcute]n ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["a", "n"], TraditionalForm]],ExpressionUUID->
+  "89268d9d-c9d3-42d8-bc8e-2dcc76366cb3"],
+ ". Por el Criterio de la media geom\[EAcute]trica, como la sucesi\[OAcute]n  \
+",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    SubscriptBox["a", "n"], "}"}], TraditionalForm]],ExpressionUUID->
+  "215c1cf2-8ca4-43fd-89cf-42a9dac26b07"],
+ " es una sucesi\[OAcute]n de t\[EAcute]rminos estrictamente positivos que \
+tiende al n\[UAcute]mero \[ExponentialE], la sucesi\[OAcute]n de la media \
+geom\[EAcute]trica tambi\[EAcute]n tiende al mismo l\[IAcute]mite.\n\t\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"{", 
+     RadicalBox[
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            FractionBox["1", "1"]}], ")"}], "1"], "*", 
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            FractionBox["1", "2"]}], ")"}], "2"], "*", 
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"1", "+", 
+            FractionBox["1", "3"]}], ")"}], "3"], "*"}], "..."}], "*", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          FractionBox["1", "n"]}], ")"}], "n"]}], "n"], "}"}], " "}], 
+   TraditionalForm]],ExpressionUUID->"36da0075-ac55-437a-b793-ecc571c3cb1d"],
+ "\[LongRightArrow]\[ExponentialE].\n  Con el Mathematica,"
+}], "Text",
+ CellChangeTimes->{{3.610967983265625*^9, 3.610968082640625*^9}, {
+   3.6109681208125*^9, 3.61096812653125*^9}, {3.610976777453125*^9, 
+   3.610976922484375*^9}, {3.610977092296875*^9, 3.610977128578125*^9}, {
+   3.6109952425648575`*^9, 3.6109952441248603`*^9}, 3.6109960809103303`*^9, {
+   3.642469122350403*^9, 3.642469129909835*^9}, {3.6424702277816296`*^9, 
+   3.642470339714032*^9}, {3.6454091660499067`*^9, 3.6454091779505873`*^9}, {
+   3.64540920858634*^9, 3.6454092670616846`*^9}, {3.6624042685629177`*^9, 
+   3.662404487045414*^9}, {3.662404538610363*^9, 3.6624045830899076`*^9}, {
+   3.6624330552211766`*^9, 3.662433061680588*^9}, {3.6938538708665333`*^9, 
+   3.693854040902259*^9}, {3.693854079487466*^9, 3.6938540794884653`*^9}, {
+   3.6938544445573463`*^9, 3.693854450866707*^9}, {3.7076653520288205`*^9, 
+   3.7076655065988207`*^9}, {3.7076656135488205`*^9, 3.7076656188958206`*^9}, 
+   3.724512079592402*^9, {3.7245143272248163`*^9, 3.724514340438017*^9}, {
+   3.724515015543621*^9, 3.724515075291621*^9}, {3.7245159676384263`*^9, 
+   3.7245159875434265`*^9}, {3.8198815277012*^9, 3.8198815707792*^9}, {
+   3.8520984852392845`*^9, 3.8520984984181566`*^9}, {3.8520986409593077`*^9, 
+   3.8520986467859945`*^9}, {3.852098680861842*^9, 3.8520986824472866`*^9}, {
+   3.882677003554729*^9, 3.8826770392357426`*^9}, {3.9146024693508067`*^9, 
+   3.9146024698361416`*^9}, {3.914602724410307*^9, 3.9146027896040916`*^9}, 
+   3.914602878336661*^9, 3.9146029179315977`*^9, {3.914605531868075*^9, 
+   3.9146056202958794`*^9}, {3.914606729787405*^9, 3.9146067301265445`*^9}, {
+   3.914607724258872*^9, 3.914607730987892*^9}, {3.9146334733440824`*^9, 
+   3.9146334733440824`*^9}, {3.914774905169276*^9, 3.9147752161601677`*^9}, {
+   3.9148488557860565`*^9, 3.914848925070275*^9}},
+ FontSize->14,ExpressionUUID->"8d36e303-b587-485a-8185-a2d6743e7703"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Limit", "[", 
+  RowBox[{
+   RadicalBox[
+    RowBox[{
+     UnderoverscriptBox["\[Product]", 
+      RowBox[{"i", "=", "1"}], "n"], 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        FractionBox["1", "i"]}], ")"}], "i"]}], "n"], ",", " ", 
+   RowBox[{"n", "\[Rule]", "\[Infinity]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.9147752226267676`*^9, 3.9147752943336973`*^9}},
+ CellLabel->"In[7]:=",ExpressionUUID->"768ea450-1ae6-4488-9a5d-e5c1bd99cf3f"],
+
+Cell[BoxData["\[ExponentialE]"], "Output",
+ CellChangeTimes->{3.914775297048212*^9},
+ CellLabel->"Out[7]=",ExpressionUUID->"f6717885-3960-49df-88aa-0df8c81c34fc"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "\n \t3.- Calcular el l\[IAcute]mite de la sucesi\[OAcute]n ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FormBox[
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          SuperscriptBox[
+           RowBox[{"(", 
+            FractionBox["3", "1"], ")"}], 
+           RowBox[{"1", "/", "n", " "}]], "*", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            FractionBox["4", "2"], ")"}], 
+           RowBox[{"2", "/", "n", " "}]], "*"}], "..."}], "."}], "*", "   ", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         FractionBox[
+          RowBox[{"n", "+", "2"}], "n"], ")"}], 
+        RowBox[{"n", "/", "n", " "}]], " "}]}],
+     TraditionalForm], "}"}], TraditionalForm]],ExpressionUUID->
+  "a53256a8-09de-4c79-8d30-b7ece154221b"],
+ " \n\tFebrero 21\t"
+}], "Section",
+ CellChangeTimes->{{3.500751345359375*^9, 3.500751379984375*^9}, {
+   3.500790035609375*^9, 3.500790048953125*^9}, {3.569509423875*^9, 
+   3.56950942659375*^9}, {3.570537368580125*^9, 3.57053737997075*^9}, {
+   3.599199111625*^9, 3.5991991196875*^9}, {3.723477468774*^9, 
+   3.723477473212*^9}, {3.723478212648*^9, 3.723478232406*^9}, {
+   3.723478462157*^9, 3.723478463176*^9}, {3.723478670633*^9, 
+   3.723478671652*^9}, {3.72356892631*^9, 3.7235690780550003`*^9}, {
+   3.723569130146*^9, 3.723569177783*^9}, {3.7235692175769997`*^9, 
+   3.723569247399*^9}, {3.723569308648*^9, 3.723569328826*^9}, {
+   3.723569485984*^9, 3.723569513233*^9}, {3.7236081819960003`*^9, 
+   3.7236083309300003`*^9}, {3.7236509376520233`*^9, 3.7236509459610233`*^9}, 
+   3.7236517258530235`*^9, 3.723651765606024*^9, {3.7236521565550237`*^9, 
+   3.7236522309350233`*^9}, {3.7238353873130035`*^9, 3.723835410693304*^9}, {
+   3.7239071598070183`*^9, 3.723907162602418*^9}, {3.724158365534717*^9, 
+   3.724158429733717*^9}, {3.724164938261321*^9, 3.724164963029321*^9}, 
+   3.7254239244656124`*^9, {3.819906851493*^9, 3.8199068540039997`*^9}, 
+   3.8210786023066006`*^9, {3.8739401358797693`*^9, 3.8739401397260075`*^9}, {
+   3.9125977081996546`*^9, 3.912597711648944*^9}, {3.9125977605194516`*^9, 
+   3.91259776720037*^9}},
+ FontFamily->"Arial",
+ FontSize->14,
+ FontColor->RGBColor[0., 0.25098039215686274`, 0.5019607843137255],
+ Background->RGBColor[
+  0.807843137254902, 0.9058823529411765, 
+   1.],ExpressionUUID->"421c81b8-138e-4ae8-a287-321a6558122a"],
+
+Cell[TextData[{
+ "Soluci\[OAcute]n:\nObservamos que aparece el producto de n \
+t\[EAcute]rminos. Adem\[AAcute]s todos ellos est\[AAcute]n elevados a 1/n. \
+Podr\[IAcute]amos pensar en la media geom\[EAcute]trica de esos n \
+t\[EAcute]rminos.\n\nEfectivamente, llamando ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["a", "n"], TraditionalForm]],ExpressionUUID->
+  "912d6bd9-782d-4ac2-9584-88b6410fcc04"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    RowBox[{"(", 
+     FractionBox[
+      RowBox[{"n", "+", "2"}], "n"], ")"}], 
+    RowBox[{"n", " "}]], TraditionalForm]],ExpressionUUID->
+  "b85debb9-55d6-4442-bf45-ff2c6c6d2946"],
+ ", la sucesi\[OAcute]n dada puede escribirse como  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FormBox[
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          SuperscriptBox[
+           RowBox[{"(", 
+            FractionBox["3", "1"], ")"}], 
+           RowBox[{"1", "/", "n", " "}]], "*", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            FractionBox["4", "2"], ")"}], 
+           RowBox[{"2", "/", "n", " "}]], "*"}], "..."}], "."}], "*", "   ", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         FractionBox[
+          RowBox[{"n", "+", "2"}], "n"], ")"}], 
+        RowBox[{"n", "/", "n", " "}]], " "}]}],
+     TraditionalForm], "}"}], TraditionalForm]],ExpressionUUID->
+  "7a3ceb5b-08e4-495a-9930-e7eb82f546cb"],
+ "= ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FormBox[
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          SuperscriptBox[
+           RowBox[{"(", 
+            SubscriptBox["a", "1"], ")"}], 
+           RowBox[{"1", "/", "n", " "}]], "*", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            SubscriptBox["a", "2"], ")"}], 
+           RowBox[{"1", "/", "n", " "}]], "*"}], "..."}], "."}], "*", "   ", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         SubscriptBox["a", "n"], ")"}], 
+        RowBox[{"1", "/", "n", " "}]], " "}]}],
+     TraditionalForm], "}"}], TraditionalForm]],ExpressionUUID->
+  "841490e7-13e7-4765-8050-1dba77757eb1"],
+ "= ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FormBox[
+     RowBox[{"{", 
+      RadicalBox[
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          SubscriptBox["a", "1"], "*", 
+          SubscriptBox["a", "2"], "*"}], "..."}], "*", 
+        SubscriptBox["a", "n"]}], "n"]}],
+     TraditionalForm], "}"}], TraditionalForm]],ExpressionUUID->
+  "d9917da5-3f2e-417e-926b-1500db17ec44"],
+ ".\n\nAplicando el criterio de la media geom\[EAcute]trica, si encontramos \
+el l\[IAcute]mite de ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FormBox[
+     RowBox[{"{", 
+      SubscriptBox["a", "n"]}],
+     TraditionalForm], "}"}], TraditionalForm]],ExpressionUUID->
+  "5e1a89bc-8963-4cfd-9e49-f6ed073a2e79"],
+ ", una sucesi\[OAcute]n de t\[EAcute]rminos positivos, habremos encontrado \
+el l\[IAcute]mite de ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FormBox[
+     RowBox[{"{", 
+      RadicalBox[
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          SubscriptBox["a", "1"], "*", 
+          SubscriptBox["a", "2"], "*"}], "..."}], "*", 
+        SubscriptBox["a", "n"]}], "n"]}],
+     TraditionalForm], "}"}], TraditionalForm]],ExpressionUUID->
+  "42b78868-39dd-44da-b3ca-4aa45b9c4f78"],
+ ", que es la sucesi\[OAcute]n dada.\n\nPara calcular el l\[IAcute]mite de ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FormBox[
+     RowBox[{"{", 
+      SubscriptBox["a", "n"]}],
+     TraditionalForm], "}"}], TraditionalForm]],ExpressionUUID->
+  "305fe01f-85e0-420a-9d36-195b3ebfc724"],
+ "= ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FormBox[
+     RowBox[{"{", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        FractionBox[
+         RowBox[{"n", "+", "2"}], "n"], ")"}], 
+       RowBox[{"n", " "}]]}],
+     TraditionalForm], "}"}], TraditionalForm]],ExpressionUUID->
+  "fa258ffe-f95b-481e-b6e0-d5eaf34f57ab"],
+ ", observamos que se trata de una expresi\[OAcute]n cuya base tiende a 1 y \
+cuyo exponente tiende a infinito. Pensamos en el n\[UAcute]mero e.\n\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FormBox[
+     RowBox[{"{", 
+      SubscriptBox["a", "n"]}],
+     TraditionalForm], "}"}], TraditionalForm]],ExpressionUUID->
+  "2d15e8fb-1888-4e4a-8577-63a897aebcc6"],
+ "= ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FormBox[
+     RowBox[{"{", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        FractionBox[
+         RowBox[{"n", "+", "2"}], "n"], ")"}], 
+       RowBox[{"n", " "}]]}],
+     TraditionalForm], "}"}], TraditionalForm]],ExpressionUUID->
+  "d287739e-bfa0-44d4-a451-f484e02bef76"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FormBox[
+     RowBox[{"{", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         FractionBox["2", "n"]}], ")"}], 
+       RowBox[{"n", " "}]]}],
+     TraditionalForm], "}"}], TraditionalForm]],ExpressionUUID->
+  "eb359dc5-f7b6-47ad-824d-0387c819ce1a"],
+ "= ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FormBox[
+     RowBox[{"{", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         FractionBox["1", 
+          RowBox[{"(", 
+           FractionBox["n", "2"], ")"}]]}], ")"}], 
+       RowBox[{"n", " "}]]}],
+     TraditionalForm], "}"}], TraditionalForm]],ExpressionUUID->
+  "e4e6198b-eb2d-44c7-a94e-242cfc2caa27"],
+ "= ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FormBox[
+     RowBox[{"{", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         FractionBox["1", 
+          RowBox[{"(", 
+           FractionBox["n", "2"], ")"}]]}], ")"}], 
+       RowBox[{
+        RowBox[{"(", 
+         FractionBox["n", "2"], ")"}], "*", "2"}]]}],
+     TraditionalForm], "}"}], TraditionalForm]],ExpressionUUID->
+  "ca7d1e32-0e73-4f05-ba3b-07713e3ed578"],
+ " \[LongRightArrow] ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ExponentialE]", "2"], TraditionalForm]],ExpressionUUID->
+  "3bb73e6d-0547-4713-9b96-b67f219c765f"],
+ ".\nHemos llegado a una expresi\[OAcute]n ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FormBox[
+     RowBox[{"{", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        SuperscriptBox[
+         RowBox[{"(", 
+          RowBox[{"1", "+", 
+           FractionBox["1", 
+            RowBox[{"(", "algo", ")"}]]}], ")"}], 
+         RowBox[{"(", "algo", ")"}]], ")"}], "2"]}],
+     TraditionalForm], "}"}], TraditionalForm]],ExpressionUUID->
+  "7c315a8a-eb0a-4087-a48b-f169ac71514d"],
+ " donde \[OpenCurlyDoubleQuote]algo\[CloseCurlyDoubleQuote] tiende a \
+infinito. Por tanto, obtenemos el n\[UAcute]mero e, y el l\[IAcute]mite \
+quedar\[AAcute] como ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ExponentialE]", "2"], TraditionalForm]],ExpressionUUID->
+  "cab4dc2a-3d3c-4280-9e72-54543c2a6e1f"],
+ ". \n\nAl haber obtenido el l\[IAcute]mite de la sucesi\[OAcute]n ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    FormBox[
+     RowBox[{"{", 
+      SubscriptBox["a", "n"]}],
+     TraditionalForm], "}"}], TraditionalForm]],ExpressionUUID->
+  "baffe3ed-65b2-4fb6-b39e-8d60d54fc50e"],
+ ", tenemos, por el Criterio de la Media Geom\[EAcute]trica, que la sucesi\
+\[OAcute]n original tambi\[EAcute]n converge y tiene el mismo l\[IAcute]mite.\
+\n\nCon el Mathematica,"
+}], "Text",
+ CellChangeTimes->{{3.610967983265625*^9, 3.610968082640625*^9}, {
+   3.6109681208125*^9, 3.61096812653125*^9}, {3.610976777453125*^9, 
+   3.610976922484375*^9}, {3.610977092296875*^9, 3.610977128578125*^9}, {
+   3.6109952425648575`*^9, 3.6109952441248603`*^9}, 3.6109960809103303`*^9, {
+   3.642469122350403*^9, 3.642469129909835*^9}, {3.6424702277816296`*^9, 
+   3.642470339714032*^9}, {3.6454091660499067`*^9, 3.6454091779505873`*^9}, {
+   3.64540920858634*^9, 3.6454092670616846`*^9}, {3.6624042685629177`*^9, 
+   3.662404487045414*^9}, {3.662404538610363*^9, 3.6624045830899076`*^9}, {
+   3.6624330552211766`*^9, 3.662433061680588*^9}, {3.6938538708665333`*^9, 
+   3.693854040902259*^9}, {3.693854079487466*^9, 3.6938540794884653`*^9}, {
+   3.6938544445573463`*^9, 3.693854450866707*^9}, {3.7076653520288205`*^9, 
+   3.7076655065988207`*^9}, {3.7076656135488205`*^9, 3.7076656188958206`*^9}, 
+   3.724512079592402*^9, {3.7245143272248163`*^9, 3.724514340438017*^9}, {
+   3.724515015543621*^9, 3.724515075291621*^9}, {3.7245159676384263`*^9, 
+   3.7245159875434265`*^9}, {3.8198815277012*^9, 3.8198815707792*^9}, {
+   3.8214376605369997`*^9, 3.821437667458*^9}, {3.9067891324915886`*^9, 
+   3.906789133027652*^9}, {3.9125977754373136`*^9, 3.912598164852955*^9}, {
+   3.9125982156990595`*^9, 3.91259850423018*^9}, {3.9125986007074423`*^9, 
+   3.9125987481880875`*^9}},
+ FontSize->16,ExpressionUUID->"a4a86313-f2fd-4b79-844f-ae9c081f3a5e"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Limit", "[", 
+  RowBox[{
+   RowBox[{
+    UnderoverscriptBox["\[Product]", 
+     RowBox[{"i", "=", "1"}], "n"], 
+    SuperscriptBox[
+     RowBox[{"(", 
+      FractionBox[
+       RowBox[{"i", "+", "2"}], "i"], ")"}], 
+     RowBox[{"i", "/", "n"}]]}], ",", " ", 
+   RowBox[{"n", "->", " ", "\[Infinity]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.9125985061980543`*^9, 3.912598579865464*^9}},
+ CellLabel->"In[20]:=",ExpressionUUID->"18070f1c-6134-4cfd-a5eb-ad2bbae8fecc"],
+
+Cell[BoxData[
+ SuperscriptBox["\[ExponentialE]", "2"]], "Output",
+ CellChangeTimes->{3.912598582391464*^9},
+ CellLabel->"Out[20]=",ExpressionUUID->"92738eab-bff8-4a62-810e-2bddfea72e98"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "\n \t3.- Calcular, si existe, el l\[IAcute]mite de la sucesi\[OAcute]n ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"2", "n"}], "-", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"4", 
+          SuperscriptBox["n", "2"]}], "+", 
+         RowBox[{"2", "n"}], "-", "4"}], 
+        RowBox[{
+         RowBox[{"2", "n"}], "+", "2"}]]}], ")"}], 
+     FractionBox[
+      RowBox[{"n", "+", "1"}], "2"]], "}"}], TraditionalForm]],ExpressionUUID->
+  "8aeabeec-abef-4e4a-bb2f-57efa867d563"],
+ "\n\tOctubre 22"
+}], "Section",
+ CellChangeTimes->{{3.500751345359375*^9, 3.500751379984375*^9}, {
+   3.500790035609375*^9, 3.500790048953125*^9}, {3.569509423875*^9, 
+   3.56950942659375*^9}, {3.570537368580125*^9, 3.57053737997075*^9}, {
+   3.599199111625*^9, 3.5991991196875*^9}, {3.723477468774*^9, 
+   3.723477473212*^9}, {3.723478212648*^9, 3.723478232406*^9}, {
+   3.723478462157*^9, 3.723478463176*^9}, {3.723478670633*^9, 
+   3.723478671652*^9}, {3.72356892631*^9, 3.7235690780550003`*^9}, {
+   3.723569130146*^9, 3.723569177783*^9}, {3.7235692175769997`*^9, 
+   3.723569247399*^9}, {3.723569308648*^9, 3.723569328826*^9}, {
+   3.723569485984*^9, 3.723569513233*^9}, {3.7236081819960003`*^9, 
+   3.7236083309300003`*^9}, {3.7236509376520233`*^9, 3.7236509459610233`*^9}, 
+   3.7236517258530235`*^9, 3.723651765606024*^9, {3.7236521565550237`*^9, 
+   3.7236522309350233`*^9}, {3.7238353873130035`*^9, 3.723835410693304*^9}, {
+   3.7239071598070183`*^9, 3.723907162602418*^9}, {3.724158365534717*^9, 
+   3.724158429733717*^9}, {3.724164938261321*^9, 3.724164963029321*^9}, 
+   3.7254239244656124`*^9, {3.819906851493*^9, 3.8199068540039997`*^9}, 
+   3.85221277501379*^9, 3.8669575609127645`*^9, {3.8739397979463215`*^9, 
+   3.873939801888797*^9}, {3.9125967490739136`*^9, 3.912596756645857*^9}, {
+   3.912611672771068*^9, 3.912611672960818*^9}},
+ FontFamily->"Arial",
+ FontSize->14,
+ FontColor->RGBColor[0., 0.25098039215686274`, 0.5019607843137255],
+ Background->RGBColor[
+  0.807843137254902, 0.9058823529411765, 
+   1.],ExpressionUUID->"18b865a4-2bff-4862-a026-d9857e7d7863"],
+
+Cell[TextData[{
+ "Soluci\[OAcute]n: \nLos t\[EAcute]rminos de la sucesi\[OAcute]n son \
+potencias en cuya base aparece la diferencia de dos t\[EAcute]rminos que \
+tienden a infinito. Se tratar\[IAcute]a de una indeterminaci\[OAcute]n, para \
+solventar este problema, calculamos la base.\n\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"2", "n"}], "-", 
+    FractionBox[
+     RowBox[{
+      RowBox[{"4", 
+       SuperscriptBox["n", "2"]}], "+", 
+      RowBox[{"2", "n"}], "-", "4"}], 
+     RowBox[{
+      RowBox[{"2", "n"}], "+", "2"}]]}], TraditionalForm]],ExpressionUUID->
+  "85823710-b427-4db3-9f4b-c213a3fdd05c"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{
+     RowBox[{"2", 
+      RowBox[{"n", "(", 
+       RowBox[{
+        RowBox[{"2", "n"}], "+", "2"}], ")"}]}], "-", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"4", 
+        SuperscriptBox["n", "2"]}], "+", 
+       RowBox[{"2", "n"}], "-", "4"}], ")"}]}], 
+    RowBox[{
+     RowBox[{"2", "n"}], "+", "2"}]], TraditionalForm]],ExpressionUUID->
+  "75bdf9ab-feaa-40d6-854d-1bd54a60c85a"],
+ " = ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{
+     RowBox[{"4", 
+      SuperscriptBox["n", "2"]}], "+", 
+     RowBox[{"4", "n"}], "-", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"4", 
+        SuperscriptBox["n", "2"]}], "+", 
+       RowBox[{"2", "n"}], "-", "4"}], ")"}]}], 
+    RowBox[{
+     RowBox[{"2", "n"}], "+", "2"}]], TraditionalForm]],ExpressionUUID->
+  "ee6d562d-ce3f-4d5e-a42f-4767c7d706cf"],
+ " =  ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{
+     RowBox[{"2", "n"}], "+", "4"}], 
+    RowBox[{
+     RowBox[{"2", "n"}], "+", "2"}]], TraditionalForm]],ExpressionUUID->
+  "9e391a24-3fee-4fab-977c-61b18f219202"],
+ "\n\nLa base tiende a 1 y el exponente tiene a infinito. Debemos pensar en \
+un l\[IAcute]mite del n\[UAcute]mero e.\n\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"2", "n"}], "-", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"4", 
+          SuperscriptBox["n", "2"]}], "+", 
+         RowBox[{"2", "n"}], "-", "4"}], 
+        RowBox[{
+         RowBox[{"2", "n"}], "+", "2"}]]}], ")"}], 
+     FractionBox[
+      RowBox[{"n", "+", "1"}], "2"]], "}"}], TraditionalForm]],ExpressionUUID->
+  "97472583-9185-46f3-b8d9-588625cf0525"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      FractionBox[
+       RowBox[{
+        RowBox[{"2", "n"}], "+", "4"}], 
+       RowBox[{
+        RowBox[{"2", "n"}], "+", "2"}]], ")"}], 
+     FractionBox[
+      RowBox[{"n", "+", "1"}], "2"]], "}"}], TraditionalForm]],ExpressionUUID->
+  "8ae88de5-66bb-4593-bd3e-0c3f1da3a291"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      FractionBox[
+       RowBox[{
+        RowBox[{"2", "n"}], "+", "2", "+", "2"}], 
+       RowBox[{
+        RowBox[{"2", "n"}], "+", "2"}]], ")"}], 
+     FractionBox[
+      RowBox[{"n", "+", "1"}], "2"]], "}"}], TraditionalForm]],ExpressionUUID->
+  "91b083d8-9f85-4c74-8712-80f732fad397"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       FractionBox["2", 
+        RowBox[{
+         RowBox[{"2", "n"}], "+", "2"}]]}], ")"}], 
+     FractionBox[
+      RowBox[{"n", "+", "1"}], "2"]], "}"}], TraditionalForm]],ExpressionUUID->
+  "3525a7b8-b724-4dcd-9afe-7de102f89c62"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       FractionBox["1", 
+        RowBox[{"n", "+", "1"}]]}], ")"}], 
+     FractionBox[
+      RowBox[{"n", "+", "1"}], "2"]], "}"}], TraditionalForm]],ExpressionUUID->
+  "c8c912a0-49cb-4f02-a60d-8ba67a8e0edd"],
+ " =",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       FractionBox["1", 
+        RowBox[{"n", "+", "1"}]]}], ")"}], 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"n", "+", "1"}], ")"}], 
+      FractionBox["1", "2"]}]], "}"}], TraditionalForm]],ExpressionUUID->
+  "8e46a42c-547b-4c01-a386-2192a7008876"],
+ " ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[LongRightArrow]", 
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"(", 
+      RowBox[{"1", "/", "2"}], ")"}]]}], TraditionalForm]],ExpressionUUID->
+  "22840e57-c4ec-430f-a618-60f2a936b890"],
+ "\nCon el Mathematica,"
+}], "Text",
+ CellChangeTimes->{{3.8440554481466155`*^9, 3.8440556084912167`*^9}, {
+  3.844055670485617*^9, 3.844055685617617*^9}, {3.875538955451397*^9, 
+  3.87553904511698*^9}, {3.87553919408702*^9, 3.8755392103204927`*^9}, {
+  3.8755395546311684`*^9, 3.8755395632789726`*^9}, {3.87553959625396*^9, 
+  3.875539596617772*^9}, {3.8755397170028715`*^9, 3.8755397562314105`*^9}, {
+  3.8755398588089733`*^9, 3.8755398680316086`*^9}, {3.875539921002039*^9, 
+  3.875539929828179*^9}, {3.875539979483358*^9, 3.8755399815409517`*^9}, {
+  3.8755400663517857`*^9, 3.8755400663517857`*^9}, {3.9069890642921677`*^9, 
+  3.9069891187772465`*^9}, {3.9069892665685244`*^9, 3.906989272331828*^9}, {
+  3.912596773546867*^9, 3.9125968310583816`*^9}, {3.9125968729230814`*^9, 
+  3.9125972337403736`*^9}, {3.9359901763579473`*^9, 
+  3.9359901847888846`*^9}},ExpressionUUID->"91113e35-663f-498d-aadf-\
+1b25d480297b"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Limit", "[", 
+  RowBox[{
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"2", "n"}], "-", 
+      FractionBox[
+       RowBox[{
+        RowBox[{"4", 
+         SuperscriptBox["n", "2"]}], "+", 
+        RowBox[{"2", "n"}], "-", "4"}], 
+       RowBox[{
+        RowBox[{"2", "n"}], "+", "2"}]]}], ")"}], 
+    FractionBox[
+     RowBox[{"n", "+", "1"}], "2"]], ",", " ", 
+   RowBox[{"n", "->", "\[Infinity]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.9125972356601505`*^9, 3.912597303294074*^9}},
+ CellLabel->"In[18]:=",ExpressionUUID->"0e8644b1-2bc8-420f-9c1e-96817d73f13f"],
+
+Cell[BoxData[
+ SqrtBox["\[ExponentialE]"]], "Output",
+ CellChangeTimes->{3.9125973046363544`*^9},
+ CellLabel->"Out[18]=",ExpressionUUID->"db08f0bb-30bf-414e-84b0-c3cb3749270c"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "\n \t3.- Calcular el l\[IAcute]mite de la sucesi\[OAcute]n ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"2", "n"}], "-", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"5", 
+          SuperscriptBox["n", "2"]}], "+", 
+         RowBox[{"4", "n"}], "+", "4"}], 
+        RowBox[{
+         RowBox[{"5", "n"}], "+", "2"}]]}], ")"}], 
+     FractionBox[
+      RowBox[{"n", "+", "1"}], "2"]], "}"}], TraditionalForm]],ExpressionUUID->
+  "d5055da3-5604-44c7-83aa-cd8f1a45f024"],
+ " \n \tOctubre 21"
+}], "Section",
+ CellChangeTimes->{{3.500751345359375*^9, 3.500751379984375*^9}, {
+   3.500790035609375*^9, 3.500790048953125*^9}, {3.569509423875*^9, 
+   3.56950942659375*^9}, {3.570537368580125*^9, 3.57053737997075*^9}, {
+   3.599199111625*^9, 3.5991991196875*^9}, {3.723477468774*^9, 
+   3.723477473212*^9}, {3.723478212648*^9, 3.723478232406*^9}, {
+   3.723478462157*^9, 3.723478463176*^9}, {3.723478670633*^9, 
+   3.723478671652*^9}, {3.72356892631*^9, 3.7235690780550003`*^9}, {
+   3.723569130146*^9, 3.723569177783*^9}, {3.7235692175769997`*^9, 
+   3.723569247399*^9}, {3.723569308648*^9, 3.723569328826*^9}, {
+   3.723569485984*^9, 3.723569513233*^9}, {3.7236081819960003`*^9, 
+   3.7236083309300003`*^9}, {3.7236509376520233`*^9, 3.7236509459610233`*^9}, 
+   3.7236517258530235`*^9, 3.723651765606024*^9, {3.7236521565550237`*^9, 
+   3.7236522309350233`*^9}, {3.7238353873130035`*^9, 3.723835410693304*^9}, {
+   3.7239071598070183`*^9, 3.723907162602418*^9}, {3.724158365534717*^9, 
+   3.724158429733717*^9}, {3.724164938261321*^9, 3.724164963029321*^9}, {
+   3.7254239244656124`*^9, 3.7254239449172125`*^9}, 3.725424049640013*^9, {
+   3.8440538401598053`*^9, 3.844053871079006*^9}, {3.9069871786730633`*^9, 
+   3.9069871793068237`*^9}, {3.9126116827713776`*^9, 3.9126116875625525`*^9}},
+ FontFamily->"Arial",
+ FontSize->14,
+ FontColor->RGBColor[0., 0.25098039215686274`, 0.5019607843137255],
+ Background->RGBColor[
+  0.807843137254902, 0.9058823529411765, 
+   1.],ExpressionUUID->"95dbe9ba-e61a-46b3-bf8a-94144db2d336"],
+
+Cell[TextData[{
+ "Soluci\[OAcute]n: \nLos t\[EAcute]rminos de la sucesi\[OAcute]n son \
+potencias en cuya base aparece la diferencia de dos t\[EAcute]rminos que \
+tienden a infinito. Se tratar\[IAcute]a de una indeterminaci\[OAcute]n, para \
+solventar este problema, calculamos la base.\n\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"2", "n"}], "-", 
+    FractionBox[
+     RowBox[{
+      RowBox[{"5", 
+       SuperscriptBox["n", "2"]}], "+", 
+      RowBox[{"4", "n"}], "+", "4"}], 
+     RowBox[{
+      RowBox[{"5", "n"}], "+", "2"}]]}], TraditionalForm]],ExpressionUUID->
+  "f20ed5d7-ec1e-4350-b12b-d10051c8e29f"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{
+     RowBox[{"2", 
+      RowBox[{"n", "(", 
+       RowBox[{
+        RowBox[{"5", "n"}], "+", "2"}], ")"}]}], "-", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"5", 
+        SuperscriptBox["n", "2"]}], "+", 
+       RowBox[{"4", "n"}], "+", "4"}], ")"}]}], 
+    RowBox[{
+     RowBox[{"5", "n"}], "+", "2"}]], TraditionalForm]],ExpressionUUID->
+  "7417ddc6-d673-4d31-8efa-9d15055838ec"],
+ " = ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{
+     RowBox[{"10", 
+      SuperscriptBox["n", "2"]}], "+", 
+     RowBox[{"4", "n"}], "-", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"5", 
+        SuperscriptBox["n", "2"]}], "+", 
+       RowBox[{"4", "n"}], "+", "4"}], ")"}]}], 
+    RowBox[{
+     RowBox[{"5", "n"}], "+", "2"}]], TraditionalForm]],ExpressionUUID->
+  "b379f18e-3582-4e92-ada1-795668921a4e"],
+ " =  ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{
+     RowBox[{"5", 
+      SuperscriptBox["n", "2"]}], "-", "4"}], 
+    RowBox[{
+     RowBox[{"5", "n"}], "+", "2"}]], TraditionalForm]],ExpressionUUID->
+  "b100d913-b5ff-4a70-b682-779d7088deaf"],
+ "\n\nLa base tiende a m\[AAcute]s infinito y el exponente tambi\[EAcute]n \
+tiende a m\[AAcute]s infinito. Por tanto, la sucesi\[OAcute]n tiende a \
+infinito.\nCon el Mathematica,"
+}], "Text",
+ CellChangeTimes->{{3.8440554481466155`*^9, 3.8440556084912167`*^9}, {
+   3.844055670485617*^9, 3.844055685617617*^9}, {3.875538955451397*^9, 
+   3.87553904511698*^9}, {3.87553919408702*^9, 3.8755392103204927`*^9}, {
+   3.8755395546311684`*^9, 3.8755395632789726`*^9}, {3.87553959625396*^9, 
+   3.875539596617772*^9}, {3.8755397170028715`*^9, 3.8755397562314105`*^9}, {
+   3.8755398588089733`*^9, 3.8755398680316086`*^9}, {3.875539921002039*^9, 
+   3.875539929828179*^9}, {3.875539979483358*^9, 3.8755399815409517`*^9}, {
+   3.8755400663517857`*^9, 3.8755400663517857`*^9}, {3.9069890642921677`*^9, 
+   3.9069891187772465`*^9}, {3.9069892665685244`*^9, 3.906989272331828*^9}, {
+   3.912596773546867*^9, 3.9125968310583816`*^9}, {3.9125968729230814`*^9, 
+   3.9125972337403736`*^9}, {3.912597468338765*^9, 3.9125975041347675`*^9}, {
+   3.912597539330901*^9, 3.912597684395626*^9}, 
+   3.913637298626278*^9},ExpressionUUID->"5326b6bb-cf6e-425e-a417-\
+ab50ddbdd912"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Limit", "[", 
+  RowBox[{
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"2", "n"}], "-", 
+      FractionBox[
+       RowBox[{
+        RowBox[{"5", 
+         SuperscriptBox["n", "2"]}], "+", 
+        RowBox[{"4", "n"}], "+", "4"}], 
+       RowBox[{
+        RowBox[{"5", "n"}], "+", "2"}]]}], ")"}], 
+    FractionBox[
+     RowBox[{"n", "+", "1"}], "2"]], ",", " ", 
+   RowBox[{"n", "->", "\[Infinity]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.9125972356601505`*^9, 3.912597303294074*^9}, {
+  3.9125975074914503`*^9, 3.912597516826374*^9}},
+ CellLabel->"In[19]:=",ExpressionUUID->"003e8d50-7e04-47a3-94ac-2c6408fdb5e3"],
+
+Cell[BoxData["\[Infinity]"], "Output",
+ CellChangeTimes->{3.9125973046363544`*^9, 3.9125975194973793`*^9},
+ CellLabel->"Out[19]=",ExpressionUUID->"3e4ae56f-191b-48fc-8063-010ee5c90ce7"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "\n \t3.- Calcular el l\[IAcute]mite de la sucesi\[OAcute]n ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      FractionBox[
+       RowBox[{
+        SuperscriptBox["n", "2"], " ", "+", " ", "n"}], 
+       RowBox[{
+        SuperscriptBox["n", "2"], " ", "-", "1"}]], ")"}], 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox["n", "2"], "+", "n"}], ")"}], "/", 
+      RowBox[{"(", 
+       RowBox[{"n", "+", "2"}], ")"}], " "}]], "}"}], TraditionalForm]],
+  ExpressionUUID->"fdff6207-7fcf-4619-ab00-405be9d00b39"],
+ " \n \tJunio 21 \t"
+}], "Section",
+ CellChangeTimes->{{3.500751345359375*^9, 3.500751379984375*^9}, {
+   3.500790035609375*^9, 3.500790048953125*^9}, {3.569509423875*^9, 
+   3.56950942659375*^9}, {3.570537368580125*^9, 3.57053737997075*^9}, {
+   3.599199111625*^9, 3.5991991196875*^9}, {3.723477468774*^9, 
+   3.723477473212*^9}, {3.723478212648*^9, 3.723478232406*^9}, {
+   3.723478462157*^9, 3.723478463176*^9}, {3.723478670633*^9, 
+   3.723478671652*^9}, {3.72356892631*^9, 3.7235690780550003`*^9}, {
+   3.723569130146*^9, 3.723569177783*^9}, {3.7235692175769997`*^9, 
+   3.723569247399*^9}, {3.723569308648*^9, 3.723569328826*^9}, {
+   3.723569485984*^9, 3.723569513233*^9}, {3.7236081819960003`*^9, 
+   3.7236083309300003`*^9}, {3.7236509376520233`*^9, 3.7236509459610233`*^9}, 
+   3.7236517258530235`*^9, 3.723651765606024*^9, {3.7236521565550237`*^9, 
+   3.7236522309350233`*^9}, {3.7238353873130035`*^9, 3.723835410693304*^9}, {
+   3.7239071598070183`*^9, 3.723907162602418*^9}, {3.724158365534717*^9, 
+   3.724158429733717*^9}, {3.724164938261321*^9, 3.724164963029321*^9}, 
+   3.7254239244656124`*^9, {3.819906851493*^9, 3.8199068540039997`*^9}, 
+   3.8210786023066006`*^9, {3.834931572111122*^9, 3.834931572111122*^9}, {
+   3.873939712917802*^9, 3.8739397234011464`*^9}, {3.9125976892154813`*^9, 
+   3.912597692024016*^9}},
+ FontFamily->"Arial",
+ FontSize->14,
+ FontColor->RGBColor[0., 0.25098039215686274`, 0.5019607843137255],
+ Background->RGBColor[
+  0.807843137254902, 0.9058823529411765, 
+   1.],ExpressionUUID->"f92b89b1-0458-4804-97d1-942e40bb28a5"],
+
+Cell[TextData[{
+ "Soluci\[OAcute]n: Observamos que la base tiende a 1 y el exponente tiende a \
+infinito. Se tratar\[IAcute]a de un l\[IAcute]mite del n\[UAcute]mero \
+\[ExponentialE].\n\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      FractionBox[
+       RowBox[{
+        SuperscriptBox["n", "2"], " ", "+", " ", "n"}], 
+       RowBox[{
+        SuperscriptBox["n", "2"], " ", "-", "1"}]], ")"}], 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox["n", "2"], "+", "n"}], ")"}], "/", 
+      RowBox[{"(", 
+       RowBox[{"n", "+", "2"}], ")"}], " "}]], "}"}], TraditionalForm]],
+  ExpressionUUID->"e7ee4e3f-75cb-4501-99e8-ab7032eca7da"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      FractionBox[
+       RowBox[{
+        SuperscriptBox["n", "2"], " ", "-", "1", "+", "1", "+", " ", "n"}], 
+       RowBox[{
+        SuperscriptBox["n", "2"], " ", "-", "1"}]], ")"}], 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox["n", "2"], "+", "n"}], ")"}], "/", 
+      RowBox[{"(", 
+       RowBox[{"n", "+", "2"}], ")"}], " "}]], "}"}], TraditionalForm]],
+  ExpressionUUID->"25daa678-04fa-4daf-95e7-9b1d261ac51d"],
+ " = ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       FractionBox[
+        RowBox[{"1", "+", " ", "n"}], 
+        RowBox[{
+         SuperscriptBox["n", "2"], " ", "-", "1"}]]}], ")"}], 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox["n", "2"], "+", "n"}], ")"}], "/", 
+      RowBox[{"(", 
+       RowBox[{"n", "+", "2"}], ")"}], " "}]], "}"}], TraditionalForm]],
+  ExpressionUUID->"4ffc2723-ca08-4edd-aa5a-47a3853970fa"],
+ " =  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       FractionBox["1", 
+        FractionBox[
+         RowBox[{
+          SuperscriptBox["n", "2"], " ", "-", "1"}], 
+         RowBox[{"n", "+", "1"}]]]}], ")"}], 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox["n", "2"], "+", "n"}], ")"}], "/", 
+      RowBox[{"(", 
+       RowBox[{"n", "+", "2"}], ")"}], " "}]], "}"}], TraditionalForm]],
+  ExpressionUUID->"5870d43d-dbd1-41c5-9504-ed1ac6e0f3a9"],
+ " =  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       FractionBox["1", 
+        FractionBox[
+         RowBox[{
+          SuperscriptBox["n", "2"], " ", "-", "1"}], 
+         RowBox[{"n", "+", "1"}]]]}], ")"}], 
+     RowBox[{
+      RowBox[{"(", 
+       FractionBox[
+        RowBox[{
+         SuperscriptBox["n", "2"], " ", "-", "1"}], 
+        RowBox[{"n", "+", "1"}]], ")"}], 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["n", "2"], "+", "n"}], ")"}], "/", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"n", "+", "2"}], ")"}], 
+         RowBox[{"(", 
+          FractionBox[
+           RowBox[{
+            SuperscriptBox["n", "2"], " ", "-", "1"}], 
+           RowBox[{"n", "+", "1"}]], ")"}]}], ")"}], " "}]}]], "}"}], 
+   TraditionalForm]],ExpressionUUID->"4e7aa698-d609-4216-9118-34eee9b915ca"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       FractionBox["1", 
+        FractionBox[
+         RowBox[{
+          SuperscriptBox["n", "2"], " ", "-", "1"}], 
+         RowBox[{"n", "+", "1"}]]]}], ")"}], 
+     RowBox[{
+      RowBox[{"(", 
+       FractionBox[
+        RowBox[{
+         SuperscriptBox["n", "2"], " ", "-", "1"}], 
+        RowBox[{"n", "+", "1"}]], ")"}], 
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox["n", "2"], "+", "n"}], ")"}], 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"n", "+", "1"}], ")"}], "/", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"n", "+", "2"}], ")"}], 
+         RowBox[{"(", 
+          RowBox[{
+           SuperscriptBox["n", "2"], " ", "-", "1"}], ")"}]}], ")"}], 
+       " "}]}]], "}"}], TraditionalForm]],ExpressionUUID->
+  "d52e1f68-b62d-47a7-b35f-d4f594c27435"],
+ " =",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       FractionBox["1", 
+        FractionBox[
+         RowBox[{
+          SuperscriptBox["n", "2"], " ", "-", "1"}], 
+         RowBox[{"n", "+", "1"}]]]}], ")"}], 
+     RowBox[{
+      RowBox[{"(", 
+       FractionBox[
+        RowBox[{
+         SuperscriptBox["n", "2"], " ", "-", "1"}], 
+        RowBox[{"n", "+", "1"}]], ")"}], 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["n", "3"], "+", 
+         RowBox[{"2", 
+          SuperscriptBox["n", "2"]}], "+", "n"}], ")"}], "/", 
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["n", "3"], "+", 
+         RowBox[{"2", 
+          SuperscriptBox["n", "2"]}], "-", "n", "+", "2"}], ")"}], " "}]}]], 
+    "}"}], TraditionalForm]],ExpressionUUID->
+  "44591dab-a3b4-4901-8fca-52bab7ddec17"],
+ " \[RightArrow]",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{" ", 
+    SuperscriptBox["\[ExponentialE]", "1"]}], TraditionalForm]],
+  ExpressionUUID->"da42be22-94bb-41c2-b491-35c83a857810"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{" ", "\[ExponentialE]"}], TraditionalForm]],ExpressionUUID->
+  "2ebc6185-77b5-4c96-8fad-2bc78761a3c3"],
+ ".\n\nCon el Mathematica,"
+}], "Text",
+ CellChangeTimes->{{3.610967983265625*^9, 3.610968082640625*^9}, {
+   3.6109681208125*^9, 3.61096812653125*^9}, {3.610976777453125*^9, 
+   3.610976922484375*^9}, {3.610977092296875*^9, 3.610977128578125*^9}, {
+   3.6109952425648575`*^9, 3.6109952441248603`*^9}, 3.6109960809103303`*^9, {
+   3.642469122350403*^9, 3.642469129909835*^9}, {3.6424702277816296`*^9, 
+   3.642470339714032*^9}, {3.6454091660499067`*^9, 3.6454091779505873`*^9}, {
+   3.64540920858634*^9, 3.6454092670616846`*^9}, {3.6624042685629177`*^9, 
+   3.662404487045414*^9}, {3.662404538610363*^9, 3.6624045830899076`*^9}, {
+   3.6624330552211766`*^9, 3.662433061680588*^9}, {3.6938538708665333`*^9, 
+   3.693854040902259*^9}, {3.693854079487466*^9, 3.6938540794884653`*^9}, {
+   3.6938544445573463`*^9, 3.693854450866707*^9}, {3.7076653520288205`*^9, 
+   3.7076655065988207`*^9}, {3.7076656135488205`*^9, 3.7076656188958206`*^9}, 
+   3.724512079592402*^9, {3.7245143272248163`*^9, 3.724514340438017*^9}, {
+   3.724515015543621*^9, 3.724515075291621*^9}, {3.7245159676384263`*^9, 
+   3.7245159875434265`*^9}, {3.8198815277012*^9, 3.8198815707792*^9}, {
+   3.819902588091*^9, 3.819902592531*^9}, {3.8199026373900003`*^9, 
+   3.819902669885*^9}, {3.8199028798050003`*^9, 3.819902891249*^9}, {
+   3.8199029341140003`*^9, 3.819903191801*^9}, {3.819903223684*^9, 
+   3.819903231458*^9}, {3.819903264837*^9, 3.819903560182*^9}, {
+   3.8210786089484005`*^9, 3.821078610551401*^9}, {3.834931590170122*^9, 
+   3.834931826739122*^9}, {3.834931875910122*^9, 3.834931933960122*^9}, {
+   3.8349320464681215`*^9, 3.8349321703741217`*^9}, {3.8349322071171217`*^9, 
+   3.8349322625901217`*^9}, {3.905441399277978*^9, 3.905441413168151*^9}, {
+   3.913637361434845*^9, 3.913637362502078*^9}},
+ FontSize->16,ExpressionUUID->"78be1990-4ea4-4fd0-9d5a-8214d8611157"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Limit", "[", 
+  RowBox[{
+   SuperscriptBox[
+    RowBox[{"(", 
+     FractionBox[
+      RowBox[{
+       SuperscriptBox["n", "2"], "+", "n"}], 
+      RowBox[{
+       SuperscriptBox["n", "2"], "-", "1"}]], ")"}], 
+    FractionBox[
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"n", "^", "2"}], "+", "n"}], ")"}], 
+     RowBox[{"n", "+", "2"}]]], ",", 
+   RowBox[{"n", "\[Rule]", "\[Infinity]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.9054414155281363`*^9, 3.905441506286344*^9}},
+ CellLabel->"In[2]:=",ExpressionUUID->"77e33298-5276-44f2-bb05-88c8a1ab2df6"],
+
+Cell[BoxData["\[ExponentialE]"], "Output",
+ CellChangeTimes->{3.905441508909839*^9},
+ CellLabel->"Out[2]=",ExpressionUUID->"29273c74-488e-4c11-80ea-642f36d8bbc2"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "\n \t3.- Calcular, si existe, el l\[IAcute]mite de la sucesi\[OAcute]n ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    RowBox[{
+     SuperscriptBox[
+      RowBox[{"(", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"5", 
+          SuperscriptBox["n", "2"]}], "+", 
+         RowBox[{"3", "n"}], "+", "4"}], 
+        RowBox[{
+         RowBox[{"5", 
+          SuperscriptBox["n", "2"]}], "+", "2"}]], ")"}], 
+      FractionBox[
+       RowBox[{"n", "+", "1"}], "2"]], "-", "n", "+", 
+     SqrtBox[
+      RowBox[{
+       SuperscriptBox["n", "2"], " ", "+", " ", "n"}]]}], "}"}], 
+   TraditionalForm]],ExpressionUUID->"f0e7dc87-9556-4b10-9331-40e3c8c93bf9"],
+ " \n \tEnero 19"
+}], "Section",
+ CellChangeTimes->{{3.500751345359375*^9, 3.500751379984375*^9}, {
+   3.500790035609375*^9, 3.500790048953125*^9}, {3.569509423875*^9, 
+   3.56950942659375*^9}, {3.570537368580125*^9, 3.57053737997075*^9}, {
+   3.599199111625*^9, 3.5991991196875*^9}, {3.723477468774*^9, 
+   3.723477473212*^9}, {3.723478212648*^9, 3.723478232406*^9}, {
+   3.723478462157*^9, 3.723478463176*^9}, {3.723478670633*^9, 
+   3.723478671652*^9}, {3.72356892631*^9, 3.7235690780550003`*^9}, {
+   3.723569130146*^9, 3.723569177783*^9}, {3.7235692175769997`*^9, 
+   3.723569247399*^9}, {3.723569308648*^9, 3.723569328826*^9}, {
+   3.723569485984*^9, 3.723569513233*^9}, {3.7236081819960003`*^9, 
+   3.7236083309300003`*^9}, {3.7236509376520233`*^9, 3.7236509459610233`*^9}, 
+   3.7236517258530235`*^9, 3.723651765606024*^9, {3.7236521565550237`*^9, 
+   3.7236522309350233`*^9}, {3.7238353873130035`*^9, 3.723835410693304*^9}, {
+   3.7239071598070183`*^9, 3.723907162602418*^9}, {3.724158365534717*^9, 
+   3.724158429733717*^9}, {3.724164938261321*^9, 3.724164963029321*^9}, {
+   3.7254239244656124`*^9, 3.7254239449172125`*^9}, 3.725424049640013*^9, 
+   3.725424373246415*^9, 3.7574047709375*^9, 3.7574049138015003`*^9, {
+   3.8739399315804205`*^9, 3.8739399349621725`*^9}, {3.9125990263517694`*^9, 
+   3.9125990305300713`*^9}},
+ FontFamily->"Arial",
+ FontSize->14,
+ FontColor->RGBColor[0., 0.25098039215686274`, 0.5019607843137255],
+ Background->RGBColor[
+  0.807843137254902, 0.9058823529411765, 
+   1.],ExpressionUUID->"99c6f7ad-6e90-466b-9a3b-5e72af106c80"],
+
+Cell[TextData[{
+ "Soluci\[OAcute]n:\nPara calcular el l\[IAcute]mite trabajamos con los dos \
+sumandos\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    RowBox[{
+     SuperscriptBox[
+      RowBox[{"(", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"5", 
+          SuperscriptBox["n", "2"]}], "+", 
+         RowBox[{"3", "n"}], "+", "4"}], 
+        RowBox[{
+         RowBox[{"5", 
+          SuperscriptBox["n", "2"]}], "+", "2"}]], ")"}], 
+      FractionBox[
+       RowBox[{"n", "+", "1"}], "2"]], "-", "n", "+", 
+     SqrtBox[
+      RowBox[{
+       SuperscriptBox["n", "2"], " ", "+", " ", "n"}]]}], "}"}], 
+   TraditionalForm]],ExpressionUUID->"71c82ac9-3fb6-4bbb-8358-ad8f45dd8705"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    RowBox[{
+     SuperscriptBox[
+      RowBox[{"(", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"5", 
+          SuperscriptBox["n", "2"]}], "+", 
+         RowBox[{"3", "n"}], "+", "4"}], 
+        RowBox[{
+         RowBox[{"5", 
+          SuperscriptBox["n", "2"]}], "+", "2"}]], ")"}], 
+      FractionBox[
+       RowBox[{"n", "+", "1"}], "2"]], "-", 
+     RowBox[{"(", 
+      RowBox[{"n", "-", 
+       SqrtBox[
+        RowBox[{
+         SuperscriptBox["n", "2"], " ", "+", " ", "n"}]]}], ")"}]}], "}"}], 
+   TraditionalForm]],ExpressionUUID->"d3897226-2606-4643-b3bb-92f5b426e906"],
+ "\nPor un lado, el primer sumando parece del n\[UAcute]mero e, una base que \
+tiende a 1 y un exponente que tiende a infinito. Por otra parte, el segundo \
+sumando es la diferencia de n y una ra\[IAcute]z donde aparece ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["n", "2"], TraditionalForm]],ExpressionUUID->
+  "9aa3f7be-d63e-4e87-abc4-144423fc58da"],
+ ". Aqu\[IAcute] multiplicar y dividir por el conjugado parece que puede \
+resolver la indeterminaci\[OAcute]n. \n\n\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    RowBox[{
+     SuperscriptBox[
+      RowBox[{"(", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"5", 
+          SuperscriptBox["n", "2"]}], "+", "2", "+", 
+         RowBox[{"3", "n"}], "+", "4", "-", "2"}], 
+        RowBox[{
+         RowBox[{"5", 
+          SuperscriptBox["n", "2"]}], "+", "2"}]], ")"}], 
+      FractionBox[
+       RowBox[{"n", "+", "1"}], "2"]], "-", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"n", "-", 
+        SqrtBox[
+         RowBox[{
+          SuperscriptBox["n", "2"], " ", "+", " ", "n"}]]}], ")"}], 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"n", "+", 
+         SqrtBox[
+          RowBox[{
+           SuperscriptBox["n", "2"], " ", "+", " ", "n"}]]}], ")"}], "/", 
+       RowBox[{"(", 
+        RowBox[{"n", "+", 
+         SqrtBox[
+          RowBox[{
+           SuperscriptBox["n", "2"], " ", "+", " ", "n"}]]}], ")"}]}]}]}], 
+    "}"}], TraditionalForm]],ExpressionUUID->
+  "b7e40ab5-7a07-445b-886d-b2be60c6c666"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    RowBox[{
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        FractionBox[
+         RowBox[{
+          RowBox[{"3", "n"}], "+", "2"}], 
+         RowBox[{
+          RowBox[{"5", 
+           SuperscriptBox["n", "2"]}], "+", "2"}]]}], ")"}], 
+      FractionBox[
+       RowBox[{"n", "+", "1"}], "2"]], "-", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"n", "-", 
+        SqrtBox[
+         RowBox[{
+          SuperscriptBox["n", "2"], " ", "+", " ", "n"}]]}], ")"}], 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"n", "+", 
+         SqrtBox[
+          RowBox[{
+           SuperscriptBox["n", "2"], " ", "+", " ", "n"}]]}], ")"}], "/", 
+       RowBox[{"(", 
+        RowBox[{"n", "+", 
+         SqrtBox[
+          RowBox[{
+           SuperscriptBox["n", "2"], " ", "+", " ", "n"}]]}], ")"}]}]}]}], 
+    "}"}], TraditionalForm]],ExpressionUUID->
+  "e0054277-db77-47d9-a62a-f9110767668b"],
+ "=\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    RowBox[{
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        FractionBox["1", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"5", 
+             SuperscriptBox["n", "2"]}], "+", "2"}], ")"}], "/", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"3", "n"}], "+", "2"}], ")"}]}]]}], ")"}], 
+      FractionBox[
+       RowBox[{"n", "+", "1"}], "2"]], "-", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox["n", "2"], "-", 
+        SuperscriptBox["n", "2"], " ", "-", " ", "n"}], ")"}], "/", 
+      RowBox[{"(", 
+       RowBox[{"n", "+", 
+        SqrtBox[
+         RowBox[{
+          SuperscriptBox["n", "2"], " ", "+", " ", "n"}]]}], ")"}]}]}], "}"}],
+    TraditionalForm]],ExpressionUUID->"1acee91a-4453-4fe3-80a5-e0711ef3db4a"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    RowBox[{
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        FractionBox["1", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"5", 
+             SuperscriptBox["n", "2"]}], "+", "2"}], ")"}], "/", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"3", "n"}], "+", "2"}], ")"}]}]]}], ")"}], 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"5", 
+            SuperscriptBox["n", "2"]}], "+", "2"}], ")"}], "/", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"3", "n"}], "+", "2"}], ")"}]}], ")"}], 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"3", "n"}], "+", "2"}], ")"}], "/", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"5", 
+             SuperscriptBox["n", "2"]}], "+", "2"}], ")"}]}], 
+         RowBox[{"(", 
+          FractionBox[
+           RowBox[{"n", "+", "1"}], "2"], ")"}]}]}]}]], "+", 
+     RowBox[{"n", "/", 
+      RowBox[{"(", 
+       RowBox[{"n", "+", 
+        SqrtBox[
+         RowBox[{
+          SuperscriptBox["n", "2"], " ", "+", " ", "n"}]]}], ")"}]}]}], "}"}],
+    TraditionalForm]],ExpressionUUID->"2385b213-6bcb-4506-bdd5-b49c3f842594"],
+ "\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    RowBox[{
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        FractionBox["1", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"5", 
+             SuperscriptBox["n", "2"]}], "+", "2"}], ")"}], "/", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"3", "n"}], "+", "2"}], ")"}]}]]}], ")"}], 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"5", 
+            SuperscriptBox["n", "2"]}], "+", "2"}], ")"}], "/", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"3", "n"}], "+", "2"}], ")"}]}], ")"}], 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"n", "+", "1"}], ")"}], 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"3", "n"}], "+", "2"}], ")"}], "/", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"10", 
+             SuperscriptBox["n", "2"]}], "+", "4"}], ")"}]}]}], ")"}]}]], "+", 
+     RowBox[{"(", 
+      RowBox[{"1", "/", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         SqrtBox[
+          RowBox[{"1", " ", "+", " ", 
+           RowBox[{"1", "/", "n"}]}]]}], ")"}]}]}]}], "}"}], 
+   TraditionalForm]],ExpressionUUID->"5905c8d2-0026-4577-912a-75fb8a354a77"],
+ " \[LongRightArrow] ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ExponentialE]", 
+    RowBox[{"3", "/", "10"}]], TraditionalForm]],ExpressionUUID->
+  "0cf4e85b-d723-4c89-a31b-e6bc6b5bc021"],
+ "+1/2\n\nCon el Mathematica,"
+}], "Text",
+ CellChangeTimes->{{3.610967983265625*^9, 3.610968082640625*^9}, {
+   3.6109681208125*^9, 3.61096812653125*^9}, {3.610976777453125*^9, 
+   3.610976922484375*^9}, {3.610977092296875*^9, 3.610977128578125*^9}, {
+   3.6109952425648575`*^9, 3.6109952441248603`*^9}, 3.6109960809103303`*^9, {
+   3.642469122350403*^9, 3.642469129909835*^9}, {3.6424702277816296`*^9, 
+   3.642470339714032*^9}, {3.6454091660499067`*^9, 3.6454091779505873`*^9}, {
+   3.64540920858634*^9, 3.6454092670616846`*^9}, {3.6624042685629177`*^9, 
+   3.662404487045414*^9}, {3.662404538610363*^9, 3.6624045830899076`*^9}, {
+   3.6624330552211766`*^9, 3.662433061680588*^9}, {3.6938538708665333`*^9, 
+   3.693854040902259*^9}, {3.693854079487466*^9, 3.6938540794884653`*^9}, {
+   3.6938544445573463`*^9, 3.693854450866707*^9}, {3.7076653520288205`*^9, 
+   3.7076655065988207`*^9}, {3.7076656135488205`*^9, 3.7076656188958206`*^9}, 
+   3.724512079592402*^9, {3.7245143272248163`*^9, 3.724514340438017*^9}, {
+   3.724515015543621*^9, 3.724515075291621*^9}, {3.7245159676384263`*^9, 
+   3.7245159875434265`*^9}, {3.756306672938822*^9, 3.7563066862828217`*^9}, {
+   3.756306948807023*^9, 3.7563069794036236`*^9}, {3.7563073451860256`*^9, 
+   3.756307346985426*^9}, {3.7573220655785*^9, 3.7573221424674997`*^9}, {
+   3.7573221852405*^9, 3.7573226319995003`*^9}, {3.7574049181855*^9, 
+   3.7574049384484997`*^9}, {3.905441659935875*^9, 3.9054416732484026`*^9}, {
+   3.912599096092*^9, 3.912599147700367*^9}, {3.912599184345876*^9, 
+   3.912599441562386*^9}},
+ FontSize->16,ExpressionUUID->"9127da31-388f-4ed7-b41f-de7cd2819b80"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Limit", "[", 
+  RowBox[{
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      FractionBox[
+       RowBox[{
+        RowBox[{"5", 
+         SuperscriptBox["n", "2"]}], "+", 
+        RowBox[{"3", "n"}], "+", "4"}], 
+       RowBox[{
+        RowBox[{"5", 
+         SuperscriptBox["n", "2"]}], "+", "2"}]], ")"}], 
+     FractionBox[
+      RowBox[{"n", "+", "1"}], "2"]], "-", "n", "+", 
+    SqrtBox[
+     RowBox[{
+      SuperscriptBox["n", "2"], "+", "n"}]]}], ",", 
+   RowBox[{"n", "\[Rule]", "\[Infinity]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.90544167581637*^9, 3.9054417553473997`*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"982ed852-fa0b-4c87-830f-32e1c8950dff"],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["1", "2"], "+", 
+  SuperscriptBox["\[ExponentialE]", 
+   RowBox[{"3", "/", "10"}]]}]], "Output",
+ CellChangeTimes->{3.905441756517211*^9},
+ CellLabel->"Out[5]=",ExpressionUUID->"9c0490a4-25e8-48b3-bc1b-30e90ca410d3"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "\n \t3.- Calcular el l\[IAcute]mite de la sucesi\[OAcute]n ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"n", "-", 
+       FractionBox[
+        RowBox[{
+         RowBox[{"5", 
+          SuperscriptBox["n", "2"]}], "+", 
+         RowBox[{"3", "n"}], "+", "4"}], 
+        RowBox[{
+         RowBox[{"5", "n"}], "+", "2"}]]}], ")"}], 
+     FractionBox[
+      RowBox[{"n", "+", "1"}], "2"]], "}"}], TraditionalForm]],ExpressionUUID->
+  "059223fd-60ad-4701-984e-766e2ac0344a"],
+ " \n \tEnero 18 \t"
+}], "Section",
+ CellChangeTimes->{{3.500751345359375*^9, 3.500751379984375*^9}, {
+   3.500790035609375*^9, 3.500790048953125*^9}, {3.569509423875*^9, 
+   3.56950942659375*^9}, {3.570537368580125*^9, 3.57053737997075*^9}, {
+   3.599199111625*^9, 3.5991991196875*^9}, {3.723477468774*^9, 
+   3.723477473212*^9}, {3.723478212648*^9, 3.723478232406*^9}, {
+   3.723478462157*^9, 3.723478463176*^9}, {3.723478670633*^9, 
+   3.723478671652*^9}, {3.72356892631*^9, 3.7235690780550003`*^9}, {
+   3.723569130146*^9, 3.723569177783*^9}, {3.7235692175769997`*^9, 
+   3.723569247399*^9}, {3.723569308648*^9, 3.723569328826*^9}, {
+   3.723569485984*^9, 3.723569513233*^9}, {3.7236081819960003`*^9, 
+   3.7236083309300003`*^9}, {3.7236509376520233`*^9, 3.7236509459610233`*^9}, 
+   3.7236517258530235`*^9, 3.723651765606024*^9, {3.7236521565550237`*^9, 
+   3.7236522309350233`*^9}, {3.7238353873130035`*^9, 3.723835410693304*^9}, {
+   3.7239071598070183`*^9, 3.723907162602418*^9}, {3.724158365534717*^9, 
+   3.724158429733717*^9}, {3.724164938261321*^9, 3.724164963029321*^9}, {
+   3.7254239244656124`*^9, 3.7254239449172125`*^9}, 3.725424049640013*^9, {
+   3.9051682816095495`*^9, 3.9051682876054926`*^9}, {3.9125994719005404`*^9, 
+   3.912599475323747*^9}},
+ FontFamily->"Arial",
+ FontSize->14,
+ FontColor->RGBColor[0., 0.25098039215686274`, 0.5019607843137255],
+ Background->RGBColor[
+  0.807843137254902, 0.9058823529411765, 
+   1.],ExpressionUUID->"73830398-7008-49db-bc2e-1634c971dd4e"],
+
+Cell[TextData[{
+ "Soluci\[OAcute]n:\nEl t\[EAcute]rmino general de la sucesi\[OAcute]n es una \
+diferencia (de dos expresiones que tienden a infinito) elevada a otra que \
+tiende a infinito. En estas circunstancias, parece que lo m\[AAcute]s sensato \
+es operar restando\n\n\t\t\t",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"n", "-", 
+    FractionBox[
+     RowBox[{
+      RowBox[{"5", 
+       SuperscriptBox["n", "2"]}], "+", 
+      RowBox[{"3", "n"}], "+", "4"}], 
+     RowBox[{
+      RowBox[{"5", "n"}], "+", "2"}]]}], TraditionalForm]],ExpressionUUID->
+  "b8839d72-ce02-4285-8980-3a66aef0cd06"],
+ "=",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{
+     RowBox[{"5", 
+      SuperscriptBox["n", "2"]}], "+", 
+     RowBox[{"2", "n"}], "-", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"5", 
+        SuperscriptBox["n", "2"]}], "+", 
+       RowBox[{"3", "n"}], "+", "4"}], ")"}]}], 
+    RowBox[{
+     RowBox[{"5", "n"}], "+", "2"}]], TraditionalForm]],ExpressionUUID->
+  "c1cd1377-d005-48c9-9436-6a5db55e6cbe"],
+ " = ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{
+     RowBox[{"-", "n"}], "-", "4"}], 
+    RowBox[{
+     RowBox[{"5", "n"}], "+", "2"}]], TraditionalForm]],ExpressionUUID->
+  "fcc771ab-bb5b-4756-ad2c-7ee9c5329618"],
+ "\nEsto tiende a ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{"-", "1"}], "5"], TraditionalForm]],ExpressionUUID->
+  "fb77bddd-b0c1-40a5-90e7-ef8b44c7b086"],
+ ". Al elevar la expresi\[OAcute]n a otra que tiende a m\[AAcute]s infinito, \
+tenemos que el l\[IAcute]mite ser\[AAcute] cero.\n\nCon el Mathematica,"
+}], "Text",
+ CellChangeTimes->{{3.724680155847602*^9, 3.7246801768608017`*^9}, {
+  3.7246802158452024`*^9, 3.724680366045003*^9}, {3.724685179354304*^9, 
+  3.7246852401943035`*^9}, {3.724688008406804*^9, 3.7246881905368037`*^9}, {
+  3.7246882242393036`*^9, 3.724688272674304*^9}, {3.724688385906804*^9, 
+  3.724688400719304*^9}, {3.7246885700343037`*^9, 3.724688601374304*^9}, {
+  3.724689790581804*^9, 3.724689791504304*^9}, {3.7254223674452024`*^9, 
+  3.7254224025764027`*^9}, {3.7254247283960176`*^9, 3.7254247296596174`*^9}, {
+  3.9125994906747055`*^9, 
+  3.9125994982404623`*^9}},ExpressionUUID->"f69e5266-24d2-4d6d-bc25-\
+b1abecdd41ed"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Limit", "[", 
+  RowBox[{
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"n", "-", 
+      FractionBox[
+       RowBox[{
+        RowBox[{"5", 
+         SuperscriptBox["n", "2"]}], "+", 
+        RowBox[{"3", "n"}], "+", "4"}], 
+       RowBox[{
+        RowBox[{"5", "n"}], "+", "2"}]]}], ")"}], 
+    FractionBox[
+     RowBox[{"n", "+", "1"}], "2"]], ",", 
+   RowBox[{"n", "\[Rule]", "\[Infinity]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.905441793705106*^9, 3.9054418113476486`*^9}},
+ CellLabel->"In[6]:=",ExpressionUUID->"cbed87ba-e309-429c-8598-0dd4768a6948"],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{3.9054418134051757`*^9},
+ CellLabel->"Out[6]=",ExpressionUUID->"a09ffd0b-e1ec-4d90-918b-31b68a20913d"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "\n \t1.- El l\[IAcute]mite de la sucesi\[OAcute]n ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    RadicalBox[
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        FractionBox["3", "2"], "*", 
+        FractionBox["6", "8"], "*"}], "..."}], "*", 
+      FractionBox[
+       RowBox[{
+        SuperscriptBox["n", "2"], "+", " ", "2"}], 
+       RowBox[{"2", 
+        SuperscriptBox["n", "2"]}]]}], "n"], "}"}], TraditionalForm]],
+  ExpressionUUID->"d32cd75f-ce24-4c35-8085-25f003d9e535"],
+ " es:\n \t1)  1,             2) Mayor que 2,               3) No existe,     \
+                 4) 3/4,            ",
+ StyleBox["5) Menor que 2/3",
+  FontWeight->"Bold"],
+ "\n \t1) 3/4,            ",
+ StyleBox["2) Menor que 2/3,\t",
+  FontWeight->"Bold"],
+ "\t3)  1,             4) Mayor que 2,               5) No existe,\n \t1.- El \
+l\[IAcute]mite de la sucesi\[OAcute]n ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    RadicalBox[
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        FractionBox["3", "3"], "*", 
+        FractionBox["6", "9"], "*"}], "..."}], "*", 
+      FractionBox[
+       RowBox[{
+        SuperscriptBox["n", "2"], "+", " ", "2"}], 
+       RowBox[{
+        RowBox[{"2", 
+         SuperscriptBox["n", "2"]}], "+", "1"}]]}], "n"], "}"}], 
+   TraditionalForm]],ExpressionUUID->"2cabcfe8-da70-4490-bb10-e98e370257e0"],
+ " es:\n \t1) 3/4,            ",
+ StyleBox["2) Menor que 2/3",
+  FontWeight->"Bold"],
+ ",\t\t3)  1,             4) Mayor que 2,               5) No existe,\n \t1.- \
+El l\[IAcute]mite de la sucesi\[OAcute]n ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    RadicalBox[
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        FractionBox["6", "2"], "*", 
+        FractionBox["21", "8"], "*"}], "..."}], "*", 
+      FractionBox[
+       RowBox[{
+        RowBox[{"5", 
+         SuperscriptBox["n", "2"]}], "+", "1"}], 
+       RowBox[{"2", 
+        SuperscriptBox["n", "2"]}]]}], "n"], "}"}], TraditionalForm]],
+  ExpressionUUID->"63b6de6c-dbc9-4b81-a21d-e54ce32334b0"],
+ " es:\n \t1)  1,             ",
+ StyleBox["2) Mayor que 2",
+  FontWeight->"Bold"],
+ ",               3) No existe,                      4) 3/4,            5) \
+Menor que 2/3\n \tEnero 23. Aula de inform\[AAcute]tica"
+}], "Section",
+ CellChangeTimes->{{3.500751345359375*^9, 3.500751379984375*^9}, {
+   3.500790035609375*^9, 3.500790048953125*^9}, {3.569509423875*^9, 
+   3.56950942659375*^9}, {3.570537368580125*^9, 3.57053737997075*^9}, {
+   3.599199111625*^9, 3.5991991196875*^9}, {3.723477468774*^9, 
+   3.723477473212*^9}, {3.723478212648*^9, 3.723478232406*^9}, {
+   3.723478462157*^9, 3.723478463176*^9}, {3.723478670633*^9, 
+   3.723478671652*^9}, {3.72356892631*^9, 3.7235690780550003`*^9}, {
+   3.723569130146*^9, 3.723569177783*^9}, {3.7235692175769997`*^9, 
+   3.723569247399*^9}, {3.723569308648*^9, 3.723569328826*^9}, {
+   3.723569485984*^9, 3.723569513233*^9}, {3.7236081819960003`*^9, 
+   3.7236083309300003`*^9}, {3.7236509376520233`*^9, 3.7236509459610233`*^9}, 
+   3.7236517258530235`*^9, 3.723651765606024*^9, {3.7236521565550237`*^9, 
+   3.7236522309350233`*^9}, {3.7238353873130035`*^9, 3.723835410693304*^9}, {
+   3.7239071598070183`*^9, 3.723907162602418*^9}, {3.724158365534717*^9, 
+   3.724158429733717*^9}, {3.724164938261321*^9, 3.724164963029321*^9}, 
+   3.7254239244656124`*^9, {3.819906851493*^9, 3.8199068540039997`*^9}, 
+   3.85221277501379*^9, 3.8669575609127645`*^9, {3.8739397979463215`*^9, 
+   3.873939801888797*^9}, {3.904969451943631*^9, 3.9049694869216595`*^9}, {
+   3.904969534525414*^9, 3.9049695897482977`*^9}, {3.904969689368684*^9, 
+   3.9049696907866116`*^9}, {3.904969739004853*^9, 3.904969740467472*^9}, {
+   3.9049697705228863`*^9, 3.904969771124175*^9}, {3.904971310893101*^9, 
+   3.9049713327909503`*^9}, {3.9125966644627695`*^9, 3.912596669803573*^9}},
+ FontFamily->"Arial",
+ FontSize->14,
+ FontColor->RGBColor[0., 0.25098039215686274`, 0.5019607843137255],
+ Background->RGBColor[
+  0.807843137254902, 0.9058823529411765, 
+   1.],ExpressionUUID->"154aa78c-afaa-41aa-971e-9552631baf01"],
+
+Cell[BoxData[
+ RowBox[{"Clear", "[", "\"\<Global`*\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.7225743853760443`*^9, 3.7225743945675707`*^9}, 
+   3.8523861278603973`*^9},
+ FontSize->14,
+ CellLabel->"In[76]:=",ExpressionUUID->"b50df8dc-c938-4d4a-bdae-2b6b246e7f6d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Limit", "[", 
+  RowBox[{
+   RadicalBox[
+    RowBox[{
+     UnderoverscriptBox["\[Product]", 
+      RowBox[{"i", "=", "1"}], "n"], 
+     FractionBox[
+      RowBox[{
+       RowBox[{"i", "^", "2"}], "+", "2"}], 
+      RowBox[{"2", 
+       RowBox[{"i", "^", "2"}]}]]}], "n"], ",", 
+   RowBox[{"n", "->", "Infinity"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.882718994954711*^9, 3.882719062704604*^9}},
+ CellLabel->"In[64]:=",ExpressionUUID->"6e59f722-62fc-488c-9fd0-db08f002fa29"],
+
+Cell[BoxData[
+ FractionBox["1", "2"]], "Output",
+ CellChangeTimes->{3.8827190660356483`*^9, 3.882799717623781*^9},
+ CellLabel->"Out[64]=",ExpressionUUID->"ee247358-c5e9-4436-b87b-199874812da9"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Limit", "[", 
+  RowBox[{
+   RadicalBox[
+    RowBox[{
+     UnderoverscriptBox["\[Product]", 
+      RowBox[{"i", "=", "1"}], "n"], 
+     FractionBox[
+      RowBox[{
+       RowBox[{"i", "^", "2"}], "+", "2"}], 
+      RowBox[{
+       RowBox[{"2", 
+        RowBox[{"i", "^", "2"}]}], "+", "1"}]]}], "n"], ",", 
+   RowBox[{"n", "->", "Infinity"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.882718994954711*^9, 3.882719062704604*^9}, {
+  3.8831376412848806`*^9, 3.883137644343237*^9}},
+ CellLabel->"In[14]:=",ExpressionUUID->"3ba42b31-8a1f-4c16-a1a5-08833986a84f"],
+
+Cell[BoxData[
+ FractionBox["1", "2"]], "Output",
+ CellChangeTimes->{3.8827190660356483`*^9, 3.882799717623781*^9, 
+  3.8831377694410987`*^9},
+ CellLabel->"Out[14]=",ExpressionUUID->"7fcae6b6-ba2e-47e3-a8a1-e690d1fd976c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Limit", "[", 
+  RowBox[{
+   RadicalBox[
+    RowBox[{
+     UnderoverscriptBox["\[Product]", 
+      RowBox[{"i", "=", "1"}], "n"], 
+     FractionBox[
+      RowBox[{
+       RowBox[{"5", 
+        RowBox[{"i", "^", "2"}]}], "+", "1"}], 
+      RowBox[{"i", "^", "2"}]]}], "n"], ",", 
+   RowBox[{"n", "->", "Infinity"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.882718994954711*^9, 3.882719062704604*^9}, {
+  3.8831373172440925`*^9, 3.883137322729912*^9}},
+ CellLabel->"In[11]:=",ExpressionUUID->"97d6bc78-2981-4c5b-a627-004af8a95b49"],
+
+Cell[BoxData["5"], "Output",
+ CellChangeTimes->{
+  3.8827190660356483`*^9, 3.882799717623781*^9, {3.8831373242020187`*^9, 
+   3.88313734458698*^9}},
+ CellLabel->"Out[11]=",ExpressionUUID->"eea22210-5d87-439c-87f1-779f3daec1a5"]
+}, Open  ]],
+
+Cell[TextData[{
+ "Estos l\[IAcute]mites tambi\[EAcute]n podr\[IAcute]an calcularse sin ayuda \
+del Mathematica.\n\nObservemos que se tratan de ra\[IAcute]ces \
+n-\[EAcute]simas de un producto de n factores. Por tanto, podr\[IAcute]amos \
+pensar en el criterio de la media geom\[EAcute]trica: Si una sucesi\[OAcute]n \
+de t\[EAcute]rminos positivos converge a L, la media geom\[EAcute]trica de \
+los n primeros t\[EAcute]rminos de la sucesi\[OAcute]n tambi\[EAcute]n \
+converge a L.\n\nAs\[IAcute], en el primer caso, nos encontramos que llamando \
+ ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["a", "n"], TraditionalForm]],ExpressionUUID->
+  "cccd447f-896a-45ab-80fc-266a8a938285"],
+ "=",
+ Cell[BoxData[
+  FractionBox[
+   RowBox[{
+    RowBox[{"n", "^", "2"}], "+", "2"}], 
+   RowBox[{"2", 
+    RowBox[{"n", "^", "2"}]}]]],
+  CellChangeTimes->{{3.882718994954711*^9, 3.882719062704604*^9}},
+  ExpressionUUID->"db90c1af-97eb-4ae5-b4c9-2dcf558ba719"],
+ ", tendr\[IAcute]amos una sucesi\[OAcute]n que converge a 1/2.\n\nLa sucesi\
+\[OAcute]n original es ",
+ Cell[BoxData[
+  RadicalBox[
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      FormBox[
+       SubscriptBox["a", "1"],
+       TraditionalForm], 
+      FormBox[
+       SubscriptBox["a", "2"],
+       TraditionalForm], 
+      FormBox[
+       SubscriptBox["a", "3"],
+       TraditionalForm]}], "..."}], 
+    FormBox[
+     SubscriptBox["a", "n"],
+     TraditionalForm]}], "n"]],
+  CellChangeTimes->{{3.882718994954711*^9, 3.882719062704604*^9}, {
+   3.8831376412848806`*^9, 3.883137644343237*^9}},ExpressionUUID->
+  "9c8e646e-5b69-4193-bc23-d58b592bbd5e"],
+ ", por tanto se trata de la media geom\[EAcute]trica de los primeros n t\
+\[EAcute]rminos de la sucesi\[OAcute]n ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["a", "n"], TraditionalForm]],ExpressionUUID->
+  "96b51ca1-77f4-41e9-83e6-41b78f4070cc"],
+ ". Su l\[IAcute]mite tambi\[EAcute]n ser\[AAcute] 1/2."
+}], "Text",
+ CellChangeTimes->{{3.905496230891163*^9, 3.905496345424118*^9}, {
+   3.905496468628471*^9, 3.9054966187766547`*^9}, {3.90549664991948*^9, 
+   3.9054966515811806`*^9}, {3.90549677488031*^9, 3.9054969208713512`*^9}, 
+   3.905496993797852*^9},ExpressionUUID->"aa996ba8-2182-4ef0-9bc2-\
+ddf74c99187e"]
+}, Open  ]]
+},
+WindowSize->{1141.2, 573.6},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+PrintingCopies->1,
+PrintingPageRange->{32000, 32000},
+PrintingOptions->{"Magnification"->1.,
+"PaperOrientation"->"Portrait",
+"PaperSize"->{595.1999999999999, 841.68}},
+FrontEndVersion->"14.1 para Microsoft Windows (64-bit) (July 16, 2024)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"544e0a2b-2bd0-4510-bee1-06fc745156b5"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 929, 16, 114, "Text",ExpressionUUID->"df2cc2e9-54c5-42cf-888a-b7dc81967b7c"],
+Cell[1489, 38, 283, 4, 66, "Section",ExpressionUUID->"d9f30a8c-c869-4feb-8324-91710fe67588"],
+Cell[CellGroupData[{
+Cell[1797, 46, 2001, 37, 81, "Section",ExpressionUUID->"fdbf0eb0-62a9-4e41-8efa-d28708101da3"],
+Cell[3801, 85, 6559, 161, 287, "Text",ExpressionUUID->"aa494a01-02c7-4182-9fee-7de873cbb481"],
+Cell[CellGroupData[{
+Cell[10385, 250, 365, 9, 50, "Input",ExpressionUUID->"a1a56a67-094f-4c96-810a-1baed1e9f9e2"],
+Cell[10753, 261, 173, 2, 32, "Output",ExpressionUUID->"341d98c2-8687-4223-b8a3-30485c9041df"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10975, 269, 1997, 39, 104, "Section",ExpressionUUID->"b2c0c9d0-3478-47d8-8788-9f507e5b7164"],
+Cell[12975, 310, 6323, 168, 277, "Text",ExpressionUUID->"91320c4f-8adf-4a99-bf83-9b781eca0eae"],
+Cell[CellGroupData[{
+Cell[19323, 482, 433, 11, 67, "Input",ExpressionUUID->"36a330ad-ccf3-45f3-84fe-dd2fdfd145a9"],
+Cell[19759, 495, 150, 2, 32, "Output",ExpressionUUID->"8ed739bf-49ca-4e2d-8db0-3b4c6b294deb"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19958, 503, 2075, 42, 101, "Section",ExpressionUUID->"311f88a5-78d6-4e91-9f32-84e3f5bcb54d"],
+Cell[22036, 547, 7151, 203, 266, "Text",ExpressionUUID->"db12c5bc-3c57-4d20-bedb-bebf5717c145"],
+Cell[CellGroupData[{
+Cell[29212, 754, 498, 12, 60, "Input",ExpressionUUID->"8536cf7e-800d-4542-8c7e-8b3bc12e8bf2"],
+Cell[29713, 768, 221, 3, 32, "Output",ExpressionUUID->"3bc499b4-6a07-934c-9fb4-a0eb231de048"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[29971, 776, 322, 7, 57, "Input",ExpressionUUID->"077cad4e-e294-e34f-a929-f78bbf932eb0"],
+Cell[30296, 785, 150, 2, 32, "Output",ExpressionUUID->"93b44560-96cf-5b47-8852-238ace3fca35"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[30495, 793, 1836, 35, 95, "Section",ExpressionUUID->"7ea06f70-e067-4b8c-bf94-f8ccb4b3c62c"],
+Cell[32334, 830, 6693, 195, 166, "Text",ExpressionUUID->"b1d7cf5f-ddbe-4a02-9ea6-3d55600fbcf3"],
+Cell[CellGroupData[{
+Cell[39052, 1029, 369, 9, 60, "Input",ExpressionUUID->"99e56dea-611a-4f87-a5bb-0e1153c4d4ed"],
+Cell[39424, 1040, 150, 2, 32, "Output",ExpressionUUID->"61e78ae1-38ab-483c-a3a2-7ddcf6391ca2"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[39623, 1048, 2109, 41, 94, "Section",ExpressionUUID->"64b4f804-cb49-468c-83e6-9f0cbd08443c"],
+Cell[41735, 1091, 7919, 223, 324, "Text",ExpressionUUID->"2f098d80-e291-42a2-a5b1-fbd87d383b64"],
+Cell[CellGroupData[{
+Cell[49679, 1318, 536, 14, 62, "Input",ExpressionUUID->"ab19df5b-db98-4e19-b586-bb5aaa9bc6f7"],
+Cell[50218, 1334, 192, 3, 48, "Output",ExpressionUUID->"0f5fec26-f66f-4e42-b8b8-ce22445ca262"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[50459, 1343, 2039, 40, 102, "Section",ExpressionUUID->"786bd067-bb1f-4cbb-99dd-b6fe65bcf4d2"],
+Cell[52501, 1385, 7309, 195, 490, "Text",ExpressionUUID->"a469c87f-1280-40c1-aef6-2bce3e18e290"],
+Cell[CellGroupData[{
+Cell[59835, 1584, 513, 13, 65, "Input",ExpressionUUID->"a7cdadf1-1165-4479-a124-a94fe7f81ad2"],
+Cell[60351, 1599, 150, 2, 32, "Output",ExpressionUUID->"a1a436d7-fa66-4333-8829-49cd0ca0fbe5"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[60550, 1607, 2110, 42, 100, "Section",ExpressionUUID->"7211b076-df63-4eb8-b19f-b1a04c339045"],
+Cell[62663, 1651, 5956, 162, 253, "Text",ExpressionUUID->"c890eafc-e112-49e4-b0c4-cac95710b79d"],
+Cell[CellGroupData[{
+Cell[68644, 1817, 461, 12, 63, "Input",ExpressionUUID->"288697ab-ae11-4000-9a81-e5f6cd9fdda9"],
+Cell[69108, 1831, 170, 3, 48, "Output",ExpressionUUID->"d81559fe-2539-44b2-a1d0-b8b9ca8ff40b"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[69327, 1840, 2101, 42, 103, "Section",ExpressionUUID->"55900b1a-f4a9-4948-921c-35009621004a"],
+Cell[71431, 1884, 5556, 147, 229, "Text",ExpressionUUID->"81287aa3-f6bd-4f0f-b825-1dea9fcb12d8"],
+Cell[CellGroupData[{
+Cell[77012, 2035, 451, 12, 62, "Input",ExpressionUUID->"233e0d51-43d1-46c8-ad7e-59c7f101fb71"],
+Cell[77466, 2049, 148, 2, 32, "Output",ExpressionUUID->"357aec45-0be5-42bf-9a3b-2c840f0edf28"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[77663, 2057, 2406, 52, 104, "Section",ExpressionUUID->"55f1fd5c-d0c0-4ed6-ac7c-e89896760bfa"],
+Cell[80072, 2111, 4899, 117, 187, "Text",ExpressionUUID->"8d36e303-b587-485a-8185-a2d6743e7703"],
+Cell[CellGroupData[{
+Cell[84996, 2232, 496, 13, 76, "Input",ExpressionUUID->"768ea450-1ae6-4488-9a5d-e5c1bd99cf3f"],
+Cell[85495, 2247, 162, 2, 32, "Output",ExpressionUUID->"f6717885-3960-49df-88aa-0df8c81c34fc"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[85706, 2255, 2373, 52, 97, "Section",ExpressionUUID->"421c81b8-138e-4ae8-a287-321a6558122a"],
+Cell[88082, 2309, 8651, 258, 521, "Text",ExpressionUUID->"a4a86313-f2fd-4b79-844f-ae9c081f3a5e"],
+Cell[CellGroupData[{
+Cell[96758, 2571, 493, 13, 68, "Input",ExpressionUUID->"18070f1c-6134-4cfd-a5eb-ad2bbae8fecc"],
+Cell[97254, 2586, 186, 3, 32, "Output",ExpressionUUID->"92738eab-bff8-4a62-810e-2bddfea72e98"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[97489, 2595, 2164, 45, 107, "Section",ExpressionUUID->"18b865a4-2bff-4862-a026-d9857e7d7863"],
+Cell[99656, 2642, 5301, 167, 266, "Text",ExpressionUUID->"91113e35-663f-498d-aadf-1b25d480297b"],
+Cell[CellGroupData[{
+Cell[104982, 2813, 609, 18, 70, "Input",ExpressionUUID->"0e8644b1-2bc8-420f-9c1e-96817d73f13f"],
+Cell[105594, 2833, 176, 3, 33, "Output",ExpressionUUID->"db08f0bb-30bf-414e-84b0-c3cb3749270c"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[105819, 2842, 2114, 44, 107, "Section",ExpressionUUID->"95dbe9ba-e61a-46b3-bf8a-94144db2d336"],
+Cell[107936, 2888, 2921, 77, 206, "Text",ExpressionUUID->"5326b6bb-cf6e-425e-a417-ab50ddbdd912"],
+Cell[CellGroupData[{
+Cell[110882, 2969, 660, 19, 70, "Input",ExpressionUUID->"003e8d50-7e04-47a3-94ac-2c6408fdb5e3"],
+Cell[111545, 2990, 185, 2, 32, "Output",ExpressionUUID->"3e4ae56f-191b-48fc-8063-010ee5c90ce7"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[111779, 2998, 2159, 45, 105, "Section",ExpressionUUID->"f92b89b1-0458-4804-97d1-942e40bb28a5"],
+Cell[113941, 3045, 7239, 209, 220, "Text",ExpressionUUID->"78be1990-4ea4-4fd0-9d5a-8214d8611157"],
+Cell[CellGroupData[{
+Cell[121205, 3258, 583, 17, 70, "Input",ExpressionUUID->"77e33298-5276-44f2-bb05-88c8a1ab2df6"],
+Cell[121791, 3277, 162, 2, 32, "Output",ExpressionUUID->"29273c74-488e-4c11-80ea-642f36d8bbc2"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[122002, 3285, 2249, 48, 107, "Section",ExpressionUUID->"99c6f7ad-6e90-466b-9a3b-5e72af106c80"],
+Cell[124254, 3335, 9242, 278, 365, "Text",ExpressionUUID->"9127da31-388f-4ed7-b41f-de7cd2819b80"],
+Cell[CellGroupData[{
+Cell[133521, 3617, 696, 21, 70, "Input",ExpressionUUID->"982ed852-fa0b-4c87-830f-32e1c8950dff"],
+Cell[134220, 3640, 254, 6, 48, "Output",ExpressionUUID->"9c0490a4-25e8-48b3-bc1b-30e90ca410d3"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[134523, 3652, 2042, 43, 107, "Section",ExpressionUUID->"73830398-7008-49db-bc2e-1634c971dd4e"],
+Cell[136568, 3697, 2216, 59, 209, "Text",ExpressionUUID->"f69e5266-24d2-4d6d-bc25-b1abecdd41ed"],
+Cell[CellGroupData[{
+Cell[138809, 3760, 586, 17, 70, "Input",ExpressionUUID->"cbed87ba-e309-429c-8598-0dd4768a6948"],
+Cell[139398, 3779, 150, 2, 32, "Output",ExpressionUUID->"a09ffd0b-e1ec-4d90-918b-31b68a20913d"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[139597, 3787, 4045, 96, 257, "Section",ExpressionUUID->"154aa78c-afaa-41aa-971e-9552631baf01"],
+Cell[143645, 3885, 265, 5, 45, "Input",ExpressionUUID->"b50df8dc-c938-4d4a-bdae-2b6b246e7f6d"],
+Cell[CellGroupData[{
+Cell[143935, 3894, 500, 14, 76, "Input",ExpressionUUID->"6e59f722-62fc-488c-9fd0-db08f002fa29"],
+Cell[144438, 3910, 193, 3, 48, "Output",ExpressionUUID->"ee247358-c5e9-4436-b87b-199874812da9"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[144668, 3918, 580, 16, 76, "Input",ExpressionUUID->"3ba42b31-8a1f-4c16-a1a5-08833986a84f"],
+Cell[145251, 3936, 220, 4, 48, "Output",ExpressionUUID->"7fcae6b6-ba2e-47e3-a8a1-e690d1fd976c"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[145508, 3945, 552, 15, 76, "Input",ExpressionUUID->"97d6bc78-2981-4c5b-a627-004af8a95b49"],
+Cell[146063, 3962, 227, 4, 32, "Output",ExpressionUUID->"eea22210-5d87-439c-87f1-779f3daec1a5"]
+}, Open  ]],
+Cell[146305, 3969, 2215, 56, 199, "Text",ExpressionUUID->"aa996ba8-2182-4ef0-9bc2-ddf74c99187e"]
+}, Open  ]]
+}
+]
+*)
+

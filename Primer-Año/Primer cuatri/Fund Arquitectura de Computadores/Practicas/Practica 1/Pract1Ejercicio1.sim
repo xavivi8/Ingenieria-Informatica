@@ -1,0 +1,20 @@
+START: IN 00
+MOV b, a
+
+IN 01
+
+CMP b
+
+JC A_ES_MENOR
+JZ SON_IGUALES
+OUT 03
+HLT
+
+
+A_ES_MENOR: mov a,b
+OUT 03
+HLT
+
+SON_IGUALES: mvi a,ff
+OUT 03
+HLT
