@@ -61,6 +61,8 @@ print(Moda)
 tabla[21,]
 
 ## D
-barplot(frecuencia2,beside=True,col=c("blue","green","pink","red"))
+barplot(frecuencia2,beside=TRUE,col=c("blue","green","pink","red"))
 etiquetas<-paste(names(frecuencia),names(frecuencia2),sep=":")
-pie(frecuencia2,main"Grafico de sectores de Nacionalidad en cada provindica",labels=etiquetas)
+pie(frecuencia2,
+    main="Grafico de sectores de Nacionalidad en cada provindica",labels=etiquetas)
+
