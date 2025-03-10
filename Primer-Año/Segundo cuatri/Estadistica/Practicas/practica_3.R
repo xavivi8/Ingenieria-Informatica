@@ -66,3 +66,28 @@ etiquetas<-paste(names(frecuencia),names(frecuencia2),sep=":")
 pie(frecuencia2,
     main="Grafico de sectores de Nacionalidad en cada provindica",labels=etiquetas)
 
+### Ejercicio 2: Descripción de variables cuantitativas
+tabla3<-data.frame(
+  Provincia=names(table(Andalucia$Altitud19)),
+  ni=as.vector(table(Andalucia$Altitud19)),
+  Ni=cumsum(as.vector(table(Andalucia$Altitud19))),
+  fi=as.vector(prop.table(table(Andalucia$Altitud19))),
+  Fi=cumsum(as.vector(prop.table(table(Andalucia$Altitud19))))
+)
+
+summary(Andalucia$Altitud19)
+
+media_andalucia<-mean(Andalucia$Altitud19,na.rm=TRUE)
+media_provincias<-aggregate(Altitud19 ~ Provincia, data=Andalucia,FUN=mean, na.rm=TRUE)
+
+print(media_andalucia)
+print(media_provincias)
+
+media_provincias[media_provincias$Altitud19 > media_andalucia, ]
+
+desv_provincias <- aggregate(Altitud19 ~ Provincia, data=Andalucia, FUN=sd, na.rm=TRUE)
+desv_provincias[which.min(desv_provincias$Altitud9)]
+## A)¿Cuál es la altitud media de los municipios de Andalucia? ¿Cuál es la 
+##altitud media de los municipiosde cada provincia? ¿Qué provincias tienen una 
+##altitud media superior a la media de los municipios deAndalucía?
+  
