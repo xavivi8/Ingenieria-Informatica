@@ -87,6 +87,7 @@ media_provincias[media_provincias$Altitud19 > media_andalucia, ]
 
 desv_provincias <- aggregate(Altitud19 ~ Provincia, data=Andalucia, FUN=sd, na.rm=TRUE)
 desv_provincias[which.min(desv_provincias$Altitud9)]
+library(DescTools)
 ## A)¿Cuál es la altitud media de los municipios de Andalucia? ¿Cuál es la 
 ##altitud media de los municipiosde cada provincia? ¿Qué provincias tienen una 
 ##altitud media superior a la media de los municipios deAndalucía?
