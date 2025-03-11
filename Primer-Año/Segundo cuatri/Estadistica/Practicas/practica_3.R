@@ -91,4 +91,29 @@ library(DescTools)
 ## A)¿Cuál es la altitud media de los municipios de Andalucia? ¿Cuál es la 
 ##altitud media de los municipiosde cada provincia? ¿Qué provincias tienen una 
 ##altitud media superior a la media de los municipios deAndalucía?
+coef_asimetria <- aggregate(Altitud19 ~ Provincia, data=Andalucia,FUN=function(x) Skew(x, na.rm=TRUE))
+coef_curtosis <- aggregate(Altitud19 ~ Provincia,data=Andalucia,FUN=function(x) Kurt(x, na.rm=TRUE))
+
+print(coef_asimetria)
+print(coef_curtosis)
+
+boxplot(Andalucia$Altitud19 ~ Andalucia$Provincia, main="")
+
+## B
+
+malaga <- subset(Andalucia, PRovincia=="Málaga")
+
+intervalos <- seq(13000, max(malaga$RentaBruta, na.rm=TRUE), by3000)
+malaga$RentaGrupo <- cut(malaga$RentaBruta, breaks=intervalos, right=TRUE)
+
+tabla_freq <- table(malaga$RentaBruta)
+tabla_freq_rel <- prop.table(tabla_freq)
+
+## C
+data.frame(Intervalo=names(tabla_freq),Frecuqncia=as.vector(tabla_freq), Relativa=as.vector(tabla_freq_rel))
+
+sum(malaga$RentaBruta > 28000, na.rm=TRUE)
+sum(malaga$RentaBruta > 19000 & malaga$RentaBruta <= 31000, na.rm=TRUE)
+
+tabla_renta_andalucia <- table(cut(Andalucia$RentaBruta, breaks=intervalos, right=TRUE))
   
