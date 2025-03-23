@@ -111,7 +111,9 @@ aggregate(Altitud19 ~ Provincia, data = Andalucia, FUN =
 library("DescTools")
 aggregate(Altitud19 ~ Provincia, data = Andalucia, FUN =
             function(x) c(coef_asimetria = Skew(x),
-                          coef_curtosis = Kurt(x)))
+                          coef_curtosis = Kurt(x)
+            )
+)
 ## D)¿Qué municipios andaluces destacan como atípicos sobre el resto, en cada 
 ##provincia, por su alta o baja altitud?
 cajas <- boxplot(Altitud19~Provincia,data=Andalucia)
