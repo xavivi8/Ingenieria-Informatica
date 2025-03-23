@@ -98,8 +98,10 @@ media_altitud_cada_provincia_andalucia
 aggregate(Altitud19 ~ Provincia, data = Andalucia, FUN =
             function(x) c(media = mean(x),
                           mediana = median(x),
-                          sd = sd(x),
-                          cv = sd(x) / mean(x)))
+                          sd = sd(x),#desviación estandar
+                          cv = sd(x) / mean(x)#coeficiente de variación
+            )
+)
 # -----------
 #La provincia en la que los datos sobre la altitud media de los municipios son 
 #más homogéneos es en Jaén
