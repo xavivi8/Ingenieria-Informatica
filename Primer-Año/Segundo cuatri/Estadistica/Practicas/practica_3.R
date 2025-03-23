@@ -35,36 +35,104 @@
 #R.I |QR(Datos,type=2)
 #D.Caja y bigotes Boxplot=>Salida<-boxplot
 
-###Ejercicio 1:
-# Tabla de frecuencias para la variable Provincia
-freq_provincia <- Freq(Andalucia$Provincia)
-# Tabla de frecuencias para la variable PrincipalProcedenciaExtran
-freq_extranjeros <- Freq(Andalucia$PrincipalProcedenciaExtran)
+###Ejercicio 1: Descripción de variables cualitativas
+###Contruya la tabla de frecuencias y represente los gráficos 
+###apropiados para los datos de las variables Provinciay PrincipalProcedenciaExtran. 
+###A partir de los resultados, responda a las siguientes preguntas:
+# Tabla de frecuencias para la variable cualitativa "Provincia"
 
-# Mostrar los resultados
-print(freq_provincia)
-print(freq_extranjeros)
+frec_abs_prov <- table(Andalucia$Provincia)
 
-## A)
+frec_abs_prov
+
+frec_rel_prov <- prop.table(frec_abs_prov) 
+
+frec_rel_prov
+
+tablafrec.provincia <- data.frame(provincias = names(frec_abs_prov),
+                                  ni = as.vector(frec_abs_prov),
+                                  fi = as.vector(frec_rel_prov))
+tablafrec.provincia
+
+# Tabla de frecuencias para la variable cualitativa "PrincipalProcedenciaExtran"
+
+frec_abs_proc <- table(Andalucia$PrincipalProcedenciaExtran)
+
+frec_abs_proc
+
+frec_rel_proc <- prop.table(frec_abs_proc)
+
+frec_rel_proc
+
+tablafrec.procedencia <- data.frame(procedencia = names(frec_abs_proc),
+                                    ni = as.vector(frec_abs_proc),
+                                    fi = as.vector(frec_rel_proc))
+tablafrec.procedencia
+
+# Gráfico de barras para la variable cualitativa "Provincia"
+
+barplot(frec_abs_prov, main = "Gráfico de barras: Provincias de Andalucía",
+        xlab = "Provincia", ylab="Número de municipios", 
+        col = c("red", "blue", "green", "yellow","orange","purple", "pink", "gray"))
+
+
+# Gráfico de sectores para la variable cualitativa "Provincia"
+
+etiquetas = paste(names(frec_abs_prov), frec_abs_prov, sep=": ")
+
+pie(frec_abs_prov, main = "Gráfico de sectores: Provincias de Andalucía",
+    xlab = "Provincia", ylab="Número de municipios", 
+    col = c("red", "blue", "green", "yellow","orange","purple", "pink", "gray"),
+    labels = etiquetas)
+
+# Gráfico de barras para la variable cualitativa "PrincipalProcedenciaExtran"
+
+barplot(frec_abs_proc, main = "Gráfico de barras: Procedencia principal de extranjeros en Andalucía",
+        xlab = "País", ylab="Número de municipios", 
+        col = c("red"))
+
+# Gráfico de sectores para la variable cualitativa "PrincipalProcedenciaExtran"
+
+pie(frec_abs_proc, main = "Gráfico de sectores: Procedencia principal de extranjeros",
+    xlab = "País", ylab="Número de municipios", 
+    col = c("red", "blue", "green", "yellow","orange","purple", "pink", "gray"))
+
+## A) ¿Cuál es la provincia con más municipios? ¿Y con menos?-------------------
 Mode(Andalucia$Provincia)
 frecuencia<-table(Andalucia$Provincia)
 Minimo<-names(frecuencia[frecuencia==min(frecuencia)])
+# -----------
 #Mas: Granada
 #Menos: Cadiz
-##
+# -----------
+##B) ¿Qué provincias tienen más de 100 municipios?------------------------------
 masdel100<-names(frecuencia[frecuencia>=100])
+# -----------
 #Almeria, Granada, Málaga y Sevills
-## C
+# -----------
+## C) ) ¿Qué nacionalidad extranjera es la principal en los municipios de 
+##Andalucía? ¿De qué medida se trata? ¿Cuál es su proporción sobre el total?
+  
 frecuencia2<-table(Andalucia$PrincipalProcedenciaExtran)
 Moda<-names(frecuencia2[frecuencia2==max(frecuencia2)])
 print(Moda)
 tabla[21,]
 
-## D
+## D) Genere los gráficos y tablas adecuados para contestar a la siguiente
+##pregunta. ¿Cuál es la nacionalidad predominante en los municipios de cada 
+##provincia?
+  
 barplot(frecuencia2,beside=TRUE,col=c("blue","green","pink","red"))
 etiquetas<-paste(names(frecuencia),names(frecuencia2),sep=":")
 pie(frecuencia2,
     main="Grafico de sectores de Nacionalidad en cada provindica",labels=etiquetas)
+
+##########################################################################################################3
+##########################################################################################################3
+##########################################################################################################3
+##########################################################################################################3
+##########################################################################################################3
+
 
 ### Ejercicio 2: Descripción de variables cuantitativas
 tabla3<-data.frame(
