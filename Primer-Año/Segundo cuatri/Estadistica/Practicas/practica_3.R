@@ -1,123 +1,35 @@
-#->Tablas de frec:
-#Frec Abs:
-#ni table => frecabs <- table(datos)
-#Ni cumsum(frecabs)
-#Frec Rela:
-#fi prop.table(frecabs)
-#Fi cumsum(frecrel)
-#
-#-----
-#Tabla <- data.frame(
-#  Nombre= names(frecabs)
-#  ni=as.vector(frecabs)
-#  Ni=cumsum(as.vect)
-#  fi=
-#  Fi=
-#)
-#->Graficos:
-#Graficos:
-#-Barras, barplot
-#-Sectores, pie
-#-C.acumula,plot->frec.acum
-#-Histograma,hist
-#-P.frecuencia,plot
-#->Med. Posicion, dispersion y forma
-#Media, mean
-#Mediana, median
-#Moda, Mode
-#Cuantilesquantile
-#Var
-#Dt,sd
-#dv.sd/mean
-#CuasiVar:var
-#coef curt, Kurt(Datosmeth=A)
-#->DV anomalos
-#R.I |QR(Datos,type=2)
-#D.Caja y bigotes Boxplot=>Salida<-boxplot
-
 ###Ejercicio 1: Descripción de variables cualitativas
 ###Contruya la tabla de frecuencias y represente los gráficos 
 ###apropiados para los datos de las variables Provinciay PrincipalProcedenciaExtran. 
 ###A partir de los resultados, responda a las siguientes preguntas:
-# Tabla de frecuencias para la variable cualitativa "Provincia"
-
-frec_abs_prov <- table(Andalucia$Provincia)
-
-frec_abs_prov
-
-frec_rel_prov <- prop.table(frec_abs_prov) 
-
-frec_rel_prov
-
-tablafrec.provincia <- data.frame(provincias = names(frec_abs_prov),
-                                  ni = as.vector(frec_abs_prov),
-                                  fi = as.vector(frec_rel_prov))
-tablafrec.provincia
-
-# Tabla de frecuencias para la variable cualitativa "PrincipalProcedenciaExtran"
-
-frec_abs_proc <- table(Andalucia$PrincipalProcedenciaExtran)
-
-frec_abs_proc
-
-frec_rel_proc <- prop.table(frec_abs_proc)
-
-frec_rel_proc
-
-tablafrec.procedencia <- data.frame(procedencia = names(frec_abs_proc),
-                                    ni = as.vector(frec_abs_proc),
-                                    fi = as.vector(frec_rel_proc))
-tablafrec.procedencia
-
-# Gráfico de barras para la variable cualitativa "Provincia"
-
-barplot(frec_abs_prov, main = "Gráfico de barras: Provincias de Andalucía",
-        xlab = "Provincia", ylab="Número de municipios", 
-        col = c("red", "blue", "green", "yellow","orange","purple", "pink", "gray"))
-
-
-# Gráfico de sectores para la variable cualitativa "Provincia"
-
-etiquetas = paste(names(frec_abs_prov), frec_abs_prov, sep=": ")
-
-pie(frec_abs_prov, main = "Gráfico de sectores: Provincias de Andalucía",
-    xlab = "Provincia", ylab="Número de municipios", 
-    col = c("red", "blue", "green", "yellow","orange","purple", "pink", "gray"),
-    labels = etiquetas)
-
-# Gráfico de barras para la variable cualitativa "PrincipalProcedenciaExtran"
-
-barplot(frec_abs_proc, main = "Gráfico de barras: Procedencia principal de extranjeros en Andalucía",
-        xlab = "País", ylab="Número de municipios", 
-        col = c("red"))
-
-# Gráfico de sectores para la variable cualitativa "PrincipalProcedenciaExtran"
-
-pie(frec_abs_proc, main = "Gráfico de sectores: Procedencia principal de extranjeros",
-    xlab = "País", ylab="Número de municipios", 
-    col = c("red", "blue", "green", "yellow","orange","purple", "pink", "gray"))
 
 ## A) ¿Cuál es la provincia con más municipios? ¿Y con menos?-------------------
-Mode(Andalucia$Provincia)
-frecuencia<-table(Andalucia$Provincia)
-Minimo<-names(frecuencia[frecuencia==min(frecuencia)])
+#Se encuentra facil en las diapositivas (Practica 3: Página 1)
+tabla_municipios_provincias = table(Andalucia$Provincia)
+tabla_municipios_provincias
 # -----------
 #Mas: Granada
 #Menos: Cadiz
 # -----------
 ##B) ¿Qué provincias tienen más de 100 municipios?------------------------------
-masdel100<-names(frecuencia[frecuencia>=100])
+#No sale en las diapositivas, hay que aprenderse la estructura de memoria
+tabla_municipios_provincias[tabla_municipios_provincias>100]
+names(tabla_municipios_provincias[tabla_municipios_provincias>100])
 # -----------
 #Almeria, Granada, Málaga y Sevills
 # -----------
 ## C) ) ¿Qué nacionalidad extranjera es la principal en los municipios de 
 ##Andalucía? ¿De qué medida se trata? ¿Cuál es su proporción sobre el total?
-  
-frecuencia2<-table(Andalucia$PrincipalProcedenciaExtran)
-Moda<-names(frecuencia2[frecuencia2==max(frecuencia2)])
-print(Moda)
-tabla[21,]
-
+#Se encuentra facil en las diapositivas (Practica 3: Página 1)
+tabla_extrajeros_absoluta<-table(Andalucia$PrincipalProcedenciaExtran)
+tabla_extrajeros_relativa<-prop.table(tabla_extrajeros_absoluta)
+tabla_extrajeros_absoluta
+tabla_extrajeros_relativa
+# -----------
+# La procedencia principal de los extranjeros en los municipios andaluces es 
+# Marruecos (moda).
+# Su proporción sobre el total es 0.387862797 (38.7862797%)
+# -----------
 ## D) Genere los gráficos y tablas adecuados para contestar a la siguiente
 ##pregunta. ¿Cuál es la nacionalidad predominante en los municipios de cada 
 ##provincia?
@@ -127,6 +39,32 @@ etiquetas<-paste(names(frecuencia),names(frecuencia2),sep=":")
 pie(frecuencia2,
     main="Grafico de sectores de Nacionalidad en cada provindica",labels=etiquetas)
 
+#Tabla de frecuencias absolutas y relativas - Facil, es copia y pega del pdf (Practica 3: paginas 1 y 2)
+tablaFreq <- data.frame(Paises = names(tabla_extrajeros_absoluta),
+                        ni = as.vector(tabla_extrajeros_absoluta),
+                        fi = as.vector(tabla_extrajeros_relativa))
+tablaFreq
+
+#Grafico de barras - Facil, es copia y pega del pdf (Practica 3: paginas 3, 4 y 5)
+barplot(tabla_extrajeros_absoluta, main = "Gráfico Barras procedencia extranjera",
+        xlab = "Pais de procedencia", ylab="Frecuencia absoluta")
+
+#Grafico de sectores - Facil, es copia y pega del pdf (Practica 3: paginas 5, 6, 7 y 8)
+etiquetas = paste(names(tabla_extrajeros_absoluta), tabla_extrajeros_absoluta, sep=": ")
+pie(tabla_extrajeros_absoluta, main = "Gráfico de Sectores procedencia extranjeros en Andalucia", labels = etiquetas)
+
+#Histograma (Autogenerado) - Facil, es copia y pega del pdf (Practica 3: paginas 8 y 9)
+hist(tabla_extrajeros_absoluta , 
+     main = "Histograma procedencia extranjeros en Andalucia",
+     xlab = "Número de extranjeros",
+     ylab = "Frecuencia")
+
+#Histograma (Con intervalos personalizados) - Facil, es copia y pega del pdf (Practica 3: paginas 9 y 10)
+hist(tabla_extrajeros_absoluta , breaks = seq(0,300, by=100) , 
+     main = "Histograma procedencia extranjeros en Andalucia",
+     xlab = "Número de extranjeros",
+     ylab = "Frecuencia")
+
 ##########################################################################################################3
 ##########################################################################################################3
 ##########################################################################################################3
@@ -135,53 +73,120 @@ pie(frecuencia2,
 
 
 ### Ejercicio 2: Descripción de variables cuantitativas
-tabla3<-data.frame(
-  Provincia=names(table(Andalucia$Altitud19)),
-  ni=as.vector(table(Andalucia$Altitud19)),
-  Ni=cumsum(as.vector(table(Andalucia$Altitud19))),
-  fi=as.vector(prop.table(table(Andalucia$Altitud19))),
-  Fi=cumsum(as.vector(prop.table(table(Andalucia$Altitud19))))
-)
 
-summary(Andalucia$Altitud19)
+##2.1 Realice un estudio descriptivo de la variable Altitud19 para el conjunto 
+##de los municipios de Andalucía y para los municipios de cada provincia. A 
+##continuación conteste a las siguientes cuestiones:
 
-media_andalucia<-mean(Andalucia$Altitud19,na.rm=TRUE)
-media_provincias<-aggregate(Altitud19 ~ Provincia, data=Andalucia,FUN=mean, na.rm=TRUE)
-
-print(media_andalucia)
-print(media_provincias)
-
-media_provincias[media_provincias$Altitud19 > media_andalucia, ]
-
-desv_provincias <- aggregate(Altitud19 ~ Provincia, data=Andalucia, FUN=sd, na.rm=TRUE)
-desv_provincias[which.min(desv_provincias$Altitud9)]
-library(DescTools)
 ## A)¿Cuál es la altitud media de los municipios de Andalucia? ¿Cuál es la 
 ##altitud media de los municipiosde cada provincia? ¿Qué provincias tienen una 
 ##altitud media superior a la media de los municipios deAndalucía?
-coef_asimetria <- aggregate(Altitud19 ~ Provincia, data=Andalucia,FUN=function(x) Skew(x, na.rm=TRUE))
-coef_curtosis <- aggregate(Altitud19 ~ Provincia,data=Andalucia,FUN=function(x) Kurt(x, na.rm=TRUE))
+#Media altitud de todos los municipios de andalucia - No sale en el pdf pero es facil, se entiende
+media_altitud_municipios_andalucia=mean(Andalucia$Altitud19)
+media_altitud_municipios_andalucia
 
-print(coef_asimetria)
-print(coef_curtosis)
+#Media altitud para cada provincia de andalucia - Sale tal cual en el pdf pero 
+#con otro ejemplo (Practica 3: pagina 17)
+media_altitud_cada_provincia_andalucia = aggregate(Altitud19 ~ Provincia, data = Andalucia, FUN = mean)
+media_altitud_cada_provincia_andalucia
+# -----------
+#Almería, Granada y Jaén tienen una altitud media superior a la media de 
+#municipios de andalucia
+# -----------
+## B) ¿En qué provincia los datos sobre la altitud media de los municipios son 
+##más homogéneos?
+aggregate(Altitud19 ~ Provincia, data = Andalucia, FUN =
+            function(x) c(media = mean(x),
+                          mediana = median(x),
+                          sd = sd(x),
+                          cv = sd(x) / mean(x)))
+# -----------
+#La provincia en la que los datos sobre la altitud media de los municipios son 
+#más homogéneos es en Jaén
+# -----------
+## C)Calcule los coeficientes de asimetría y curtosis para la variable altitud 
+##en cada provincia y compárelos
+library("DescTools")
+aggregate(Altitud19 ~ Provincia, data = Andalucia, FUN =
+            function(x) c(coef_asimetria = Skew(x),
+                          coef_curtosis = Kurt(x)))
+## D)¿Qué municipios andaluces destacan como atípicos sobre el resto, en cada 
+##provincia, por su alta o baja altitud?
+cajas <- boxplot(Altitud19~Provincia,data=Andalucia)
+cajas$out
+Andalucia[Andalucia$Altitud19 %in% cajas$out & Andalucia$Provincia == "Cádiz",]
+Andalucia[Andalucia$Altitud19 %in% cajas$out & Andalucia$Provincia == "Granada",]
+Andalucia[Andalucia$Altitud19 %in% cajas$out & Andalucia$Provincia == "Jaén",]
 
-boxplot(Andalucia$Altitud19 ~ Andalucia$Provincia, main="")
+##2.2 . Construya una tabla de frecuencias para la variable RentaBruta en la 
+##provincia de Málaga, con 9 intervalos de amplitud 3000, comenzando en 13000. 
+##A partir de la tabla anterior, responda a las siguientes cuestiones:
 
-## B
+rentaMalaga = Andalucia[Andalucia$Provincia == "Málaga", ]
+rentaMalaga
 
-malaga <- subset(Andalucia, PRovincia=="Málaga")
+intervalos_renta_malaga <- cut(rentaMalaga$RentaBruta, breaks = seq(13000, 40000, by = 3000), right = TRUE)
 
-intervalos <- seq(13000, max(malaga$RentaBruta, na.rm=TRUE), by3000)
-malaga$RentaGrupo <- cut(malaga$RentaBruta, breaks=intervalos, right=TRUE)
+frec_abs_renta_malaga<-table(intervalos_renta_malaga)
+frec_rel_renta_malaga<-prop.table(frec_abs_renta_malaga)
 
-tabla_freq <- table(malaga$RentaBruta)
-tabla_freq_rel <- prop.table(tabla_freq)
+tabla_freq_renta_malaga <- data.frame(
+  Intervalos = names(frec_abs_renta_malaga),
+  ni = as.vector(frec_abs_renta_malaga),
+  Ni = cumsum(as.vector(frec_abs_renta_malaga)),
+  fi = as.vector(frec_rel_renta_malaga),
+  Fi = cumsum(as.vector(frec_rel_renta_malaga))
+)
+tabla_freq_renta_malaga
 
-## C
-data.frame(Intervalo=names(tabla_freq),Frecuqncia=as.vector(tabla_freq), Relativa=as.vector(tabla_freq_rel))
+#Esta forma de hacerlo selecciona unicamente la columna "RentaBruta" de las 
+#filas que tengan "Málaga" como provincia
+rentaMalaga2 <- Andalucia[Andalucia$Provincia == "Málaga", "RentaBruta"]
+rentaMalaga2
+intervalos_renta_malaga2 <- cut(rentaMalaga2, breaks = seq(13000, 40000, by = 3000), right = TRUE)
+intervalos_renta_malaga2
+frec_abs_renta_malaga2<-table(intervalos_renta_malaga2)
+frec_rel_renta_malaga2<-prop.table(frec_abs_renta_malaga2)
 
-sum(malaga$RentaBruta > 28000, na.rm=TRUE)
-sum(malaga$RentaBruta > 19000 & malaga$RentaBruta <= 31000, na.rm=TRUE)
+tabla_freq_renta_malaga2 <- data.frame(
+  Intervalos = names(frec_abs_renta_malaga2),
+  ni = as.vector(frec_abs_renta_malaga2),
+  Ni = cumsum(as.vector(frec_abs_renta_malaga2)),
+  fi = as.vector(frec_rel_renta_malaga2),
+  Fi = cumsum(as.vector(frec_rel_renta_malaga2))
+)
+tabla_freq_renta_malaga2
 
-tabla_renta_andalucia <- table(cut(Andalucia$RentaBruta, breaks=intervalos, right=TRUE))
+## A) ¿Cuántos municipios tienen una renta bruta superior a 28000€? ¿Y mayor 
+##que 19000€ y menor o igual a 31000?
+#Se puede hacer observando la tabla anterior, de la que deducimos que 8 
+#minicipios tienen una renta superior a 28000 y 66 una renta superiora 19000 y 
+#menor o igual a 31000
+
+#Esta es otra forma más "Cutre" de hacerlo, si no tubiesemos la tabla anterior, 
+#que justo tiene intervalos en los puntos donde empiezan y terminan los rangos 
+#pedidos. Esta forma de hacerlo nos da directamente el número
+
+num_municipios_28000 <- sum(rentaMalaga > 28000)
+num_municipios_28000
+
+num_municipios_19000_31000 <- sum(rentaMalaga > 19000 & rentaMalaga<=31000)
+num_municipios_19000_31000
+## B)¿Cuál es el intervalo de renta bruta más usual en los municipios de Málaga?
+
+#El intervalo de renta más usaual se puede ver la tabla anterior y es el que va 
+#de 19000 a 22000
+
+##2.3 Represente el histograma para la varible RentaBruta en los municipios de 
+##la provincia de Málaga, utilizando los mismos intervalos del ejercicio 
+##anterior. A partir de él, ¿qué opina sobre la simetría de los datos?
+
+rentaMalaga_solorenta <- Andalucia[Andalucia$Provincia == "Málaga", ]$RentaBruta
+
+hist(rentaMalaga_solorenta , breaks = seq(13000, 40000, by=3000),
+     main = "Histograma para procesos concurrentes",
+     xlab = "Precio de la renta",
+     ylab = "Frecuencia")
+
+#Los datos son asimetricos a la derecha
   
