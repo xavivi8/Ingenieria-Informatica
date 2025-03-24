@@ -3,7 +3,7 @@
 ###apropiados para los datos de las variables Provinciay PrincipalProcedenciaExtran. 
 ###A partir de los resultados, responda a las siguientes preguntas:
 
-## A) ¿Cuál es la provincia con más municipios? ¿Y con menos?-------------------
+##A) ¿Cuál es la provincia con más municipios? ¿Y con menos?-------------------
 #Se encuentra facil en las diapositivas (Practica 3: Página 1)
 tabla_municipios_provincias = table(Andalucia$Provincia)
 tabla_municipios_provincias
@@ -18,7 +18,7 @@ names(tabla_municipios_provincias[tabla_municipios_provincias>100])
 # -----------
 #Almeria, Granada, Málaga y Sevills
 # -----------
-## C) ) ¿Qué nacionalidad extranjera es la principal en los municipios de 
+##C) ) ¿Qué nacionalidad extranjera es la principal en los municipios de 
 ##Andalucía? ¿De qué medida se trata? ¿Cuál es su proporción sobre el total?
 #Se encuentra facil en las diapositivas (Practica 3: Página 1)
 tabla_extrajeros_absoluta<-table(Andalucia$PrincipalProcedenciaExtran)
@@ -30,7 +30,7 @@ tabla_extrajeros_relativa
 # Marruecos (moda).
 # Su proporción sobre el total es 0.387862797 (38.7862797%)
 # -----------
-## D) Genere los gráficos y tablas adecuados para contestar a la siguiente
+##D) Genere los gráficos y tablas adecuados para contestar a la siguiente
 ##pregunta. ¿Cuál es la nacionalidad predominante en los municipios de cada 
 ##provincia?
   
