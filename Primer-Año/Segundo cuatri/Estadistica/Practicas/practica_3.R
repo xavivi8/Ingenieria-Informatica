@@ -18,7 +18,7 @@ names(tabla_municipios_provincias[tabla_municipios_provincias>100])
 # -----------
 #Almeria, Granada, Málaga y Sevills
 # -----------
-##C) ) ¿Qué nacionalidad extranjera es la principal en los municipios de 
+##C) ¿Qué nacionalidad extranjera es la principal en los municipios de 
 ##Andalucía? ¿De qué medida se trata? ¿Cuál es su proporción sobre el total?
 #Se encuentra facil en las diapositivas (Practica 3: Página 1)
 tabla_extrajeros_absoluta<-table(Andalucia$PrincipalProcedenciaExtran)
