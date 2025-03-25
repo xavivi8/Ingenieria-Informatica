@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[     29763,        812]
-NotebookOptionsPosition[     24885,        729]
-NotebookOutlinePosition[     25305,        745]
-CellTagsIndexPosition[     25262,        742]
+NotebookDataLength[     36545,        977]
+NotebookOptionsPosition[     30138,        873]
+NotebookOutlinePosition[     30558,        889]
+CellTagsIndexPosition[     30515,        886]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -723,6 +723,150 @@ Cell[BoxData[
   "Out[21]//MatrixForm=",ExpressionUUID->"bb1f510a-0ff7-5847-9dc5-\
 5995fd8d2ee8"]
 }, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Ejercicio 3, Relaci\[OAcute]n 3:", "Subsection",
+ CellChangeTimes->{{3.951882988774788*^9, 
+  3.951883010984049*^9}},ExpressionUUID->"81e6cf93-7e0a-4341-8453-\
+273c0ea15023"],
+
+Cell["\<\
+Estudiar si las matrices siguientes son sim\[EAcute]tricas o \
+antisim\[EAcute]tricas:\
+\>", "Text",
+ CellChangeTimes->{{3.9518830164842167`*^9, 
+  3.951883032767391*^9}},ExpressionUUID->"fa9ea35c-fc34-7c41-9f26-\
+31e2d321c4e5"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Aejer3", "=", 
+   RowBox[{"(", GridBox[{
+      {"1", "2", "3"},
+      {"2", "2", "5"},
+      {"3", "5", "7"}
+     }], ")"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Bejer3", "=", 
+   RowBox[{"(", GridBox[{
+      {"1", "2", "4"},
+      {"2", "2", "5"},
+      {"3", "5", "7"}
+     }], ")"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Cejer3", "=", 
+   RowBox[{"(", GridBox[{
+      {"0", "2", "3"},
+      {
+       RowBox[{"-", "2"}], "0", "5"},
+      {
+       RowBox[{"-", "3"}], 
+       RowBox[{"-", "5"}], "0"}
+     }], ")"}]}], ";"}]}], "Code",
+ CellChangeTimes->{{3.9518830404665947`*^9, 3.951883136574127*^9}},
+ CellLabel->"In[22]:=",ExpressionUUID->"d190f917-9614-b043-9585-fa3c0afd3e8b"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{"\"\<Matriz A\>\"", "\n", 
+ RowBox[{"If", "[", 
+  RowBox[{
+   RowBox[{"Aejer3", "==", 
+    RowBox[{"Transpose", "[", "Aejer3", "]"}]}], ",", " ", 
+   "\"\<Es sim\[EAcute]trica\>\"", ",", " ", 
+   "\"\<No es sim\[EAcute]trica\>\""}], "]"}], "\n", 
+ RowBox[{"If", "[", 
+  RowBox[{
+   RowBox[{"Aejer3", "==", 
+    RowBox[{"-", 
+     RowBox[{"Transpose", "[", "Aejer3", "]"}]}]}], ",", " ", 
+   "\"\<Es antisim\[EAcute]trica\>\"", ",", " ", 
+   "\"\<No es antisim\[EAcute]trica\>\""}], 
+  "]"}], "\n", "\"\<Matriz B\>\"", "\n", 
+ RowBox[{"If", "[", 
+  RowBox[{
+   RowBox[{"Bejer3", "==", 
+    RowBox[{"Transpose", "[", "Bejer3", "]"}]}], ",", " ", 
+   "\"\<Es sim\[EAcute]trica\>\"", ",", " ", 
+   "\"\<No es sim\[EAcute]trica\>\""}], "]"}], "\n", 
+ RowBox[{"If", "[", 
+  RowBox[{
+   RowBox[{"Bejer3", "==", 
+    RowBox[{"-", 
+     RowBox[{"Transpose", "[", "Bejer3", "]"}]}]}], ",", " ", 
+   "\"\<Es antisim\[EAcute]trica\>\"", ",", " ", 
+   "\"\<No es antisim\[EAcute]trica\>\""}], 
+  "]"}], "\n", "\"\<Matriz C\>\"", "\n", 
+ RowBox[{"If", "[", 
+  RowBox[{
+   RowBox[{"Cejer3", "==", 
+    RowBox[{"Transpose", "[", "Cejer3", "]"}]}], ",", " ", 
+   "\"\<Es sim\[EAcute]trica\>\"", ",", " ", 
+   "\"\<No es sim\[EAcute]trica\>\""}], "]"}], "\n", 
+ RowBox[{"If", "[", 
+  RowBox[{
+   RowBox[{"Cejer3", "==", 
+    RowBox[{"-", 
+     RowBox[{"Transpose", "[", "Cejer3", "]"}]}]}], ",", " ", 
+   "\"\<Es antisim\[EAcute]trica\>\"", ",", " ", 
+   "\"\<No es antisim\[EAcute]trica\>\""}], "]"}], "\n"}], "Code",
+ CellChangeTimes->{{3.9518831570640297`*^9, 3.95188317774498*^9}, {
+  3.9518832130515137`*^9, 3.9518832173510227`*^9}, {3.9518832724887047`*^9, 
+  3.9518833544671745`*^9}},
+ CellLabel->"In[28]:=",ExpressionUUID->"754b82c5-4b04-6049-a523-297d81255fcc"],
+
+Cell[BoxData["\<\"Matriz A\"\>"], "Output",
+ CellChangeTimes->{{3.951883330396309*^9, 3.9518833555768967`*^9}},
+ CellLabel->"Out[28]=",ExpressionUUID->"5aa7b811-a9e8-d341-813c-d3d7134cd9bd"],
+
+Cell[BoxData["\<\"Es sim\[EAcute]trica\"\>"], "Output",
+ CellChangeTimes->{{3.951883330396309*^9, 3.9518833555841446`*^9}},
+ CellLabel->"Out[29]=",ExpressionUUID->"d8aff2f6-488f-4243-b087-0927c8149ea4"],
+
+Cell[BoxData["\<\"No es antisim\[EAcute]trica\"\>"], "Output",
+ CellChangeTimes->{{3.951883330396309*^9, 3.951883355602314*^9}},
+ CellLabel->"Out[30]=",ExpressionUUID->"944c75e2-e3e8-3c41-aaea-0ed26e14e427"],
+
+Cell[BoxData["\<\"Matriz B\"\>"], "Output",
+ CellChangeTimes->{{3.951883330396309*^9, 3.9518833556068497`*^9}},
+ CellLabel->"Out[31]=",ExpressionUUID->"e7b25c66-b3f8-3e4b-8302-f5c04cfba9c2"],
+
+Cell[BoxData["\<\"No es sim\[EAcute]trica\"\>"], "Output",
+ CellChangeTimes->{{3.951883330396309*^9, 3.9518833556108494`*^9}},
+ CellLabel->"Out[32]=",ExpressionUUID->"031c20e7-7881-4443-bba9-d0a0169b37e5"],
+
+Cell[BoxData["\<\"No es antisim\[EAcute]trica\"\>"], "Output",
+ CellChangeTimes->{{3.951883330396309*^9, 3.951883355615364*^9}},
+ CellLabel->"Out[33]=",ExpressionUUID->"166b0b6a-260d-ee4a-8a11-daeb900e5955"],
+
+Cell[BoxData["\<\"Matriz C\"\>"], "Output",
+ CellChangeTimes->{{3.951883330396309*^9, 3.951883355618372*^9}},
+ CellLabel->"Out[34]=",ExpressionUUID->"8355bb05-9a17-d74e-ae86-302538d6efe9"],
+
+Cell[BoxData["\<\"No es sim\[EAcute]trica\"\>"], "Output",
+ CellChangeTimes->{{3.951883330396309*^9, 3.951883355621372*^9}},
+ CellLabel->"Out[35]=",ExpressionUUID->"73d4e9c2-0bdc-f243-a1a2-054adb67c081"],
+
+Cell[BoxData["\<\"Es antisim\[EAcute]trica\"\>"], "Output",
+ CellChangeTimes->{{3.951883330396309*^9, 3.9518833556248875`*^9}},
+ CellLabel->"Out[36]=",ExpressionUUID->"b6e9eb38-ca85-5b43-97a8-eac4895c252b"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Ejercicio 6, Relaci\[OAcute]n 3:", "Subsection",
+ CellChangeTimes->{{3.9518833824890995`*^9, 
+  3.9518834106718616`*^9}},ExpressionUUID->"886e76de-59a5-c14e-afdd-\
+a3d0f6ca9cd8"],
+
+Cell["Demostrar que el anillo ", "Text",
+ CellChangeTimes->{{3.9518834470605793`*^9, 3.951883448453863*^9}, {
+  3.9518834838478374`*^9, 
+  3.9518834869507446`*^9}},ExpressionUUID->"0871714a-a4fb-c644-b4ea-\
+a8387d2bcd7e"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
@@ -811,6 +955,27 @@ Cell[CellGroupData[{
 Cell[22352, 645, 302, 6, 50, "Code",ExpressionUUID->"10ca11ba-3bc8-3a4b-a01e-50611837d477"],
 Cell[22657, 653, 2176, 70, 91, "Output",ExpressionUUID->"bb1f510a-0ff7-5847-9dc5-5995fd8d2ee8"]
 }, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[24882, 729, 180, 3, 53, "Subsection",ExpressionUUID->"81e6cf93-7e0a-4341-8453-273c0ea15023"],
+Cell[25065, 734, 238, 6, 33, "Text",ExpressionUUID->"fa9ea35c-fc34-7c41-9f26-31e2d321c4e5"],
+Cell[25306, 742, 719, 26, 182, "Code",ExpressionUUID->"d190f917-9614-b043-9585-fa3c0afd3e8b"],
+Cell[CellGroupData[{
+Cell[26050, 772, 1766, 45, 208, "Code",ExpressionUUID->"754b82c5-4b04-6049-a523-297d81255fcc"],
+Cell[27819, 819, 190, 2, 32, "Output",ExpressionUUID->"5aa7b811-a9e8-d341-813c-d3d7134cd9bd"],
+Cell[28012, 823, 202, 2, 32, "Output",ExpressionUUID->"d8aff2f6-488f-4243-b087-0927c8149ea4"],
+Cell[28217, 827, 207, 2, 32, "Output",ExpressionUUID->"944c75e2-e3e8-3c41-aaea-0ed26e14e427"],
+Cell[28427, 831, 190, 2, 32, "Output",ExpressionUUID->"e7b25c66-b3f8-3e4b-8302-f5c04cfba9c2"],
+Cell[28620, 835, 205, 2, 32, "Output",ExpressionUUID->"031c20e7-7881-4443-bba9-d0a0169b37e5"],
+Cell[28828, 839, 207, 2, 32, "Output",ExpressionUUID->"166b0b6a-260d-ee4a-8a11-daeb900e5955"],
+Cell[29038, 843, 188, 2, 32, "Output",ExpressionUUID->"8355bb05-9a17-d74e-ae86-302538d6efe9"],
+Cell[29229, 847, 203, 2, 32, "Output",ExpressionUUID->"73d4e9c2-0bdc-f243-a1a2-054adb67c081"],
+Cell[29435, 851, 206, 2, 32, "Output",ExpressionUUID->"b6e9eb38-ca85-5b43-97a8-eac4895c252b"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[29690, 859, 184, 3, 37, "Subsection",ExpressionUUID->"886e76de-59a5-c14e-afdd-a3d0f6ca9cd8"],
+Cell[29877, 864, 221, 4, 33, "Text",ExpressionUUID->"0871714a-a4fb-c644-b4ea-a8387d2bcd7e"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
