@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[     93835,       1625]
-NotebookOptionsPosition[     91815,       1587]
-NotebookOutlinePosition[     92235,       1603]
-CellTagsIndexPosition[     92192,       1600]
+NotebookDataLength[     96539,       1681]
+NotebookOptionsPosition[     93474,       1631]
+NotebookOutlinePosition[     93911,       1648]
+CellTagsIndexPosition[     93868,       1645]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -1580,13 +1580,58 @@ Se pide:
 \>", "Text",
  CellChangeTimes->{{3.951660463949127*^9, 
   3.951660474843849*^9}},ExpressionUUID->"7ead5060-d245-a643-82e5-\
-0af7cc919e1b"]
+0af7cc919e1b"],
+
+Cell[BoxData[""], "Code",ExpressionUUID->"91822dbf-8e68-4c4c-b02e-4edf3ce97003"],
+
+Cell["\tii. Calcular sus componentes conexas", "Text",
+ CellChangeTimes->{{3.9523288582237415`*^9, 
+  3.952328881238714*^9}},ExpressionUUID->"2c8a78de-5fb9-9846-8149-\
+1b9d63a58e0d"],
+
+Cell[BoxData[""], "Code",ExpressionUUID->"acc5861b-1682-4244-88c6-c58aa9c532c7"],
+
+Cell["\tiii. Comprobar si es de Euler", "Text",
+ CellChangeTimes->{{3.952328947449394*^9, 
+  3.9523289618055305`*^9}},ExpressionUUID->"f03aacb2-21d3-3f4f-9f24-\
+f8c1fcd721c7"],
+
+Cell[BoxData[""], "Code",ExpressionUUID->"defc33c9-3570-f543-85e5-682d83b5b129"],
+
+Cell["\tiv. Comprobar si es de Hamilton", "Text",
+ CellChangeTimes->{{3.952328969026165*^9, 
+  3.9523289911622696`*^9}},ExpressionUUID->"f9a4ac6d-de3a-3c44-b5c9-\
+55822edfb273"],
+
+Cell[BoxData[""], "Code",ExpressionUUID->"800d08d0-293f-d340-be1a-f4118e71cd1b"],
+
+Cell["\<\
+\tv. Utilizar el teorema del n\[UAcute]mero de caminos para calcular la \
+distancia entre el primer y \[UAcute]ltimo v\[EAcute]rtice de cada grafo\
+\>", "Text",
+ CellChangeTimes->{{3.9523290006153526`*^9, 
+  3.952329046739462*^9}},ExpressionUUID->"36d8f89c-9f94-7d41-ac62-\
+ce9ffcadc7a4"],
+
+Cell[BoxData[""], "Code",ExpressionUUID->"f73db663-cbbb-b649-be49-a7dda58878fd"],
+
+Cell["\<\
+\tvi. Determinar, si existen, un ciclo de Euler, un ciclo de Hamilton y una \
+geod\[EAcute]sica entre el primer y \[UAcute]ltimo v\[EAcute]rtice de cada \
+grafo\
+\>", "Text",
+ CellChangeTimes->{{3.9523290562842293`*^9, 
+  3.9523291076787243`*^9}},ExpressionUUID->"206068f5-c5f5-424e-b3f0-\
+735f927242d9"],
+
+Cell[BoxData[""], "Code",ExpressionUUID->"2a4513d1-adfa-f448-a9e2-0360a0ed8717"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{574.8, 573.6},
-WindowMargins->{{Automatic, -4.7999999999999545`}, {Automatic, 0}},
+WindowSize->{1152, 579.6},
+WindowMargins->{{
+  Automatic, -5.399999999999864}, {-5.399999999999977, Automatic}},
 FrontEndVersion->"14.1 para Microsoft Windows (64-bit) (July 16, 2024)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"fd0cd67a-a225-6c43-8621-158809ce6861"
@@ -1617,13 +1662,24 @@ Cell[CellGroupData[{
 Cell[2275, 69, 161, 3, 53, "Subsection",ExpressionUUID->"c5a4be39-90ef-6e4e-af66-b97ca2f40ac9"],
 Cell[2439, 74, 220, 5, 33, "Text",ExpressionUUID->"5a639f90-e334-3843-9156-13eaea88c0d1"],
 Cell[2662, 81, 216, 5, 33, "Text",ExpressionUUID->"c6d8e224-cca4-9f4f-8bb4-5fe67631ae18"],
-Cell[2881, 88, 43245, 714, 287, "Input",ExpressionUUID->"e2af87ce-caf1-6c40-a5a1-23562d569ce3"],
-Cell[46129, 804, 34131, 564, 193, "Input",ExpressionUUID->"dc1a5bc1-d5a3-6645-94e0-4f459eb0e905"],
+Cell[2881, 88, 43245, 714, 352, "Input",ExpressionUUID->"e2af87ce-caf1-6c40-a5a1-23562d569ce3"],
+Cell[46129, 804, 34131, 564, 238, "Input",ExpressionUUID->"dc1a5bc1-d5a3-6645-94e0-4f459eb0e905"],
 Cell[80263, 1370, 164, 3, 33, "Text",ExpressionUUID->"48d8a460-dc2b-9646-8296-de96ebf33efc"],
 Cell[80430, 1375, 5464, 95, 70, "Input",ExpressionUUID->"70c364ee-4094-8d40-a019-699859385035"],
 Cell[85897, 1472, 222, 5, 33, "Text",ExpressionUUID->"a19ddd56-69ac-e346-b6e0-8c06c03a2e0e"],
 Cell[86122, 1479, 5464, 95, 70, "Input",ExpressionUUID->"61627e45-20ee-2e4e-b5b4-8a31ee8e0e6d"],
-Cell[91589, 1576, 186, 6, 55, "Text",ExpressionUUID->"7ead5060-d245-a643-82e5-0af7cc919e1b"]
+Cell[91589, 1576, 186, 6, 55, "Text",ExpressionUUID->"7ead5060-d245-a643-82e5-0af7cc919e1b"],
+Cell[91778, 1584, 80, 0, 50, "Code",ExpressionUUID->"91822dbf-8e68-4c4c-b02e-4edf3ce97003"],
+Cell[91861, 1586, 182, 3, 33, "Text",ExpressionUUID->"2c8a78de-5fb9-9846-8149-1b9d63a58e0d"],
+Cell[92046, 1591, 80, 0, 50, "Code",ExpressionUUID->"acc5861b-1682-4244-88c6-c58aa9c532c7"],
+Cell[92129, 1593, 175, 3, 33, "Text",ExpressionUUID->"f03aacb2-21d3-3f4f-9f24-f8c1fcd721c7"],
+Cell[92307, 1598, 80, 0, 50, "Code",ExpressionUUID->"defc33c9-3570-f543-85e5-682d83b5b129"],
+Cell[92390, 1600, 177, 3, 33, "Text",ExpressionUUID->"f9a4ac6d-de3a-3c44-b5c9-55822edfb273"],
+Cell[92570, 1605, 80, 0, 50, "Code",ExpressionUUID->"800d08d0-293f-d340-be1a-f4118e71cd1b"],
+Cell[92653, 1607, 298, 6, 33, "Text",ExpressionUUID->"36d8f89c-9f94-7d41-ac62-ce9ffcadc7a4"],
+Cell[92954, 1615, 80, 0, 50, "Code",ExpressionUUID->"f73db663-cbbb-b649-be49-a7dda58878fd"],
+Cell[93037, 1617, 314, 7, 33, "Text",ExpressionUUID->"206068f5-c5f5-424e-b3f0-735f927242d9"],
+Cell[93354, 1626, 80, 0, 50, "Code",ExpressionUUID->"2a4513d1-adfa-f448-a9e2-0360a0ed8717"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
