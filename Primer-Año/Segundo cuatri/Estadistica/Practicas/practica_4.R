@@ -1,3 +1,58 @@
+pbinom(19,size=50,prob=0.4)
+1-0.4464764
+pnorm25<-pnorm((25-50*0.4)/sqrt(50*0.4*0.6))
+pnorm15<-pnorm((15-50*0.4)/sqrt(50*0.4*0.6))
+pnorm25-pnorm15
+
+pnorm1<-pnorm((5*sqrt(3))/6, mean=0, sd=1)
+pnorm2<-pnorm((-5*sqrt(3)/6), mean=0, sd=1)
+pnorm1-pnorm2
+
+x<-0:50
+p<-dbinom(x,50,0.4)
+plot(x,p, type="h", col="blue", lwd=2,
+     xlab="Clientes satisfechos", ylab="Probabilidad",
+     main="FuncionMasa de Probabilidad (Binomiall)")
+
+x<-0:50
+densidad<-dnorm(x, mean=20, sd=sqrt(50*0.4*0.6))
+
+lines(x,densidad, lwd=2, col="red")
+
+
+###### EJERCICIO 3
+
+dpois(3, lambda=2)
+1-ppois(4, lambda=4)
+
+
+###### EJERCICIO 4
+
+dpois(8,lambda=5)
+ppois(2, lambda=2.5)
+
+###### EJERCICIO 5
+pexp(0.1, rate=0.2)
+1-pexp(0.5, rate=0.2)
+qexp(0.9, rate=0.2)
+qexp(0.99, rate=0.2)
+
+######### EJERCICIO 6
+
+1-pexp(0.60, rate=0.50)
+
+######### EJERCICIO 9 
+dhyper(3,m=15,n=10,k=5)
+
+1-phyper(3, m=10, n=15, k=5)
+
+
+######## EJERCICIO EXTRA
+
+1-pexp((1/3), rate=5)
+
+
+
 ### Ejercicio 1
 ### En los ordenadores de una universidad hay una tasa de infección por un determinado virus informático de 1 :
 ### 100000 por curso académico.
