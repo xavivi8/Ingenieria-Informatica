@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[     18146,        523]
-NotebookOptionsPosition[     13779,        450]
-NotebookOutlinePosition[     14183,        466]
-CellTagsIndexPosition[     14140,        463]
+NotebookDataLength[     22614,        643]
+NotebookOptionsPosition[     17234,        556]
+NotebookOutlinePosition[     17638,        572]
+CellTagsIndexPosition[     17595,        569]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -430,20 +430,126 @@ Cell[TextData[{
    SuperscriptBox["x", "2"], TraditionalForm]],
   FormatType->TraditionalForm,ExpressionUUID->
   "8343c11d-5d2a-fd4a-a93f-a5b2de099cb9"],
- "+1\nCalcular las coordenadas del polinomio 5",
+ "+1"
+}], "Text",
+ CellChangeTimes->{{3.9542970884740067`*^9, 3.954297293441021*^9}, {
+  3.9542973839560547`*^9, 3.954297385178356*^9}, {3.9542976509878597`*^9, 
+  3.9542976512621193`*^9}},ExpressionUUID->"2272466a-1a01-b842-8a2a-\
+5e82dda12e29"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"p3", "[", "_x", "]"}], ":=", 
+  FormBox[
+   RowBox[{
+    SuperscriptBox["x", "2"], "+", "x", "+", "1", " "}],
+   TraditionalForm]}], "\n", 
+ RowBox[{
+  RowBox[{"q3", "[", "_x", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"2", "x"}], "+", "1"}]}], "\n", 
+ RowBox[{
+  RowBox[{"r3", "[", "_x", "]"}], ":=", 
+  FormBox[
+   RowBox[{
+    SuperscriptBox["x", "2"], "+", "1"}],
+   TraditionalForm]}]}], "Code",
+ CellChangeTimes->{{3.954297498631029*^9, 3.954297539096304*^9}, {
+  3.9542976794024773`*^9, 3.9542976797059326`*^9}},
+ CellLabel->"In[31]:=",ExpressionUUID->"0ac000c9-8c4d-dc4f-b2fe-e556d403bd57"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"B3", "=", 
+  RowBox[{"(", GridBox[{
+     {"1", "0", "1"},
+     {"1", "2", "0"},
+     {"1", "1", "1"}
+    }], ")"}]}]], "Code",
+ CellChangeTimes->{{3.95429807661841*^9, 3.954298106409092*^9}, {
+  3.954298186356615*^9, 3.954298186655411*^9}},
+ CellLabel->"In[35]:=",ExpressionUUID->"4e90ae9c-f12e-8545-8b0a-dca54b511654"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "1", ",", "1"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.9542981683339577`*^9, 3.95429818742214*^9}},
+ CellLabel->"Out[35]=",ExpressionUUID->"d20a033f-7b08-1742-816c-41e19127c47d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{"\"\<Cuadrada\>\"", "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"Dimensions", "[", "B3", "]"}], "[", 
+    RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", 
+   RowBox[{
+    RowBox[{"Dimensions", "[", "B3", "]"}], "[", 
+    RowBox[{"[", "2", "]"}], "]"}]}], 
+  RowBox[{"(*", "Cuadrada", "*)"}]}], "\n", "\"\<Regular\>\"", "\n", 
+ RowBox[{
+  RowBox[{"Det", "[", "B3", "]"}], "\[NotEqual]", "0", " ", 
+  RowBox[{"(*", "Regular", "*)"}]}]}], "Code",
+ CellChangeTimes->{{3.954298195157341*^9, 3.954298223259508*^9}, {
+  3.95429826942367*^9, 3.9542982801217804`*^9}},
+ CellLabel->"In[38]:=",ExpressionUUID->"9b1c22ef-d2fb-d140-829d-5e6200643d28"],
+
+Cell[BoxData["\<\"Cuadrada\"\>"], "Output",
+ CellChangeTimes->{3.9542982240483837`*^9, 3.9542982808901405`*^9},
+ CellLabel->"Out[38]=",ExpressionUUID->"1569db44-4733-b948-9c43-cd16f8643be1"],
+
+Cell[BoxData["True"], "Output",
+ CellChangeTimes->{3.9542982240483837`*^9, 3.9542982808901405`*^9},
+ CellLabel->"Out[39]=",ExpressionUUID->"8b7ec878-90cb-8e4a-a8e9-934158775e2a"],
+
+Cell[BoxData["\<\"Regular\"\>"], "Output",
+ CellChangeTimes->{3.9542982240483837`*^9, 3.9542982808901405`*^9},
+ CellLabel->"Out[40]=",ExpressionUUID->"2f9eb737-5174-3045-a66b-f84d7829ebf0"],
+
+Cell[BoxData["True"], "Output",
+ CellChangeTimes->{3.9542982240483837`*^9, 3.9542982808901405`*^9},
+ CellLabel->"Out[41]=",ExpressionUUID->"cfbeb023-f2c9-f046-910a-c33ddc4fbbb1"]
+}, Open  ]],
+
+Cell["Es base", "Text",
+ CellChangeTimes->{{3.954298228373171*^9, 
+  3.954298235719839*^9}},ExpressionUUID->"be72765c-0ae5-504d-91d5-\
+35203e7bbcd8"],
+
+Cell[TextData[{
+ "Calcular las coordenadas del polinomio 5",
  Cell[BoxData[
   FormBox[
    SuperscriptBox["x", "2"], TraditionalForm]],
   FormatType->TraditionalForm,ExpressionUUID->
-  "c0cb1e7d-e17d-c440-b5f8-ba602ace3eb8"],
+  "036c6aba-891a-1741-9c38-98ccac81c565"],
  "+3x+2"
 }], "Text",
- CellChangeTimes->{{3.9542970884740067`*^9, 3.954297293441021*^9}, {
-  3.9542973839560547`*^9, 
-  3.954297385178356*^9}},ExpressionUUID->"2272466a-1a01-b842-8a2a-\
-5e82dda12e29"],
+ CellChangeTimes->{
+  3.954297657130684*^9},ExpressionUUID->"3abd8af2-963c-bb44-bbcc-\
+3b6602e80989"],
 
-Cell[BoxData[""], "Code",ExpressionUUID->"0ac000c9-8c4d-dc4f-b2fe-e556d403bd57"]
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"b3", "[", "_x", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"5", 
+    FormBox[
+     SuperscriptBox["x", "2"],
+     TraditionalForm]}], "+", 
+   RowBox[{"3", "x"}], "+", "2"}]}]], "Code",
+ CellChangeTimes->{{3.954297667793379*^9, 
+  3.954297675098774*^9}},ExpressionUUID->"910c4860-21ec-714c-b81d-\
+32e2c17cd4ce"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
@@ -520,8 +626,22 @@ Cell[12249, 400, 154, 2, 32, "Output",ExpressionUUID->"2c1dd3d2-860f-8a4e-91ec-2
 }, Closed]],
 Cell[CellGroupData[{
 Cell[12452, 408, 214, 4, 37, "Subsection",ExpressionUUID->"e6aa2864-5b15-dc4b-a6c7-78e9530e2217"],
-Cell[12669, 414, 987, 29, 77, "Text",ExpressionUUID->"2272466a-1a01-b842-8a2a-5e82dda12e29"],
-Cell[13659, 445, 80, 0, 50, "Code",ExpressionUUID->"0ac000c9-8c4d-dc4f-b2fe-e556d403bd57"]
+Cell[12669, 414, 821, 23, 55, "Text",ExpressionUUID->"2272466a-1a01-b842-8a2a-5e82dda12e29"],
+Cell[13493, 439, 628, 19, 85, "Code",ExpressionUUID->"0ac000c9-8c4d-dc4f-b2fe-e556d403bd57"],
+Cell[CellGroupData[{
+Cell[14146, 462, 343, 9, 77, "Code",ExpressionUUID->"4e90ae9c-f12e-8545-8b0a-dca54b511654"],
+Cell[14492, 473, 406, 10, 32, "Output",ExpressionUUID->"d20a033f-7b08-1742-816c-41e19127c47d"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14935, 488, 656, 15, 102, "Code",ExpressionUUID->"9b1c22ef-d2fb-d140-829d-5e6200643d28"],
+Cell[15594, 505, 190, 2, 32, "Output",ExpressionUUID->"1569db44-4733-b948-9c43-cd16f8643be1"],
+Cell[15787, 509, 178, 2, 32, "Output",ExpressionUUID->"8b7ec878-90cb-8e4a-a8e9-934158775e2a"],
+Cell[15968, 513, 189, 2, 32, "Output",ExpressionUUID->"2f9eb737-5174-3045-a66b-f84d7829ebf0"],
+Cell[16160, 517, 178, 2, 32, "Output",ExpressionUUID->"cfbeb023-f2c9-f046-910a-c33ddc4fbbb1"]
+}, Open  ]],
+Cell[16353, 522, 149, 3, 33, "Text",ExpressionUUID->"be72765c-0ae5-504d-91d5-35203e7bbcd8"],
+Cell[16505, 527, 347, 11, 33, "Text",ExpressionUUID->"3abd8af2-963c-bb44-bbcc-3b6602e80989"],
+Cell[16855, 540, 339, 11, 50, "Code",ExpressionUUID->"910c4860-21ec-714c-b81d-32e2c17cd4ce"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
