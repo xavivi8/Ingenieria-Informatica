@@ -1,0 +1,131 @@
+<ui:composition template="/WEB-INF/plantillas/general.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="contenido">
+        <section class="section">
+            <div class="container">
+                <!-- Mensaje global de éxito -->
+                <h:panelGroup rendered="#{not empty requestScope.mensajeExito}">
+                    <div class="notification is-success">
+                        <h:outputText value="#{requestScope.mensajeExito}" />
+                    </div>
+                </h:panelGroup>
+
+                <div class="columns">
+                    <!-- Columna izquierda: Formulario de datos de pago -->
+                    <div class="column is-6">
+                        <div class="box">
+                            <h2 class="title is-4">Datos de pago</h2>
+                            <h:form id="formulario">
+                                <div class="columns is-multiline">
+                                    <div class="column is-12">
+                                        <div class="field">
+                                            <label class="label">Dirección del domicilio</label>
+                                            <div class="control">
+                                                <h:inputText id="direccion" value="#{alquilerCtrl.alquiler.direccion}"
+                                                             styleClass="input" required="true" />
+                                            </div>
+                                            <h:panelGroup>
+                                                <h:outputText id="errDireccion" styleClass="help is-danger" />
+                                            </h:panelGroup>
+                                        </div>
+                                    </div>
+                                    <div class="column is-6">
+                                        <div class="field">
+                                            <label class="label">Número de cuenta</label>
+                                            <div class="control">
+                                                <h:inputText id="numCuenta" value="#{alquilerCtrl.alquiler.numCuenta}"
+                                                             styleClass="input" required="true">
+                                                    <f:validateLength minimum="20" maximum="20"/>
+                                                </h:inputText>
+                                            </div>
+                                            <h:panelGroup>
+                                                <h:outputText id="errNumCuenta" styleClass="help is-danger" />
+                                            </h:panelGroup>
+                                        </div>
+                                    </div>
+                                    <div class="column is-6">
+                                        <div class="field">
+                                            <label class="label">Fecha de Caducidad</label>
+                                            <div class="control">
+                                                <p:datePicker id="fechaCaducidad" value="#{alquilerCtrl.alquiler.fechaCaducidad}"
+                                                              locale="es" required="true" requiredMessage="La fecha de caducidad es obligatoria"
+                                                              showIcon="true" yearNavigator="true" yearRange="1900:2025"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="column is-4">
+                                        <div class="field">
+                                            <label class="label">CVV</label>
+                                            <div class="control">
+                                                <h:inputText id="cvv" value="#{alquilerCtrl.alquiler.cvv}"
+                                                             styleClass="input" required="true" validatorMessage="CVV tiene 3 dígitos">
+                                                    <f:validateLength minimum="3" maximum="3"/>
+                                                </h:inputText>
+                                            </div>
+                                            <h:panelGroup>
+                                                <h:outputText id="errCvv" styleClass="help is-danger" />
+                                            </h:panelGroup>
+                                        </div>
+                                    </div>
+                                    <div class="column is-12">
+                                        <div class="field">
+                                            <div class="control">
+                                                <h:commandLink value="Confirmar datos" action="#{alquilerCtrl.crea(request.userPrincipal.name)}" styleClass="button is-primary is-fullwidth" />
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </h:form>
+                            <!-- Muestra los mensajes de validación u error -->
+                            <h:messages styleClass="notification is-danger"/>
+                        </div>
+                    </div>
+
+                    <!-- Columna derecha: Listado de libros en el carrito -->
+                    <div class="column is-6">
+                        <div class="box">
+                            <h2 class="title is-4 mb-3">Libros en el carrito</h2>
+                            <h:form id="carritoForm">
+                                <!-- Mensaje si el carrito está vacío -->
+                                <h:panelGroup rendered="#{empty clienteCtrl.cliente.librosCarrito}">
+                                    <div class="notification is-info">
+                                        No hay libros en el carrito.
+                                    </div>
+                                </h:panelGroup>
+                                <!-- Listado de libros cuando el carrito contiene elementos -->
+                                <h:panelGroup rendered="#{not empty clienteCtrl.cliente.librosCarrito}">
+                                    <ul class="mt-0">
+                                        <ui:repeat var="libro" value="#{clienteCtrl.cliente.librosCarrito}">
+                                            <li class="is-flex is-justify-content-space-between is-align-items-center mb-2">
+                                                <span>#{libro.titulo}</span>
+                                                <h:commandButton value="Eliminar"
+                                                                 action="#{clienteCtrl.borrarC(libro.isbn)}"
+                                                                 styleClass="button is-danger"
+                                                                 title="Eliminar del carrito"/>
+                                            </li>
+                                        </ui:repeat>
+                                    </ul>
+                                </h:panelGroup>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Cargar jQuery y validacionLogin.js -->
+        <h:outputScript library="js" name="validacionAlquiler.js" />
+        <style>
+            .help.is-danger {
+                color: #ff4040;
+                font-size: 0.9em;
+                margin-top: 5px;
+            }
+        </style>
+    </ui:define>
+</ui:composition>

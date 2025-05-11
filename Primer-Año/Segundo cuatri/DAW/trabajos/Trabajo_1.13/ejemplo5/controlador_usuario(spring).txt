@@ -1,0 +1,69 @@
+package ujaen.daw.springmvcproject.controller;
+
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import ujaen.daw.springmvcproject.modelo.Usuario;
+import ujaen.daw.springmvcproject.modelo.dao.UsuarioDAO;
+
+import java.util.List;
+import java.util.Optional;
+
+@Controller
+@RequestMapping("/usuarios")
+public class UsuarioController {
+
+    @Autowired
+    @Qualifier("usuarioDAOJpa")
+    private UsuarioDAO usuarioDAO;
+
+    @GetMapping
+    public String listarUsuarios(ModelMap model){
+        List<Usuario> usuarios = usuarioDAO.buscaTodos();
+        model.addAttribute("usuarios", usuarios);
+        return "usuarios";
+    }
+
+    @GetMapping("/alta")
+    public String altaUsuario(ModelMap model){
+        model.addAttribute("usuario", new Usuario());
+        return "altaUsuario";
+    }
+
+    @PostMapping("/alta")
+    public String creaUser(@ModelAttribute("usuario") @Valid Usuario usuario, BindingResult result, ModelMap model){
+        if(!result.hasErrors()){
+            usuarioDAO.crea(usuario);
+            model.clear();
+        }else{
+            return "altaUsuario";
+        }
+
+        return "redirect:/usuarios";
+    }
+
+    @GetMapping("/ver/{dni}")
+    public String verUsuario(@PathVariable("dni") String dni, ModelMap model) {
+        Usuario usuario = usuarioDAO.buscaId(dni);
+        if (usuario != null) {
+            model.addAttribute("usuario", usuario);
+            return "visualiza_usr";
+        } else {
+            return "redirect:/usuarios?notFound"; // Por si no existe
+        }
+    }
+
+    @PostMapping
+    public String saveUsuario(@Valid @ModelAttribute("usuario") Usuario usuario, BindingResult result, ModelMap model){
+        if(result.hasErrors()){
+            return "altaUsuario";
+        }
+
+        usuarioDAO.guarda(usuario);
+        return "redirect:/usuarios";
+    }
+}

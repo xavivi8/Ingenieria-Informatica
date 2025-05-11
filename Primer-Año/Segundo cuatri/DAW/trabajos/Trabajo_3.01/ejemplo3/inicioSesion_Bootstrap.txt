@@ -1,0 +1,39 @@
+<ui:composition template="/WEB-INF/plantillas/general.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+   <ui:define name="contenido">
+      <h1 style="text-align: center">Inicio de sesión</h1>
+      <div class="container">
+         <div class="form-container">
+            <h:messages class="alert alert-danger"/>
+            <h:form id="frLogin">
+               <label>Usuario</label>
+               <h:inputText id="username" value="#{loginCtrl.username}" class="form-control"/>
+               <h:panelGroup>
+                  <h:outputText id="errUsername" styleClass="error"/>
+               </h:panelGroup>
+               <label>Clave</label>
+               <h:inputSecret id="password" value="#{loginCtrl.password}" class="form-control"/>
+               <h:panelGroup>
+                  <h:outputText id="errPassword" styleClass="error"/>
+               </h:panelGroup>
+               <h:commandLink class="button is-success" value="Identificarse" action="#{loginCtrl.login()}"/>
+            </h:form>
+         </div>
+      </div>
+      <!-- Cargar jQuery y validacionLogin.js -->
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type=""></script>
+      <h:outputScript library="js" name="validacionLogin.js"/>
+      <style>
+         .error {
+            color: red;
+            font-size: 0.9em;
+            display: block;
+            margin-top: 5px;
+         }
+      </style>
+   </ui:define>
+</ui:composition>

@@ -1,0 +1,14 @@
+EJEMPLO DE GET CON AXIOS
+import axios from 'axios';
+axios.get('https://api.example.com/data')
+  .then(response => verDatos(response.data))
+  .catch(error => console.error('Error'));
+
+EJEMPLO DE POST CON AXIOS
+import axios from 'axios';
+axios.post('https://api.example.com/data', objeto)
+  .then(response => verDatos(response.data))
+  .catch(error => console.error('Error'));
+
+
+

@@ -1,0 +1,61 @@
+<div class="resenia-form p-4 border rounded bg-light">
+  <h5>Reseñar: {{ pista?.nombre }}</h5>
+
+  <form [formGroup]="form" (ngSubmit)="handleSubmit()">
+    <!-- Puntuación -->
+    <div class="mb-3">
+      <label for="puntuacion" class="form-label">Puntuación (1–5)</label>
+      <input
+        id="puntuacion"
+        type="number"
+        formControlName="puntuacion"
+        class="form-control"
+        min="1"
+        max="5"
+      />
+      <div ngIf="form.controls.puntuacion.touched && form.controls.puntuacion.invalid"
+           class="text-danger small">
+        <divngIf="form.controls.puntuacion.errors?.required">
+          La puntuación es obligatoria
+        </div>
+        <div ngIf="form.controls.puntuacion.errors?.min || form.controls.puntuacion.errors?.max">
+          Debe estar entre 1 y 5
+        </div>
+      </div>
+    </div>
+
+    <!-- Comentario -->
+    <div class="mb-3">
+      <label for="comentario" class="form-label">Comentario</label>
+      <textarea
+        id="comentario"
+        formControlName="comentario"
+        class="form-control"
+        rows="3"
+        maxlength="200"
+      ></textarea>
+      <divngIf="form.controls.comentario.touched && form.controls.comentario.invalid"
+           class="text-danger small">
+        <div ngIf="form.controls.comentario.errors?.required">
+          El comentario es obligatorio
+        </div>
+        <divngIf="form.controls.comentario.errors?.maxlength">
+          Máximo 200 caracteres
+        </div>
+      </div>
+    </div>
+
+    <!-- Botón Enviar -->
+    <div class="d-grid">
+      <button type="submit" class="btn btn-primary" [disabled]="loading">
+        <span ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+        {{ loading ? 'Enviando…' : 'Enviar Reseña' }}
+      </button>
+    </div>
+
+    <!-- Error genérico -->
+    <divngIf="submitError" class="text-danger mt-2 small">
+      {{ submitError }}
+    </div>
+  </form>
+</div>

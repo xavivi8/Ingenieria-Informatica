@@ -1,0 +1,182 @@
+<ui:composition template="/WEB-INF/plantillas/general.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="contenido">
+        <section class="section">
+            <div class="container">
+                <h1 class="title has-text-centered">Registro de nuevo usuario</h1>
+                <div class="box">
+                    <h:messages warnClass="notification is-warning" infoClass="notification is-info" errorClass="notification is-danger"/>
+
+                    <h:form id="frRegistro">
+                        <div class="columns is-multiline">
+                            <div class="column is-3">
+                                <div class="field">
+                                    <label class="label">Nombre</label>
+                                    <div class="control">
+                                        <h:inputText id="nombre" value="#{clienteCtrl.cliente.nombre}" styleClass="input" required="true"
+                                                     requiredMessage="El nombre es obligatorio"/>
+                                    </div>
+                                    <h:panelGroup>
+                                        <h:outputText id="errNombre" styleClass="help is-danger" />
+                                    </h:panelGroup>
+                                </div>
+                            </div>
+                            <div class="column is-6">
+                                <div class="field">
+                                    <label class="label">Apellidos</label>
+                                    <div class="control">
+                                        <h:inputText id="apellidos" value="#{clienteCtrl.cliente.apellidos}" styleClass="input" required="true"
+                                                     requiredMessage="Los apellidos son obligatorios"/>
+                                    </div>
+                                    <h:panelGroup>
+                                        <h:outputText id="errApellidos" styleClass="help is-danger" />
+                                    </h:panelGroup>
+                                </div>
+                            </div>
+                            <div class="column is-3">
+                                <div class="field">
+                                    <label class="label">DNI</label>
+                                    <div class="control">
+                                        <h:inputText id="dni" value="#{clienteCtrl.cliente.dni}" styleClass="input" required="true"
+                                                     requiredMessage="El DNI es obligatorio"/>
+                                    </div>
+                                    <h:panelGroup>
+                                        <h:outputText id="errDni" styleClass="help is-danger" />
+                                    </h:panelGroup>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="columns is-multiline">
+                            <div class="column is-3">
+                                <div class="field">
+                                    <label class="label">Fecha de Nacimiento</label>
+                                    <div class="control">
+                                        <p:datePicker id="fechaNacimiento" value="#{clienteCtrl.cliente.fechaNacimiento}"
+                                                      locale="es" required="true" requiredMessage="La fecha de nacimiento es obligatoria"
+                                                      showIcon="true" yearNavigator="true" yearRange="1900:2025"/>
+                                    </div>
+                                    <h:panelGroup>
+                                        <h:outputText id="errFechaNacimiento" styleClass="help is-danger" />
+                                    </h:panelGroup>
+                                </div>
+                            </div>
+                            <div class="column is-3">
+                                <div class="field">
+                                    <label class="label">Teléfono móvil</label>
+                                    <div class="control">
+                                        <h:inputText id="telefono" value="#{clienteCtrl.cliente.telefono}" styleClass="input" required="true"
+                                                     requiredMessage="El número de teléfono es obligatorio"/>
+                                    </div>
+                                    <h:panelGroup>
+                                        <h:outputText id="errTelefono" styleClass="help is-danger" />
+                                    </h:panelGroup>
+                                </div>
+                            </div>
+                            <div class="column is-4">
+                                <div class="field">
+                                    <label class="label">Correo electrónico</label>
+                                    <div class="control">
+                                        <h:inputText id="correo" value="#{clienteCtrl.cliente.correo}" styleClass="input" required="true"
+                                                     requiredMessage="El correo electrónico es obligatorio"/>
+                                    </div>
+                                    <h:panelGroup>
+                                        <h:outputText id="errCorreo" styleClass="help is-danger" />
+                                    </h:panelGroup>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="columns is-multiline">
+                            <div class="column is-4">
+                                <div class="field">
+                                    <label class="label">Contraseña</label>
+                                    <div class="control">
+                                        <h:inputSecret id="password" value="#{clienteCtrl.cliente.password}" styleClass="input" required="true"
+                                                       requiredMessage="La contraseña para registrarse es obligatoria"/>
+                                    </div>
+                                    <h:panelGroup>
+                                        <h:outputText id="errPassword" styleClass="help is-danger" />
+                                    </h:panelGroup>
+                                </div>
+                            </div>
+                            <div class="column is-3">
+                                <div class="field">
+                                    <label class="label">País</label>
+                                    <div class="control">
+                                        <h:inputText id="pais" value="#{clienteCtrl.cliente.pais}" styleClass="input" required="true"
+                                                     requiredMessage="El país es obligatorio"/>
+                                    </div>
+                                    <h:panelGroup>
+                                        <h:outputText id="errPais" styleClass="help is-danger" />
+                                    </h:panelGroup>
+                                </div>
+                            </div>
+                            <div class="column is-3">
+                                <div class="field">
+                                    <label class="label">Provincia</label>
+                                    <div class="control">
+                                        ISBN: 978-0-596-52068-7
+                                        <h:inputText id="provincia" value="#{clienteCtrl.cliente.provincia}" styleClass="input" required="true"
+                                                     requiredMessage="La provincia es obligatoria"/>
+                                    </div>
+                                    <h:panelGroup>
+                                        <h:outputText id="errProvincia" styleClass="help is-danger" />
+                                    </h:panelGroup>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="columns is-multiline">
+                            <div class="column is-3">
+                                <div class="field">
+                                    <label class="label">Localidad</label>
+                                    <div class="control">
+                                        <h:inputText id="localidad" value="#{clienteCtrl.cliente.localidad}" styleClass="input" required="true"
+                                                     requiredMessage="La localidad es obligatoria"/>
+                                    </div>
+                                    <h:panelGroup>
+                                        <h:outputText id="errLocalidad" styleClass="help is-danger" />
+                                    </h:panelGroup>
+                                </div>
+                            </div>
+                            <div class="column is-3">
+                                <div class="field">
+                                    <label class="label">Código postal</label>
+                                    <div class="control">
+                                        <h:inputText id="codigoPostal" value="#{clienteCtrl.cliente.codigoPostal}" styleClass="input" required="true"
+                                                     requiredMessage="El código postal es obligatorio"/>
+                                    </div>
+                                    <h:panelGroup>
+                                        <h:outputText id="errCodigoPostal" styleClass="help is-danger" />
+                                    </h:panelGroup>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field is-grouped is-grouped-right">
+                            <div class="control">
+                                <h:commandButton value="Confirmar registro" action="#{clienteCtrl.crea()}" styleClass="button is-primary mr-2"/>
+                                <h:button value="Cancelar" outcome="/inicio" styleClass="button is-danger"/>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </section>
+        <!-- Cargar jQuery y validacionRegistro.js -->
+        <h:outputScript library="js" name="validacionRegistro.js" />
+        <style>
+            .help.is-danger {
+                color: #ff4040;
+                font-size: 0.9em;
+                margin-top: 5px;
+            }
+        </style>
+    </ui:define>
+</ui:composition>

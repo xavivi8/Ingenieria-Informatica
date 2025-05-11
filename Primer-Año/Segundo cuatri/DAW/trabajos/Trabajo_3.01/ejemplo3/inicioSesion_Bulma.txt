@@ -1,0 +1,53 @@
+<ui:composition template="/WEB-INF/plantillas/general.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+   <ui:define name="contenido">
+      <section class="section">
+         <div class="container">
+            <h1 class="title has-text-centered">Inicio de sesión</h1>
+            <div class="columns is-centered">
+               <div class="column is-6">
+                  <h:messages styleClass="notification is-danger" />
+                  <h:form id="frLogin">
+                     <div class="field">
+                        <label class="label">Correo electrónico</label>
+                        <div class="control">
+                           <h:inputText id="username" value="#{loginCtrl.username}" styleClass="input" />
+                        </div>
+                        <h:panelGroup>
+                           <h:outputText id="errUsername" styleClass="help is-danger" />
+                        </h:panelGroup>
+                     </div>
+                     <div class="field">
+                        <label class="label">Clave</label>
+                        <div class="control">
+                           <h:inputSecret id="password" value="#{loginCtrl.password}" styleClass="input" />
+                        </div>
+                        <h:panelGroup>
+                           <h:outputText id="errPassword" styleClass="help is-danger" />
+                        </h:panelGroup>
+                     </div>
+                     <div class="field">
+                        <div class="control">
+                           <h:commandLink value="Identificarse" action="#{loginCtrl.login()}" styleClass="button is-primary is-fullwidth" />
+                        </div>
+                     </div>
+                  </h:form>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- Cargar jQuery y validacionLogin.js -->
+      <h:outputScript library="js" name="validacionLogin.js" />
+      <style>
+         .help.is-danger {
+            color: #ff4040;
+            font-size: 0.9em;
+            margin-top: 5px;
+         }
+      </style>
+   </ui:define>
+</ui:composition>

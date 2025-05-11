@@ -1,0 +1,77 @@
+<ui:composition template="/WEB-INF/plantillas/general.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:daw="jakarta.faces.composite/vistasComponentes"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="contenido">
+        <section class="section">
+            <div class="container">
+                <h1 class="title has-text-centered">Catálogo de Libros</h1>
+
+                <h:form>
+                    <div class="table-container">
+                        <table class="table is-fullwidth">
+                            <tbody>
+                            <ui:repeat var="l" value="#{libroCtrl.librosPaginados}">
+                                <tr>
+                                    <td>
+                                        <div class="columns is-vcentered libroFila">
+                                            <div class="column is-2">
+                                                <img src="#{resource[l.imagen]}" class="imagenTablaLibros" alt="Imagen del Libro" />
+                                            </div>
+                                            <div class="column is-8">
+                                                <div><b>ISBN:</b> #{l.isbn}</div>
+                                                <div><b>Título:</b> #{l.titulo}</div>
+                                                <div><b>Autor:</b> #{l.autor}</div>
+                                                <div><b>Género:</b> #{l.genero}</div>
+                                                <div><b>Sinopsis:</b> #{l.sinopsis}</div>
+                                            </div>
+                                            <div class="column is-2">
+                                                <h:commandButton styleClass="button is-primary is-fullwidth" value="Añadir al carrito"
+                                                                 action="#{clienteCtrl.adicionC(l.isbn,request.userPrincipal.name)}" />
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </ui:repeat>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Controles de paginación -->
+                    <nav class="pagination is-centered" role="navigation" aria-label="Paginación de libros">
+                        <ul class="pagination-list">
+                            <li>
+                                <h:commandLink styleClass="pagination-link"
+                                               value="Primera" action="#{libroCtrl.primeraPagina}"
+                                               disabled="#{libroCtrl.paginaActual == 1 ? 'disabled' : null}" />
+                            </li>
+                            <li>
+                                <h:commandLink styleClass="pagination-link"
+                                               value="Anterior" action="#{libroCtrl.paginaAnterior}"
+                                               disabled="#{libroCtrl.paginaActual == 1 ? 'disabled' : null}" />
+                            </li>
+                            <li>
+                                <span class="pagination-link is-current">
+                                    Página #{libroCtrl.paginaActual} de #{libroCtrl.totalPaginas}
+                                </span>
+                            </li>
+                            <li>
+                                <h:commandLink styleClass="pagination-link"
+                                               value="Siguiente" action="#{libroCtrl.paginaSiguiente}"
+                                               disabled="#{libroCtrl.paginaActual == libroCtrl.totalPaginas ? 'disabled' : null}" />
+                            </li>
+                            <li>
+                                <h:commandLink styleClass="pagination-link"
+                                               value="Última" action="#{libroCtrl.ultimaPagina}"
+                                               disabled="#{libroCtrl.paginaActual == libroCtrl.totalPaginas ? 'disabled' : null}" />
+                            </li>
+                        </ul>
+                    </nav>
+                </h:form>
+            </div>
+        </section>
+    </ui:define>
+</ui:composition>

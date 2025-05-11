@@ -1,0 +1,16 @@
+<div id="app-container">
+  <app-header
+    [userRole]="userRole"
+    [currentComponent]="currentComponentName"
+    (changeComponent)="changeComponent($event)"
+    (logout)="handleLogout()"
+  ></app-header>
+
+  <main class="main-content">
+    <!-- Carga dinámica -->
+    <ng-container
+      *ngComponentOutlet="currentComponentInstance;
+                         ngModuleFactory: null">
+    </ng-container>
+  </main>
+</div>

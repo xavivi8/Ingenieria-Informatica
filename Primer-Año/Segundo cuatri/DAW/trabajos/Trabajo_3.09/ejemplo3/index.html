@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="estilos/style.css" />
+  <link rel="icon" href="icons/img.png" type="image/png">
+  <title class="titulo">Calculadora de Propinas</title>
+</head>
+<body>
+<h1>Calculadora de Propinas</h1>
+
+<label>Total de la cuenta (€):</label>
+<input type="number" id="total" placeholder="Ej. 45.50" />
+
+<label>Porcentaje de propina (%):</label>
+<input type="number" id="porcentaje" placeholder="Ej. 10" />
+
+<button onclick="calcularPropina()">Calcular</button>
+
+<div id="resultado"></div>
+<script src="js/app.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('js/service-worker.js');
+  }
+</script>
+<img src="icons/img.png" alt="Icono de calculadora" style="display:block; margin:1rem auto; max-width:100px;" />
+</body>
+</html>

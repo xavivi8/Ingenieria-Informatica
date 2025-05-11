@@ -1,0 +1,95 @@
+<ui:composition
+        xmlns:ui="jakarta.faces.facelets"
+        xmlns:h="jakarta.faces.html"
+        template="/WEB-INF/plantillas/index.xhtml">
+
+    <ui:define name="top">
+        <h1>Bienvenido a Book Trade</h1>
+        <p>Intercambia libros con otras personas y encuentra nuevas lecturas.</p>
+    </ui:define>
+
+    <ui:define name="extraContent">
+        <!-- Imagen principal -->
+        <img src="#{request.contextPath}/imagenes/booktrade.webp" class="img-fluid mx-auto d-block"
+             alt="Book Trade" style="max-width: 30%; height: auto; margin-top: 20px;" />
+
+        <!-- Notificación solo en esta página -->
+        <h:panelGroup rendered="#{not empty request.remoteUser}">
+            <div id="sse-footer" style="position: absolute; top: 1rem; right: 1rem; width: 250px; z-index: 1100;">
+                <div class="notification-box" style="
+                        background-color: #28a745;
+                        color: white;
+                        border-radius: 0.5rem;
+                        padding: 0.75rem;
+                        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+                        font-size: 0.9rem;
+                        transition: opacity 0.3s ease-in-out;">
+                    <strong>Notificaciones:</strong>
+                    <ul id="mensajes" class="list-unstyled mb-0" style="margin-top: 0.5rem;"></ul>
+                </div>
+            </div>
+
+            <script type="text/javascript">
+                //<![CDATA[
+                (function() {
+                    const mensajesUl = document.getElementById("mensajes");
+
+                    let li = mensajesUl.querySelector("li");
+                    if (!li) {
+                        li = document.createElement("li");
+                        li.style.transition = "opacity 0.5s ease-in-out";
+                        li.style.opacity = "0";
+                        li.style.listStyle = "none";
+                        li.style.fontWeight = "500";
+                        mensajesUl.appendChild(li);
+                    }
+
+                    let timeoutId = null;
+                    const contextPath = "#{facesContext.externalContext.requestContextPath}";
+                    const source = new EventSource(contextPath + "/api/events");
+
+                    source.addEventListener("mensaje", function(e) {
+                        const mensaje = e.data;
+
+                        li.innerHTML = '<i class="bi bi-check-circle-fill me-2"></i>' + mensaje;
+                        li.style.display = "list-item";
+                        li.style.opacity = "1";
+
+                        if (timeoutId !== null) {
+                            clearTimeout(timeoutId);
+                        }
+
+                        timeoutId = setTimeout(() => {
+                            li.style.opacity = "0";
+                            setTimeout(() => {
+                                li.textContent = "";
+                                li.style.display = "none";
+                                timeoutId = null;
+                            }, 500);
+                        }, 4000);
+                    });
+                })();
+                //]]>
+            </script>
+        </h:panelGroup>
+    </ui:define>
+
+    <ui:define name="left">
+        <li class="nav-item">
+            <h:link outcome="home" styleClass="nav-link active">
+                <i class="bi bi-house-door"></i> Home
+            </h:link>
+        </li>
+        <li>
+            <h:link outcome="cliente/libro" styleClass="nav-link">
+                <i class="bi bi-box-arrow-in-right"></i> Iniciar sesión
+            </h:link>
+        </li>
+        <li>
+            <h:link outcome="register" styleClass="nav-link">
+                <i class="bi bi-pencil"></i> Registrarse
+            </h:link>
+        </li>
+    </ui:define>
+
+</ui:composition>

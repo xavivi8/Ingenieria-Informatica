@@ -1,0 +1,98 @@
+<ui:composition template="/WEB-INF/plantillas/general.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
+    <ui:define name="contenido">
+
+        <h1 style="text-align: center">Registro de nuevo usuario</h1>
+        <div class="container">
+            <div class="form-container">
+                <h:messages />
+                <h:form>
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <h:inputText id="nombre" value="#{clienteCtrl.cliente.nombre}" styleClass="form-control" required="true"
+                                         requiredMessage="El nombre es obligatorio"/>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="apellidos" class="form-label">Apellidos</label>
+                            <h:inputText id="apellidos" value="#{clienteCtrl.cliente.apellidos}" styleClass="form-control" required="true"
+                                         requiredMessage="Los apellidos son obligatorios"/>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="dni" class="form-label">DNI</label>
+                            <h:inputText id="dni" value="#{clienteCtrl.cliente.dni}" styleClass="form-control" required="true"
+                                         requiredMessage="El DNI es obligatorio"/>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+                            <p:datePicker id="fechaNacimiento" value="#{clienteCtrl.cliente.fechaNacimiento}"
+                                          locale="es" required="true" requiredMessage="La fecha de nacimiento es obligatoria"
+                                          showIcon="true" yearNavigator="true" yearRange="1900:2025"/>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="telefono" class="form-label">Teléfono móvil</label>
+                            <h:inputText id="telefono" value="#{clienteCtrl.cliente.telefono}" styleClass="form-control" required="true"
+                                         requiredMessage="El número de teléfono es obligatorio"/>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label for="correo" class="form-label">Correo electrónico</label>
+                            <h:inputText id="correo" value="#{clienteCtrl.cliente.correo}" styleClass="form-control" required="true"
+                                         requiredMessage="El correo electrónico es obligatorio"/>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <h:inputSecret id="password" value="#{clienteCtrl.cliente.password}" styleClass="form-control" required="true"
+                                           requiredMessage="La contraseña para registrarse es obligatoria"/>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label for="pais" class="form-label">País</label>
+                            <h:inputText id="pais" value="#{clienteCtrl.cliente.pais}" styleClass="form-control" required="true"
+                                         requiredMessage="El país es obligatorio"/>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="provincia" class="form-label">Provincia</label>
+                            <h:inputText id="provincia" value="#{clienteCtrl.cliente.provincia}" styleClass="form-control" required="true"
+                                         requiredMessage="La provincia es obligatoria"/>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="localidad" class="form-label">Localidad</label>
+                            <h:inputText id="localidad" value="#{clienteCtrl.cliente.localidad}" styleClass="form-control" required="true"
+                                         requiredMessage="La localidad es obligatoria"/>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="codigoPostal" class="form-label">Código postal</label>
+                            <h:inputText id="codigoPostal" value="#{clienteCtrl.cliente.codigoPostal}" styleClass="form-control" required="true"
+                                         requiredMessage="El código postal es obligatorio"/>
+                        </div>
+                    </div>
+
+                    <!-- Acción del formulario -->
+                    <h:commandButton styleClass="btn btn-primary" value="Confirmar registro" action="#{clienteCtrl.crea()}"/>
+                </h:form>
+
+            </div>
+        </div>
+
+
+
+    </ui:define>
+</ui:composition>

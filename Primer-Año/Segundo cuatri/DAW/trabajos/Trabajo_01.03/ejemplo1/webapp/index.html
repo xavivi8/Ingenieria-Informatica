@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8" /><title>Demo SSE</title></head>
+<body>
+<h2>Mensajes SSE:</h2>
+<ul id="mensajes"></ul>
+<script>
+    const source = new EventSource("api/events");
+
+    // manejador para los eventos nombrados “mensaje”
+    source.addEventListener("mensaje", e => {
+        console.log("✅ Evento ‘mensaje’ recibido:", e.data);
+        const li = document.createElement("li");
+        li.textContent = e.data;
+        document.getElementById("mensajes").appendChild(li);
+    });
+
+    // (opcional) todavía puedes escuchar el evento por defecto “message”
+    source.onmessage = e => {
+        console.log("⚠️ onmessage (default):", e.data);
+    };
+
+    // open / error como antes
+    source.onopen  = () => console.log("🔌 Conexión SSE abierta");
+    source.onerror = e => console.error("❌ Error SSE", e);
+
+</script>
+</body>
+</html>

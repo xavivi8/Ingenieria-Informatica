@@ -1,0 +1,147 @@
+<ui:composition
+        xmlns:h="jakarta.faces.html"
+        xmlns:ui="jakarta.faces.facelets"
+        xmlns:f="jakarta.faces.core"
+        template="/WEB-INF/plantillas/general.xhtml">
+
+    <ui:define name="content">
+        <h:outputStylesheet library="css" name="registro.css" />
+        <section class="h-100">
+            <div class="container h-100">
+                <div class="row justify-content-sm-center h-100">
+                    <div class="col-xxl-6 col-xl-7 col-lg-8 col-md-9">
+                        <div class="text-center mt-5">
+                            <h1 class="titulo">Crear Usuario</h1>
+                        </div>
+                        <div class="card caja bg-light">
+                            <div class="card-body p-5">
+                                <h:form enctype="multipart/form-data" class="needs-validation" novalidate="true" autocomplete="off">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <h:outputLabel for="name" value="Nombre:" class="mb-2 text-muted"/>
+                                            <h:inputText id="name" value="#{usuCtrl.usuario.nombre}" class="form-control"
+                                                         required="true" requiredMessage="El nombre es obligatorio"/>
+                                            <h:message for="name" style="color: red"/>
+                                        </div>
+
+                                        <div class="col-md-6 mb-3">
+                                            <h:outputLabel for="dni" value="DNI:" class="mb-2 text-muted"/>
+                                            <i class="bi bi-question-circle-fill text-success ms-2"
+                                               tabindex="0"
+                                               data-bs-toggle="popover"
+                                               data-bs-trigger="hover focus"
+                                               data-bs-placement="right"
+                                               title="Formato del DNI"
+                                               data-bs-content="Debe contener 8 números y una letra (ej: 12345678Z)">
+                                            </i>
+                                            <h:inputText id="dni" value="#{usuCtrl.usuario.dni}" class="form-control" validator="#{usuCtrl.validarDniExistente}"/>
+                                            <h:message for="dni" style="color: red"/>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-md-6 mb-3">
+                                            <h:outputLabel for="birthdate" value="Fecha de nacimiento:" class="mb-2 text-muted"/>
+                                            <h:inputText id="birthdate" type="date" value="#{usuCtrl.usuario.fechaNacimientoString}" class="form-control" >
+                                                <f:validator validatorId="fechaValidator"/>
+                                            </h:inputText>
+                                            <h:message for="birthdate" style="color: red"/>
+                                        </div>
+
+                                        <div class="col-md-6 mb-3">
+                                            <h:outputLabel for="address" value="Dirección:" class="mb-2 text-muted"/>
+                                            <h:inputText id="address" value="#{usuCtrl.usuario.direccion}" class="form-control"
+                                                         required="true" requiredMessage="La dirección es obligatoria"/>
+                                            <h:message for="address" style="color: red"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <h:outputLabel for="email" value="Correo electrónico:" class="mb-2 text-muted"/>
+                                            <i class="bi bi-question-circle-fill text-success ms-2"
+                                               tabindex="0"
+                                               role="button"
+                                               data-bs-toggle="popover"
+                                               data-bs-trigger="click"
+                                               data-bs-placement="right"
+                                               title="Formato del Email"
+                                               data-bs-content="Debe ser un correo válido (ej: ejemplo@dominio.com)">
+                                            </i>
+
+                                            <h:inputText id="email" value="#{usuCtrl.usuario.email}" class="form-control"
+                                                         required="true" requiredMessage="El email es obligatorio"/>
+                                            <h:message for="email" style="color: red"/>
+                                        </div>
+
+                                        <div class="col-md-6 mb-3">
+                                            <h:outputLabel for="password" value="Contraseña:" class="mb-2 text-muted"/>
+                                            <i class="bi bi-question-circle-fill text-success ms-2"
+                                               id="popover-password"
+                                               tabindex="0"
+                                               data-bs-toggle="popover"
+                                               data-bs-trigger="click"
+                                               data-bs-placement="right"
+                                               title="Requisitos de contraseña"
+                                               data-bs-content="Mínimo 8 caracteres, debe incluir mayúsculas, minúsculas y un número.">
+                                            </i>
+
+                                            <h:inputText id="password" value="#{usuCtrl.usuario.password}" class="form-control"
+                                                         required="true" requiredMessage="La contraseña es obligatoria"/>
+                                            <h:message for="password" style="color: red"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <h:outputLabel for="rol" value="Rol:" class="mb-2 text-muted"/>
+                                            <h:selectOneMenu id="rol" value="#{usuCtrl.usuario.rol}" class="form-control"
+                                                             required="true" requiredMessage="El rol es obligatorio">
+                                                <f:selectItem itemValue="#{null}" itemLabel="-- Seleccione Rol --" noSelectionOption="true"/>
+                                                <f:selectItem itemValue="USUARIO" itemLabel="USUARIO" />
+                                                <f:selectItem itemValue="ADMIN" itemLabel="ADMIN" />
+                                            </h:selectOneMenu>
+                                            <h:message for="rol" styleClass="text-danger"/>
+                                        </div>
+
+                                        <div class="col-md-6 mb-3">
+                                            <h:outputLabel for="profile_picture" value="Imagen del perfil:" class="mb-2 text-muted"/>
+                                            <h:inputFile id="profile_picture" value="#{usuCtrl.file}" class="form-control"
+                                                         accept="image/*" required="true" requiredMessage="La imagen de perfil es obligatoria"/>
+                                            <h:message for="profile_picture" style="color: red"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center">
+                                        <h:commandButton value="Registrar" action="#{usuCtrl.registrar()}" class="btn btn-success"/>
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
+                popoverTriggerList.forEach(function (el) {
+                    const popover = new bootstrap.Popover(el, {
+                        html: true,
+                        customClass: 'popover-success-title'
+                    });
+
+
+                    el.addEventListener('shown.bs.popover', function () {
+                        const popoverHeader = document.querySelector('.popover-header');
+                        if (popoverHeader) {
+                            popoverHeader.classList.add('bg-success', 'text-white');
+                        }
+                    });
+                });
+            });
+        </script>
+    </ui:define>
+</ui:composition>
