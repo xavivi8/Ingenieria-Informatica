@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:cc="jakarta.faces.composite"
+>
+
+<!-- Interface -->
+<cc:interface>
+    <cc:attribute name="value" class="crm.models.Client"/>
+</cc:interface>
+
+<!-- Implementation -->
+<cc:implementation>
+    <ul class="panel-body list-group">
+        <li class="list-group-item"><strong>ID:</strong> #{cc.attrs.value.id}</li>
+        <li class="list-group-item"><strong>Nombre:</strong> #{cc.attrs.value.name}</li>
+        <li class="list-group-item"><strong>Email:</strong> #{cc.attrs.value.email}</li>
+        <li class="list-group-item"><strong>Teléfono:</strong> #{cc.attrs.value.phone}</li>
+    </ul>
+</cc:implementation>
+
+</html>
