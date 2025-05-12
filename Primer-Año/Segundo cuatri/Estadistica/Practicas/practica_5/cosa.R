@@ -1,7 +1,8 @@
 getwd()
 load("Comunicaciones.RData")
 
-#
+#--------------------Primera parte--------------------------------
+
 datos_cordoba<-Comunicaciones[Comunicaciones$Provincia == "Córdoba", ]
 datos_sevilla<-Comunicaciones[Comunicaciones$Provincia == "Sevilla", ]
 
@@ -48,6 +49,32 @@ datos_granada
 
 cor(datos_granada$Poblacion,datos_granada$RDSI, method = "pearson")
 plot(datos_granada$Poblacion,datos_granada$RDSI)
+
+#--------------------Segunda parte--------------------------------
+
+rdsi_prob <- lm(RDSI ~ datos_granada$Poblacion, data= datos_granada)
+summary(rdsi_prob)
+
+(-1.3507580 + 0.0038561*1000) - (-1.3507580+0.0038561*0)
+# True - 
+#----------------------------------
+# Función de normalidad, con el azul de fondo
+# No sigue la normalidad porque los datos se salen
+library(lmtest)
+bptest(modelo) 
+# 1.97 < 0.01 no rechazo la hipotesis, no siguen homocedasticidad
+
+# indepencenci, ausencia de autocorrelacióon
+
+dwtest(modelo, alternative="two.sided")
+#0.7785 > 0.01 no se rechaza la hipotesis
+# normalidad
+# con el test de sshapiro.wilk, shapiro.test()
+# Lilliefors
+# aleatoriedad runtest
+
+
+
 
 
 
