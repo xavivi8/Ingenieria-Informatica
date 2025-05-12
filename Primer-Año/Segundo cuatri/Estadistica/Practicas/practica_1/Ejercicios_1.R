@@ -64,7 +64,7 @@ momento_k <-function(x,n) {
 }
 
 resultado10<-momento_k(5,8)
-prunt(resultado10)
+print(resultado10)
 
 #11. Programe una función llamada coef.asimetria que acepte un vector x y devuelva
 # el coeficiente de asimetría de Fisher, esto es
