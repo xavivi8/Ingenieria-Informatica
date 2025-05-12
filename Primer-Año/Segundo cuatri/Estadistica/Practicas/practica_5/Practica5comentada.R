@@ -9,16 +9,15 @@ Tiempos <- scan("Tiempos.txt",
                dec    = ",",
                quiet  = TRUE)
 #-----------------------------------------------------------------------------
-  #--INTERVALO DE CONFIANZA 90%--[[busca ( -Inf )
+#--INTERVALO DE CONFIANZA 90%--[[busca ( -Inf )
   
 print(t.test(Tiempos, conf.level = 0.9))
------------------------------------------------------------------------------
-----------------print("EJERCICIO 1 PUNTO 2")---------------------------------
+print("EJERCICIO 1 PUNTO 2")
   #]]--MAXIMA MEDIA DEL INTERVALO--[[
   
 print(t.test(Tiempos, alternative = "less", conf.level = 0.9))
------------------------------------------------------------------------------
-----------------print("EJERCICIO 1 PUNTO 3")---------------------------------
+
+print("EJERCICIO 1 PUNTO 3")
   #]]--Contrastamos que la media es 3 contra que es mayor que 3--[[
   
 print(t.test(Tiempos, alternative = "greater", mu = 3, conf.level = 0.9))##0,9= 1-0,1 del enunciado
