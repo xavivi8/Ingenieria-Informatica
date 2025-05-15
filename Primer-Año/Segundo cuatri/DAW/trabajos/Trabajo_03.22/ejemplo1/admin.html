@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Administración - Pizzería</title>
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/header.css">
+</head>
+<body>
+
+<header class="main-header">
+  <div class="logo-container">
+    <a href="index.html">
+      <img src="img/logo.png" alt="Logo PizzUja" class="logo">
+    </a>
+    <a class="header-title" href="index.html">PIZZUJA</a>
+  </div>
+  <button class="button" id="logout">Cerrar sesión</button>
+</header>
+
+<main>
+  <section id="dashboard">
+    <h2>Resumen de hoy</h2>
+    <div class="cards">
+       <div class="card">
+          <h3>Pedidos</h3>
+          <p>35 pedidos</p>
+      </div>
+      <div class="card">
+          <h3>Ingresos</h3>
+          <p>$1,250.00</p>
+      </div>
+      <div class="card">
+          <h3>Pizzas Vendidas</h3>
+          <p>78 unidades</p>
+          </div>
+      </div>
+    </section>
+    <section class="admin-container">
+      <div class="admin-options">
+        <a href="inventario.html" class="admin-card">
+          <img src="img/inventario.png" alt="Inventario">
+          <span>Inventario</span>
+        </a>
+        <a href="usuarios.html" class="admin-card">
+          <img src="img/usuarios.png" alt="Clientes">
+          <span>Clientes</span>
+        </a>
+        <a href="curriculum.html" class="admin-card">
+          <img src="img/curriculum.png" alt="Currículum">
+          <span>Currículum</span>
+        </a>
+      </div>
+    </section>
+</main>
+
+<script>
+  document.getElementById('logout').addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
+</script>
+</body>
+</html>

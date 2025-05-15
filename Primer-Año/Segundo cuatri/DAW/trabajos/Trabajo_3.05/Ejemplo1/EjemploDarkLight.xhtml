@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Ejemplo Light y Dark con Shoelace</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/dark.css" />
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        .section {
+            padding: 2rem;
+        }
+
+        .sl-theme-light {
+            background-color: #f9f9f9;
+            color: #222;
+        }
+
+        .sl-theme-dark {
+            background-color: #121212;
+            color: white;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Sección con tema claro -->
+<div class="section sl-theme-light">
+    <h2>Tema Claro</h2>
+    <sl-button type="primary">Botón Light</sl-button>
+    <sl-switch>Interruptor Light</sl-switch>
+</div>
+
+<!-- Sección con tema oscuro -->
+<div class="section sl-theme-dark">
+    <h2>Tema Oscuro</h2>
+    <sl-button type="primary">Botón Dark</sl-button>
+    <sl-switch>Interruptor Dark</sl-switch>
+</div>
+
+</body>
+</html>

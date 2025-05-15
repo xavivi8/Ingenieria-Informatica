@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      lang="es">
+<h:head>
+    <meta charset="UTF-8"/>
+    <title>Registro del Sistema</title>
+
+    <!-- Shoelace -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css" />
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"></script>
+
+    <style>
+        body { margin: 0; font-family: var(--sl-font-sans); background: var(--sl-color-success-50); }
+        main { max-width: 960px; margin: 2rem auto; padding: 0 1rem; }
+        .header-card { text-align: center; margin-bottom: 2rem; }
+        .card-shadow { --sl-card-box-shadow: var(--sl-shadow-large); }
+        .section-title { font-size: 1.75rem; color: var(--sl-color-success-800); padding: 0.5rem 1rem; }
+        .cards-row { display: flex; gap: 1rem; margin: 2rem 0; }
+        sl-card { flex: 1; }
+        .table-container { overflow-x: auto; margin-top: 1rem; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 0.5rem; }
+        th, td { padding: 0.75rem 1rem; text-align: left; vertical-align: middle; }
+        th { background: var(--sl-color-success-200); color: var(--sl-color-success-900); font-weight: 600; }
+        tr:nth-child(even) { background: var(--sl-color-neutral-100); }
+        sl-avatar { --sl-avatar-size: 2rem; }
+    </style>
+</h:head>
+
+<h:body>
+    <f:view locale="es">
+        <h:form id="mainForm">
+            <main>
+
+                <!-- Encabezado -->
+                <div class="header-card">
+                    <sl-card style="--sl-card-background:var(--sl-color-neutral-0)">
+                        <div slot="header">
+                            <h1 style="margin:0; font-size:4rem; color:var(--sl-color-neutral-900)">Registro del Sistema</h1>
+                        </div>
+                    </sl-card>
+                </div>
+
+                <div class="cards-row">
+
+                    <!-- Usuarios -->
+                    <sl-card class="card-shadow">
+                        <div slot="header" class="section-title">Usuarios del sistema</div>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                <tr><th>Avatar</th><th>Nombre</th><th>Rol</th><th>Contraseña</th></tr>
+                                </thead>
+                                <tbody>
+                                <ui:repeat var="user" value="#{crtUsuario.listaUsuarios}">
+                                    <tr>
+                                        <td><sl-avatar image="https://i.pravatar.cc/100?img=8" label="#{user.nombre}"/></td>
+                                        <td>#{user.nombre}</td>
+                                        <td>#{user.rol}</td>
+                                        <td><code>#{user.contrasenia}</code></td>
+                                    </tr>
+                                </ui:repeat>
+                                </tbody>
+                            </table>
+                        </div>
+                    </sl-card>
+
+                    <!-- Administradores -->
+                    <sl-card class="card-shadow">
+                        <div slot="header" class="section-title">Administradores del sistema</div>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                <tr><th>Avatar</th><th>Nombre</th><th>Rol</th><th>Contraseña</th></tr>
+                                </thead>
+                                <tbody>
+                                <ui:repeat var="admin" value="#{crtUsuario.listaAdministradores}">
+                                    <tr>
+                                        <td><sl-avatar image="https://i.pravatar.cc/100?img=12" label="#{admin.nombre}"/></td>
+                                        <td>#{admin.nombre}</td>
+                                        <td>#{admin.rol}</td>
+                                        <td><code>#{admin.contrasenia}</code></td>
+                                    </tr>
+                                </ui:repeat>
+                                </tbody>
+                            </table>
+                        </div>
+                    </sl-card>
+                </div>
+
+                <div style="text-align:center; margin:2rem 0;">
+                    <sl-button variant="danger" size="medium" onclick="history.back()">Volver atrás</sl-button>
+                </div>
+
+            </main>
+        </h:form>
+    </f:view>
+</h:body>
+</html>

@@ -1,0 +1,12 @@
+style
+.fade-me-out.htmx-swapping {
+  opacity 0;
+  transition opacity 1s ease-out;
+}
+style
+
+button class=fade-me-out
+        hx-delete=fade_out_demo
+        hx-swap=outerHTML swap1s
+        Fade Me Out
+button

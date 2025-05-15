@@ -1,0 +1,51 @@
+package dawflix.recomendador;
+
+import io.vertx.core.AbstractVerticle;
+import io.vertx.core.Promise;
+import io.vertx.core.json.JsonArray;
+import io.vertx.core.json.JsonObject;
+import io.vertx.ext.web.Router;
+import io.vertx.ext.web.handler.BodyHandler;
+
+public class MainVerticle extends AbstractVerticle {
+
+    @Override
+    public void start(Promise<Void> startPromise) {
+        Router router = Router.router(vertx);
+
+        // Habilitar CORS
+        router.route().handler(ctx -> {
+            ctx.response()
+                    .putHeader("Access-Control-Allow-Origin", "*")
+                    .putHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+                    .putHeader("Access-Control-Allow-Headers", "*");
+            ctx.next();
+        });
+
+        router.route().handler(BodyHandler.create());
+
+        // Ruta de recomendaciones
+        router.get("/recomendar").handler(ctx -> {
+            String id = ctx.request().getParam("id");
+
+            JsonArray recomendaciones = new JsonArray()
+                    .add(new JsonObject().put("id", 1).put("titulo", "El señor de los anillos").put("imagen", "https://m.media-amazon.com/images/I/51Qvs9i5a%2BL._AC_.jpg"))
+                    .add(new JsonObject().put("id", 2).put("titulo", "Intertellar").put("imagen", "https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg"))
+                    .add(new JsonObject().put("id", 3).put("titulo", "El club de la lucha").put("imagen", "https://m.media-amazon.com/images/I/51v5ZpFyaFL._AC_.jpg"));
+
+            ctx.response()
+                    .putHeader("Content-Type", "application/json")
+                    .end(recomendaciones.encode());
+        });
+
+        vertx.createHttpServer()
+                .requestHandler(router)
+                .listen(8888)
+                .onSuccess(server -> {
+                    System.out.println("Servidor de recomendaciones activo en http://localhost:8888");
+                    startPromise.complete();
+                })
+                .onFailure(startPromise::fail);
+    }
+
+}

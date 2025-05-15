@@ -1,0 +1,35 @@
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("Cargando recomendaciones desde Vert.x");
+
+    const idPelicula = new URLSearchParams(window.location.search).get("idPelicula");
+    if (!idPelicula) return;
+
+    fetch(`http://localhost:8888/recomendar?id=${idPelicula}`)
+        .then(res => {
+            if (!res.ok) throw new Error("Error al obtener recomendaciones");
+            return res.json();
+        })
+        .then(peliculas => {
+            const contenedor = document.querySelector("#recomendacionesVertx");
+            if (!contenedor || !Array.isArray(peliculas)) return;
+
+            peliculas.forEach(p => {
+                const card = document.createElement("div");
+                card.className = "m-2 text-center";
+                card.style.width = "150px";
+
+                card.innerHTML = `
+                    <a href="paginaPelicula.xhtml?idPelicula=${p.id}" class="text-decoration-none text-dark">
+                        <img src="${p.imagen}" alt="${p.titulo}" class="img-fluid rounded shadow-sm" style="height: 200px; object-fit: cover;">
+                        <div class="mt-2"><strong>${p.titulo}</strong></div>
+                    </a>
+                `;
+
+                contenedor.appendChild(card);
+            });
+        })
+        .catch(err => {
+            console.error("Error cargando recomendaciones:", err);
+        });
+});
+

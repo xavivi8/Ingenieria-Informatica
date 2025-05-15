@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html
+        xmlns:h="jakarta.faces.html"
+        xmlns:f="jakarta.faces.core"
+        xmlns:ui="jakarta.faces.facelets" xmlns:pt="jakarta.faces.passthrough">
+<ui:composition template="../WEB-INF/templates/plantilla.xhtml">
+
+    <!-- Header -->
+    <ui:define name="Titulo-encabezado">
+        <h:link outcome="/index" style="margin-right: 15px;">
+            <h:graphicImage library="imagenes" name="logoweb.png" width="50" height="50"
+                            style="transform: scale(1.5);" />
+        </h:link>
+        <h1 class="m-0">CineManía</h1>
+    </ui:define>
+
+    <ui:define name="botones-encabezado">
+
+    </ui:define>
+
+    <!-- Contenido Principal -->
+    <ui:define name="contenido">
+        <main>
+            <f:metadata>
+                <f:viewParam name="id" value="#{ctrlpelicula.pelicula.id}" />
+                <f:viewParam name="id" value="#{ctrlentrada.entrada.idPelicula}" />
+                <f:viewAction action="#{ctrlpelicula.seleccionarPelicula(ctrlpelicula.pelicula.id)}" />
+                <f:viewAction action="#{ctrlentrada.seleccionarPelicula(ctrlentrada.entrada.idPelicula)}" />
+
+            </f:metadata>
+
+            <!-- Cargar Petite Vue -->
+            <script type="module">
+                import { createApp } from 'https://unpkg.com/petite-vue?module'
+                createApp().mount()
+            </script>
+
+            <!-- Formulario para la compra de una Entrada -->
+            <h:form class="container mt-4 p-4 border rounded shadow row g-4 mx-auto" prependId="false">
+                <!-- Columna Izquierda con la imagen del poster -->
+                <div class="col-md-4 text-center">
+                    <h:graphicImage library="imagenes" name="#{ctrlpelicula.pelicula.poster}" width="200" height="300" styleClass="mb-2"/>
+                </div>
+
+                <!-- Columna Derecha con el formulario -->
+                <!-- Activamos Petite Vue en esta sección con v-scope.
+                Definimos el estado reactivo y una función para validación -->
+                <div class="col-md-8" v-scope="{
+                                 cine: '',
+                                  fecha: '',
+                                  hora: '',
+                                  numTarjeta: '',
+                                  fechaCaducidad: '',
+                                  csv: '',
+                                  titular: '',
+                                  camposCompletos() {
+                                    return this.cine &amp;&amp; this.fecha &amp;&amp; this.hora
+                                    &amp;&amp; this.numTarjeta &amp;&amp;
+                                    this.fechaCaducidad &amp;&amp; this.csv &amp;&amp; this.titular;
+                                  }
+                            }">
+                    <h:form>
+                        <div class="row">
+                            <!-- Columna Izquierda -->
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <h:selectOneMenu id="opciones"
+                                                     styleClass="form-select"
+                                                     value="#{ctrlentrada.entrada.cine}" pt:v-model="cine">
+                                        <f:selectItem itemValue="jaen" itemLabel="Jaén" />
+                                        <f:selectItem itemValue="granada" itemLabel="Granada" />
+                                        <f:selectItem itemValue="madrid" itemLabel="Madrid" />
+                                        <f:selectItem itemValue="barcelona" itemLabel="Barcelona" />
+                                    </h:selectOneMenu>
+
+                                    <label for="opciones">Selecciona un CineManía:</label>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <h:inputText id="fechaEntrada" type="date"
+                                                 styleClass="form-control"
+                                                 value="#{ctrlentrada.entrada.fecha}" pt:v-model="fecha">
+                                    </h:inputText>
+                                    <label for="fechaEntrada">Fecha de la entrada:</label>
+                                    <h:message for="fechaEntrada" class="text-danger"/>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <h:inputText id="horaEntrada" type="time"
+                                                 styleClass="form-control"
+                                                 value="#{ctrlentrada.entrada.hora}" pt:v-model="hora">
+                                    </h:inputText>
+                                    <label for="horaEntrada">Hora de la entrada:</label>
+                                    <h:message for="horaEntrada" class="text-danger"/>
+                                </div>
+                            </div>
+
+                            <!-- Columna Derecha -->
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <h:inputText id="numTarjeta" type="tel"
+                                                 styleClass="form-control"
+                                                 value="#{ctrlentrada.entrada.numTarjeta}" pt:v-model="numTarjeta">
+                                    </h:inputText>
+                                    <label for="numTarjeta">Número de tarjeta:</label>
+                                    <h:message for="numTarjeta" class="text-danger"/>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <h:inputText id="fechaCaducidad" type="date"
+                                                 styleClass="form-control"
+                                                 value="#{ctrlentrada.entrada.fechaCaducidadTarjeta}" pt:v-model="fechaCaducidad">
+                                    </h:inputText>
+                                    <label for="fechaCaducidad">Fecha de Caducidad:</label>
+                                    <h:message for="fechaCaducidad" class="text-danger"/>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <h:inputSecret id="csvTarjeta"
+                                                   styleClass="form-control"
+                                                   value="#{ctrlentrada.entrada.CSV}" pt:v-model="csv">
+                                    </h:inputSecret>
+                                    <label for="csvTarjeta">CSV:</label>
+                                    <h:message for="csvTarjeta" class="text-danger"/>
+
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <h:inputText id="titularTarjeta"
+                                                 styleClass="form-control"
+                                                 value="#{ctrlentrada.entrada.titularTarjeta}" pt:v-model="titular">
+                                    </h:inputText>
+                                    <label for="titularTarjeta">Titular de la tarjeta:</label>
+                                    <h:message for="titularTarjeta" class="text-danger"/>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botón solo aparece si todos los campos están completos -->
+                        <div class="d-grid" >
+                            <h:commandButton pt:v-if="camposCompletos()"  value="Comprar Entrada"
+                                             action="#{ctrlentrada.creaEntrada}"
+                                             styleClass="btn btn-primary">
+                            </h:commandButton>
+                        </div>
+                    </h:form>
+                </div>
+            </h:form>
+        </main>
+    </ui:define>
+
+</ui:composition>
+</html>
+
+

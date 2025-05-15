@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Usuario</title>
+    <script defer src="resources/js/UsuarioCtrl.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+
+<body style="margin: 0; padding: 0;">
+
+<header class="bg-secondary text-light p-3 d-flex justify-content-between align-items-center"
+        style="width: 100%; margin: 0;">
+    <div class="logo-container text-center d-flex flex-column align-items-center">
+        <a href="pantalla_inicio.xhtml" class="d-block">
+            <img src="resources/imagenes/logo-UJASalud-negro.png" alt="Logo UJASalud" style="width: 60px;" class="img-fluid" />
+        </a>
+        <h1 class="h5 mt-1 mb-0">UJASalud</h1>
+    </div>
+    <a href="index.xhtml" class="btn btn-info">Volver</a>
+</header>
+
+<main class="p-3">
+    <h1 class="mb-4">Formulario de Registro</h1>
+
+    <div id="errores" class="alert alert-danger d-none"></div>
+
+    <!-- Formulario de Registro -->
+    <form id="fAlta" autocomplete="on">
+        <div class="mb-3">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" class="form-control" required autocomplete="name">
+            <span class="text-danger small" data-error-for="nombre"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="usuario">Usuario</label>
+            <input type="text" id="usuario" name="usuario" class="form-control" required autocomplete="username">
+            <span class="text-danger small" data-error-for="usuario"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" class="form-control" required autocomplete="email">
+            <span class="text-danger small" data-error-for="email"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="contrasena">Contraseña</label>
+            <input type="password" id="contrasena" name="contrasena" class="form-control" required autocomplete="new-password">
+            <span class="text-danger small" data-error-for="contrasena"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="dni">DNI</label>
+            <input type="text" id="dni" name="dni" class="form-control" required autocomplete="off">
+            <span class="text-danger small" data-error-for="dni"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="fechaNacimiento">Fecha de Nacimiento</label>
+            <input type="date" id="fechaNacimiento" name="fechaNacimiento" class="form-control" required autocomplete="bday">
+            <span class="text-danger small" data-error-for="fechaNacimiento"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="numeroDeTarjeta">Tarjeta UJASalud</label>
+            <input type="text" id="numeroDeTarjeta" name="numeroDeTarjeta" class="form-control" required autocomplete="off">
+            <span class="text-danger small" data-error-for="numeroDeTarjeta"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="telefono">Teléfono</label>
+            <input type="text" id="telefono" name="telefono" class="form-control" required autocomplete="tel">
+            <span class="text-danger small" data-error-for="telefono"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="direccion">Dirección</label>
+            <textarea id="direccion" class="form-control" name="direccion" rows="3" required autocomplete="street-address"></textarea>
+            <span class="text-danger small" data-error-for="direccion"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Registrarse</button>
+    </form>
+
+    <h2 class="mt-4">Lista de Usuarios</h2>
+    <ul id="listaUsuarios" class="list-group">
+    </ul>
+
+    <!-- Detalles del Usuario -->
+    <div id="detalle" class="mt-4" style="display:none">
+        <h3>Detalle del Usuario</h3>
+        <ul class="list-group" id="detalleContenido"></ul>
+        <button class="btn btn-secondary mt-2" onclick="document.getElementById('detalle').style.display='none'">Cerrar</button>
+    </div>
+
+
+    <script type="module" src="resources/js/main.js"></script>
+    <div id="app"></div>
+</main>
+</body>
+</html>

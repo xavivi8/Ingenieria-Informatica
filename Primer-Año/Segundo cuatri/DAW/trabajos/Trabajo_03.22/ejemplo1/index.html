@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="icon" href="./img/logo.png" type="image/png">
+</head>
+<body>
+
+<header class="main-header">
+    <div class="logo-container">
+        <a href="index.html">
+            <img src="./img/logo.png" alt="Logo PizzUja">
+        </a>
+        <a class="header-title" href="index.html">PIZZUJA</a>
+    </div>
+</header>
+
+<main class="formulario">
+    <h2>Inicia sesión</h2>
+
+    <form id="login-form">
+        <label for="usuario">Tu usuario*</label>
+        <input type="text" id="usuario" required>
+
+        <label for="contrasena">Tu contraseña *</label>
+        <input type="password" id="contrasena" required>
+
+        <button type="submit" class="login-btn">Iniciar Sesión</button>
+        <p id="mensaje"></p>
+    </form>
+
+    <p class="registro-link">¿No tienes una cuenta?
+        <a href="#" id="registro-link">Regístrate</a>.
+    </p>
+
+</main>
+
+<script src="index.js"></script>
+<script src="Usuario_API.js"></script>
+
+</body>
+</html>

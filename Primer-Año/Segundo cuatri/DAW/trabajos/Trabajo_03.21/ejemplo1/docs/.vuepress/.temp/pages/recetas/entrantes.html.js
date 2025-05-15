@@ -1,0 +1,3 @@
+import comp from "C:/Users/Usuario/Mi unidad (gcg00035@red.ujaen.es)/Uni/3 Grado/2 Cuatrimestre/DAW/trabajo_dirigido/docs/.vuepress/.temp/pages/recetas/entrantes.html.vue"
+const data = JSON.parse("{\"path\":\"/recetas/entrantes.html\",\"title\":\"🥗 Entrantes\",\"lang\":\"es-ES\",\"frontmatter\":{},\"git\":{\"contributors\":[{\"name\":\"Carlos Martínez Sánchez\",\"username\":\"\",\"email\":\"cms00065@red.ujaen.es\",\"commits\":1}],\"changelog\":[{\"hash\":\"c46292603e23b0948f77c523f6d0afeebcd1621c\",\"time\":1746359750000,\"email\":\"cms00065@red.ujaen.es\",\"author\":\"Carlos Martínez Sánchez\",\"message\":\"Iniciado el diseño de nuestra moderna página web con VuePress\"}]},\"filePathRelative\":\"recetas/entrantes.md\"}")
+export { comp, data }

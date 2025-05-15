@@ -1,0 +1,159 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    min-height: 100vh;
+}
+
+.header {
+    background-color: #ff6633;
+    padding: 12px 24px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.logo-img {
+    width: 50px;
+    height: 50px;
+}
+
+.titulo a {
+    color: white;
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.formulario {
+    margin-top: 160px;
+    width: 100%;
+    text-align: center;
+}
+
+.formulario h2 {
+    font-size: 36px;
+    margin-bottom: 35px;
+    color: #333;
+    letter-spacing: 1px;
+}
+
+form {
+    display: inline-block;
+    text-align: left;
+    width: 100%;
+    max-width: 480px;
+    padding: 30px;
+    border-radius: 12px;
+    background-color: #fafafa;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease;
+}
+
+form:hover {
+    transform: translateY(-2px);
+}
+
+form label {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+form input {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    margin-bottom: 22px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+form input:focus {
+    outline: none;
+    border-color: #ff6633;
+    box-shadow: 0 0 0 3px rgba(255, 102, 51, 0.2);
+}
+
+.login-btn {
+    display: inline-block;
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    background-color: #ff6633;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.login-btn:hover {
+    background-color: #e25625;
+    transform: translateY(-1px);
+}
+
+#mensaje {
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.button-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.large-button {
+    padding: 20px 40px;
+    font-size: 24px;
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+.large-button:hover {
+    background-color: #e55337;
+}
+
+.registro-link {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+.registro-link a {
+    color: #ff6633;
+    text-decoration: none;
+}
+
+.registro-link a:hover {
+    text-decoration: underline;
+}

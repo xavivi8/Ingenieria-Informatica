@@ -1,0 +1,32 @@
+package daw.app.strapi;
+
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.enterprise.context.ApplicationScoped;
+
+@ApplicationScoped
+public class StrapiClient {
+    private static final String STRAPI_API = "http://localhost:1337/api/resenas";
+
+    public String getResenas() {
+        try {
+            Client client = ClientBuilder.newClient();
+            Response response = client.target(STRAPI_API)
+                    .request(MediaType.APPLICATION_JSON)
+                    .get();
+
+            if (response.getStatus() == 200) {
+                return response.readEntity(String.class);
+            } else {
+                System.err.println("Error al obtener reseñas. Código: " + response.getStatus());
+                return "{\"data\":[]}";
+            }
+        } catch (Exception e) {
+            System.err.println("Excepción al obtener reseñas: " + e.getMessage());
+            return "{\"data\":[]}";
+        }
+    }
+
+}

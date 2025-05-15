@@ -1,0 +1,141 @@
+<ui:composition xmlns:h="jakarta.faces.html"
+                xmlns:ui="jakarta.faces.facelets"
+                template="/WEB-INF/templates/layout.xhtml"
+                xmlns:f="jakarta.faces.core">
+
+    <ui:define name="content">
+
+        <f:metadata>
+            <f:viewParam name="idPelicula" required="true" value="#{ctrlPelicula.pelicula.id_pelicula}"/>
+            <f:viewAction action="#{ctrlPelicula.recuperaPelicula()}"/>
+        </f:metadata>
+
+        <main class="container mt-4">
+            <!-- Encabezado de la página -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1>Vista Película - DAWFLIX</h1>
+                <h:outputLink value="#{request.contextPath}/VistasDAWFLIX/paginaPrincipal.xhtml"
+                              styleClass="btn btn-primary"> Volver
+                </h:outputLink>
+            </div>
+
+            <div class="row">
+                <!-- Columna de la imagen de la película -->
+                <div class="col-md-4">
+                    <div class="card bg-white text-dark shadow-lg rounded p-3">
+                        <div class="bg-light text-dark d-flex align-items-center justify-content-center mb-2 border rounded"
+                             style="height: 450px;">
+                            <h:graphicImage value="#{ctrlPelicula.pelicula.imagen}"
+                                            rendered="#{not empty ctrlPelicula.pelicula.imagen}" height="400px"
+                                            width="300px"/>
+                        </div>
+                        <h:outputLink
+                                rendered="#{not empty request.remoteUser and not ctrlAlquiler.tieneAlquilerActivo(ctrlPelicula.pelicula.id_pelicula, request.remoteUser) and not request.isUserInRole('ADMINISTRADORES')}"
+                                value="#{request.contextPath}/vistasUsuario/paginaAlquiler.xhtml"
+                                styleClass="btn btn-outline-success"> Alquilar
+                            <f:param name="idP" value="#{ctrlPelicula.pelicula.id_pelicula}"/>
+                        </h:outputLink>
+                        <h:commandButton
+                                rendered="#{not empty request.remoteUser and ctrlAlquiler.tieneAlquilerActivo(ctrlPelicula.pelicula.id_pelicula, request.remoteUser) and not request.isUserInRole('ADMINISTRADORES')}"
+                                styleClass="btn btn-danger" value="Pelicula en posesion"/>
+                        <h:outputLink
+                                rendered="#{request.isUserInRole('ADMINISTRADORES')}"
+                                value="#{request.contextPath}/vistasAdministrador/modificaPelicula.xhtml"
+                                styleClass="btn btn-outline-primary"> Modificar pelicula
+                            <f:param name="idPelicula" value="#{ctrlPelicula.pelicula.id_pelicula}"/>
+                        </h:outputLink>
+                    </div>
+                </div>
+
+                <!-- Columna de detalles de la película -->
+                <div class="col-md-8">
+                    <div class="card bg-white text-dark shadow-lg rounded p-4">
+                        <div class="card-body">
+                            <h3 class="card-title fw-bold text-primary mb-3">
+                                Título: <span class="fw-normal">#{ctrlPelicula.pelicula.titulo}</span>
+                            </h3>
+                            <p class="card-text mb-2">
+                                <span class="fw-bold">Director:</span> #{ctrlPelicula.pelicula.director}
+                            </p>
+                            <p class="card-text mb-2">
+                                <span class="fw-bold">Fecha de estreno:</span> #{ctrlPelicula.pelicula.fechaEstreno}
+                            </p>
+                            <p class="card-text mb-2">
+                                <span class="fw-bold">Género:</span> #{ctrlPelicula.pelicula.genero}
+                            </p>
+                            <p class="card-text mb-2">
+                                <span class="fw-bold">Duración:</span> #{ctrlPelicula.pelicula.duracion}
+                            </p>
+                            <p class="card-text mb-2">
+                                <span class="fw-bold">Valoración:</span> #{ctrlPelicula.pelicula.valoracion}
+                            </p>
+                            <p class="card-text mb-2">
+                                <span class="fw-bold">Precio:</span> #{ctrlPelicula.pelicula.precio_alquiler}
+                            </p>
+                            <p class="card-text mb-2">
+                                <span class="fw-bold">Disponibilidad:</span> #{ctrlPelicula.pelicula.disponibilidad}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Parte inferior de la página (sinopsis y películas relacionadas) -->
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="card bg-white text-dark shadow-lg rounded p-3">
+                        <div class="card-header bg-primary text-white rounded">
+                            <h4>Sinopsis</h4>
+                        </div>
+                        <div class="card-body">
+                            <strong>#{ctrlPelicula.pelicula.sinopsis}</strong>
+                        </div>
+                    </div>
+
+                    <div class="card bg-white text-dark shadow-lg rounded p-3 mt-4">
+                        <div class="card-header bg-primary text-white rounded">
+                            <h4>Películas relacionadas</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex flex-wrap">
+                                <div id="recomendacionesVertx" class="d-flex flex-wrap">
+                                    <!-- Aquí se insertarán las películas recomendadas por JS -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mostrar Comentarios -->
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <div class="card bg-white text-dark shadow-lg rounded p-3">
+                                <div class="card-header bg-primary text-white rounded">
+                                    <h4>Comentarios</h4>
+                                </div>
+
+                                <!-- Repetir comentarios -->
+                                <div class="card-body">
+                                    <ui:repeat value="#{ctrlPelicula.comentarios}" var="comentario">
+                                        <div class="comment-item">
+                                            <div style="display: flex; align-items: center; justify-content: flex-start;">
+                                                <h5><b>#{comentario.email}</b></h5> <div style="margin-left: 10px;">
+                                                <ui:repeat value="#{[1,2,3,4,5]}" var="i">
+                                                    <h:outputText value="★"
+                                                                  styleClass="#{i le comentario.puntuacion ? 'star filled' : 'star'}" />
+                                                </ui:repeat>
+                                            </div>
+                                            </div>
+                                            <p>#{comentario.texto}</p> <small><i>Fecha: #{comentario.fecha}</i></small> </div>
+                                        <hr/>
+                                    </ui:repeat>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script src="#{request.contextPath}/resources/js/recomendaciones.js"></script>
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    background-color: #d62828;
+    color: #fff;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 1.5rem;
+}
+
+header button {
+    padding: 0.5rem 1rem;
+    background-color: #fff;
+    color: #d62828;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+nav {
+    background-color: #f4f4f4;
+    padding: 1rem;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+main {
+    flex: 1;
+    padding: 2rem;
+}
+
+#dashboard {
+    margin-bottom: 2rem; /* añadido para separar del admin-container */
+}
+
+#dashboard h2 {
+    margin-bottom: 1rem;
+}
+
+.cards {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    flex: 1;
+    min-width: 200px;
+    max-width: 300px;
+}
+
+.admin-container {
+    margin-top: 10rem;
+}
+
+.admin-options {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.admin-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #ffffff;
+    padding: 1.2rem 1.2rem 0.5rem 1.2rem; /* menos espacio abajo */
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 260px;
+    height: 320px;
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.admin-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.admin-card img {
+    width: 130px;
+    height: 220px;
+    object-fit: contain;
+    margin-bottom: 0.5rem;
+}
+
+.admin-card span {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 0;
+}

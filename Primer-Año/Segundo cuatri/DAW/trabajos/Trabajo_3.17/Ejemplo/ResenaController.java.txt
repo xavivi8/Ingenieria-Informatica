@@ -1,0 +1,46 @@
+package daw.app.strapi;
+
+import jakarta.inject.Named;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
+import jakarta.annotation.PostConstruct;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.type.TypeReference;
+import java.util.List;
+import java.util.Map;
+import java.util.ArrayList;
+
+@Named
+@RequestScoped
+public class ResenaController {
+    @Inject
+    private daw.app.strapi.StrapiClient strapiClient;
+
+    private List<Map<String, Object>> resenas;
+
+    @PostConstruct
+    public void init() {
+        String json = strapiClient.getResenas();
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            Map<String, Object> responseMap = mapper.readValue(json, new TypeReference<>() {});
+            List<Map<String, Object>> data = (List<Map<String, Object>>) responseMap.get("data");
+
+            resenas = new ArrayList<>();
+
+            if (data != null) {
+                // Añadir directamente los elementos de data a la lista de reseñas
+                resenas.addAll(data);
+                System.out.println("Reseñas cargadas: " + resenas.size());
+            }
+        } catch (Exception e) {
+            resenas = new ArrayList<>();
+            System.err.println("Error al procesar reseñas: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public List<Map<String, Object>> getResenas() {
+        return resenas;
+    }
+}

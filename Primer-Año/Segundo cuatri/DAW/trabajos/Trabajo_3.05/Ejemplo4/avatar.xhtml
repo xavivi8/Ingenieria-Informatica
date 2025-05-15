@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Prueba sl-avatar – Tipos y estilos</title>
+
+    <!-- Shoelace -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css" />
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"></script>
+
+
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 2em;
+        }
+
+        .avatar-row {
+            display: flex;
+            gap: 2em;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .avatar-item {
+            text-align: center;
+        }
+
+        .avatar-item > div {
+            margin-top: 0.5em;
+            font-size: 0.9em;
+        }
+
+        /* Estrella via clip-path */
+        .estrella sl-avatar::part(base) {
+            clip-path: polygon(
+                    50% 0%,
+                    61% 35%,
+                    98% 35%,
+                    68% 57%,
+                    79% 91%,
+                    50% 70%,
+                    21% 91%,
+                    32% 57%,
+                    2% 35%,
+                    39% 35%
+            );
+        }
+    </style>
+</head>
+<body>
+<h1>Prueba &lt;sl-avatar&gt; – Tipos y estilos</h1>
+
+<div class="avatar-row">
+    <!-- 1. Icono por defecto -->
+    <div class="avatar-item">
+        <sl-avatar label="Avatar por defecto"></sl-avatar>
+        <div>Por defecto</div>
+    </div>
+
+    <!-- 2. Imagen de perfil -->
+    <div class="avatar-item">
+        <sl-avatar
+                image="https://i.pravatar.cc/100?img=5"
+                label="Avatar con imagen"
+        ></sl-avatar>
+        <div>Imagen</div>
+    </div>
+
+    <!-- 3. Iniciales -->
+    <div class="avatar-item">
+        <sl-avatar
+                initials="AL"
+                label="Avatar con iniciales"
+        ></sl-avatar>
+        <div>Iniciales</div>
+    </div>
+</div>
+
+<h2>Iconos y formas personalizadas</h2>
+<div class="avatar-row">
+    <!-- Circulo con ícono -->
+    <div class="avatar-item">
+        <sl-avatar label="Circle" shape="circle" size="large">
+            <sl-icon slot="icon" name="chat-dots"></sl-icon>
+        </sl-avatar>
+        <div>circulo+icono</div>
+    </div>
+
+    <!-- Redondeado con ícono -->
+    <div class="avatar-item">
+        <sl-avatar label="Rounded" shape="rounded" size="large">
+            <sl-icon slot="icon" name="chat-dots"></sl-icon>
+        </sl-avatar>
+        <div>redondeado+icono</div>
+    </div>
+
+    <!-- Cuadrado con imagen -->
+    <div class="avatar-item">
+        <sl-avatar
+                image="https://i.pravatar.cc/100?img=12"
+                label="Square con imagen"
+                shape="square"
+        ></sl-avatar>
+        <div>cuadrado + imagen</div>
+    </div>
+
+    <!-- Forma de estrella con imagen -->
+    <div class="avatar-item estrella">
+        <sl-avatar
+                image="https://i.pravatar.cc/100?img=8"
+                label="Star con imagen"
+        ></sl-avatar>
+        <div>estrella + imagen</div>
+    </div>
+</div>
+</body>
+</html>

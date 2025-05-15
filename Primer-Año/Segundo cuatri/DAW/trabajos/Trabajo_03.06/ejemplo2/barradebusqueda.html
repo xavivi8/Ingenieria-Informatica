@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<head>
+  <title>Buscador de Ejercicios con HTMX</title>
+  <script src='https://cdn.jsdelivr.net/npm/htmx.org@latest'></script>
+  <link rel="stylesheet" href="../resources/css/styles.css">
+</head>
+
+<body>
+
+<h1>Buscador de Ejercicios</h1>
+
+<div class="search-container">
+<button style="font-size: 12px" class="btn-custom" onclick="window.location.href='./ejercicio.xhtml';">
+Volver a los ejercicios</button>
+
+  <input
+  type="text"
+  placeholder="Buscar ejercicios..."
+  hx-get="/api/ejercicios"
+  hx-trigger="keyup changed delay:200ms, load"
+  hx-target="#resultados">
+
+</div>
+
+<div
+id="resultados">
+</div>
+
+</body>
+</html>

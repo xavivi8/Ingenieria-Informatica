@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Usuario</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+
+<body style="margin: 0; padding: 0;">
+
+<header class="bg-secondary text-light p-3 d-flex justify-content-between align-items-center"
+        style="width: 100%; margin: 0;">
+    <div class="logo-container text-center d-flex flex-column align-items-center">
+        <a href="pantalla_inicio.xhtml" class="d-block">
+            <img src="resources/imagenes/logo-UJASalud-negro.png" alt="Logo UJASalud" style="width: 60px;" class="img-fluid" />
+        </a>
+        <h1 class="h5 mt-1 mb-0">UJASalud</h1>
+    </div>
+    <a href="index.xhtml" class="btn btn-info">Volver</a>
+</header>
+
+<main class="p-3">
+    <div class="mb-4"
+         x-data="{
+         datos: [],
+         detalle: null,
+         cargar() {
+             fetch('api/usuarios')
+                 .then(r => r.json())
+                 .then(data => this.datos = data);
+         },
+         mostrarDetalle(id) {
+             fetch('api/usuarios/' + id)
+                 .then(r => r.json())
+                 .then(data => this.detalle = data);
+         },
+         borrar(id) {
+             fetch('api/usuarios/' + id, { method: 'DELETE' })
+                 .then(() => this.datos = this.datos.filter(d => d.id !== id));
+         }
+     }"
+         x-init="cargar()">
+
+        <h2 class="mt-4">Lista de Usuarios</h2>
+
+        <ul class="list-group">
+            <template x-for="d in datos" :key="d.id">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>
+                    <a href="#" @click.prevent="mostrarDetalle(d.id)" class="fw-bold" x-text="d.nombre"></a>
+                    (<span x-text="d.usuario"></span>)
+                </span>
+                    <template x-if="d.rol !== 'ADMINISTRADOR'">
+                        <a href="#" @click.prevent="borrar(d.id)">Borrar</a>
+                    </template>
+                </li>
+            </template>
+        </ul>
+
+        <!-- Detalles del Usuario -->
+        <div class="mt-4" x-show="detalle" x-transition>
+            <h3>Detalle del Usuario</h3>
+            <ul class="list-group" x-show="detalle">
+                <li class="list-group-item"><strong>Nombre:</strong> <span x-text="detalle?.nombre"></span></li>
+                <li class="list-group-item"><strong>Usuario:</strong> <span x-text="detalle?.usuario"></span></li>
+                <li class="list-group-item"><strong>Email:</strong> <span x-text="detalle?.email"></span></li>
+                <li class="list-group-item"><strong>DNI:</strong> <span x-text="detalle?.dni"></span></li>
+                <li class="list-group-item"><strong>Teléfono:</strong> <span x-text="detalle?.telefono"></span></li>
+                <li class="list-group-item"><strong>Dirección:</strong> <span x-text="detalle?.direccion"></span></li>
+                <li class="list-group-item"><strong>Fecha Nacimiento:</strong> <span x-text="detalle?.fechaNacimiento"></span></li>
+                <li class="list-group-item"><strong>Tarjeta:</strong> <span x-text="detalle?.numeroDeTarjeta"></span></li>
+            </ul>
+            <button class="btn btn-secondary mt-2" @click="detalle = null">Cerrar</button>
+        </div>
+    </div>
+
+</main>
+</body>
+</html>

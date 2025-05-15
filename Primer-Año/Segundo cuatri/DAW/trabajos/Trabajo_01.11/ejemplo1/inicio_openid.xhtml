@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Ascend - Procesando inicio de sesión</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <h:outputStylesheet library="webjars" name="bootstrap/5.3.0/css/bootstrap.min.css"/>
+
+    <f:metadata>
+        <f:viewAction action="#{usuarioCtrl.procesarInicioSesionOpenId}" />
+    </f:metadata>
+
+</h:head>
+
+<h:body class="bg-primary text-white d-flex justify-content-center align-items-center vh-100">
+
+    <div class="text-center px-3">
+        <h1 class="display-4 fw-bold mb-4">Procesando inicio de sesión...</h1>
+        <p class="lead">Estamos verificando tu cuenta y preparando tu perfil. Un momento por favor...</p>
+        <div class="spinner-border text-light mt-4" role="status">
+            <span class="visually-hidden">Cargando...</span>
+        </div>
+    </div>
+
+</h:body>
+</html>

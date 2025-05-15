@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demo AlpineJS con Bootstrap</title>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="p-4 bg-light">
+
+<!-- Menú Hamburguesa -->
+<div x-data="{ open: false }" class="mb-4">
+  <h2>Menú Hamburguesa</h2>
+  <button class="btn btn-outline-secondary mb-2" @click="open = !open">☰ Menú</button>
+  <nav :class="{ 'd-block': open, 'd-none': !open }" class="d-none">
+    <ul class="list-unstyled">
+      <li><a href="#" class="text-decoration-none d-block py-1">Inicio</a></li>
+      <li><a href="#" class="text-decoration-none d-block py-1">Sobre mí</a></li>
+      <li><a href="#" class="text-decoration-none d-block py-1">Contacto</a></li>
+    </ul>
+  </nav>
+</div>
+
+<hr>
+
+<!-- Formulario Dinámico -->
+<div x-data="{ tipo: '' }" class="mb-4">
+  <h2>Formulario Dinámico</h2>
+  <div class="mb-3">
+    <label class="form-label">Tipo de usuario:</label>
+    <select x-model="tipo" class="form-select w-auto">
+      <option value="">-- Selecciona --</option>
+      <option value="cliente">Cliente</option>
+      <option value="admin">Administrador</option>
+    </select>
+  </div>
+
+  <div x-show="tipo === 'cliente'" class="mb-2">
+    <label class="form-label">Nombre:</label>
+    <input type="text" class="form-control" placeholder="Nombre del cliente" />
+  </div>
+
+  <div x-show="tipo === 'admin'" class="mb-2">
+    <label class="form-label">Usuario:</label>
+    <input type="text" class="form-control" placeholder="usuario" />
+    <label class="form-label">Clave secreta:</label>
+    <input type="password" class="form-control" placeholder="Clave de administrador" />
+  </div>
+</div>
+
+<hr>
+
+<!-- Acordeón -->
+<div x-data="{ abierto: null }" class="mb-4">
+  <h2>Acordeón</h2>
+
+  <div class="accordion" id="acordeonEjemplo">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" @click="abierto === 1 ? abierto = null : abierto = 1">
+          ¿Qué es AlpineJS?
+        </button>
+      </h2>
+      <div x-show="abierto === 1" x-transition class="accordion-body">
+        AlpineJS es un framework minimalista de JavaScript para añadir interactividad a HTML.
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" @click="abierto === 2 ? abierto = null : abierto = 2">
+          ¿Es similar a Vue o React?
+        </button>
+      </h2>
+      <div x-show="abierto === 2" x-transition class="accordion-body">
+        Sí, AlpineJS toma inspiración de Vue, pero es mucho más liviano y enfocado en HTML.
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" @click="abierto === 3 ? abierto = null : abierto = 3">
+          ¿Dónde debería usarse?
+        </button>
+      </h2>
+      <div x-show="abierto === 3" x-transition class="accordion-body">
+        Ideal para sitios estáticos o cuando solo necesitas pequeñas interacciones sin frameworks pesados.
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- Modal -->
+<div x-data="{ showModal: false }" class="mb-4">
+  <h2>Modal</h2>
+  <button @click="showModal = true" class="btn btn-primary">Abrir Modal</button>
+
+  <div x-show="showModal" x-transition class="position-fixed top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.5); z-index: 1050;">
+    <div class="d-flex justify-content-center align-items-center w-100 h-100">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background-color: white;" @click.away="showModal = false">
+          <div class="modal-header">
+            <h5 class="modal-title">Este es un Modal</h5>
+            <button type="button" class="btn-close" @click="showModal = false"></button>
+          </div>
+          <div class="modal-body">
+            <p>Puedes cerrarlo haciendo clic fuera o usando el botón de abajo.</p>
+          </div>
+          <div class="modal-footer">
+            <button @click="showModal = false" class="btn btn-danger">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- Tooltip emergente -->
+<div x-data="{ showTooltip: false }" class="mb-4 position-relative d-inline-block">
+  <h2>Tooltip Emergente</h2>
+  <button @click="showTooltip = !showTooltip" class="btn btn-dark">Mostrar Información</button>
+  <div x-show="showTooltip" x-transition class="position-absolute bg-white border p-2 shadow mt-2" style="width: 240px; z-index: 10;">
+    Este es un pequeño mensaje emergente (tooltip) que aparece cuando haces clic.
+  </div>
+</div>
+
+<hr>
+
+<!-- Tabs -->
+<div x-data="{ tabActivo: 'info' }" class="mt-4">
+  <h2>Sección de Tabs</h2>
+  <ul class="nav nav-tabs mb-3">
+    <li class="nav-item">
+      <button @click="tabActivo = 'info'" :class="{ 'active': tabActivo === 'info' }" class="nav-link" :class="{ 'active': tabActivo === 'info' }">Información</button>
+    </li>
+    <li class="nav-item">
+      <button @click="tabActivo = 'config'" :class="{ 'active': tabActivo === 'config' }" class="nav-link">Configuración</button>
+    </li>
+    <li class="nav-item">
+      <button @click="tabActivo = 'ayuda'" :class="{ 'active': tabActivo === 'ayuda' }" class="nav-link">Ayuda</button>
+    </li>
+  </ul>
+
+  <div x-show="tabActivo === 'info'" x-transition><p>Esta es la pestaña de información general del proyecto.</p></div>
+  <div x-show="tabActivo === 'config'" x-transition><p>Aquí irían las opciones de configuración que el usuario puede modificar.</p></div>
+  <div x-show="tabActivo === 'ayuda'" x-transition><p>¿Tienes dudas? Aquí puedes encontrar ayuda y soporte.</p></div>
+</div>
+
+</body>
+</html>

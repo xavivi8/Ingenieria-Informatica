@@ -1,0 +1,127 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>daw</groupId>
+    <artifactId>dawflix</artifactId>
+    <version>1.0</version>
+    <name>app</name>
+    <packaging>war</packaging>
+
+    <repositories>
+        <repository>
+            <id>payara-repo</id>
+            <url>https://repo.payara.fish</url>
+        </repository>
+    </repositories>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!-- Jakarta EE API -->
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-web-api</artifactId>
+            <version>10.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- PrimeFaces -->
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>14.0.0</version>
+            <classifier>jakarta</classifier>
+        </dependency>
+
+        <!-- H2 Database for development -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>2.1.214</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.glassfish.soteria</groupId>
+            <artifactId>jakarta.security.enterprise</artifactId>
+            <version>3.0.3</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Bootstrap WebJars -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>4.4.1</version>
+        </dependency>
+
+        <!-- Core Vert.x -->
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-core</artifactId>
+            <version>4.5.1</version>
+        </dependency>
+
+        <!-- Web para router y servidor HTTP -->
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-web</artifactId>
+            <version>4.5.1</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <finalName>dawflix</finalName>
+        <plugins>
+            <!-- War Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <!-- Payara Micro Maven Plugin -->
+            <plugin>
+                <groupId>fish.payara.maven.plugins</groupId>
+                <artifactId>payara-micro-maven-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <payaraVersion>6.2024.12</payaraVersion>
+                    <deployWar>true</deployWar>
+                    <contextRoot>/</contextRoot>
+                    <commandLineOptions>
+                        <option>
+                            <key>--disablephonehome</key>
+                        </option>
+                        <option>
+                            <key>--noHazelcast</key>
+                        </option>
+                    </commandLineOptions>
+                    <javaCommandLineOptions>
+                        <option>
+                            <key>-Djava.security.egd</key>
+                            <value>file:/dev/./urandom</value>
+                        </option>
+                    </javaCommandLineOptions>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <mainClass>dawflix.recomendador.Launcher</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

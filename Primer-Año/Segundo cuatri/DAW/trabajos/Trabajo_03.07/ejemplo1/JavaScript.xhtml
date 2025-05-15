@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo XHTML con Bootstrap</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+    <style type="text/css">
+        .d-none { display: none; }
+    </style>
+    <script type="text/javascript">
+        // Menú hamburguesa
+        function toggleMenu() {
+            var nav = document.getElementById('menu');
+            nav.className = (nav.className === 'd-none') ? 'd-block' : 'd-none';
+        }
+
+        // Formulario dinámico
+        function toggleFormulario(selectObj) {
+            var cliente = document.getElementById('form-cliente');
+            var admin = document.getElementById('form-admin');
+            cliente.style.display = selectObj.value === 'cliente' ? 'block' : 'none';
+            admin.style.display = selectObj.value === 'admin' ? 'block' : 'none';
+        }
+
+        // Acordeón
+        function toggleAcordeon(index) {
+            var bodies = document.getElementsByClassName('accordion-body');
+            for (var i = 0; i &lt; bodies.length; i++) {
+                bodies[i].style.display = (i === index &amp;&amp; bodies[i].style.display !== 'block') ? 'block' : 'none';
+            }
+        }
+
+        // Modal
+        function mostrarModal() {
+            var overlay = document.getElementById('modal-overlay');
+            overlay.style.display = 'block';
+            overlay.onclick = function () { cerrarModal(); };
+        }
+
+        function cerrarModal() {
+            var overlay = document.getElementById('modal-overlay');
+            overlay.style.display = 'none';
+        }
+
+        // Tooltip
+        function toggleTooltip() {
+            var tooltip = document.getElementById('tooltip');
+            tooltip.style.display = (tooltip.style.display === 'block') ? 'none' : 'block';
+        }
+
+        // Tabs
+        function activarTab(tab) {
+            var tabs = ['info', 'config', 'ayuda'];
+            for (var i = 0; i &lt; tabs.length; i++) {
+                var btn = document.getElementById('tab-' + tabs[i]);
+                var cont = document.getElementById('contenido-' + tabs[i]);
+                if (tabs[i] === tab) {
+                    btn.className = 'nav-link active';
+                    cont.style.display = 'block';
+                } else {
+                    btn.className = 'nav-link';
+                    cont.style.display = 'none';
+                }
+            }
+        }
+    </script>
+</head>
+<body class="p-4 bg-light">
+
+<!-- Menú Hamburguesa-->
+<div class="mb-4">
+    <h2>Menú Hamburguesa</h2>
+    <button class="btn btn-outline-secondary mb-2" onclick="toggleMenu();">&#9776; Menú</button>
+    <div id="menu" class="d-none">
+        <ul class="list-unstyled">
+            <li><a href="#" class="text-decoration-none d-block py-1">Inicio</a></li>
+            <li><a href="#" class="text-decoration-none d-block py-1">Sobre mí</a></li>
+            <li><a href="#" class="text-decoration-none d-block py-1">Contacto</a></li>
+        </ul>
+    </div>
+</div>
+
+<hr />
+
+<!-- Formulario Dinámico -->
+<div class="mb-4">
+    <h2>Formulario Dinámico</h2>
+    <div class="mb-3">
+        <label class="form-label">Tipo de usuario:</label>
+        <select class="form-select w-auto" onchange="toggleFormulario(this);">
+            <option value="">-- Selecciona --</option>
+            <option value="cliente">Cliente</option>
+            <option value="admin">Administrador</option>
+        </select>
+    </div>
+
+    <div class="mb-2" id="form-cliente" style="display: none;">
+        <label class="form-label">Nombre:</label>
+        <input type="text" class="form-control" id="nombre" value="" />
+    </div>
+
+    <div class="mb-2" id="form-admin" style="display: none;">
+        <label class="form-label">Usuario:</label>
+        <input type="text" class="form-control" id="usuario" value="" />
+        <label class="form-label">Clave secreta:</label>
+        <input type="password" class="form-control" id="password" value="" />
+    </div>
+</div>
+
+<hr />
+
+<!-- Acordeón -->
+<div class="mb-4">
+    <h2>Acordeón</h2>
+    <div class="accordion" id="acordeon">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" type="button" onclick="toggleAcordeon(0);">¿Qué es AlpineJS?</button>
+            </h2>
+            <div class="accordion-body" style="display: none;">
+                AlpineJS es un framework minimalista de JavaScript para añadir interactividad a HTML.
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" type="button" onclick="toggleAcordeon(1);">¿Es similar a Vue o React?</button>
+            </h2>
+            <div class="accordion-body" style="display: none;">
+                Si, AlpineJS toma inspiración de Vue, pero es mucho más liviano y enfocado en HTML.
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" type="button" onclick="toggleAcordeon(2);">¿Dónde debería usarse?</button>
+            </h2>
+            <div class="accordion-body" style="display: none;">
+                Ideal para sitios estáticos o cuando solo necesitas pequeñas interacciones sin frameworks pesados.
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<!-- Modal -->
+<div class="mb-4">
+    <h2>Modal</h2>
+    <button class="btn btn-primary" onclick="mostrarModal();">Abrir Modal</button>
+
+    <div id="modal-overlay" class="position-fixed top-0 start-0 w-100 h-100"
+         style="background: rgba(0, 0, 0, 0.5); z-index: 1050; display: none;">
+        <div class="d-flex justify-content-center align-items-center w-100 h-100">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="background-color: white;" onclick="event.stopPropagation();">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Este es un Modal</h5>
+                        <button type="button" class="btn-close" onclick="cerrarModal();"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Puedes cerrarlo haciendo clic fuera o usando el botón de abajo.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" onclick="cerrarModal();">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr/>
+
+<!-- Tooltip -->
+<div class="mb-4 position-relative d-inline-block">
+    <h2>Tooltip</h2>
+    <button class="btn btn-dark" onclick="toggleTooltip();">Mostrar Información</button>
+    <div id="tooltip" class="position-absolute bg-white border p-2 shadow mt-2" style="width: 240px; z-index: 10; display: none;">
+        Este es un pequeño mensaje emergente (tooltip) que aparece cuando haces clic.
+    </div>
+</div>
+
+<hr />
+
+<!-- Tabs -->
+<div class="mt-4">
+    <h2>Sección de Tabs</h2>
+    <ul class="nav nav-tabs mb-3">
+        <li class="nav-item">
+            <button class="nav-link active" id="tab-info" onclick="activarTab('info');">Información</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" id="tab-config" onclick="activarTab('config');">Configuración</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" id="tab-ayuda" onclick="activarTab('ayuda');">Ayuda</button>
+        </li>
+    </ul>
+
+    <div id="contenido-info"><p>Esta es la pestaña de información general del proyecto.</p></div>
+    <div id="contenido-config" style="display: none;"><p>Aquí irían las opciones de configuración que el usuario puede modificar.</p></div>
+    <div id="contenido-ayuda" style="display: none;"><p>¿Tienes dudas? Aquí puedes encontrar ayuda y soporte.</p></div>
+</div>
+
+</body>
+</html>
