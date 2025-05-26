@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:cc="jakarta.faces.composite"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+
+<cc:interface>
+    <cc:attribute name="value" required="true" />
+</cc:interface>
+
+<cc:implementation>
+    <div class="card shadow-sm mb-4" style="max-width: 400px; margin: auto;">
+        <div class="card-body">
+            <h5 class="card-title text-center text-primary mb-3">Detalles del Cliente</h5>
+            <ul class="list-unstyled">
+                <li class="mb-2">
+                    <strong class="text-muted">Nombre:</strong>
+                    <span class="text-dark">#{cc.attrs.value.name}</span>
+                </li>
+                <li class="mb-2">
+                    <strong class="text-muted">Email:</strong>
+                    <span class="text-dark">#{cc.attrs.value.email}</span>
+                </li>
+                <li class="mb-2">
+                    <strong class="text-muted">Teléfono:</strong>
+                    <span class="text-dark">#{cc.attrs.value.phone}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</cc:implementation>
+
+</html>

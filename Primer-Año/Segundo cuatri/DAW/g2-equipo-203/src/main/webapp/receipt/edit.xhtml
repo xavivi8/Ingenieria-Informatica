@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="jakarta.faces.passthrough">
+
+<ui:composition template="/WEB-INF/templates/MenuTemplate.xhtml">
+    <ui:define name="plantilla">
+        <f:metadata>
+            <f:viewParam name="id" value="#{receiptCtrl.receipt.id}"/>
+            <f:viewAction action="#{receiptCtrl.recover()}"/>
+        </f:metadata>
+            <h1>Edita Factura</h1>
+            <h:messages warnClass="text-warning" infoClass="text-info" errorClass="text-danger"/>
+            <ui:fragment rendered="#{receiptCtrl.receipt != null}">
+                <h:form id="formUsuer">
+                    <h3>ID: <h:outputText value="#{receiptCtrl.receipt.id}"/></h3>
+                    <h:inputHidden value="#{receiptCtrl.receipt.id}"/>
+                    <label>Precio total:</label>
+                    <h:inputText id="totalPrice"
+                                 value="#{receiptCtrl.receipt.totalPrice}"
+                                 required="true"
+                                 styleClass="form-control"/>
+                    <p><h:message for="totalPrice" styleClass="form-text text-danger"/></p>
+                    <label>Cliente:</label>
+                    <div class="mb-3">
+                        <p:selectOneMenu id="idClient"
+                                         value="#{receiptCtrl.receipt.idClient}"
+                                         required="true" requiredMessage="Debe seleccionar un cliente"
+                                         styleClass="form-control">
+                            <f:selectItem itemLabel="- - SIN CLIENTE - -" itemValue="0" noSelectionOption="true"/>
+                            <f:selectItems value="#{clientCtrl.clients}" var="client" itemLabel="#{client.name}" itemValue="#{client.id}" />
+                            <f:selectItem itemValue="receiptCtrl.receipt.idClient" noSelectionOption="true"/>
+                        </p:selectOneMenu>
+                        <h:message for="idClient" styleClass="text-danger" />
+                    </div>
+                    <p><h:message for="idClient" styleClass="form-text text-danger"/></p>
+                    <label>Empleado:</label>
+                    <div class="mb-3">
+                        <p:selectOneMenu id="idUserCrm"
+                                         value="#{receiptCtrl.receipt.idUserCrm}"
+                                         required="true" requiredMessage="Debe seleccionar un empleado"
+                                         styleClass="form-control">
+                            <f:selectItems value="#{userCtrl.users}" var="user" itemLabel="#{user.name} con DNI: #{user.dni}" itemValue="#{user.id}" />
+                            <f:selectItem itemValue="receiptCtrl.receipt.idUserCrm" noSelectionOption="true"/>
+                        </p:selectOneMenu>
+                        <h:message for="idUserCrm" styleClass="text-danger" />
+                    </div>
+
+                    <h:commandButton styleClass="btn btn-primary" value="Guardar" action="#{receiptCtrl.save()}"/>
+                    <h:button styleClass="btn btn-cancel" value="Cancelar" outcome="home"/>
+                </h:form>
+            </ui:fragment>
+    </ui:define>
+</ui:composition>
+</html>

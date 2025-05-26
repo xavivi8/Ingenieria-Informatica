@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets">
+<ui:composition template="/WEB-INF/templates/HeaderFooterTemplate.xhtml">
+    <ui:define name="HFTcontenido">
+        <h:head>
+            <title>CRM</title>
+        </h:head>
+
+        <h:body>
+            <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+                <main class="text-center">
+                    <h:link value="Acceder" outcome="/product/home" styleClass="btn btn-primary w-50"/>
+                </main>
+            </div>
+        </h:body>
+    </ui:define>
+</ui:composition>
+</html>

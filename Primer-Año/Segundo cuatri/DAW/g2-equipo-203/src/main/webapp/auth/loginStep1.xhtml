@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/WEB-INF/templates/HeaderFooterTemplate.xhtml">
+    <ui:define name="HFTcontenido">
+        <h:body>
+            <!-- Contenedor de Bootstrap para centrar el contenido -->
+            <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+                <h:form>
+                    <p:panel header="Inicio de Sesión - Paso 1" styleClass="shadow-lg p-3 mb-5 bg-white rounded">
+                        <p:messages />
+
+                        <!-- Contenedor de Bootstrap para el input y output con margen entre ellos -->
+                        <div class="form-group mb-3">
+                            <h:outputLabel for="email" value="Correo electrónico:"/>
+                            <p:inputText id="email" value="#{loginController.email}" required="true"
+                                         requiredMessage="El correo es obligatorio"
+                                         label="Correo" styleClass="form-control">
+                               <!-- <f:validateRegex pattern="^[\\w.%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}(\\.[A-Za-z]{2,})?$"/> -->
+                            </p:inputText>
+                        </div>
+
+                        <!-- Botón con margen inferior -->
+                        <div class="form-group mb-3">
+                            <p:commandButton value="Siguiente"
+                                             action="#{loginController.goToStep2}"
+                                             update="@form"
+                                             styleClass="btn btn-primary w-100"/>
+                        </div>
+                    </p:panel>
+                </h:form>
+            </div>
+        </h:body>
+    </ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:cc="jakarta.faces.composite"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:crm="jakarta.faces.composite/crmcomp">
+
+<cc:interface>
+    <cc:attribute name="value" required="true" type="crm.models.ReceiptDetails"/>
+</cc:interface>
+
+<cc:implementation>
+    <div class="mb-4" style="max-width: 400px; margin: auto;">
+        <ul class="list-unstyled">
+            <li class="mb-2">
+                <strong class="text-muted">Producto:</strong>
+                <crm:product_fk value="#{productCtrl.findById(cc.attrs.value.idProduct)}" />
+            </li>
+            <li class="mb-2">
+                <strong class="text-muted">Cantidad:</strong>
+                <span class="text-dark">#{cc.attrs.value.amount}</span>
+            </li>
+        </ul>
+    </div>
+</cc:implementation>
+
+</html>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="es"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets">
+
+<h:head>
+    <meta charset="UTF-8"/>
+    <title>Mi Empresa</title>
+
+    <!-- CSS -->
+    <h:outputStylesheet library="css" name="layout.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"/>
+</h:head>
+
+<h:body>
+    <!-- CABECERA -->
+    <header class="bg-primary text-white text-center position-fixed d-flex align-items-center justify-content-center shadow w-100 p-3">
+        <img src="https://via.placeholder.com/50" alt="Logo" class="me-2 logo-pequeno"/>
+        <h2 class="fw-bold m-0">Mi Empresa</h2>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="d-flex">
+        <!-- Menú Vertical -->
+        <nav class="bg-light p-3" id="sidebar" style="width: 250px;">
+            <h:form>
+                <h4>Menú</h4>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <h:link value="Clientes" outcome="/articulos/articulos" styleClass="nav-link"/>
+                    </li>
+                    <li class="nav-item">
+                        <h:link value="Artículos" outcome="/articulos/articulos" styleClass="nav-link"/>
+                    </li>
+                    <li class="nav-item">
+                        <h:link value="Empleados" outcome="/empleados/empleados" styleClass="nav-link"/>
+                    </li>
+                    <li class="nav-item">
+                        <h:link value="Facturas" outcome="/facturas/facturas" styleClass="nav-link"/>
+                    </li>
+                    <li class="nav-item">
+                        <h:link value="Nómina" outcome="/nominas/nominas" styleClass="nav-link"/>
+                    </li>
+                </ul>
+            </h:form>
+        </nav>
+
+        <!-- Contenido dinámico -->
+        <div class="container-fluid ms-3" id="contenido-principal">
+            <h:panelGroup id="contenido">
+                <!-- El contenido de la vista se incluirá dinámicamente según lo que seleccione el usuario -->
+                <ui:include src="#{menuBean.vistaActual}" />
+            </h:panelGroup>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white mt-4 py-3 w-100">
+        <div class="container d-flex justify-content-between">
+            <a href="https://github.com/DAWUJA-2025/g2-equipo-203" class="text-white" target="_blank">Repositorio en GitHub</a>
+            <div>
+                <a href="https://github.com/xavivi8" class="text-white mx-2" target="_blank">Fco. Javier Martín-Lunas Escobar</a>
+                <a href="https://github.com/pjcp0005" class="text-white mx-2" target="_blank">Pedro Jesús Cros Pérez</a>
+                <a href="https://github.com/jpt00012" class="text-white mx-2" target="_blank">José Pedrajas De La Torre</a>
+            </div>
+        </div>
+    </footer>
+</h:body>
+</html>

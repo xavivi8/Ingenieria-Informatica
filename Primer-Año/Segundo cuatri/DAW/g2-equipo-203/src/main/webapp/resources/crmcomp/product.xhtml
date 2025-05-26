@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:cc="jakarta.faces.composite"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:crm="jakarta.faces.composite/crmcomp">
+
+<cc:interface>
+    <cc:attribute name="value" type="crm.models.Product" required="true" />
+</cc:interface>
+
+<cc:implementation>
+    <div class="card shadow-sm mb-4" style="max-width: 500px; margin: auto;">
+        <div class="card-body">
+            <h5 class="card-title text-center text-primary mb-3">Detalles del Producto</h5>
+            <ul class="list-unstyled">
+                <li class="mb-2">
+                    <strong class="text-muted">ID:</strong>
+                    <span class="text-dark">#{cc.attrs.value.id}</span>
+                </li>
+                <li class="mb-2">
+                    <strong class="text-muted">Nombre:</strong>
+                    <span class="text-dark">#{cc.attrs.value.name}</span>
+                </li>
+                <li class="mb-2">
+                    <strong class="text-muted">Descripción:</strong>
+                    <span class="text-dark">#{cc.attrs.value.description}</span>
+                </li>
+                <li class="mb-2">
+                    <strong class="text-muted">Precio Base:</strong>
+                    <span class="text-dark">#{cc.attrs.value.base_price}</span>
+                </li>
+                <li class="mb-2">
+                    <strong class="text-muted">Stock:</strong>
+                    <span class="text-dark">#{cc.attrs.value.stock}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</cc:implementation>
+
+</html>

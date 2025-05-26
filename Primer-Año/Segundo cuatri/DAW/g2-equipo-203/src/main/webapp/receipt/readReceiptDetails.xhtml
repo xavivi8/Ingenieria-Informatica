@@ -1,0 +1,29 @@
+<ui:composition
+        xmlns:h="jakarta.faces.html"
+        xmlns:f="jakarta.faces.core"
+        xmlns:ui="jakarta.faces.facelets"
+        template="/WEB-INF/templates/MenuTemplate.xhtml"
+        xmlns:crm="jakarta.faces.composite/crmcomp">
+
+    <ui:define name="plantilla">
+
+        <!-- Retrieve query-string parameters -->
+        <ui:define name="metadata">
+            <f:metadata>
+                <f:viewParam name="idReceiptDetails" value="#{receiptDetailsCtrl.receiptDetails.id}"/>
+                <f:viewAction action="#{receiptDetailsCtrl.recupera()}" />
+            </f:metadata>
+        </ui:define>
+
+        <!-- Title Section -->
+        <h1 class="text-center mb-4">Visualiza Detalles de Factura</h1>
+
+        <crm:receiptDetails value="#{receiptDetailsCtrl.receiptDetails}" />
+
+        <!-- Button to navigate back to home -->
+        <div class="text-center">
+            <h:button styleClass="btn btn-primary btn-sm" value="Inicio" outcome="home"/>
+        </div>
+
+    </ui:define>
+</ui:composition>

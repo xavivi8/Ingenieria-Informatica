@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/templates/MenuTemplate.xhtml">
+    <ui:define name="plantilla">
+        <main class="container mt-5 pt-3">
+            <h:form>
+                <h2 class="mb-4">Añadir Nuevo Usuario</h2>
+
+                <div class="mb-3">
+                    <h:outputLabel for="nombre" value="Nombre" />
+                    <h:inputText id="nombre" value="#{userCtrl.user.name}" required="true" styleClass="form-control" />
+                    <h:message for="nombre" styleClass="text-danger" />
+                </div>
+
+                <div class="mb-3">
+                    <h:outputLabel for="apellido" value="Apellidos" />
+                    <h:inputText id="apellido" value="#{userCtrl.user.surname}" required="true" styleClass="form-control" />
+                    <h:message for="apellido" styleClass="text-danger" />
+                </div>
+
+                <div class="mb-3">
+                    <h:outputLabel for="dni" value="DNI" />
+                    <h:inputText id="dni" value="#{userCtrl.user.dni}" styleClass="form-control">
+                        <f:validateRegex pattern="^\d{8}[A-Za-z]$" />
+                    </h:inputText>
+                    <h:message for="dni" styleClass="text-danger" />
+                </div>
+
+                <div class="mb-3">
+                    <h:outputLabel for="email" value="Correo electrónico" />
+                    <h:inputText id="email" value="#{userCtrl.user.email}" required="true" styleClass="form-control">
+                        <!-- Validación para correo electrónico -->
+                        <f:validateRegex pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" />
+                    </h:inputText>
+                    <h:message for="email" styleClass="text-danger" />
+                </div>
+
+                <div class="mb-3">
+                    <h:outputLabel for="password" value="Contraseña" />
+                    <h:inputSecret id="password" value="#{userCtrl.user.password}" required="true" styleClass="form-control" />
+                    <h:message for="password" styleClass="text-danger" />
+                </div>
+
+                <div class="mb-3">
+                    <h:outputLabel for="telefono" value="Teléfono" />
+                    <h:inputText id="telefono" value="#{userCtrl.user.phone}" styleClass="form-control" />
+                    <h:message for="telefono" styleClass="text-danger" />
+                </div>
+
+                <div class="mb-3">
+                    <h:outputLabel for="foto" value="URL de Foto (opcional)" />
+                    <h:inputText id="foto" value="#{userCtrl.user.photo}" styleClass="form-control" />
+                    <h:message for="foto" styleClass="text-danger" />
+                </div>
+
+                <div class="mb-3">
+                    <h:outputLabel for="rol" value="Rol" />
+                    <h:selectOneMenu id="rol" value="#{userCtrl.user.role}" required="true" styleClass="form-select">
+                        <f:selectItem itemLabel="-- Selecciona un rol --" itemValue="#{null}" noSelectionOption="true"/>
+                        <f:selectItems value="#{userCtrl.appConfig.availableRoles}" var="r" itemValue="#{r}" itemLabel="#{r}" />
+                    </h:selectOneMenu>
+                    <h:message for="rol" styleClass="text-danger" />
+                </div>
+
+                <h:commandButton value="Crear Usuario" action="#{userCtrl.crea}" styleClass="btn btn-success"/>
+            </h:form>
+        </main>
+    </ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:f="jakarta.faces.core">
+
+<ui:composition template="/WEB-INF/templates/MenuTemplate.xhtml">
+<ui:define name="plantilla">
+<f:metadata>
+    <f:viewParam name="id" value="#{clientCtrl.client.id}"/>
+    <f:viewAction action="#{clientCtrl.recuperar()}"/>
+</f:metadata>
+
+    <h1>Edita Cliente</h1>
+
+    <h:messages warnClass="text-warning" infoClass="text-info" errorClass="text-danger"/>
+    <ui:fragment rendered="#{clientCtrl.client != null}">
+        <h:form id="formClient">
+        <h3>ID: <h:outputText value="#{clientCtrl.client.id}"/></h3>
+        <h:inputHidden value="#{clientCtrl.client.id}"/>
+            <label>Nombre:</label>
+            <h:inputText id="nombre" value="#{clientCtrl.client.name}" required="true" styleClass="form-control"/>
+            <p><h:message for="nombre" styleClass="form-text text-danger"/></p>
+            <label>Email:</label>
+            <h:inputText id="email" value="#{clientCtrl.client.email}" required="true" styleClass="form-control"/>
+            <p><h:message for="nombre" styleClass="form-text text-danger"/></p>
+            <label>Teléfono:</label>
+            <h:inputText id="phone" value="#{clientCtrl.client.phone}" required="true" styleClass="form-control"/>
+            <p><h:message for="phone" styleClass="form-text text-danger"/></p>
+            <h:commandButton styleClass="btn btn-primary" value="Guardar" action="#{clientCtrl.guarda()}"/>
+            <h:button styleClass="btn btn-cancel" value="Cancelar" outcome="home"/>
+        </h:form>
+    </ui:fragment>
+
+</ui:define>
+</ui:composition>
+</html>

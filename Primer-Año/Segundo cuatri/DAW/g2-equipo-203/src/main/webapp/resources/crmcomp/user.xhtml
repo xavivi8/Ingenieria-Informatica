@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:cc="jakarta.faces.composite"
+      xmlns:crm="jakarta.faces.composite/crmcomp">
+
+
+<cc:interface>
+<cc:attribute name="value" required="true" />
+</cc:interface>
+<cc:implementation>
+<div class="card shadow-sm mb-4" style="max-width: 500px; margin: auto;">
+<div class="card-body">
+<h5 class="card-title text-center text-primary mb-3">Detalles del usuario</h5>
+<ul class="list-unstyled">
+
+    <li class="mb-2">
+        <strong class="text-muted">Dni:</strong>
+        <span class="text-dark">#{cc.attrs.value.dni}</span>
+    </li>
+    <li class="mb-2">
+        <strong class="text-muted">Email:</strong>
+        <span class="text-dark">#{cc.attrs.value.email}</span>
+    </li>
+
+    <li class="mb-2">
+        <strong class="text-muted">Nombre:</strong>
+        <span class="text-dark">#{cc.attrs.value.name}</span>
+    </li>
+    <li class="mb-2">
+        <strong class="text-muted">Apellido:</strong>
+        <span class="text-dark">#{cc.attrs.value.surname}</span>
+    </li>
+    <li class="mb-2">
+        <strong class="text-muted">Telefono:</strong>
+        <span class="text-dark">#{cc.attrs.value.phone}</span>
+    </li>
+    <li class="mb-2">
+        <strong class="text-muted">Foto:</strong>
+        <span class="text-dark">#{cc.attrs.value.photo}</span>
+    </li>
+    <li class="mb-2">
+        <strong class="text-muted">Rol:</strong>
+        <span class="text-dark">#{cc.attrs.value.role}</span>
+    </li>
+
+</ul>
+</div>
+</div>
+</cc:implementation>
+
+
+
+</html>

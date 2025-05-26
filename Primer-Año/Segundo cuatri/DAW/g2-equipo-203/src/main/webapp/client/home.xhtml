@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/templates/crudPlantilla.xhtml">
+    <ui:define name="extraHead">
+        <h:outputStylesheet name="css/articulos.css" />
+    </ui:define>
+    <ui:define name="title">Clientes</ui:define>
+    <ui:define name="listadoCrud">Listado de Clientes</ui:define>
+
+
+
+        <ui:define name="aniadir">
+            <h:link value="Añadir cliente"
+                    outcome="add"
+                    styleClass="btn btn-primary"/>
+        </ui:define>
+    <ui:define name="tablaCrud">
+        <h:form id="formTablaClientes">
+        <p:dataTable value="#{clientCtrl.clients}" var="r"
+                     paginator="true"
+                     rows="5"
+                     paginatorPosition="bottom"
+                     currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords}">
+            <p:column headerText="ID">
+            <h:outputText value="#{r.id}"/>
+            </p:column>
+            <p:column headerText="Name">
+            <h:outputText value="#{r.name}"/>
+            </p:column>
+            <p:column headerText="Email">
+                <h:outputText value="#{r.email}"/>
+            </p:column>
+            <p:column headerText="Phone">
+                <h:outputText value="#{r.phone}"/>
+            </p:column>
+            <p:column headerText="Acciones">
+            <h:button styleClass="btn btn-warning btn-sm" value="Editar" outcome="edit">
+                <f:param name="id" value="#{r.id}" />
+            </h:button>
+               <h:button styleClass="btn btn-info" value="Historial Facturas" outcome="/historialFacturas">
+                   <f:param name="id" value="#{r.id}" />
+               </h:button>
+                <p:commandButton icon="pi pi-trash"
+                                 action="#{clientCtrl.preparareliminacion(r)}"
+                                 oncomplete="PF('confirmDialogEliminar').show()"
+                                 process="@this"
+                                 update="formTablaClientes:confirmDlg"
+                                 styleClass="ui-button-danger ui-button-sm"
+                                 title="Eliminar"/>
+            </p:column>
+
+        </p:dataTable>
+        <p:confirmDialog id="confirmDlg"
+                         widgetVar="confirmDialogEliminar"
+                         header="Confirmar eliminación"
+                         message="¿Estás seguro de que deseas eliminar al cliente #{clientCtrl.clientEliminar.name}?"
+                         icon="pi pi-exclamation-triangle"
+                         appendTo="body">
+
+            <p:commandButton value="Sí, eliminar"
+                             action="#{clientCtrl.confirmarEliminacion}"
+                             update="formTablaClientes growl"
+                             oncomplete="PF('confirmDialogEliminar').hide()"
+                             styleClass="ui-button-danger"/>
+
+            <p:commandButton value="Cancelar"
+                             onclick="PF('confirmDialogEliminar').hide()"
+                             type="button"
+                             styleClass="ui-button-secondary"/>
+        </p:confirmDialog>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

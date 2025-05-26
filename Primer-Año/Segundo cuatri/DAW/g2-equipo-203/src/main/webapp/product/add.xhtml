@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:f="jakarta.faces.core">
+
+<ui:composition template="/WEB-INF/templates/MenuTemplate.xhtml">
+    <ui:define name="plantilla">
+        <main class="container mt-5 pt-3">
+            <h:form>
+                <h2 class="mb-4">Añadir Nuevo Usuario</h2>
+
+                <div class="mb-3">
+                    <h:outputLabel for="nombre" value="Nombre" />
+                    <h:inputText id="nombre" value="#{productCtrl.product.name}" required="true" styleClass="form-control" />
+                    <h:message for="nombre" styleClass="text-danger" />
+                </div>
+
+                <div class="mb-3">
+                    <h:outputLabel for="descripcion" value="Descripción" />
+                    <h:inputTextarea id="descripcion" value="#{productCtrl.product.description}" required="true" styleClass="form-control" />
+                    <h:message for="descripcion" styleClass="text-danger" />
+                </div>
+
+                <div class="mb-3">
+                    <h:outputLabel for="precio" value="Precio Base" />
+                    <h:inputText id="precio" value="#{productCtrl.product.base_price}" required="true" styleClass="form-control">
+                        <f:convertNumber type="number" minFractionDigits="2" />
+                        <f:validateDoubleRange minimum="0.0" />
+                    </h:inputText>
+                    <h:message for="precio" styleClass="text-danger" />
+                </div>
+
+                <div class="mb-3">
+                    <h:outputLabel for="stock" value="Stock" />
+                    <h:inputText id="stock" value="#{productCtrl.product.stock}" required="true" styleClass="form-control">
+                        <f:validateLongRange minimum="0" />
+                    </h:inputText>
+                    <h:message for="stock" styleClass="text-danger" />
+                </div>
+
+                <h:commandButton value="Crear Artículo" action="#{productCtrl.crea()}" styleClass="btn btn-success"/>
+            </h:form>
+        </main>
+    </ui:define>
+</ui:composition>
+</html>
