@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:cc="jakarta.faces.composite"
+      xmlns:crm="jakarta.faces.composite/crmcomp">
+
+<cc:interface>
+    <cc:attribute name="value" required="true" />
+</cc:interface>
+
+<cc:implementation>
+    <div class="card shadow-sm mb-4" style="max-width: 500px; margin: auto;">
+        <div class="card-body">
+            <h5 class="card-title text-center text-primary mb-3">Detalles del Recibo</h5>
+            <ul class="list-unstyled">
+                <li class="mb-2">
+                    <strong class="text-muted">ID:</strong>
+                    <span class="text-dark">#{cc.attrs.value.id}</span>
+                </li>
+                <li class="mb-2">
+                    <strong class="text-muted">Id usuario:</strong>
+                   <crm:user_fk value="#{userCtrl.findUserByEmail(cc.attrs.value.userID)}"/>
+                </li>
+                <li class="mb-2">
+                    <strong class="text-muted">Salario:</strong>
+                    <span class="text-dark">#{cc.attrs.value.baseSalary}</span>
+                </li>
+                <li class="mb-2">
+                    <strong class="text-muted">Estatus:</strong>
+                    <span class="text-dark">#{cc.attrs.value.status}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</cc:implementation>
+
+</html>

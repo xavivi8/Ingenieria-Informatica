@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:crm="jakarta.faces.composite/crmcomp">
+<ui:composition template="/WEB-INF/templates/crudPlantilla.xhtml">
+    <ui:define name="title">Facturas</ui:define>
+    <ui:define name="listadoCrud">Listado de Facturas</ui:define>
+    <ui:define name="aniadir">
+        <h:link value="Añadir factura"
+                outcome="add"
+                styleClass="btn btn-primary"/>
+    </ui:define>
+    <ui:define name="tablaCrud">
+        <h:form id="formTablaFacturas">
+
+            <hr/>
+
+            <div>
+                <p:panelGrid id="panelBusqueda"
+                             columns="2"
+                layout="grid"
+                styleClass="mb-2">
+                    <p:outputLabel for="txtUserId" value="ID Usuario:" />
+                    <p:inputText id="txtUserId"
+                                 value="#{receiptCtrl.searchUserId}"
+                                 placeholder="Ej: 10"
+                                 styleClass="w-full" />
+                    <p:outputLabel for="txtClientId" value="ID Cliente:" />
+                    <p:inputText id="txtClientId"
+                                 value="#{receiptCtrl.searchClientId}"
+                                 placeholder="Ej: 20"
+                                 styleClass="w-full" />
+                </p:panelGrid>
+                <p:commandButton value="Buscar"
+                                 icon="pi pi-search"
+                                 actionListener="#{receiptCtrl.searchByUserOrClient}"
+                                 update="receiptTable"
+                                 styleClass="ui-priority-primary mb-3" />
+            </div>
+
+            <hr/>
+
+            <div>
+                <p:panelGrid id="deletePanel"
+                             columns="4"
+                             layout="grid"
+                             styleClass="mb-2">
+                    <p:outputLabel for="greaterThanTotalPrice" value="Máximo precio total:" />
+                    <p:inputNumber id="greaterThanTotalPrice"
+                                 value="#{receiptCtrl.greaterThanTotalPrice}"
+                                 placeholder="Se eliminarán las facturas con mayor precio total a este"
+                                 styleClass="w-full" />
+                </p:panelGrid>
+                <p:commandButton value="Eliminar"
+                                 icon="pi pi-search"
+                                 actionListener="#{receiptCtrl.deleteGreaterThanTotalPrice}"
+                                 update="receiptTable"
+                                 styleClass="ui-priority-primary mb-3" />
+            </div>
+
+            <hr/>
+
+            <div>
+                <p:panelGrid id="filterPanel"
+                             columns="6"
+                             layout="grid"
+                             styleClass="mb-2">
+                    <!-- Precio total mínimo -->
+                    <p:outputLabel for="minTotalFilter" value="Precio total mínimo:" />
+                    <p:inputNumber id="minTotalFilter"
+                                   value="#{receiptCtrl.minTotalPrice}"
+                                   placeholder="Ej: 0.00"
+                                   styleClass="w-full" />
+
+                    <!-- Precio total máximo -->
+                    <p:outputLabel for="maxTotalFilter" value="Precio total máximo:" />
+                    <p:inputNumber id="maxTotalFilter"
+                                   value="#{receiptCtrl.maxTotalPrice}"
+                                   placeholder="Ej: 1000.00"
+                                   styleClass="w-full" />
+
+                    <!-- Fecha desde -->
+                    <p:outputLabel for="startDate" value="Fecha desde:" />
+                    <p:datePicker id="startDate"
+                                  value="#{receiptCtrl.startDate}"
+                                  pattern="dd/MM/yyyy"
+                                  showIcon="true"
+                                  styleClass="w-full" />
+
+                    <!-- Fecha hasta -->
+                    <p:outputLabel for="endDate" value="Fecha hasta:" />
+                    <p:datePicker id="endDate"
+                                  value="#{receiptCtrl.endDate}"
+                                  pattern="dd/MM/yyyy"
+                                  showIcon="true"
+                                  styleClass="w-full" />
+                </p:panelGrid>
+
+                <p:commandButton value="Filtrar"
+                                 icon="pi pi-filter"
+                                 actionListener="#{receiptCtrl.searchByFilters}"
+                                 update="receiptTable"
+                                 styleClass="ui-priority-primary mb-3" />
+            </div>
+
+            <p:growl id="growl" showDetail="true" life="3000" />
+            <p:dataTable
+                    id="receiptTable" value="#{receiptCtrl.receiptsSearched}" var="r"
+                    styleClass="table table-striped"
+                    paginator="true" rows="4" paginatorPosition="bottom"
+                    currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords}"
+                    rowKey="#{r.id}">
+                <!-- Columna de expansor -->
+                <p:column style="width:3%">
+                    <p:rowToggler />
+                </p:column>
+
+                <p:column headerText="Precio total">
+                    <h:outputText value="#{r.totalPrice}" styleClass="fw-bold"/> €
+                </p:column>
+                <p:column headerText="Fecha Alta">
+                    <h:outputText value="#{r.date}" styleClass="fw-bold"/>
+                </p:column>
+                <p:column headerText="Empleado">
+                    <crm:user_fk value="#{userCtrl.findUserById(r.idUserCrm)}" />
+                </p:column>
+                <p:column headerText="Detalles del Cliente">
+                    <crm:client_fk value="#{clientCtrl.buscaClientPorId(r.idClient)}" />
+                </p:column>
+
+                <p:column headerText="Acciones">
+                    <!-- READ -->
+                    <p:button icon="pi pi-search" outcome="read" styleClass="btn btn-primary btn-sm" title="Visualizar">
+                        <f:param name="id" value="#{r.id}" />
+                    </p:button>
+                    <!-- EDIT -->
+                    <h:button styleClass="btn btn-warning btn-sm text-white fw-bold" value="Editar" outcome="edit">
+                        <f:param name="id" value="#{r.id}" />
+                    </h:button>
+                    <!-- DELETE -->
+                    <p:commandButton icon="pi pi-trash" action="#{receiptCtrl.delete(r)}"
+                                     styleClass="btn btn-danger btn-sm text-bg-danger fw-bold" title="Borrar"/>
+                </p:column>
+
+                <!-- Detalles de factura -->
+                <p:rowExpansion>
+                    <p:dataTable value="#{r.details}" var="d" styleClass="table table-sm" headerClass="fw-bold">
+                        <p:column headerText="Producto">
+                            <crm:product_fk value="#{productCtrl.findById(d.idProduct)}" />
+                        </p:column>
+                        <p:column headerText="Cantidad">
+                            <h:outputText value="#{d.amount}" />
+                        </p:column>
+                    </p:dataTable>
+                </p:rowExpansion>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+</html>

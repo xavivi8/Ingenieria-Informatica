@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:cc="jakarta.faces.composite">
+
+<cc:interface>
+    <cc:attribute name="value" required="true" />
+</cc:interface>
+
+<cc:implementation>
+    <div class="mb-4" style="max-width: 400px; margin: auto;">
+        <div>
+            <ul class="list-unstyled">
+                <li class="mb-2">
+                    <span class="text-dark">#{cc.attrs.value.name}</span>
+                </li>
+                <li class="mb-2">
+                    <span class="text-dark">#{cc.attrs.value.email}</span>
+                </li>
+                <li class="mb-2">
+                    <span class="text-dark">#{cc.attrs.value.dni}</span>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</cc:implementation>
+
+</html>

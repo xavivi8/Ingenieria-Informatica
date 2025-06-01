@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/templates/MenuTemplate.xhtml">
+    <ui:define name="plantilla">
+        <div class="container mt-4">
+            <h2 class="mb-4">Formulario Cliente</h2>
+            <h:messages globalOnly="true" styleClass="alert alert-danger" layout="list" />
+
+            <h:form>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <h:outputLabel for="name" value="Nombre" />
+                        <h:inputText id="name" value="#{clientCtrl.client.name}" required="true" styleClass="form-control"/>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <h:outputLabel for="email" value="Correo Electrónico" />
+                        <h:inputText id="email" value="#{clientCtrl.client.email}" required="true" styleClass="form-control"/>
+
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <h:outputLabel for="phone" value="Teléfono" />
+                        <h:inputText id="phone" value="#{clientCtrl.client.phone}" required="true" styleClass="form-control"/>
+
+                    </div>
+                </div>
+                <h:commandButton value="Alta"
+                                 action="#{clientCtrl.crea()}"
+                                 styleClass="btn btn-success"
+                                 />
+
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>
+</html>

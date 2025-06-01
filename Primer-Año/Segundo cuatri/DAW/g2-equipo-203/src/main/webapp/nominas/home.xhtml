@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/templates/crudPlantilla.xhtml">
+    <ui:define name="extraHead">
+        <h:outputStylesheet name="css/nominas.css"/>
+    </ui:define>
+    <ui:define name="title">Nóminas</ui:define>
+    <ui:define name="listadoCrud">Listado de Nóminas</ui:define>
+    <ui:define name="aniadir">
+        <h:link value="Añadir nómina"
+                outcome="add"
+                styleClass="btn btn-primary"/>
+    </ui:define>
+
+    <ui:define name="tablaCrud">
+        <h:form id="formTablaNóminas">
+            <p:growl id="growl" showDetail="true" keepAlive="3000"/>
+
+            <!-- Selector de Estado -->
+            <p:selectOneMenu value="#{payslipCtrl.statusSeleccionado}"
+                             label="Seleccionar Estado"
+                             id="statusSelector">
+                <f:selectItems value="#{payslipCtrl.todosLosEstados}" var="estado"
+                               itemValue="#{estado}" itemLabel="#{estado}"/>
+            </p:selectOneMenu>
+
+            <!-- Botón para Eliminar Nóminas con el estado seleccionado -->
+            <p:commandButton value="Eliminar nóminas con estado seleccionado"
+                             action="#{payslipCtrl.eliminarPorEstado}"
+                             update="growl formTablaNóminas"
+                             styleClass="ui-button-danger"/>
+
+            <p:dataTable value="#{payslipCtrl.payslips}" var="payslip" styleClass="table table-striped"
+                         paginator="true"
+                         rows="5"
+                         paginatorPosition="bottom"
+                         currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords}">
+                <p:column headerText="Id">
+                    <h:outputText value="#{payslip.id}"/>
+                </p:column>
+                <p:column headerText="clientId">
+                    <h:outputText value="#{payslip.userID}"/>
+                </p:column>
+                <p:column headerText="Date">
+                    <h:outputText value="#{payslip.date}" converter="localDateConverter"/>
+                </p:column>
+                <p:column headerText="Base salary">
+                    <h:outputText value="#{payslip.baseSalary}"/>
+                </p:column>
+                <p:column headerText="Status">
+                    <h:outputText value="#{payslip.status}"
+                                  style="#{payslip.status eq 'ACTIVE' ? 'color:green;' : 'color:orange;'}"/>
+                </p:column>
+                <p:column headerText="Acciones">
+                    <h:button styleClass="btn btn-warning btn-sm" value="Editar" outcome="edit">
+                        <f:param name="id" value="#{payslip.id}"/>
+                    </h:button>
+                    <p:commandButton icon="pi pi-trash"
+                                     action="#{payslipCtrl.preparareliminacion(payslip)}"
+                                     oncomplete="PF('confirmDialogEliminar').show()"
+                                     process="@this"
+                                     update="formTablaNóminas"
+                                     styleClass="ui-button-danger ui-button-sm"
+                                     title="Eliminar"/>
+                </p:column>
+            </p:dataTable>
+
+            <!-- Diálogo de confirmación -->
+            <p:confirmDialog id="confirmDlg"
+                             widgetVar="confirmDialogEliminar"
+                             header="Confirmar eliminación"
+                             message="¿Estás seguro de que deseas eliminar al usuario #{userCtrl.usuarioAEliminar.id}?"
+                             icon="pi pi-exclamation-triangle"
+                             appendTo="body">
+
+                <p:commandButton value="Sí, eliminar"
+                                 action="#{payslipCtrl.confirmarEliminacion()}"
+                                 update="formTablaNóminas growl"
+                                 oncomplete="PF('confirmDialogEliminar').hide()"
+                                 styleClass="ui-button-danger"/>
+
+                <p:commandButton value="Cancelar"
+                                 onclick="PF('confirmDialogEliminar').hide()"
+                                 type="button"
+                                 styleClass="ui-button-secondary"/>
+            </p:confirmDialog>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+</html>

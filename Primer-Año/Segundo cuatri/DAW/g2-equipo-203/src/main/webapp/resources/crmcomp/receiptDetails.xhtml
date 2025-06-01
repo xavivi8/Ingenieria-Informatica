@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:cc="jakarta.faces.composite"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:crm="jakarta.faces.composite/crmcomp">
+
+<cc:interface>
+    <cc:attribute name="value" required="true" type="java.util.List"/>
+</cc:interface>
+
+<cc:implementation>
+    <div class="mb-4" style="max-width: 600px; margin: auto;">
+        <h3 class="text-primary mb-3">Productos en Factura</h3>
+        <ul class="list-group">
+            <ui:repeat value="#{cc.attrs.value}" var="d">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <crm:product_fk value="#{productCtrl.findById(d.idProduct)}" />
+                    <span class="badge bg-primary rounded-pill">Cantidad: #{d.amount}</span>
+                </li>
+            </ui:repeat>
+            <ui:fragment rendered="#{empty cc.attrs.value}">
+                <li class="list-group-item text-muted">No hay productos en esta factura.</li>
+            </ui:fragment>
+        </ul>
+    </div>
+</cc:implementation>
+
+</html>

@@ -1,0 +1,22 @@
+<ui:composition template="/WEB-INF/templates/MenuTemplate.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:f="jakarta.faces.core">
+
+    <ui:define name="plantilla">
+        <f:metadata>
+            <f:viewParam name="id" value="#{clientCtrl.client.id}" />
+            <f:event type="preRenderView" listener="#{receiptCtrl.cargarFacturasCliente(clientCtrl.client.id)}" />
+        </f:metadata>
+
+        <h2>Historial de Facturas del Cliente #{clientCtrl.client.name}</h2>
+
+        <ui:repeat value="#{receiptCtrl.facturasCliente}" var="factura">
+            <div class="card p-2 my-2">
+                <p><strong>Fecha:</strong> #{factura.date}</p>
+                <p><strong>Precio total:</strong> #{factura.totalPrice}€</p>
+
+            </div>
+        </ui:repeat>
+    </ui:define>
+</ui:composition>

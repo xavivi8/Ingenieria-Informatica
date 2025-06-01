@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="es"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets">
+<ui:composition template="/WEB-INF/templates/HeaderFooterTemplate.xhtml">
+    <ui:define name="HFTcontenido">
+        <h:body>
+            <!-- CONTENIDO PRINCIPAL -->
+            <main class="d-flex">
+                <!-- Menú Vertical -->
+                <nav class="bg-light p-3" id="sidebar" style="width: 250px;">
+                    <h:form>
+                        <h4>Menú</h4>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <h:link value="Clientes" outcome="/client/home" styleClass="nav-link"/>
+                            </li>
+                            <li class="nav-item">
+                                <h:link value="Empleados" outcome="/users/home" styleClass="nav-link"/>
+                            </li>
+                            <li class="nav-item">
+                                <h:link value="Facturas" outcome="/receipt/home" styleClass="nav-link"/>
+                            </li>
+                            <li class="nav-item">
+                                <h:link value="Nómina" outcome="/nominas/home" styleClass="nav-link"/>
+                            </li>
+                            <li class="nav-item">
+                                <h:link value="Productos" outcome="/product/home" styleClass="nav-link"/>
+                            </li>
+                        </ul>
+                    </h:form>
+                </nav>
+                <!-- Contenido dinámico -->
+                <div class="container-fluid ms-3" id="contenido-principal">
+                    <ui:insert name="plantilla">
+                        <!-- El contenido de esta página se insertará en el MenuTemplate -->
+                        <h1>Contenido de la página</h1>
+                        <p>Este es el contenido de ...</p>
+                    </ui:insert>
+                </div>
+            </main>
+        </h:body>
+    </ui:define>
+</ui:composition>
+</html>

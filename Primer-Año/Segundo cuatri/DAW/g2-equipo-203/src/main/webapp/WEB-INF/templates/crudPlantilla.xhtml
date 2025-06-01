@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets">
+<ui:composition template="/WEB-INF/templates/MenuTemplate.xhtml">
+    <ui:define name="plantilla">
+    <h:head>
+        <title><ui:insert name="title">Mi Aplicación</ui:insert></title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"/>
+        <!-- Espacio para que las vistas agreguen más estilos -->
+        <ui:insert name="extraHead"/>
+    </h:head>
+
+    <h:body>
+
+        <div class="container mt-4">
+            <h2 class="text-center"><ui:insert name="listadoCrud">Listado</ui:insert></h2>
+            <!-- Barra de búsqueda y botón de añadir -->
+            <div class="row mb-3">
+                <div class="col-md-8 mx-auto d-flex">
+                    <label>
+                        <input type="text" class="form-control me-2" placeholder="Buscar..."/>
+                    </label>
+                    <button class="btn btn-primary">
+                        <i class="bi bi-plus-lg"/><ui:insert name="aniadir">Agregar</ui:insert>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <ui:insert name="tablaCrud"/>
+    </h:body>
+    </ui:define>
+</ui:composition>
+</html>

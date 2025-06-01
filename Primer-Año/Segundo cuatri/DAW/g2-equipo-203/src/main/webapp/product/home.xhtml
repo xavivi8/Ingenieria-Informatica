@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/templates/crudPlantilla.xhtml">
+
+    <ui:define name="extraHead">
+        <!-- CSS -->
+        <h:outputStylesheet name="css/articulos.css"/>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- <script src="./js/articulos.js"></script> -->
+    </ui:define>
+
+    <ui:define name="title">Artículos</ui:define>
+
+    <ui:define name="listadoCrud">Listado de Artículos</ui:define>
+
+    <ui:define name="aniadir">
+        <h:link value="Añadir artículo"
+                outcome="add"
+                styleClass="btn btn-primary"/>
+    </ui:define>
+
+    <ui:define name="tablaCrud">
+        <h:form id="formTablaProducts">
+
+            <p:growl id="growl" showDetail="true" life="3000"/>
+
+            <p:dataTable value="#{productCtrl.products}" var="product" styleClass="table table-striped"
+                         paginator="true"
+                         rows="5"
+                         paginatorPosition="bottom"
+                         currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords}">
+                <p:column headerText="ID">
+                    <h:outputText value="#{product.id}"/>
+                </p:column>
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{product.name}"/>
+                </p:column>
+                <p:column headerText="Descripción">
+                    <h:outputText value="#{product.description}"/>
+                </p:column>
+                <p:column headerText="Precio base">
+                    <h:outputText value="#{product.base_price}"/>
+                </p:column>
+
+                <p:column headerText="Cantidad">
+                    <div class="d-flex align-items-center">
+                        <p:commandButton icon="pi pi-minus"
+                                         action="#{productCtrl.disminuirStock(product)}"
+                                         update="@form"
+                                         process="@this"
+                                         styleClass="rounded-button ui-button-danger ui-button-flat ui-button-sm"
+                                         title="Quitar una unidad"/>
+
+                        <h:outputText value="#{product.stock}" styleClass="mx-2 cantidad" />
+
+                        <p:commandButton icon="pi pi-plus"
+                                         action="#{productCtrl.incrementarStock(product)}"
+                                         update="@form"
+                                         process="@this"
+                                         styleClass="rounded-button ui-button-success ui-button-flat ui-button-sm"
+                                         title="Agregar una unidad"/>
+                    </div>
+                </p:column>
+
+                <p:column headerText="Acciones">
+                    <!-- Editar -->
+                    <h:button styleClass="btn btn-warning btn-sm" value="Editar" outcome="edit">
+                        <f:param name="id" value="#{product.id}" />
+                    </h:button>
+
+                    <!-- Botón de eliminar con diálogo -->
+                    <p:commandButton icon="pi pi-trash"
+                                     action="#{productCtrl.prepararEliminacion(product)}"
+                                     oncomplete="PF('confirmDialogEliminar').show()"
+                                     process="@this"
+                                     update="formTablaProducts:confirmDlg"
+                                     styleClass="ui-button-danger ui-button-sm"
+                                     title="Eliminar"/>
+                </p:column>
+            </p:dataTable>
+
+            <!-- Diálogo de confirmación -->
+            <p:confirmDialog id="confirmDlg"
+                             widgetVar="confirmDialogEliminar"
+                             header="Confirmar eliminación"
+                             message="¿Estás seguro de que deseas eliminar al usuario #{productCtrl.productAEliminar.name}?"
+                             icon="pi pi-exclamation-triangle"
+                             appendTo="body">
+
+                <p:commandButton value="Sí, eliminar"
+                                 action="#{productCtrl.confirmarEliminacion}"
+                                 update="formTablaProducts growl"
+                                 oncomplete="PF('confirmDialogEliminar').hide()"
+                                 styleClass="ui-button-danger"/>
+
+                <p:commandButton value="Cancelar"
+                                 onclick="PF('confirmDialogEliminar').hide()"
+                                 type="button"
+                                 styleClass="ui-button-secondary"/>
+            </p:confirmDialog>
+
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

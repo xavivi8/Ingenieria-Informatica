@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:cc="jakarta.faces.composite"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:crm="jakarta.faces.composite/crmcomp">
+
+<cc:interface>
+    <cc:attribute name="value" required="true" />
+    <cc:attribute name="value" class="crm.models.Receipt"/>
+</cc:interface>
+
+<cc:implementation>
+    <div class="card shadow-sm mb-4" style="max-width: 500px; margin: auto;">
+        <div class="card-body">
+            <h5 class="card-title text-center text-primary mb-3">Factura ID: #{cc.attrs.value.id}</h5>
+            <ul class="list-unstyled">
+                <li class="mb-2">
+                    <strong class="text-muted">Fecha:</strong>
+                    <span class="text-dark">#{cc.attrs.value.date}</span>
+                </li>
+                <li class="mb-2">
+                    <strong class="text-muted">Precio Total:</strong>
+                    <span class="text-dark">#{cc.attrs.value.totalPrice}</span>
+                </li>
+                <li class="mb-2">
+                    <strong class="text-muted">Empleado:</strong>
+                    <crm:client_fk value="#{userCtrl.findUserById(cc.attrs.value.idUserCrm)}" />
+                </li>
+                <li class="mb-2">
+                    <strong class="text-muted">Detalles del Cliente:</strong>
+                    <crm:client_fk value="#{clientCtrl.buscaClientPorId(cc.attrs.value.idClient)}" />
+                </li>
+                <li class="mb-2">
+                    <p:dataList value="#{cc.attrs.value.details}" var="det" layout="unorderedList"
+                                emptyMessage="No hay detalles para esta factura">
+                        <p:column>
+                            <crm:receiptDetails_fk value="#{det}" />
+                        </p:column>
+                    </p:dataList>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</cc:implementation>
+
+</html>

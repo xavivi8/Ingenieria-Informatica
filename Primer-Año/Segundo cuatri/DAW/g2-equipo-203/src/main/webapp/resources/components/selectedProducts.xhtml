@@ -1,0 +1,56 @@
+<ui:component xmlns:ui="jakarta.faces.facelets"
+              xmlns:composite="jakarta.faces.composite"
+              xmlns:h="jakarta.faces.html"
+              xmlns:p="http://primefaces.org/ui"
+              xmlns:f="jakarta.faces.core">
+
+    <composite:interface>
+        <composite:attribute name="products"
+                             type="java.util.List"
+                             required="true"/>
+    </composite:interface>
+
+    <composite:implementation>
+
+        <h:panelGroup rendered="#{not empty cc.attrs.products}"
+                      layout="block"
+                      styleClass="mt-3">
+
+            <h:outputText value="Productos seleccionados:"
+                          styleClass="fw-bold d-block mb-2"/>
+
+            <!-- Lista -->
+            <ui:repeat value="#{cc.attrs.products}" var="p" varStatus="st">
+
+                <div class="d-flex justify-content-between border-bottom py-2 align-items-center">
+
+                    <!-- Nombre -->
+                    <span class="flex-grow-1">#{p.name}</span>
+
+                    <!-- Cantidad -->
+                    <p:inputNumber id="qty_#{st.index}"
+                                   value="#{receiptCtrl.productQuantities[p.id]}"
+                                   minValue="1"
+                                   decimalPlaces="0"
+                                   size="3"
+                                   styleClass="text-center me-2">
+
+                        <p:ajax event="blur"
+                                listener="#{receiptCtrl.calculaTotal}"
+                                update=":addForm:selectedProductsPanel :addForm:totalPrice"/>
+                    </p:inputNumber>
+
+                    <!-- Sub-total -->
+                    <span>
+                        <h:outputText value="#{receiptCtrl.productQuantities[p.id] * p.base_price}">
+                            <f:convertNumber pattern="#,##0.00"/>
+                        </h:outputText> €
+                    </span>
+                </div>
+
+            </ui:repeat>
+
+        </h:panelGroup>
+
+    </composite:implementation>
+</ui:component>

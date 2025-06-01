@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/templates/MenuTemplate.xhtml">
+  <ui:define name="plantilla">
+    <main class="container mt-5 pt-3">
+      <h:form id="receiptForm">
+
+        <p:panel header="Datos de la Factura" styleClass="mb-3">
+          <h:panelGrid columns="2" columnClasses="label,value">
+            <h:outputLabel for="idClient" value="Cliente:"/>
+            <p:selectOneMenu id="idClient"
+                             value="#{receiptCtrl.receipt.idClient}"
+                             required="true" requiredMessage="Debe seleccionar un cliente"
+                             styleClass="form-control">
+              <f:selectItem itemLabel="Seleccione un cliente" itemValue="" noSelectionOption="true"/>
+              <f:selectItems value="#{clientCtrl.clients}" var="client" itemLabel="#{client.name}" itemValue="#{client.id}" />
+            </p:selectOneMenu>
+
+            <h:outputLabel for="idUserCrm" value="Usuario CRM:"/>
+            <p:selectOneMenu id="idUserCrm"
+                             value="#{receiptCtrl.receipt.idUserCrm}"
+                             required="true" requiredMessage="Debe seleccionar un empleado"
+                             styleClass="form-control">
+              <f:selectItem itemLabel="Seleccione un empleado" itemValue="" noSelectionOption="true"/>
+              <f:selectItems value="#{userCtrl.users}" var="user" itemLabel="#{user.name}" itemValue="#{user.id}" />
+            </p:selectOneMenu>
+
+            <h:outputLabel value="Fecha:"/>
+            <h:inputText p:type="date" styleClass="form-control" label="FNac" id="idFNac" value="#{receiptCtrl.receipt.date}">
+              <f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
+            </h:inputText>
+          </h:panelGrid>
+        </p:panel>
+
+        <p:panel header="Seleccionar Productos" styleClass="mb-3">
+          <p:dataTable value="#{receiptCtrl.productDAO.allProducts}"
+                       var="prod"
+                       paginator="true"
+                       rows="10"
+                       emptyMessage="No hay productos disponibles">
+            <p:column headerText="Producto">
+              <h:outputText value="#{prod.name}" />
+            </p:column>
+            <p:column headerText="Precio">
+              <h:outputText value="#{prod.base_price}" />
+            </p:column>
+            <p:column headerText="Stock">
+              <h:outputText value="#{prod.stock}" />
+            </p:column>
+            <p:column headerText="Cantidad">
+              <p:spinner value="#{receiptCtrl.productQuantities[prod.id]}"
+                         min="0"
+                         max="#{prod.stock}"
+                         required="false"/>
+            </p:column>
+          </p:dataTable>
+        </p:panel>
+
+        <p:panel id="totalPanel" header="Resumen" styleClass="mb-3">
+          <h:panelGrid columns="2" columnClasses="label,value">
+            <h:outputText value="Total:"/>
+            <h:outputText value="#{receiptCtrl.receipt.totalPrice}" />
+          </h:panelGrid>
+        </p:panel>
+
+        <div class="d-flex justify-content-between">
+          <p:commandButton value="Calcular Total"
+                           action="#{receiptCtrl.calculateTotal}"
+                           update="receiptForm totalPanel"
+                           styleClass="btn btn-primary"/>
+          <p:commandButton value="Guardar Factura"
+                           action="#{receiptCtrl.create}"
+                           update="@form"
+                           styleClass="btn btn-success"/>
+        </div>
+
+        <p:messages showDetail="true" autoUpdate="true" styleClass="mt-3"/>
+      </h:form>
+    </main>
+  </ui:define>
+</ui:composition>
+</html>

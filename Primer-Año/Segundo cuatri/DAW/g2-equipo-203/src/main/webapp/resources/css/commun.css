@@ -1,0 +1,67 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+/* Estilo para la cabecera fija */
+header {
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 70px;
+    position: fixed; /* Asegura que el header se quede fijo */
+    background-color: #0d6efd; /* Azul */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 2px -2px gray; /* Sombra */
+}
+
+header img[alt="logo"] {
+    width: 70px;
+}
+
+.dropdown img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+/* Asegura que el footer se quede siempre al final de la página */
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Para evitar que la tarjeta quede oculta detrás del header */
+main {
+    margin-top: 90px; /* Ajuste por la altura de la cabecera */
+    flex: 1; /* Hace que el contenido ocupe el espacio restante */
+}
+
+/* Estilo para el footer */
+footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #343a40; /* Fondo oscuro */
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px; /* Espacio entre el contenido y el footer */
+}
+
+/* Estilo para los enlaces en el footer */
+footer a {
+    text-decoration: none;
+    color: white;
+    margin: 0 10px;
+}
+
+footer .container {
+    max-width: 1200px;
+    padding: 0 20px;
+}

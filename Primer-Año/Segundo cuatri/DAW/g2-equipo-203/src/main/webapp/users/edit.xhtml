@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="jakarta.faces.passthrough">
+
+<ui:composition template="/WEB-INF/templates/MenuTemplate.xhtml">
+    <ui:define name="plantilla">
+        <f:metadata>
+            <f:viewParam name="id" value="#{userCtrl.user.id}"/>
+            <f:viewAction action="#{userCtrl.recupera()}"/>
+        </f:metadata>
+
+            <h1>Edita Usuario</h1>
+
+            <h:messages warnClass="text-warning" infoClass="text-info" errorClass="text-danger"/>
+
+            <ui:fragment rendered="#{userCtrl.user != null}">
+                <h:form id="formUsuer">
+                    <h3>ID: <h:outputText value="#{userCtrl.user.id}"/></h3>
+                    <h:inputHidden value="#{userCtrl.user.id}"/>
+
+                    <label>Nombre:</label>
+                    <h:inputText id="nombre" value="#{userCtrl.user.name}" required="true" styleClass="form-control"/>
+                    <p><h:message for="nombre" styleClass="form-text text-danger"/></p>
+
+                    <label>Apellidos:</label>
+                    <h:inputText id="apellido" value="#{userCtrl.user.surname}" styleClass="form-control"/>
+                    <p><h:message for="apellido" styleClass="form-text text-danger"/></p>
+
+                    <label>Correo electrónico:</label>
+                    <h:inputText id="email" value="#{userCtrl.user.email}" required="true" styleClass="form-control"/>
+                    <p><h:message for="email" styleClass="form-text text-danger"/></p>
+
+                    <label>Teléfono:</label>
+                    <h:inputText id="telefono" value="#{userCtrl.user.phone}" styleClass="form-control"/>
+                    <p><h:message for="telefono" styleClass="form-text text-danger"/></p>
+
+                    <label>Rol:</label>
+                    <h:selectOneMenu id="rol" value="#{userCtrl.user.role}" styleClass="form-select">
+                        <f:selectItem itemLabel="-- Selecciona un rol --" itemValue="#{null}" noSelectionOption="true"/>
+                        <f:selectItems value="#{userCtrl.appConfig.availableRoles}" var="r" itemValue="#{r}"
+                                       itemLabel="#{r}"/>
+                    </h:selectOneMenu>
+                    <p><h:message for="rol" styleClass="form-text text-danger"/></p>
+
+                    <h:commandButton styleClass="btn btn-primary" value="Guardar" action="#{userCtrl.guarda()}"/>
+                    <h:button styleClass="btn btn-cancel" value="Cancelar" outcome="home"/>
+                </h:form>
+            </ui:fragment>
+
+
+    </ui:define>
+</ui:composition>
+</html>

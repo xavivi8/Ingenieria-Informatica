@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/templates/crudPlantilla.xhtml">
+
+    <ui:define name="extraHead">
+        <h:outputStylesheet name="css/empleados.css"/>
+    </ui:define>
+
+    <ui:define name="title">Empleados</ui:define>
+
+    <ui:define name="listadoCrud">Listado de Empleados</ui:define>
+
+    <ui:define name="aniadir">
+        <h:link value="Añadir empleado"
+                outcome="add"
+                styleClass="btn btn-primary"/>
+    </ui:define>
+
+    <ui:define name="tablaCrud">
+        <h:form id="formTablaUsuarios">
+
+            <p:growl id="growl" showDetail="true" life="3000" />
+
+            <p:dataTable value="#{userCtrl.users}" var="user" styleClass="table table-striped"
+                         paginator="true"
+                         rows="5"
+                         paginatorPosition="bottom"
+                         currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords}">
+
+                <p:column headerText="ID">
+                    <h:outputText value="#{user.id}"/>
+                </p:column>
+
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{user.name}"/>
+                </p:column>
+
+                <p:column headerText="DNI">
+                    <h:outputText value="#{user.dni}"/>
+                </p:column>
+
+                <p:column headerText="Rol">
+                    <h:outputText value="#{user.role}"/>
+                </p:column>
+
+                <p:column headerText="Acciones">
+                    <!-- Editar -->
+                    <h:button styleClass="btn btn-warning btn-sm" value="Editar" outcome="edit">
+                        <f:param name="id" value="#{user.id}" />
+                    </h:button>
+
+                    <!-- Botón de eliminar con diálogo -->
+                    <p:commandButton icon="pi pi-trash"
+                                     action="#{userCtrl.prepararEliminacion(user)}"
+                                     oncomplete="PF('confirmDialogEliminar').show()"
+                                     process="@this"
+                                     update="formTablaUsuarios:confirmDlg"
+                                     styleClass="ui-button-danger ui-button-sm"
+                                     title="Eliminar"/>
+                </p:column>
+            </p:dataTable>
+
+            <!-- Diálogo de confirmación -->
+            <p:confirmDialog id="confirmDlg"
+                             widgetVar="confirmDialogEliminar"
+                             header="Confirmar eliminación"
+                             message="¿Estás seguro de que deseas eliminar al usuario #{userCtrl.usuarioAEliminar.name}?"
+                             icon="pi pi-exclamation-triangle"
+                             appendTo="body">
+
+                <p:commandButton value="Sí, eliminar"
+                                 action="#{userCtrl.confirmarEliminacion}"
+                                 update="formTablaUsuarios growl"
+                                 oncomplete="PF('confirmDialogEliminar').hide()"
+                                 styleClass="ui-button-danger"/>
+
+                <p:commandButton value="Cancelar"
+                                 onclick="PF('confirmDialogEliminar').hide()"
+                                 type="button"
+                                 styleClass="ui-button-secondary"/>
+            </p:confirmDialog>
+
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

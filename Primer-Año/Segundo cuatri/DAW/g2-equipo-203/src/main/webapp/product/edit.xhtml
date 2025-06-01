@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:f="jakarta.faces.core">
+
+<ui:composition template="/WEB-INF/templates/MenuTemplate.xhtml">
+    <ui:define name="plantilla">
+        <f:metadata>
+            <f:viewParam name="id" value="#{productCtrl.product.id}"/>
+            <f:viewAction action="#{productCtrl.recupera()}"/>
+        </f:metadata>
+
+        <h1>Edita Usuario</h1>
+
+        <h:messages warnClass="text-warning" infoClass="text-info" errorClass="text-danger"/>
+
+        <ui:fragment rendered="#{productCtrl.product != null}">
+            <h:form id="formProduct">
+                <h3>ID: <h:outputText value="#{productCtrl.product.id}"/></h3>
+                <h:inputHidden value="#{productCtrl.product.id}"/>
+
+                <label>Nombre:</label>
+                <h:inputText id="nombre" value="#{productCtrl.product.name}" required="true" styleClass="form-control"/>
+                <p><h:message for="nombre" styleClass="form-text text-danger"/></p>
+
+                <label>Descripción:</label>
+                <h:inputTextarea id="descripcion" value="#{productCtrl.product.description}" required="true" styleClass="form-control"/>
+                <p><h:message for="descripcion" styleClass="form-text text-danger"/></p>
+
+                <label>Precio Base:</label>
+                <h:inputText id="precio" value="#{productCtrl.product.base_price}" required="true" styleClass="form-control">
+                    <f:convertNumber type="number" minFractionDigits="2"/>
+                </h:inputText>
+                <p><h:message for="precio" styleClass="form-text text-danger"/></p>
+
+                <label>Stock:</label>
+                <h:inputText id="stock" value="#{productCtrl.product.stock}" required="true" styleClass="form-control">
+                    <f:validateLongRange minimum="0"/>
+                </h:inputText>
+                <p><h:message for="stock" styleClass="form-text text-danger"/></p>
+
+                <h:commandButton styleClass="btn btn-primary" value="Guardar" action="#{productCtrl.guarda()}"/>
+                <h:button styleClass="btn btn-cancel" value="Cancelar" outcome="home"/>
+            </h:form>
+        </ui:fragment>
+    </ui:define>
+</ui:composition>
+</html>

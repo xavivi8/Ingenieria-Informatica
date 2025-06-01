@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="jakarta.faces.core">
+<ui:composition template="/WEB-INF/templates/MenuTemplate.xhtml">
+    <ui:define name="plantilla">
+        <f:metadata>
+            <f:viewParam name="id" value="#{payslipCtrl.payslip.id}"/>
+            <f:viewAction action="#{payslipCtrl.recuperaPayslip()}"/>
+        </f:metadata>
+        <h1>Edita Nómina</h1>
+        <h:messages warnClass="text-warning" infoClass="text-info" errorClass="text-danger"/>
+        <ui:fragment rendered="#{payslipCtrl.payslip != null}">
+            <h:form id="formNóminas">
+            <h3>ID: <h:outputText value="#{payslipCtrl.payslip.id}"/></h3>
+            <h:inputHidden value="#{payslipCtrl.payslip.id}"/>
+                <label>Fecha:</label>
+                              <p:datePicker id="date"
+                              value="#{payslipCtrl.payslip.date}"
+                              pattern="yyyy-MM-dd"
+                              showIcon="true"
+                              required="true"
+                              styleClass="form-control"/>
+                <p><h:message for="date" styleClass="form-text text-danger"/></p>
+                <label>Salario:</label>
+                <h:inputText id="base_salary" value="#{payslipCtrl.payslip.baseSalary}" required="true" styleClass="form-control"/>
+                <p><h:message for="base_salary" styleClass="form-text text-danger"/></p>
+                <label>Estatus:</label>
+                <h:selectOneMenu id="status" value="#{payslipCtrl.payslip.status}" styleClass="form-select">
+                    <f:selectItem itemLabel="-- Selecciona un estatus --" itemValue="#{null}" noSelectionOption="true"/>
+                    <f:selectItems value="#{payslipCtrl.appConfig.availableStatus}" var="r" itemValue="#{r}"
+                                   itemLabel="#{r}"/>
+                </h:selectOneMenu>
+                <p><h:message for="status" styleClass="form-text text-danger"/></p>
+
+                <h:commandButton styleClass="btn btn-primary" value="Guardar" action="#{payslipCtrl.guarda()}"/>
+                <h:button styleClass="btn btn-cancel" value="Cancelar" outcome="home"/>
+            </h:form>
+        </ui:fragment>
+    </ui:define>
+</ui:composition>
+</html>
