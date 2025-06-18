@@ -1,0 +1,444 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     21816,        436]
+NotebookOptionsPosition[     20605,        410]
+NotebookOutlinePosition[     21203,        431]
+CellTagsIndexPosition[     21160,        428]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Universidad de Ja\[EAcute]n. EPS Ja\[EAcute]n.
+Departamento de Matem\[AAcute]ticas. Grado en Ingenier\[IAcute]a Inform\
+\[AAcute]tica
+An\[AAcute]lisis y M\[EAcute]todos Num\[EAcute]ricos. Convocatoria \
+extraordinaria: 11 julio 2024
+Modelo: 1\
+\>", "Text",
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGCQBmIQzdDw4mv881eODA0hTAkgmkGKHUJfBNPKZqnGpcqv
+HdUyeu1AdM+5XuVKID1Z+pwGiL7we50Ms+Zrx7s3GeVAdIvZvIIqz9eO7663
+lYFopYB7u+uB9K83u/eAaIlIFqOC1teOgj0NYHpJhMWfs/NfO8rnvgLTKyuv
+R3zc/9rxQJBfPIj+p1Gr0nrkteOZjf1guta+MPp36RvHde5340D0imP9U0A0
+x5ofU0F0VAq/r2DZG8dvGgz+IFr/7hEuYSBtc/8+mH7x3q8idvMbx39C6pUg
+eoppv0ACkF4bcx9Mm2V3KhUDad21i5RBdEZcrSGILut5AaaZ9p/dWwKkL12+
+Daav7s1P2vD2jeMB8SdgOuO+pd8tIH1iUjWYPtU+PeUOkN7ktxhM73jcvLj+
+3RtHDxurJSC67+Nxl2qtt46T1N1dQbSkysr+KUA6IJdpAoh+tTXcV9f9raNY
+pW0AiAYAxJLfWw==
+  "],
+ FontSize->16,ExpressionUUID->"85cd90ef-92e8-4c24-86ab-7291374da7e5"],
+
+Cell[TextData[{
+ "Este examen puede suponer hasta 3  puntos de la nota final.\nSe puede \
+utilizar apuntes, libros, el Mathematica y \[OpenCurlyDoubleQuote]pendrive\
+\[CloseCurlyDoubleQuote] con los archivos de pr\[AAcute]cticas y de Docencia \
+Virtual.\nNo hay que entregar los pasos o razonamientos, solo elegir la \
+respuesta correcta. ",
+ StyleBox["Cada respuesta incorrecta restar\[AAcute] un cuarto de acierto.",
+  FontWeight->"Bold"],
+ "\nAl final se introducen las respuestas en el formulario online y se \
+entrega esta hoja."
+}], "Text",
+ CellChangeTimes->{{3.610977073734375*^9, 3.610977077671875*^9}, {
+   3.610977304453125*^9, 3.610977405828125*^9}, 3.6109946063489404`*^9, {
+   3.610996437542557*^9, 3.6109964489149766`*^9}, 3.6424768970883904`*^9, 
+   3.64541096253166*^9, {3.662402489289149*^9, 3.662402550060625*^9}, {
+   3.724512051184802*^9, 3.7245120605916023`*^9}, {3.7245121063620024`*^9, 
+   3.7245121068300023`*^9}, {3.7245245388756785`*^9, 3.724524653269679*^9}, {
+   3.7245554457796*^9, 3.7245554842008004`*^9}, {3.7245556191378007`*^9, 
+   3.724555639027001*^9}, {3.819952906546*^9, 3.819952959115*^9}, {
+   3.819953888396*^9, 3.819953905715*^9}, {3.819953949924*^9, 
+   3.819954004578*^9}, {3.819957226115*^9, 3.819957235123*^9}, {
+   3.9296389414313016`*^9, 3.9296389460214386`*^9}},
+ FontSize->12,
+ FontSlant->"Italic",ExpressionUUID->"d29b29e2-ee14-40c0-812c-2b72160e9ecf"],
+
+Cell[BoxData[
+ RowBox[{"Nombre", ":", 
+  RowBox[{
+  "___", "___", "___", "___", "___", "___", "___", "___", "___", "___", "___",
+    "___", "___", "_", " ", "Aula"}], ":", 
+  RowBox[{"___", "___", " ", 
+   RowBox[{"Puesto", ":", 
+    RowBox[{"___", "___"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.724555648171201*^9, 3.724555669942201*^9}, {
+  3.7245558789530025`*^9, 3.724555879987602*^9}, {3.819952982717*^9, 
+  3.819952994803*^9}},ExpressionUUID->"51f9bfe6-92ef-4812-8ca0-68238fd00935"],
+
+Cell[TextData[{
+ "1. Calcular el volumen del cuerpo obtenido al girar la gr\[AAcute]fica de \
+la funci\[OAcute]n f(x) = ",
+ Cell[BoxData[
+  FormBox[
+   TagBox[GridBox[{
+      {"\[Piecewise]", GridBox[{
+         {
+          RowBox[{"x", "-", "3"}], 
+          RowBox[{"3", "<=", "x", "<=", "4"}]},
+         {
+          RowBox[{"5", "-", "x"}], 
+          RowBox[{"4", "<=", "x", "<=", "5"}]}
+        },
+        AllowedDimensions->{2, Automatic},
+        Editable->True,
+        GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+        GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[0.84]}, 
+            Offset[0.27999999999999997`]}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}},
+        Selectable->True]}
+     },
+     GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.35]}, 
+         Offset[0.27999999999999997`]}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}}],
+    "Piecewise",
+    DeleteWithContents->True,
+    Editable->False,
+    SelectWithContents->True,
+    Selectable->False,
+    StripWrapperBoxes->True], TraditionalForm]],ExpressionUUID->
+  "e68fb62d-eaf3-4f25-aa19-3f4b3562d222"],
+ " respecto al eje horizontal.\n",
+ Cell[BoxData[
+  GraphicsBox[{{{}, {}, 
+     TagBox[
+      {RGBColor[0.368417, 0.506779, 0.709798], AbsoluteThickness[1.6], 
+       Opacity[1.], LineBox[CompressedData["
+1:eJwd0GtQlGUUB/BdxYRl2WctFlguBYRJgswSlIDEOQQJjOsEJSqMA0Rc1tJi
+hLRhSJYB47IKDKwTKiAgI1O4ILAoQQUpFzFuFbrB7HDbJRaB9wGVkCW0tz6c
+Of/fhzNzznGK/+LDxC0cDsePrf+6d0r6Ng7HFNk40jWfGFDLXasI5LJG25RJ
+cTBYlqa+k72FdVVZeYv4EDxpPZH80jbWA5rmCnECNG/E9PN5rBPWfioRp4Ek
+N+iC2JL1/yEH3Cr5Ii9XU5SLPvimQKwE54FKl6Rw1qYtu/LFtfAr7+tzRXWm
+GBdV3bi8ooZ1ovd7/MwUHV9kHQt5tRNemS0M+DHUDCURjOGuohsM5U+yw66a
+oXzIF8qe9sN7dtMOwmUzdFTvmOByh+FIRt76pRAets0EDQz7/w5RqtTXFRU8
+vPdphV3U4ihM1c5Vty7xkLPrXaI6qQHnTFH8tWBzFK7XC+12jsP8awOn7180
+x9AXcbc+atBCeXHv2NFZc5zK8R7q3T0JPH362e/38dG1eGH9O2YKNjdvn3n7
+PB+frk1OPJDMQL2xoTlbx8cbjzruCwp1sL9vfp+vrwXaONRRvV4PidEqsWu+
+BSqPtyZVufwFOLLbd3zSAjmB9XpZ5hxc5XuqeiQCzHirW2111wDtbivxaXkC
+NDR0K35zegS/2K4mFUwI0OSz0Stvpi/AwZGszjEPgt6B258ndSyCUnYvavEc
+wfAap+QmawbI9ex8z1yC/mWCN3rtGSjQBfxwOo+ga+GGftyJgayYVhuugqBJ
++oN4E3cGPj9UoxEVE2yLyI85ggyEYEYkXCZoz12J3JQxYLSWRJQ0EDTEdgWH
+tTPwZeSCXNNIcDRStTWmk4Hlkus37ZsIdh24fOdUNwNzFg7CuhaC5XvTsHyI
+gdGtvOGONnY/4upPZxhQUZ109g5B9c9FXhfNKcT1fRvqoyEod4h1nj5Gwc7y
+vOjMnwRPhEsOaz+m8DBOPtM6RvBoNrdAk0RBapRleGkJSuavrQymUNi7x++m
+xzRBrdrQ1Z5DQVCqtd65QNBHeipWeYNC/+SI/pNFgi6ZQaVFTRRy3HuaapYI
+Cpst+wpuUTD2qA44LrP3Wd/2yOqiMPvsbKbdKkGlbmPz5CiFqvdTpdF/s/tZ
+DXoeH6MQXZIsvrRGUBZWmZgwQWHELbzFykgQG3Ew2kBB8VWwPHKDoPvMDu7h
+JQr7e3wOKv8haCPSeUc8psB9eY/tH5vs/0PVMukaBeGF1eqm5+y898PcXiOF
+fwEogavx
+        "]], LineBox[CompressedData["
+1:eJwVznlM02cYB/DfKHVczl9bLIwgFtxGcWo5ZJzzeWlwTkQmjEM3pi2CRQ7p
+uHSSVMBCcU6GRZBkbOnWwBDGsQSlMBcrTnFVJnIrWo5CKQX60wjiwM69/ePN
+k0++z5P3656UFZNiRRDEx/hZ5qkgOu9XgkRo57DszioFg59+c2GdFYkEnf6X
+7lEU+Ga9eFGHLS5NFvQZKfi+KvOL3TQSlX1euW1ohoKIKaGn1JpEbYvP/tKO
+UdBg8+TCFjqJ1F2bL+qGKaDz4pe6sUdlUV8ZHlKgLoi4+dbbJCI8flt+3kOB
+/0a/L8/YkuhgvOgDejsFDgVD3XksEik8Y+eikyngbRxo9XDE/8WLioyHKYhp
+7at9gC0uOf3u2UMU1Oju5XuxcX+dYm97FAVbIru3PnUmkeGnxSvsIAqCN7XK
+w91I5M2WpY2tpyD1RlkSywv3s+6aT+4wwW1aqNXvu3C/yc2mk3YmuEnp521E
+JHpVdFeh6lkAl94T+d1yfH/5XOTC8Xk4LnduaP2TRKqMkBvFTCOsda2Tds6Q
+iMvVjPv1G8A4+JB4n8FAbQe//nckfxZcYyY9m4MYiJO1rK721UN4B/NlqpCB
+JnanfaZamgbNeveU0u/w/sWV4fs/6EDekyNRtzOQ+JbQ4fWhKVBlKwMTJxgI
+pU0Hu5kngFPk9KOjLRMRJtmOayfGQXKyuYHwYSJOGTdvmXoCwUc4cVGJTCRw
+WG12CXkMgY0jTSopExUmlvDz2kfgkj5dKW1jInV12N9XVwZBb+fBl44xkSJ6
+/Okfe/qhQO56XkFjIUVbZq3p/APItF/KdeOxkEAuEfq4auCX2Q22nQkspLan
+abU2t6G3aX+47AzOSyPynTaoIU6YyuloxHnj7ExAzFXgnO6ppw2wEPGMX7tN
+Ug8JIveaDuzC2EjK7716KI8tOJc+iPPOOH6Ipg5e7+BlDAxhF6ca9rLr4JGu
+2kc5ivdZ5TtFLUqQ7z92na/FecCj+z9rFUBzp/cXzWGbtavbJdUQ/M6RW/5G
+7DvPFaGaKsheU7XPWVxuvWcfuwomhjIuRy9gc7ZWprZUwvVvBxPdKezwvA+V
+2grIXVLOqpewnZ1U3pJSaJo0j+YuYzeGWkexS2DqnwQN9yV2aNKB9JazcOCK
+fXPFCrag2VCnLYTth3OyBavYkTLfjyT5kLyv96jjGra4XyNuyYHaQM+4uxZX
+bDrapBWDHWsswNuM3SbyDJMcgzDC32va4lfmhGtaAZxaLHep+Q+7kMtIkMRD
+62ODfeQbS//G6WLJJ6Dv4ZvfWEwQfeq5lF3/A1zZtpE=
+        "]]},
+      Annotation[#, "Charting`Private`Tag$28790#1"]& ], {}}, {}},
+   AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+   Axes->{True, True},
+   AxesLabel->{None, None},
+   AxesOrigin->{0., 0.},
+   DisplayFunction->Identity,
+   Frame->{{False, False}, {False, False}},
+   FrameLabel->{{None, None}, {None, None}},
+   FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+   GridLines->{None, None},
+   GridLinesStyle->Directive[
+     GrayLevel[0.5, 0.4]],
+   ImagePadding->All,
+   ImageSize->{Automatic, 102.36283706359423`},
+   Method->{
+    "DefaultBoundaryStyle" -> Automatic, 
+     "DefaultGraphicsInteraction" -> {
+      "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+       "Effects" -> {
+        "Highlight" -> {"ratio" -> 2}, "HighlightPoint" -> {"ratio" -> 2}, 
+         "Droplines" -> {
+          "freeformCursorMode" -> True, 
+           "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+     "DefaultMeshStyle" -> AbsolutePointSize[6], "ScalingFunctions" -> None, 
+     "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+         (Identity[#]& )[
+          Part[#, 1]], 
+         (Identity[#]& )[
+          Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+         (Identity[#]& )[
+          Part[#, 1]], 
+         (Identity[#]& )[
+          Part[#, 2]]}& )}},
+   PlotRange->{{0., 5}, {0., 0.9993622448979593}},
+   PlotRangeClipping->True,
+   PlotRangePadding->{{
+      Scaled[0.02], 
+      Scaled[0.02]}, {
+      Scaled[0.05], 
+      Scaled[0.05]}},
+   Ticks->{Automatic, Automatic}]],
+  CellChangeTimes->{{3.914610002529703*^9, 3.9146100149638786`*^9}},
+  ExpressionUUID->"a4a759d9-63cb-40dc-8a5f-2fd629134d47"],
+ "\t\t\t\t\t\nEl segundo decimal es:\n",
+ "A)  7,             B) 9,               C) 1,                      D) 3,     \
+       E) 5 "
+}], "Text",
+ CellChangeTimes->{{3.8827147193179264`*^9, 3.882714744225545*^9}, {
+   3.8827153315281515`*^9, 3.882715403821908*^9}, {3.8827180445768633`*^9, 
+   3.8827180882910204`*^9}, {3.88279946964359*^9, 3.8827994837832713`*^9}, {
+   3.88279975585643*^9, 3.8827997603873634`*^9}, {3.8827998288391523`*^9, 
+   3.8827998696176925`*^9}, {3.8827999014489717`*^9, 3.8827999561896906`*^9}, 
+   3.882800009510042*^9, 3.882803855736155*^9, {3.9146098213454485`*^9, 
+   3.9146099124172287`*^9}, {3.9146099448072243`*^9, 3.9146099548106155`*^9}, 
+   3.9146101684966965`*^9, {3.9146102514272184`*^9, 3.914610271954374*^9}, 
+   3.914610321473875*^9, {3.9146122456281157`*^9, 3.914612246011557*^9}, 
+   3.914613547226185*^9, {3.9296324489238467`*^9, 3.9296324708672485`*^9}, {
+   3.9296336705355406`*^9, 3.9296336737045126`*^9}, {3.9296337402620993`*^9, 
+   3.9296337794534926`*^9}, {3.9296338438379*^9, 3.9296338532264657`*^9}, {
+   3.9296338894548235`*^9, 3.9296339020827026`*^9}, {3.929634497372903*^9, 
+   3.929634539580717*^9}, {3.929634638624772*^9, 3.929634677088414*^9}, {
+   3.9296375522008276`*^9, 
+   3.929637554212533*^9}},ExpressionUUID->"1382f7f8-7911-4477-931d-\
+b9240af68fca"],
+
+Cell[TextData[{
+ "2.- Calcular la suma de la serie ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    UnderoverscriptBox["\[Sum]", 
+     RowBox[{"n", "=", "1"}], "\[Infinity]"], 
+    FractionBox[
+     RowBox[{"n", "!"}], 
+     RowBox[{
+      RowBox[{
+       RowBox[{"1", "*", "3", "*", "5", "*"}], "..."}], "*", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"2", "n"}], "-", "1"}], ")"}]}]]}], TraditionalForm]],
+  ExpressionUUID->"413be5ca-16d1-48b2-919f-e0fbc9ccc7a0"],
+ ".\n",
+ "El s\[EAcute]ptimo decimal es:\nA)  3,             B) 5,               C) \
+7,                      D) 9,            E) 1 "
+}], "Text",
+ CellChangeTimes->{{3.610967983265625*^9, 3.610968082640625*^9}, {
+   3.6109681208125*^9, 3.61096812653125*^9}, {3.610976777453125*^9, 
+   3.610976922484375*^9}, {3.610977092296875*^9, 3.610977097484375*^9}, {
+   3.6109946522286205`*^9, 3.610994704129912*^9}, {3.610995052572124*^9, 
+   3.6109950884521875`*^9}, {3.6424689091182065`*^9, 
+   3.6424689136494656`*^9}, {3.64246910935966*^9, 3.6424691148089714`*^9}, {
+   3.642469284504678*^9, 3.642469286029765*^9}, {3.6424701665631285`*^9, 
+   3.6424702113606906`*^9}, {3.642470588749276*^9, 3.642470640499236*^9}, {
+   3.6424722530694695`*^9, 3.6424723052424536`*^9}, {3.645409112709856*^9, 
+   3.645409129264803*^9}, {3.645409338631778*^9, 3.645409352426567*^9}, {
+   3.6624029068280306`*^9, 3.662402929918351*^9}, {3.662402962912238*^9, 
+   3.662403136744181*^9}, {3.6624095052454386`*^9, 3.662409542385563*^9}, {
+   3.662413401773307*^9, 3.6624134164051437`*^9}, {3.6624326047128563`*^9, 
+   3.6624326536041436`*^9}, {3.693853579308857*^9, 3.6938536913412647`*^9}, {
+   3.6938543953475313`*^9, 3.693854402346932*^9}, 3.693854607431662*^9, {
+   3.7076653310638204`*^9, 3.7076653348368206`*^9}, 3.724512074101202*^9, {
+   3.7245159054844255`*^9, 3.724515919898026*^9}, {3.7245246574084797`*^9, 
+   3.7245247718836803`*^9}, {3.7245248615626807`*^9, 
+   3.7245248620980806`*^9}, {3.7245249240566807`*^9, 3.724524924385281*^9}, {
+   3.724524959465081*^9, 3.7245249606420813`*^9}, {3.724526072457488*^9, 
+   3.7245260741732883`*^9}, {3.7245556791372013`*^9, 
+   3.7245556831576014`*^9}, {3.819953062446*^9, 3.81995307613*^9}, {
+   3.81995311965*^9, 3.819953125586*^9}, {3.8199532055699997`*^9, 
+   3.819953208762*^9}, 3.819953344722*^9, 3.819953389755*^9, 
+   3.8199542861879997`*^9, {3.819998824968*^9, 3.819998971391*^9}, 
+   3.819999120046*^9, {3.8521354356728835`*^9, 3.8521354482014813`*^9}, {
+   3.8521354817742567`*^9, 3.8521355967096415`*^9}, {3.852135706055974*^9, 
+   3.8521358222208295`*^9}, {3.85214114440808*^9, 3.852141160772333*^9}, {
+   3.852141214259398*^9, 3.85214133543157*^9}, {3.852180106311596*^9, 
+   3.8521801764130898`*^9}, 3.852180474366516*^9, 3.8521831516073046`*^9, {
+   3.88271880643167*^9, 3.8827189891940517`*^9}, {3.882720104270916*^9, 
+   3.8827201398305025`*^9}, {3.8827201724034796`*^9, 
+   3.8827201740230474`*^9}, {3.882720226472745*^9, 3.8827202317975826`*^9}, {
+   3.8827995728942595`*^9, 3.882799594287067*^9}, {3.8827996636187534`*^9, 
+   3.8827996659586096`*^9}, 3.8827997253605747`*^9, 3.8827998899375424`*^9, 
+   3.882803818613326*^9, {3.9142611348183436`*^9, 3.9142611437844505`*^9}, {
+   3.9142621933283*^9, 3.9142621957869806`*^9}, {3.91428781835141*^9, 
+   3.914287829323207*^9}, {3.9142884379398794`*^9, 3.9142884743297405`*^9}, {
+   3.928133156373615*^9, 3.928133189724223*^9}, {3.928133629535348*^9, 
+   3.9281336554016314`*^9}, {3.9281377532465005`*^9, 3.928137779393445*^9}, {
+   3.929632691789321*^9, 3.9296327090948634`*^9}, {3.929634816589389*^9, 
+   3.929634823687087*^9}, 3.9296349006266036`*^9, {3.929634967606995*^9, 
+   3.9296350129620447`*^9}, {3.9296351004267173`*^9, 
+   3.9296351573997393`*^9}, {3.929637565170541*^9, 3.929637568982689*^9}, 
+   3.9296378730714936`*^9},ExpressionUUID->"19aadbe7-f02b-4ac4-99eb-\
+0df9fe615840"],
+
+Cell[TextData[{
+ "3. Calcular la funci\[OAcute]n del tipo f(x) = ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"a", " ", 
+     SuperscriptBox["x", "2"]}], "+", " ", "bx", "+", "c"}], 
+   TraditionalForm]],ExpressionUUID->"ec5ef87f-78f4-4dbe-9e38-a06767739d67"],
+ " que mejor aproxima en el sentido de los m\[IAcute]nimos cuadrados los \
+datos  (-2,2), (-1,1), (0,0), (1,-1),  (2,0) y (3,1).\n",
+ "El sexto decimal de a es:\nA)  0,             B) 2,               C) 4,     \
+                 D) 6,            E) 8 "
+}], "Text",
+ CellChangeTimes->{{3.8827147193179264`*^9, 3.882714744225545*^9}, {
+   3.8827153315281515`*^9, 3.882715403821908*^9}, {3.8827180445768633`*^9, 
+   3.8827180882910204`*^9}, {3.88279946964359*^9, 3.8827994837832713`*^9}, {
+   3.88279975585643*^9, 3.8827997603873634`*^9}, {3.8827998288391523`*^9, 
+   3.8827998696176925`*^9}, {3.8827999014489717`*^9, 3.8827999561896906`*^9}, 
+   3.882800009510042*^9, 3.882803855736155*^9, {3.9142608562973423`*^9, 
+   3.91426091567258*^9}, {3.9142611780918612`*^9, 3.914261247493476*^9}, {
+   3.9142622001364627`*^9, 3.914262202120704*^9}, {3.9281343200439463`*^9, 
+   3.9281343340844774`*^9}, {3.9281344197668533`*^9, 3.92813444021441*^9}, {
+   3.929632832913916*^9, 3.9296328335428343`*^9}, 3.929632963724201*^9, {
+   3.9296372520934896`*^9, 3.9296372584020367`*^9}, {3.9296373509623375`*^9, 
+   3.9296373665870323`*^9}, {3.9296377985003633`*^9, 
+   3.9296378042479267`*^9}, {3.929700917059244*^9, 
+   3.9297009181076975`*^9}},ExpressionUUID->"3732c96e-babd-4f26-b667-\
+f0e1d91d7030"],
+
+Cell[TextData[{
+ "4.- Calcular una aproximaci\[OAcute]n de la integral de ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubsuperscriptBox["\[Integral]", "1", "2"], 
+    RowBox[{
+     FractionBox["1", 
+      RowBox[{"1", "+", "x", "+", 
+       SuperscriptBox["x", "2"]}]], 
+     RowBox[{"\[DifferentialD]", "x"}]}]}], TraditionalForm]],ExpressionUUID->
+  "98875651-82fe-4688-96dc-89f583547dad"],
+ " utilizando la f\[OAcute]rmula del trapecio compuesta haciendo 20 trozos en \
+el intervalo [1,2], comparadla con el valor exacto y encontrar el error.\nEl \
+sexto decimal del error es:\nA)  8,             B) 0,               C) 2,     \
+                 D) 4,            E) 6 "
+}], "Text",
+ CellChangeTimes->{{3.610967983265625*^9, 3.610968082640625*^9}, {
+   3.6109681208125*^9, 3.61096812653125*^9}, {3.610976777453125*^9, 
+   3.610976922484375*^9}, {3.610977092296875*^9, 3.61097715140625*^9}, {
+   3.610995735478924*^9, 3.6109957365709257`*^9}, {3.6109961161819925`*^9, 
+   3.610996124590407*^9}, {3.642469161515643*^9, 3.642469188870208*^9}, 
+   3.6424704451100607`*^9, {3.6424715198115296`*^9, 3.642471601232187*^9}, {
+   3.6424716555512934`*^9, 3.642471740964179*^9}, {3.6454095679958973`*^9, 
+   3.6454096460403605`*^9}, {3.6624061959581585`*^9, 3.662406246269036*^9}, {
+   3.6624062948808165`*^9, 3.662406428914482*^9}, {3.662406522687846*^9, 
+   3.6624065679164333`*^9}, {3.66240662170951*^9, 3.6624066370693884`*^9}, {
+   3.6938453380734854`*^9, 3.6938454433765087`*^9}, {3.6938553174852753`*^9, 
+   3.6938553184313293`*^9}, {3.70766380321282*^9, 3.7076639381248207`*^9}, {
+   3.70766451942982*^9, 3.7076645198528204`*^9}, 3.7245121272192025`*^9, {
+   3.7245133063140097`*^9, 3.72451336303561*^9}, {3.7245159915016265`*^9, 
+   3.7245159918448267`*^9}, {3.724526675196692*^9, 3.7245268136012926`*^9}, {
+   3.7245557407884016`*^9, 3.724555756250802*^9}, {3.724555936923603*^9, 
+   3.7245559856978035`*^9}, {3.7395591480248003`*^9, 
+   3.7395591891188006`*^9}, {3.739584744626301*^9, 3.7395847469653006`*^9}, {
+   3.929632967565319*^9, 3.929632970328185*^9}, {3.929633263404694*^9, 
+   3.9296332641175923`*^9}, {3.929636054978119*^9, 3.9296360664231777`*^9}, 
+   3.9296365508342853`*^9, {3.9296366034350395`*^9, 3.9296366188514624`*^9}, 
+   3.929637817194491*^9, {3.9297008983019266`*^9, 3.9297009047295527`*^9}},
+ FontSize->16,ExpressionUUID->"8e0882e3-1a0c-4135-82ea-0bffdc2b6690"],
+
+Cell[TextData[{
+ "5.- Calcular la integral de la funci\[OAcute]n f(x,y)= ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"1", "+", "x", "+", 
+    RowBox[{"\[ExponentialE]", " ", "y"}]}], TraditionalForm]],ExpressionUUID->
+  "daa86550-5503-44bc-ac8f-2655834a6e2c"],
+ " en el tri\[AAcute]ngulo de v\[EAcute]rtices (0,2), (1,0) y (2,1).\nEl s\
+\[EAcute]ptimo decimal es:\n",
+ "A)  9,             B) 1,               C) 3,                      D) 5,     \
+       E) 7 "
+}], "Text",
+ CellChangeTimes->{{3.610967983265625*^9, 3.610968082640625*^9}, {
+   3.6109681208125*^9, 3.61096812653125*^9}, {3.610976777453125*^9, 
+   3.610976922484375*^9}, {3.610977092296875*^9, 3.610977128578125*^9}, {
+   3.6109952425648575`*^9, 3.6109952441248603`*^9}, 3.6109960809103303`*^9, {
+   3.642469122350403*^9, 3.642469129909835*^9}, {3.6424702277816296`*^9, 
+   3.642470339714032*^9}, {3.6454091660499067`*^9, 3.6454091779505873`*^9}, {
+   3.64540920858634*^9, 3.6454092670616846`*^9}, {3.6624042685629177`*^9, 
+   3.662404487045414*^9}, {3.662404538610363*^9, 3.6624045830899076`*^9}, {
+   3.6624330552211766`*^9, 3.662433061680588*^9}, {3.6938538708665333`*^9, 
+   3.693854040902259*^9}, {3.693854079487466*^9, 3.6938540794884653`*^9}, {
+   3.6938544445573463`*^9, 3.693854450866707*^9}, {3.7076653520288205`*^9, 
+   3.7076655065988207`*^9}, {3.7076656135488205`*^9, 3.7076656188958206`*^9}, 
+   3.724512079592402*^9, {3.7245143272248163`*^9, 3.724514340438017*^9}, {
+   3.724515015543621*^9, 3.724515075291621*^9}, {3.7245159676384263`*^9, 
+   3.7245159875434265`*^9}, {3.724525224926283*^9, 3.724525304227683*^9}, {
+   3.724525496614485*^9, 3.7245255165248847`*^9}, {3.7245557072194014`*^9, 
+   3.7245557143794017`*^9}, {3.7395609692943006`*^9, 3.739560985192301*^9}, {
+   3.7395613651863003`*^9, 3.7395613651863003`*^9}, {3.9296332662022777`*^9, 
+   3.92963334234532*^9}, {3.929635653100153*^9, 3.929635659541462*^9}, 
+   3.929635706924994*^9, {3.9296358038303585`*^9, 3.9296358525139055`*^9}, {
+   3.9296378252980943`*^9, 3.9296378268551283`*^9}},
+ FontSize->16,ExpressionUUID->"94042163-5ebb-42bd-abd3-e715b1a61af9"]
+},
+WindowSize->{1141.2, 420.59999999999997`},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+PrintingCopies->1,
+PrintingPageRange->{32000, 32000},
+PrintingOptions->{"Magnification"->1.,
+"PaperOrientation"->"Portrait",
+"PaperSize"->{595.2755905511812, 841.8897637795276}},
+FrontEndVersion->"13.0 para Microsoft Windows (64-bit) (December 2, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"c81815da-9307-444b-bcd8-82688dd568d4"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 884, 19, 108, "Text",ExpressionUUID->"85cd90ef-92e8-4c24-86ab-7291374da7e5"],
+Cell[1445, 41, 1403, 23, 88, "Text",ExpressionUUID->"d29b29e2-ee14-40c0-812c-2b72160e9ecf"],
+Cell[2851, 66, 488, 10, 28, "Input",ExpressionUUID->"51f9bfe6-92ef-4812-8ca0-68238fd00935"],
+Cell[3342, 78, 7352, 158, 202, "Text",ExpressionUUID->"1382f7f8-7911-4477-931d-b9240af68fca"],
+Cell[10697, 238, 3857, 65, 86, "Text",ExpressionUUID->"19aadbe7-f02b-4ac4-99eb-0df9fe615840"],
+Cell[14557, 305, 1555, 27, 81, "Text",ExpressionUUID->"3732c96e-babd-4f26-b667-f0e1d91d7030"],
+Cell[16115, 334, 2387, 39, 113, "Text",ExpressionUUID->"8e0882e3-1a0c-4135-82ea-0bffdc2b6690"],
+Cell[18505, 375, 2096, 33, 84, "Text",ExpressionUUID->"94042163-5ebb-42bd-abd3-e715b1a61af9"]
+}
+]
+*)
+
