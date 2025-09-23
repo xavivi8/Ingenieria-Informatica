@@ -44,7 +44,22 @@ public:
 
 template<class T>
 void VDinamico<T>::roundToPowerOf2(unsigned long int &t) {
+    /*
+        Comparo en binario que no coincidan los 1
+        2 = 0010
+        2-1=0001
+        0010 y 0001 no comparten unos en cada bit
+    */
+    if ((t & (t - 1)) == 0) {
+        return;
+    }
 
+    unsigned long int p;
+    while(t<p) {
+        //Desplazo a la izquierda un bit y guardo
+        p<<=1;
+    }
+    t = p;
 };
 
 template<class T>
