@@ -103,9 +103,9 @@ void VDinamico<T>::freeMemory() {
     }
 }
 
-
+//Importante los constructores no se le ponen void
 template<class T>
-void VDinamico<T>::VDinamico(){
+VDinamico<T>::VDinamico(){
     tamaf = 1;
     tamal = 0;
     // Inicializo el victor con tamanyo fisico 1 y vacio
@@ -113,7 +113,7 @@ void VDinamico<T>::VDinamico(){
 };
 
 template<class T>
-void VDinamico<T>::VDinamico(unsigned long int tama){
+VDinamico<T>::VDinamico(unsigned long int tama){
     tamaf = tama;
     tamal = tama;
     //Redondeo a potencia de 2
@@ -123,7 +123,7 @@ void VDinamico<T>::VDinamico(unsigned long int tama){
 
 //Constructor copia
 template<class T>
-void VDinamico<T>::VDinamico(){
+VDinamico<T>::VDinamico(){
 
 };
 
