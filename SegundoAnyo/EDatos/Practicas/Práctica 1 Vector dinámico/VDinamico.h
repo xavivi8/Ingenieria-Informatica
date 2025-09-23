@@ -44,7 +44,12 @@ public:
 
 template<class T>
 void VDinamico<T>::roundToPowerOf2(unsigned long int &t) {
+    if(t==0 ||
+};
 
+template<class T>
+void VDinamico<T>::VDinamico(){
+    
 };
 
 #endif //VDINAMICO_H
