@@ -40,6 +40,11 @@ public:
 
     void sort();
 
+}
+
+template<class T>
+void VDinamico<T>::roundToPowerOf2(unsigned long int &t) {
+
 };
 
 #endif //VDINAMICO_H
