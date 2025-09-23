@@ -55,4 +55,12 @@ void VDinamico<T>::VDinamico(){
     v = new T[tamaf];
 };
 
+template<class T>
+void VDinamico<T>::VDinamico(unsigned long int tama){
+    tamaf = tama;
+    tamal = tama;
+
+    v = new T[tamaf];
+};
+
 #endif //VDINAMICO_H
