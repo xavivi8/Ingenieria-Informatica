@@ -42,6 +42,9 @@ public:
 
 };
 
+/*
+* Metodos privados
+* */
 template<class T>
 void VDinamico<T>::roundToPowerOf2(unsigned long int &t) {
     /*
@@ -103,6 +106,9 @@ void VDinamico<T>::freeMemory() {
     }
 }
 
+/*
+* Constructores
+* */
 //Importante los constructores no se le ponen void
 template<class T>
 VDinamico<T>::VDinamico(){
