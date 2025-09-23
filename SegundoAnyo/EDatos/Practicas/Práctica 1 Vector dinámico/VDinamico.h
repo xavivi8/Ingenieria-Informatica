@@ -20,7 +20,7 @@ private:
     //Se ocupa de liberar memoria
     void freeMemory();
 
-    unsigned long int tamal,tamaf;
+    unsigned long int tamaf,tamal;
     T *v;
 
 public:
@@ -44,12 +44,15 @@ public:
 
 template<class T>
 void VDinamico<T>::roundToPowerOf2(unsigned long int &t) {
-    if(t==0 ||
+
 };
 
 template<class T>
 void VDinamico<T>::VDinamico(){
-    
+    tamaf = 1;
+    tamal = 0;
+    // Inicializo el victor con tamanyo fisico 1 y vacio
+    v = new T[tamaf];
 };
 
 #endif //VDINAMICO_H
