@@ -13,12 +13,12 @@
 template<class T>
 class VDinamico {
 private:
+    //Se ocupa de redondear a la potencia de 2
+    void roundToPowerOf2(unsigned long int &t);
     //Se ocupa de coger memoria
     void allocateMemory();
     //Se ocupa de liberar memoria
     void freeMemory();
-    //Se ocupa de redondear a la potencia de 2
-    void roundToPowerOf2(unsigned long int &t);
 
     unsigned long int tamal,tamaf;
     T *v;
