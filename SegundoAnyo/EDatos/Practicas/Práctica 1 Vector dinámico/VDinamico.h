@@ -26,7 +26,7 @@ private:
 public:
     VDinamico();
     VDinamico(unsigned long int tama);
-    VDinamico(const VDnamico<T> &orig);
+    VDinamico(const VDinamico<T> &orig);
     VDinamico(const VDinamico<T>& origen, unsigned long int inicio, unsigned long int num);
     ~VDinamico();
 
@@ -129,8 +129,15 @@ VDinamico<T>::VDinamico(unsigned long int tama){
 
 //Constructor copia
 template<class T>
-VDinamico<T>::VDinamico(){
+VDinamico<T>::VDinamico(const VDinamico<T> &orig) {
+    tamaf = orig.tamaf;
+    tamal = orig.tamal;
 
+    v = new T[tamaf];
+
+    for (unsigned long int i = 0; i < tamal; i++) {
+        v[i] = orig.v[i];
+    }
 };
 
 #endif //VDINAMICO_H
