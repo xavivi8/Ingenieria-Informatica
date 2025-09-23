@@ -82,6 +82,28 @@ void VDinamico<T>::allocateMemory(){
     v = aux;
 };
 
+/*
+* Funciona igual que al aumentar la memoria pero ahora se liberara si el tamanyo logico (los elementos que tengo)
+* es un tercio o menos que el tamanyo fisico (la capacidad total del vector)
+* */
+template<class T>
+void VDinamico<T>::freeMemory() {
+    if (tamal <= (tamaf / 3)) {
+        unsigned long int newTamaf = tamaf / 2;
+        T* aux = new T[newTamaf];
+
+        for (unsigned long int i = 0; i < tamal; i++) {
+            aux[i] = v[i];
+        }
+
+        delete[] v;
+
+        v = aux;
+        tamaf = newTamaf;
+    }
+}
+
+
 template<class T>
 void VDinamico<T>::VDinamico(){
     tamaf = 1;
