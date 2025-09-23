@@ -74,8 +74,15 @@ template<class T>
 void VDinamico<T>::VDinamico(unsigned long int tama){
     tamaf = tama;
     tamal = tama;
-
+    //Redondeo a potencia de 2
+    roundToPowerOf2(tamaf);
     v = new T[tamaf];
+};
+
+//Constructor copia
+template<class T>
+void VDinamico<T>::VDinamico(){
+
 };
 
 #endif //VDINAMICO_H
