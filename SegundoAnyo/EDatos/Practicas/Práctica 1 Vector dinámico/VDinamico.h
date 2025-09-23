@@ -63,6 +63,26 @@ void VDinamico<T>::roundToPowerOf2(unsigned long int &t) {
 };
 
 template<class T>
+void VDinamico<T>::allocateMemory(){
+    //Aumento la memoria a la potencia de 2
+    tamaf *= 2;
+    roundToPowerOf2(tamaf);
+
+    //Creo un vector auxiliar
+    T* aux = new T[tamaf];
+
+    for(unsigned long int i = 0; i < tamal; ++i){
+        aux[i] = v[i];
+    }
+
+    //Libero la memoria antigua
+    delete[] v;
+
+    //v que no apunta a nada hago que apunte a la dirección de memoria de aux
+    v = aux;
+};
+
+template<class T>
 void VDinamico<T>::VDinamico(){
     tamaf = 1;
     tamal = 0;
