@@ -140,4 +140,34 @@ VDinamico<T>::VDinamico(const VDinamico<T> &orig) {
     }
 };
 
+template<class T>
+VDinamico<T>::VDinamico(const VDinamico<T>& origen, unsigned long int inicio, unsigned long int num) {
+    if (inicio >= origen.tamal) { //Compruebo que el inicio este en el vector origen
+        throw std::out_of_range("Indice de inicio fuera de rango");
+    } else if (inicio + num > origen.tamal) { //Compruebo que el rango que voy a copiar no exceda el tamanyo del vector origen
+        throw std::out_of_range("El rango excede el tamaño del vector origen");
+    } else {
+        tamal = num;
+        tamaf = num;
+        roundToPowerOf2(tamaf);
+        v = new T[tamaf];
+        for (unsigned long int i = 0; i < num; i++) {
+            v[i] = origen.v[inicio + i];
+        }
+    }
+};
+
+//Constructor destructor
+template<class T>
+VDinamico<T>::~VDinamico() {
+    delete[] v; //libero memoria
+    /**
+     * Importante:
+     * Hago que v ya no apunte a una direccion de memoria que ya no eciste
+     */
+    v = nullptr; 
+    tamaf = 0;
+    tamal = 0;
+};
+
 #endif //VDINAMICO_H
