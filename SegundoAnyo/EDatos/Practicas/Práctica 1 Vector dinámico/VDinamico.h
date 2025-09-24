@@ -197,4 +197,12 @@ VDinamico<T> &VDinamico<T>::operator=(const VDinamico<T> &arr) {
      */
     return *this;
 };
+
+template<class T>
+T &VDinamico<T>::operator[](unsigned long int pos) {
+    if(pos>=tamal){
+        throw std::out_of_range("Posicion fuera de rango");
+    }
+    return v[pos];
+};
 #endif //VDINAMICO_H
