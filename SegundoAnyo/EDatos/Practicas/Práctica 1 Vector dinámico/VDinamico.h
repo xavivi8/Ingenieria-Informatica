@@ -32,6 +32,7 @@ public:
 
     VDinamico<T> &operator=(const VDinamico<T> &arr);
     T &operator[](unsigned long int pos);
+
     void insert (const T &data, unsigned long int pos=UINT_MAX);
     T remove (unsigned long int pos=UINT_MAX);
     unsigned long int tama();
@@ -170,4 +171,30 @@ VDinamico<T>::~VDinamico() {
     tamal = 0;
 };
 
+/**
+ * Operadores
+ */
+template<class T>
+VDinamico<T> &VDinamico<T>::operator=(const VDinamico<T> &arr) {
+    /**
+     * compruebo que sean distintos los vectores dinamicos
+     * this es un puntero que apunta al objeto que esta a la izquierda del =, es decir al objeto que llama al operador =
+     */
+    if (this != &arr) {
+        delete[] v;
+        tamaf = arr.tamaf;
+        tamal = arr.tamal;
+        roundToPowerOf2(tamaf);
+        v = new T[tamaf];
+        for (unsigned long int i = 0; i < tamal; ++i) {
+            v[i] = arr.v[i];
+        }
+    }
+    /**
+     * Importante:
+     * *this es el propio objeto al que apunta el puntero this
+     * cuando hago el return *this estoy devolviendo el propio objeto, lo estoy devolviendo por referencia
+     */
+    return *this;
+};
 #endif //VDINAMICO_H
