@@ -5,4 +5,8 @@
 #ifndef PAMEDICAMENTO_H
 #define PAMEDICAMENTO_H
 
+class PaMedicamento{
+
+};
+
 #endif //PAMEDICAMENTO_H
