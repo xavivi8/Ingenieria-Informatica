@@ -45,6 +45,11 @@ public:
 * */
 template<class T>
 void VDinamico<T>::roundToPowerOf2(unsigned int &t) {
+    if (t == 0) { 
+        t = 1; 
+        return; 
+    }
+    
     /*
         Comparo en binario que no coincidan los 1
         2 = 0010
@@ -55,8 +60,8 @@ void VDinamico<T>::roundToPowerOf2(unsigned int &t) {
         return;
     }
 
-    unsigned int p;
-    while(t<p) {
+    unsigned int p = 1;
+    while(p < t) {
         //Desplazo a la izquierda un bit y guardo
         p<<=1;
     }
@@ -89,7 +94,7 @@ void VDinamico<T>::allocateMemory(){
 * */
 template<class T>
 void VDinamico<T>::freeMemory() {
-    if (tamal <= (tamaf / 3)) {
+    if (tamal <= (tamaf / 3) && tamaf > 1) {
         unsigned int newTamaf = tamaf / 2;
         T* aux = new T[newTamaf];
 
@@ -210,17 +215,17 @@ T &VDinamico<T>::operator[](unsigned int pos) {
  */
 template<class T>
 void VDinamico<T>::insert(const T &data, unsigned int pos) {
-    if(pos == UINT_MAX) {
+    if (pos == UINT_MAX) {
         pos = tamal;
-    } else if(pos > tamal || pos != UINT_MAX) {
+    } else if (pos > tamal) {
         throw std::out_of_range("Posicion fuera de rango");
     }
-    if(tamal == tamaf) {
+    if((tamal+1) == tamaf) {
         allocateMemory();
     }
 
-    for(unsigned int i = (tamal-1); i < pos; --i) {
-        v[i+1] = v[i];
+    for(unsigned int i = tamal; i > pos; --i) {
+        v[i] = v[i-1];
     }
 
     v[pos] = data;
@@ -229,23 +234,29 @@ void VDinamico<T>::insert(const T &data, unsigned int pos) {
 
 template<class T>
 T VDinamico<T>::remove(unsigned int pos){
-    if(pos == UINT_MAX){
-        pos = tamal; 
-    } else if(pos > tamal || tamal == 0) {
+    if (tamal == 0) {
+        throw std::out_of_range("Vector vacio");
+    }
+
+    if (pos == UINT_MAX) {
+        pos = tamal - 1;
+    } else if (pos >= tamal) {
         throw std::out_of_range("Posicion fuera de rango");
     }
 
-    T aux = v[pos-1];
 
-    for(unsigned int i = pos; i < tamal; ++i) {
+    T aux = v[pos];
+
+    for(unsigned int i = pos; (i+1) < tamal; ++i) {
         v[i] = v[i+1];
     }
+
+    tamal--;
 
     if(tamal <= (tamaf/3)) {
         freeMemory();
     }
 
-    tamal--;
     return aux;
 };
 
