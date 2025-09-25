@@ -267,7 +267,9 @@ unsigned int VDinamico<T>::size(){
 
 template<class T>
 void VDinamico<T>::sort() {
-    
+    if (tamal > 1) {
+        std::sort(v, v + tamal);
+    }
 };
 
 #endif //VDINAMICO_H
