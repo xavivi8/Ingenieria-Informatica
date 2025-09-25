@@ -7,4 +7,5 @@ include_directories(.)
 
 add_executable(Practica1VectorDinamico
         main.cpp
-        VDinamico.h)
+        VDinamico.h
+        PaMedicamento.h)

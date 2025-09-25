@@ -274,7 +274,22 @@ void VDinamico<T>::sort() {
 
 template<class T>
 unsigned int VDinamico<T>::binarySearch(const T &data){
+    int low = 0;
+    int high = tamal - 1;
 
+    while (low <= high) {
+        int mid = (low + high) / 2;
+
+        if(v[mid] == data){
+            return mid;
+        } else if(v[mid] < data) {
+            low = mid + 1;
+        } else {
+            high = mid -1;
+        }
+    }
+
+    return UINT_MAX;
 };
 
 #endif //VDINAMICO_H
