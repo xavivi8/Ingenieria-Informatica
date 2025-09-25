@@ -272,4 +272,9 @@ void VDinamico<T>::sort() {
     }
 };
 
+template<class T>
+unsigned int VDinamico<T>::binarySearch(const T &data){
+
+};
+
 #endif //VDINAMICO_H
