@@ -289,7 +289,7 @@ unsigned int VDinamico<T>::binarySearch(const T &data){
         }
     }
 
-    return UINT_MAX;
+    return -1;
 };
 
 #endif //VDINAMICO_H

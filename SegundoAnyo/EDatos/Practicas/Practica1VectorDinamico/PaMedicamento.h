@@ -6,7 +6,8 @@
 #define PAMEDICAMENTO_H
 
 class PaMedicamento{
-
+private:
+    
 };
 
 #endif //PAMEDICAMENTO_H
