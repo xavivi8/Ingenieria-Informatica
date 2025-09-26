@@ -32,10 +32,10 @@ public:
     ~VDinamico();
 
     VDinamico<T> &operator=(const VDinamico<T> &arr);
-    T &operator[](unsigned int pos);
+    T &operator[](unsigned int index);
 
     void insert (const T &data, unsigned int pos=UINT_MAX);
-    T remove (unsigned int pos=UINT_MAX);
+    T remove (unsigned int index=UINT_MAX);
     unsigned int size();
     void sort();
     unsigned int binarySearch(const T &data);
@@ -204,51 +204,51 @@ VDinamico<T> &VDinamico<T>::operator=(const VDinamico<T> &arr) {
 };
 
 template<class T>
-T &VDinamico<T>::operator[](unsigned int pos) {
-    if(pos>=tamal){
+T &VDinamico<T>::operator[](unsigned int index) {
+    if(index>=tamal){
         throw std::out_of_range("Posicion fuera de rango");
     }
-    return v[pos];
+    return v[index];
 };
 
 /**
  * Metodos clasicos de listas dinamicas
  */
 template<class T>
-void VDinamico<T>::insert(const T &data, unsigned int pos) {
-    if (pos == UINT_MAX) {
-        pos = tamal;
-    } else if (pos > tamal) {
+void VDinamico<T>::insert(const T &data, unsigned int index) {
+    if (index == UINT_MAX) {
+        index = tamal;
+    } else if (index > tamal) {
         throw std::out_of_range("Posicion fuera de rango");
     }
     if((tamal+1) == tamaf) {
         allocateMemory();
     }
 
-    for(unsigned int i = tamal; i > pos; --i) {
+    for(unsigned int i = tamal; i > index; --i) {
         v[i] = v[i-1];
     }
 
-    v[pos] = data;
+    v[index] = data;
     tamal++;
 };
 
 template<class T>
-T VDinamico<T>::remove(unsigned int pos){
+T VDinamico<T>::remove(unsigned int index){
     if (tamal == 0) {
         throw std::out_of_range("Vector vacio");
     }
 
-    if (pos == UINT_MAX) {
-        pos = tamal - 1;
-    } else if (pos >= tamal) {
+    if (index == UINT_MAX) {
+        index = tamal - 1;
+    } else if (index >= tamal) {
         throw std::out_of_range("Posicion fuera de rango");
     }
 
 
-    T aux = v[pos];
+    T aux = v[index];
 
-    for(unsigned int i = pos; (i+1) < tamal; ++i) {
+    for(unsigned int i = index; (i+1) < tamal; ++i) {
         v[i] = v[i+1];
     }
 

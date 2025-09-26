@@ -62,6 +62,7 @@ int main(int argc, const char * argv[]) {
     a[1];
     a.size();
     a[2]=7;
+    a.remove(0);
     a.size();
     return 0;
 }
