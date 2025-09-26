@@ -125,7 +125,7 @@ VDinamico<T>::VDinamico(){
 template<class T>
 VDinamico<T>::VDinamico(unsigned int tama){
     tamaf = tama;
-    tamal = tama;
+    tamal = 0;
     //Redondeo a potencia de 2
     roundToPowerOf2(tamaf);
     v = new T[tamaf];
