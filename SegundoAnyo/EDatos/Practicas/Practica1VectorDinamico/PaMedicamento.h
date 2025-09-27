@@ -23,11 +23,11 @@ public:
     ~PaMedicamento();
 
     //Operators
-    bool &operator==(const PaMedicamento &object);
-    bool &operator<(const PaMedicamento &object);
+    //Al poner al final el const se promete que esa funcion no modificara atributos
+    bool operator==(const PaMedicamento &object) const;
+    bool operator<(const PaMedicamento &object) const;
     
     //Getters
-    //Al poner al final el const se promete que esa funcion no modificara atributos
     int getIdNum() const;
     std::string getIdAlpha() const;
     std::string getNombre() const;
@@ -58,5 +58,23 @@ PaMedicamento::~PaMedicamento(){
     id_alpha.clear();
     nombre.clear();
 };
+
+/**
+ * Operadores
+ */
+bool PaMedicamento::operator==(const PaMedicamento &object) const {
+    bool equal = false;
+
+    if(id_num == object.id_num && id_alpha == object.id_alpha && nombre == object.nombre){
+        equal = true;
+    }
+
+    return equal;
+}
+
+bool PaMedicamento::operator<(const PaMedicamento &object) const{
+    return (id_num < object.id_num);
+};
+
 
 #endif //PAMEDICAMENTO_H
