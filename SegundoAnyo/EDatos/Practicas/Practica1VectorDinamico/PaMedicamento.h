@@ -15,7 +15,7 @@ private:
 
 public:
     PaMedicamento();
-    PaMedicamento(int id_num, std::string id_alpha, std::string nombre);
+    PaMedicamento(int id_num, std::string id_alpha, std::string name);
     /**
      * Prefuntar si se podria usar "~PaMedicamento() = default;" para que el contructor lo haga automaticamente
      * porque como no hay nada dinamico nos podriamos ahorar el hacerlo manual
@@ -35,7 +35,7 @@ public:
     //Setters
     void setIdNum(int id_num);
     void setIdAlpha(std::string id_alpha);
-    void setName(std::string nombre);
+    void setName(std::string name);
 };
 
 /**
@@ -89,6 +89,21 @@ std::string PaMedicamento::getIdAlpha() const{
 
 std::string PaMedicamento::getName() const{
     return nombre;
+};
+
+/**
+ * Setters
+ */
+void PaMedicamento::setIdNum(int num){
+    id_num = num;
+};
+
+void PaMedicamento::setIdAlpha(std::string alphanumeric){
+    id_alpha = alphanumeric;
+};
+
+void PaMedicamento::setName(std::string name){
+    nombre = name;
 };
 
 #endif //PAMEDICAMENTO_H
