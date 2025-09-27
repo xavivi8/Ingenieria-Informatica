@@ -30,12 +30,12 @@ public:
     //Getters
     int getIdNum() const;
     std::string getIdAlpha() const;
-    std::string getNombre() const;
+    std::string getName() const;
 
     //Setters
     void setIdNum(int id_num);
     void setIdAlpha(std::string id_alpha);
-    void setNombre(std::string nombre);
+    void setName(std::string nombre);
 };
 
 /**
@@ -76,5 +76,19 @@ bool PaMedicamento::operator<(const PaMedicamento &object) const{
     return (id_num < object.id_num);
 };
 
+/**
+ * Getters
+ */
+int PaMedicamento::getIdNum() const{
+    return id_num;
+};
+
+std::string PaMedicamento::getIdAlpha() const{
+    return id_alpha;
+};
+
+std::string PaMedicamento::getName() const{
+    return nombre;
+};
 
 #endif //PAMEDICAMENTO_H
