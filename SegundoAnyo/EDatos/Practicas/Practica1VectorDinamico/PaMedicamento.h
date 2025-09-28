@@ -65,7 +65,7 @@ PaMedicamento::~PaMedicamento(){
 bool PaMedicamento::operator==(const PaMedicamento &object) const {
     bool equal = false;
 
-    if(id_num == object.id_num && id_alpha == object.id_alpha && nombre == object.nombre){
+    if(id_num == object.id_num){
         equal = true;
     }
 

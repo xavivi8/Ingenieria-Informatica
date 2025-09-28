@@ -4,6 +4,7 @@
 #include <sstream>
 #include "VDinamico.h"
 #include "PaMedicamento.h"
+//Preguntar si se pueden usar "#include <vector>"
 
 VDinamico<PaMedicamento> loadMedicinesFromCsv(const std::string &csvPath){
 
@@ -59,18 +60,65 @@ VDinamico<PaMedicamento> loadMedicinesFromCsv(const std::string &csvPath){
     return aux;
 };
 
+void showFirst50(VDinamico<PaMedicamento> &medicines){
+    unsigned int limit = 100;
+
+    if(limit > medicines.size()){
+        limit = medicines.size();
+        std::cout << "Primeros "<< limit << " elementos: " << std::endl;
+    } else {
+        std::cout << "Primeros 50 elementos: " << std::endl;
+    }
+
+    for(unsigned int i = 0; i < limit; ++i){
+        std::cout << "Medicamento: Id Num: " << medicines[i].getIdNum() << " - Id Alpha: " << medicines[i].getIdAlpha() 
+        << " - Nombre: " << medicines[i].getName() << std::endl;
+    }
+};
+
+void searchGroupOfMedicinesByIds(VDinamico<PaMedicamento> &medicines, VDinamico<int> &ids){
+    for(unsigned int i = 0; i < ids.size(); ++i){
+        int id = ids[i];
+        PaMedicamento medicineAux(id,"","");
+
+        unsigned int pos = medicines.binarySearch(medicineAux);
+
+        if(pos != UINT_MAX){
+             std::cout << "Posicion en el vector: " << pos << "\n"
+                  << " Medicamento: ( IdNum=" << medicines[pos].getIdNum()
+                  << " IdAlpha=" << medicines[pos].getIdAlpha()
+                  << " Nombre=" << medicines[pos].getName()
+                  << ")" << std::endl;
+        } else {
+            std::cout << "No se encontro medicamento cuyo id es: " << id << std::endl;
+        }
+    }
+};
+
 int main(int argc, const char * argv[]) {
     VDinamico<PaMedicamento> medicines = loadMedicinesFromCsv("../pa_medicamentos.csv");
 
-    std::cout << "\nTotal medicines loaded: " << medicines.size() << std::endl;
-
-    // Example: iterate all medicines
     for (unsigned int i = 0; i < medicines.size(); i++) {
-        std::cout << i+1 << " Medicine: ( Id_number=" << medicines[i].getIdNum()
-                  << " Id_alpha=" << medicines[i].getIdAlpha()
-                  << " Name=" << medicines[i].getName()
+        std::cout << i+1 << " Medicamento: ( IdNum=" << medicines[i].getIdNum()
+                  << " IdAlpha=" << medicines[i].getIdAlpha()
+                  << " Nombre=" << medicines[i].getName()
                   << ")" << std::endl;
     }
+
+    showFirst50(medicines);
+
+    medicines.sort();
+
+    showFirst50(medicines);
+
+    std::cout << "Buscar los ids" << std::endl;
+    VDinamico<int> ids;
+    ids.insert(350);
+    ids.insert(409);
+    ids.insert(820);
+    ids.insert(9009);
+    ids.insert(12370);
+    searchGroupOfMedicinesByIds(medicines, ids);
 
     return 0;
 }
