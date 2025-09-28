@@ -3,45 +3,49 @@
 #include <string>
 #include <sstream>
 #include "VDinamico.h"
+#include "PaMedicamento.h"
 
-int main(int argc, const char * argv[]) {
+VDinamico<PaMedicamento> loadMedicinesFromCsv(const std::string &csvPath){
 
     std::ifstream is;
-    std::stringstream  columnas;
-    std::string fila;
-    int contador=0;
+    std::stringstream columns;
+    std::string row;
+    int count=0;
+    std::string idNum = "";
+    std::string idAlpha = "";
+    std::string name = "";
 
-    std::string id_number = "";
-    std::string id_alpha="";
-    std::string nombre="";
+    VDinamico<PaMedicamento> aux;
 
-
-    is.open("../pa_medicamentos.csv"); //carpeta de proyecto
+    is.open(csvPath); //carpeta de proyecto
     if ( is.good() ) {
 
         clock_t t_ini = clock();
 
-        while ( getline(is, fila ) ) {
+        while ( getline(is, row ) ) {
 
             //¿Se ha leído una nueva fila?
-            if (fila!="") {
+            if (row!="") {
 
-                columnas.str(fila);
+                columns.str(row);
 
                 //formato de fila: id_number;id_alpha;nombre;
 
-                getline(columnas, id_number, ';'); //leemos caracteres hasta encontrar y omitir ';'
-                getline(columnas, id_alpha,';');
-                getline(columnas, nombre,';');
+                getline(columns, idNum, ';'); //leemos caracteres hasta encontrar y omitir ';'
+                getline(columns, idAlpha,';');
+                getline(columns, name,';');
 
 
-                fila="";
-                columnas.clear();
+                row="";
+                columns.clear();
 
-                std::cout << ++contador
-                          << " Medicamento: ( Id_number=" << id_number
-                          << " id_alpha=" << id_alpha << " Nombre=" << nombre
-                          << ")" << std::endl;
+                /*std::cout << ++count
+                          << " Medicamento: ( Id_number=" << idNum
+                          << " id_alpha=" << idAlpha << " Nombre=" << name
+                          << ")" << std::endl;*/
+
+                PaMedicamento med(std::stoi(idNum), idAlpha, name);
+                aux.insert(med);
             }
         }
 
@@ -51,19 +55,23 @@ int main(int argc, const char * argv[]) {
     } else {
         std::cout << "Error de apertura en archivo" << std::endl;
     }
+    
+    return aux;
+};
 
-    /*    Prueba de VDinamico    */
-    VDinamico<int> a(100);
-    a.insert(1);
-    a.insert(2);
-    a.insert(3);
-    a.insert(4);
-    a.insert(5);
-    a[1];
-    a.size();
-    a[2]=7;
-    a.remove(0);
-    a.size();
+int main(int argc, const char * argv[]) {
+    VDinamico<PaMedicamento> medicines = loadMedicinesFromCsv("../pa_medicamentos.csv");
+
+    std::cout << "\nTotal medicines loaded: " << medicines.size() << std::endl;
+
+    // Example: iterate all medicines
+    for (unsigned int i = 0; i < medicines.size(); i++) {
+        std::cout << i+1 << " Medicine: ( Id_number=" << medicines[i].getIdNum()
+                  << " Id_alpha=" << medicines[i].getIdAlpha()
+                  << " Name=" << medicines[i].getName()
+                  << ")" << std::endl;
+    }
+
     return 0;
 }
 
