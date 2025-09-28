@@ -95,6 +95,18 @@ void searchGroupOfMedicinesByIds(VDinamico<PaMedicamento> &medicines, VDinamico<
     }
 };
 
+VDinamico<PaMedicamento*> buscarCompuesto(const std::string &comp, VDinamico<PaMedicamento> &vMedicamentos) {
+    VDinamico<PaMedicamento*> result;
+
+    for(unsigned int i = 0; i < vMedicamentos.size(); ++i){
+        if(vMedicamentos[i].getName().find(comp) != std::string::npos){
+            result.insert(&vMedicamentos[i]);
+        }
+    }
+
+    return result;
+};
+
 int main(int argc, const char * argv[]) {
     VDinamico<PaMedicamento> medicines = loadMedicinesFromCsv("../pa_medicamentos.csv");
 
@@ -120,6 +132,18 @@ int main(int argc, const char * argv[]) {
     ids.insert(12370);
     searchGroupOfMedicinesByIds(medicines, ids);
 
+    std::cout << "Buscar aceites" << std::endl;
+    VDinamico<PaMedicamento*> oil = buscarCompuesto("aceite", medicines);
+    std::cout << "\nTotal encontrados: " << oil.size() << std::endl;
+    for(unsigned int i = 0; i < oil.size(); ++i){
+        PaMedicamento* medicinePointer = oil[i];
+        /**
+         * Con punteros para usar el metodo usamos -> o (*ptr). para acceder a un metodo de un objeto de manera indirecta
+         * ya que por asi decirlo "seguiremos la direccion" y accederemos al objeto apuntado
+         */
+        std::cout << " Medicamento: ( IdNum=" << (*medicinePointer).getIdNum() << " IdAlpha=" 
+        << medicinePointer->getIdAlpha() << " Nombre=" << medicinePointer->getName() << std::endl;
+    }
     return 0;
 }
 
