@@ -133,7 +133,7 @@ int main(int argc, const char * argv[]) {
     searchGroupOfMedicinesByIds(medicines, ids);
 
     std::cout << "Buscar aceites" << std::endl;
-    VDinamico<PaMedicamento*> oil = buscarCompuesto("aceite", medicines);
+    VDinamico<PaMedicamento*> oil = buscarCompuesto("ACEITE", medicines);
     std::cout << "\nTotal encontrados: " << oil.size() << std::endl;
     for(unsigned int i = 0; i < oil.size(); ++i){
         PaMedicamento* medicinePointer = oil[i];
