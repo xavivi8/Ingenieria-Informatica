@@ -1,17 +1,9 @@
-.data
-nums: 
-    .word 10 
-    .word 20
-    .word 30
-.text
-main:
-    addi a0, zero, 0
-    la t0, nums
-    lw t1, 0(t0)
-    add a0, a0, t1
-    lw t1, 4(t0)
-    add a0, a0, t1
-    lw t1, 8(t0)
-    add a0, a0, t1
-    addi a7, zero, 1
-    ecall
+addi a0, zero, 23
+addi a1, zero, 4
+div t0, a0, a1
+rem t1, a0, a1
+mv a0, t0
+addi a7, zero, 1
+ecall
+mv a0, t1
+ecall
