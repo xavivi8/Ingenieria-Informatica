@@ -285,11 +285,11 @@ void VDinamico<T>::insert(const T &data, unsigned int index) {
     } else if (index > tamal) {
         throw std::out_of_range("Posicion fuera de rango");
     }
-    if((tamal+1) == tamaf) {
+    if(tamal == tamaf) {
         allocateMemory();
     }
 
-    for(unsigned int i = tamal; i > index; --i) {
+    for( int i = tamal; i > index; --i) {
         v[i] = v[i-1];
     }
 
@@ -306,6 +306,11 @@ void VDinamico<T>::insert(const T &data, unsigned int index) {
  */
 template<class T>
 T VDinamico<T>::remove(unsigned int index){
+
+    if(tamal <= (tamaf/3)) {
+        freeMemory();
+    }
+
     if (tamal == 0) {
         throw std::out_of_range("Vector vacio");
     }
@@ -324,10 +329,6 @@ T VDinamico<T>::remove(unsigned int index){
     }
 
     tamal--;
-
-    if(tamal <= (tamaf/3)) {
-        freeMemory();
-    }
 
     return aux;
 };
