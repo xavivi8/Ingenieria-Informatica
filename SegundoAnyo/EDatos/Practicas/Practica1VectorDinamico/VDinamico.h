@@ -25,7 +25,7 @@ private:
 
 public:
     VDinamico();
-    VDinamico(unsigned int tama);
+    VDinamico(unsigned int tamalog, T &dato);
     VDinamico(const VDinamico<T> &orig);
     VDinamico(const VDinamico<T>& origen, unsigned int inicio, unsigned int num);
     ~VDinamico();
@@ -122,12 +122,16 @@ VDinamico<T>::VDinamico(){
 };
 
 template<class T>
-VDinamico<T>::VDinamico(unsigned int tama){
+VDinamico<T>::VDinamico(unsigned int tama, T &dato){
     tamaf = tama;
-    tamal = 0;
+    tamal = tama;
     //Redondeo a potencia de 2
     roundToPowerOf2(tamaf);
     v = new T[tamaf];
+
+    for(unsigned int i = 0; i < tamal; ++i){
+        v[i] = dato;
+    }
 };
 
 //Constructor copia
