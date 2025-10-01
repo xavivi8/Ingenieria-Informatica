@@ -6,6 +6,11 @@
 #include "PaMedicamento.h"
 //Preguntar si se pueden usar "#include <vector>"
 
+/**
+ * @brief Carga los medicamentos desde un archivo CSV
+ * @param csvPath Ruta del archivo CSV
+ * @return Devuelve un vector dinamico con los medicamentos cargados desde el archivo CSV
+ */
 VDinamico<PaMedicamento> loadMedicinesFromCsv(const std::string &csvPath){
 
     std::ifstream is;
@@ -60,6 +65,10 @@ VDinamico<PaMedicamento> loadMedicinesFromCsv(const std::string &csvPath){
     return aux;
 };
 
+/**
+ * @brief Muestra los primeros 50 elementos del vector de medicamentos
+ * @param medicines Vector dinamico de medicamentos
+ */
 void showFirst50(VDinamico<PaMedicamento> &medicines){
     unsigned int limit = 50;
 
@@ -76,6 +85,12 @@ void showFirst50(VDinamico<PaMedicamento> &medicines){
     }
 };
 
+/**
+ * @brief Busca un grupo de medicamentos por sus ids
+ * @param medicines Vector dinamico de medicamentos
+ * @param ids Vector dinamico de ids a buscar
+ * @post Muestra por pantalla la posicion y los datos de los medicamentos encontrados
+ */
 void searchGroupOfMedicinesByIds(VDinamico<PaMedicamento> &medicines, VDinamico<int> &ids){
     for(unsigned int i = 0; i < ids.size(); ++i){
         int id = ids[i];
@@ -95,6 +110,12 @@ void searchGroupOfMedicinesByIds(VDinamico<PaMedicamento> &medicines, VDinamico<
     }
 };
 
+/**
+ * @brief Busca medicamentos que contengan un compuesto en su nombre
+ * @param comp Compuesto a buscar
+ * @param vMedicamentos Vector dinamico de medicamentos
+ * @return Devuelve un vector dinamico de punteros a los medicamentos que contienen el compuesto en su nombre
+ */
 VDinamico<PaMedicamento*> buscarCompuesto(const std::string &comp, VDinamico<PaMedicamento> &vMedicamentos) {
     VDinamico<PaMedicamento*> result;
 
