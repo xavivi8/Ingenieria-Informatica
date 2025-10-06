@@ -127,6 +127,9 @@ VDinamico<PaMedicamento *> buscarCompuesto(const std::string &comp, VDinamico<Pa
     return result;
 };
 
+/**
+ * @author Francisco Javier Martín-Lunas Escobar fjme0008@red.ujaen.es
+ */
 int main(int argc, const char *argv[]) {
 
     try {
