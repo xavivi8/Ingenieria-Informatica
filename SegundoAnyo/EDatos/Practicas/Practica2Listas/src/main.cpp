@@ -137,7 +137,7 @@ int main(int argc, const char *argv[]) {
         std::cout << "-------------------------------------------------- Inserto los datos --------------------------------------------------" << std::endl;
         std::cout << "=======================================================================================================================" << std::endl;
 
-        VDinamico<PaMedicamento> medicines = loadMedicinesFromCsv("../pa_medicamentos.csv");
+        VDinamico<PaMedicamento> medicines = loadMedicinesFromCsv("../data/pa_medicamentos.csv");
 
         for (unsigned int i = 0; i < medicines.size(); i++){
             std::cout << i + 1 << " Medicamento: ( IdNum=" << medicines[i].getIdNum()
