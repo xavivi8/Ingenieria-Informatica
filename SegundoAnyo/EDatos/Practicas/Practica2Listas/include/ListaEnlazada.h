@@ -5,34 +5,33 @@
 #ifndef LISTAENLAZADA_H
 #define LISTAENLAZADA_H
 
-template<class T>
+template<class L>
 class ListaEnlazada {
 
     //declaracion del Nodo local
-    template<class X>
+    template<class N>
     class Nodo {
 
     public:
-        X dato;
+        N m_dato;
         Nodo *sig;
-        Nodo(const X &aDato, Nodo *aSig = 0):
-                dato(aDato), sig(aSig) {}
+        Nodo(const N &aDato, Nodo *aSig = 0)
         ~Nodo() {}
     };
 
-    Nodo<T> *cabecera, *cola;
-    unsigned tama;
+    Nodo<L> *cabecera, *cola;
+    unsigned m_tama;
 
 public:
 
     //declaracion del iterador
-    template <class U>
+    template <class I>
     class Iterador {
-        Nodo<T> *nodo;
+        Nodo<L> *nodo;
     public:
-        friend class ListaEnlazada<T>;
+        friend class ListaEnlazada<L>;
 
-        Iterador(Nodo<T> *aNodo=0) : nodo(aNodo) {}
+        Iterador(Nodo<L> *aNodo=0)
 
         bool fin() { return nodo == 0; }
 
@@ -44,10 +43,11 @@ public:
         ~Iterador() {}
     };
 
-    ListaEnlazada() : cabecera(0), cola(0), tama(0) {}
+    ListaEnlazada();
+    ListaEnlazada(const ListaEnlazada<L> &aux);
     ~ListaEnlazada();
-    ListaEnlazada(const ListaEnlazada<T> &l);
-    ListaEnlazada &operator=(const ListaEnlazada<T> &l);
+    ListaEnlazada &operator=(const ListaEnlazada<L> &aux);
+    ListaEnlazada<L> operator+(const ListaEnlazada<L> &aux);
     Iterador iterador() const;
     void insertarInicio(const T &dato);
     void insertarFin(const T &dato);
@@ -56,22 +56,22 @@ public:
     void borrarInicio();
     void borrarFinal();
     void borra(Iterador &i);
-    int tam(){ return tama;}
+    int tam(){ return m_tama;}
     void destruyeLista();  //puede/debe ir en private
 
-    ListaEnlazada<T>& concatena(const ListaEnlazada<T> &l);
-    ListaEnlazada<T> operator+(const ListaEnlazada<T> &l);
+    ListaEnlazada<L>& concatena(const ListaEnlazada<L> &l);
 
-    T &inicio(){ 
+    L &inicio(){ 
         if (!cabecera) 
             throw std::invalid_argument("No existe ese elemento");
         return cabecera->dato;
     };
-    T &fin(){
+    L &fin(){
         if (!cola) 
             throw std::invalid_argument("No existe ese elemento");
         return cola->dato;
     };
 };
 
+#include "../src/ListaEnlazada.tpp"
 #endif //LISTAENLAZADA_H
