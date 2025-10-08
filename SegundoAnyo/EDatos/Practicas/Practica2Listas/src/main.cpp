@@ -2,8 +2,8 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-#include "./include/VDinamico.h"
-#include "./include/PaMedicamento.h"
+#include "../include/VDinamico.h"
+#include "../include/PaMedicamento.h"
 // Preguntar si se pueden usar "#include <vector>"
 
 /**
