@@ -9,7 +9,7 @@
 
 class Laboratorio{
 private:
-    int m_id;
+    unsigned m_id;
     std::string m_nombre_lab;
     std::string m_direccion;
     std::string m_cod_postal;
