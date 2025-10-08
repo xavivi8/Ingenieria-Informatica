@@ -11,9 +11,9 @@
  * @post Constructor por defecto que inicializa los atributos a valores por defecto
  */
 PaMedicamento::PaMedicamento(){
-    id_num = 0;
-    id_alpha = "";
-    nombre = "";
+    m_id_num = 0;
+    m_id_alpha = "";
+    m_nombre = "";
 };
 
 /**
@@ -24,9 +24,9 @@ PaMedicamento::PaMedicamento(){
  * @post Constructor con parametros que inicializa los atributos con los valores pasados por parametro
  */
 PaMedicamento::PaMedicamento(int idNum, std::string idAlpha, std::string name){
-    id_num = idNum;
-    id_alpha = idAlpha;
-    nombre = name;
+    m_id_num = idNum;
+    m_id_alpha = idAlpha;
+    m_nombre = name;
 };
 
 /**
@@ -34,9 +34,9 @@ PaMedicamento::PaMedicamento(int idNum, std::string idAlpha, std::string name){
  * @post Destructor que libera la memoria ocupada por los atributos
  */
 PaMedicamento::~PaMedicamento(){
-    id_num = 0;
-    id_alpha.clear();
-    nombre.clear();
+    m_id_num = 0;
+    m_id_alpha.clear();
+    m_nombre.clear();
 };
 
 /**
@@ -50,7 +50,7 @@ PaMedicamento::~PaMedicamento(){
 bool PaMedicamento::operator==(const PaMedicamento &object) const {
     bool equal = false;
 
-    if(id_num == object.id_num){
+    if(m_id_num == object.m_id_num){
         equal = true;
     }
 
@@ -63,7 +63,7 @@ bool PaMedicamento::operator==(const PaMedicamento &object) const {
  * @return Devuelve true si el objeto que llama al operador es menor que el objeto pasado por parametro, false en caso contrario
  */
 bool PaMedicamento::operator<(const PaMedicamento &object) const{
-    return (id_num < object.id_num);
+    return (m_id_num < object.m_id_num);
 };
 
 /**
@@ -74,7 +74,7 @@ bool PaMedicamento::operator<(const PaMedicamento &object) const{
  * @return Devuelve el identificador numerico del medicamento
  */
 int PaMedicamento::getIdNum() const{
-    return id_num;
+    return m_id_num;
 };
 
 /**
@@ -82,7 +82,7 @@ int PaMedicamento::getIdNum() const{
  * @return Devuelve el identificador alfanumerico del medicamento
  */
 std::string PaMedicamento::getIdAlpha() const{
-    return id_alpha;
+    return m_id_alpha;
 };
 
 /**
@@ -90,7 +90,7 @@ std::string PaMedicamento::getIdAlpha() const{
  * @return Devuelve el nombre del medicamento
  */
 std::string PaMedicamento::getName() const{
-    return nombre;
+    return m_nombre;
 };
 
 /**
@@ -102,7 +102,7 @@ std::string PaMedicamento::getName() const{
  * @post Actualiza el identificador numerico del medicamento
  */
 void PaMedicamento::setIdNum(int num){
-    id_num = num;
+    m_id_num = num;
 };
 
 /**
@@ -111,7 +111,7 @@ void PaMedicamento::setIdNum(int num){
  * @post Actualiza el identificador alfanumerico del medicamento
  */
 void PaMedicamento::setIdAlpha(std::string alphanumeric){
-    id_alpha = alphanumeric;
+    m_id_alpha = alphanumeric;
 };
 
 /**
@@ -120,5 +120,5 @@ void PaMedicamento::setIdAlpha(std::string alphanumeric){
  * @post Actualiza el nombre del medicamento
  */
 void PaMedicamento::setName(std::string name){
-    nombre = name;
+    m_nombre = name;
 };

@@ -9,9 +9,9 @@
 
 class PaMedicamento{
 private:
-    int id_num;
-    std::string id_alpha;
-    std::string nombre;
+    int m_id_num;
+    std::string m_id_alpha;
+    std::string m_nombre;
 
 public:
     PaMedicamento();
