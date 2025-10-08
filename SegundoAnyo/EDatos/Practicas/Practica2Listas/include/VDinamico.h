@@ -11,8 +11,8 @@
 template<class T>
 class VDinamico {
 private:
-    unsigned int tamaf;
-    unsigned int tamal;
+    unsigned int m_tamaf;
+    unsigned int m_tamal;
     T *v;
 
     //Se ocupa de redondear a la potencia de 2

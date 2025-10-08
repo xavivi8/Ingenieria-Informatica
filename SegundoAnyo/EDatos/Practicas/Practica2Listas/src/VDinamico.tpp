@@ -42,13 +42,13 @@ void VDinamico<T>::roundToPowerOf2(unsigned int &t) {
 template<class T>
 void VDinamico<T>::allocateMemory(){
     //Aumento la memoria a la potencia de 2
-    tamaf *= 2;
-    roundToPowerOf2(tamaf);
+    m_tamaf *= 2;
+    roundToPowerOf2(m_tamaf);
 
     //Creo un vector auxiliar
-    T* aux = new T[tamaf];
+    T* aux = new T[m_tamaf];
 
-    for(unsigned int i = 0; i < tamal; ++i){
+    for(unsigned int i = 0; i < m_tamal; ++i){
         aux[i] = v[i];
     }
 
@@ -69,18 +69,18 @@ void VDinamico<T>::allocateMemory(){
  */
 template<class T>
 void VDinamico<T>::freeMemory() {
-    if (tamal <= (tamaf / 3) && tamaf > 1) {
-        unsigned int newTamaf = tamaf / 2;
+    if (m_tamal <= (m_tamaf / 3) && m_tamaf > 1) {
+        unsigned int newTamaf = m_tamaf / 2;
         T* aux = new T[newTamaf];
 
-        for (unsigned int i = 0; i < tamal; i++) {
+        for (unsigned int i = 0; i < m_tamal; i++) {
             aux[i] = v[i];
         }
 
         delete[] v;
 
         v = aux;
-        tamaf = newTamaf;
+        m_tamaf = newTamaf;
     }
 }
 
@@ -94,10 +94,10 @@ void VDinamico<T>::freeMemory() {
  */
 template<class T>
 VDinamico<T>::VDinamico(){
-    tamaf = 1;
-    tamal = 0;
+    m_tamaf = 1;
+    m_tamal = 0;
     // Inicializo el victor con tamanyo fisico 1 y vacio
-    v = new T[tamaf];
+    v = new T[max_align_t];
 };
 
 /**
@@ -108,13 +108,13 @@ VDinamico<T>::VDinamico(){
  */
 template<class T>
 VDinamico<T>::VDinamico(unsigned int tama, T &dato){
-    tamaf = tama;
-    tamal = tama;
+    m_tamaf = tama;
+    m_tamal = tama;
     //Redondeo a potencia de 2
-    roundToPowerOf2(tamaf);
-    v = new T[tamaf];
+    roundToPowerOf2(m_tamaf);
+    v = new T[m_tamaf];
 
-    for(unsigned int i = 0; i < tamal; ++i){
+    for(unsigned int i = 0; i < m_tamal; ++i){
         v[i] = dato;
     }
 };
@@ -127,12 +127,12 @@ VDinamico<T>::VDinamico(unsigned int tama, T &dato){
  */
 template<class T>
 VDinamico<T>::VDinamico(const VDinamico<T> &orig) {
-    tamaf = orig.tamaf;
-    tamal = orig.tamal;
+    m_tamaf = orig.tamaf;
+    m_tamal = orig.tamal;
 
-    v = new T[tamaf];
+    v = new T[m_tamaf];
 
-    for (unsigned int i = 0; i < tamal; i++) {
+    for (unsigned int i = 0; i < m_tamal; i++) {
         v[i] = orig.v[i];
     }
 };
@@ -153,10 +153,10 @@ VDinamico<T>::VDinamico(const VDinamico<T>& origen, unsigned int inicio, unsigne
     } else if (inicio + num > origen.tamal) { //Compruebo que el rango que voy a copiar no exceda el tamanyo del vector origen
         throw std::out_of_range("El rango excede el tamaño del vector origen");
     } else {
-        tamal = num;
-        tamaf = num;
-        roundToPowerOf2(tamaf);
-        v = new T[tamaf];
+        m_tamal = num;
+        m_tamaf = num;
+        roundToPowerOf2(m_tamaf);
+        v = new T[m_tamaf];
         for (unsigned int i = 0; i < num; i++) {
             v[i] = origen.v[inicio + i];
         }
@@ -177,8 +177,8 @@ VDinamico<T>::~VDinamico() {
          * Hago que v ya no apunte a una direccion de memoria que ya no eciste
          */
         v = nullptr; 
-        tamaf = 0;
-        tamal = 0;
+        m_tamaf = 0;
+        m_tamal = 0;
     }
 };
 
@@ -199,11 +199,11 @@ VDinamico<T> &VDinamico<T>::operator=(const VDinamico<T> &arr) {
      */
     if (this != &arr) {
         delete[] v;
-        tamaf = arr.tamaf;
-        tamal = arr.tamal;
-        roundToPowerOf2(tamaf);
-        v = new T[tamaf];
-        for (unsigned int i = 0; i < tamal; ++i) {
+        m_tamaf = arr.tamaf;
+        m_tamal = arr.tamal;
+        roundToPowerOf2(m_tamaf);
+        v = new T[m_tamaf];
+        for (unsigned int i = 0; i < m_tamal; ++i) {
             v[i] = arr.v[i];
         }
     }
@@ -224,7 +224,7 @@ VDinamico<T> &VDinamico<T>::operator=(const VDinamico<T> &arr) {
  */
 template<class T>
 T &VDinamico<T>::operator[](unsigned int index) {
-    if(index>=tamal){
+    if(index>=m_tamal){
         throw std::out_of_range("Posicion fuera de rango");
     }
     return v[index];
@@ -243,20 +243,20 @@ T &VDinamico<T>::operator[](unsigned int index) {
 template<class T>
 void VDinamico<T>::insert(const T &data, unsigned int index) {
     if (index == UINT_MAX) {
-        index = tamal;
-    } else if (index > tamal) {
+        index = m_tamal;
+    } else if (index > m_tamal) {
         throw std::out_of_range("Posicion fuera de rango");
     }
-    if(tamal == tamaf) {
+    if(m_tamal == m_tamaf) {
         allocateMemory();
     }
 
-    for( int i = tamal; i > index; --i) {
+    for( int i = m_tamal; i > index; --i) {
         v[i] = v[i-1];
     }
 
     v[index] = data;
-    tamal++;
+    m_tamal++;
 };
 
 /**
@@ -269,28 +269,28 @@ void VDinamico<T>::insert(const T &data, unsigned int index) {
 template<class T>
 T VDinamico<T>::remove(unsigned int index){
 
-    if(tamal <= (tamaf/3)) {
+    if(m_tamal <= (m_tamaf/3)) {
         freeMemory();
     }
 
-    if (tamal == 0) {
+    if (m_tamal == 0) {
         throw std::out_of_range("Vector vacio");
     }
 
     if (index == UINT_MAX) {
-        index = tamal - 1;
-    } else if (index >= tamal) {
+        index = m_tamal - 1;
+    } else if (index >= m_tamal) {
         throw std::out_of_range("Posicion fuera de rango");
     }
 
 
     T aux = v[index];
 
-    for(unsigned int i = index; (i+1) < tamal; ++i) {
+    for(unsigned int i = index; (i+1) < m_tamal; ++i) {
         v[i] = v[i+1];
     }
 
-    tamal--;
+    m_tamal--;
 
     return aux;
 };
@@ -302,7 +302,7 @@ T VDinamico<T>::remove(unsigned int index){
  */
 template<class T>
 unsigned int VDinamico<T>::size(){
-    return tamal;
+    return m_tamal;
 };
 
 /**
@@ -311,8 +311,8 @@ unsigned int VDinamico<T>::size(){
  */
 template<class T>
 void VDinamico<T>::sort() {
-    if (tamal > 1) {
-        std::sort(v, v + tamal);
+    if (m_tamal > 1) {
+        std::sort(v, v + m_tamal);
     }
 };
 
@@ -326,7 +326,7 @@ void VDinamico<T>::sort() {
 template<class T>
 unsigned int VDinamico<T>::binarySearch(const T &data){
     int low = 0;
-    int high = tamal - 1;
+    int high = m_tamal - 1;
 
     while (low <= high) {
         int mid = (low + high) / 2;
