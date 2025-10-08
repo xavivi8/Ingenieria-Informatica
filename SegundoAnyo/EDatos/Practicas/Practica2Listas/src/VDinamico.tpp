@@ -97,7 +97,7 @@ VDinamico<T>::VDinamico(){
     m_tamaf = 1;
     m_tamal = 0;
     // Inicializo el victor con tamanyo fisico 1 y vacio
-    v = new T[max_align_t];
+    v = new T[m_tamaf];
 };
 
 /**
@@ -127,8 +127,8 @@ VDinamico<T>::VDinamico(unsigned int tama, T &dato){
  */
 template<class T>
 VDinamico<T>::VDinamico(const VDinamico<T> &orig) {
-    m_tamaf = orig.tamaf;
-    m_tamal = orig.tamal;
+    m_tamaf = orig.m_tamaf;
+    m_tamal = orig.m_tamal;
 
     v = new T[m_tamaf];
 
@@ -148,9 +148,9 @@ VDinamico<T>::VDinamico(const VDinamico<T> &orig) {
  */
 template<class T>
 VDinamico<T>::VDinamico(const VDinamico<T>& origen, unsigned int inicio, unsigned int num) {
-    if (inicio >= origen.tamal) { //Compruebo que el inicio este en el vector origen
+    if (inicio >= origen.m_tamal) { //Compruebo que el inicio este en el vector origen
         throw std::out_of_range("Indice de inicio fuera de rango");
-    } else if (inicio + num > origen.tamal) { //Compruebo que el rango que voy a copiar no exceda el tamanyo del vector origen
+    } else if (inicio + num > origen.m_tamal) { //Compruebo que el rango que voy a copiar no exceda el tamanyo del vector origen
         throw std::out_of_range("El rango excede el tamaño del vector origen");
     } else {
         m_tamal = num;
@@ -199,8 +199,8 @@ VDinamico<T> &VDinamico<T>::operator=(const VDinamico<T> &arr) {
      */
     if (this != &arr) {
         delete[] v;
-        m_tamaf = arr.tamaf;
-        m_tamal = arr.tamal;
+        m_tamaf = arr.m_tamaf;
+        m_tamal = arr.m_tamal;
         roundToPowerOf2(m_tamaf);
         v = new T[m_tamaf];
         for (unsigned int i = 0; i < m_tamal; ++i) {
