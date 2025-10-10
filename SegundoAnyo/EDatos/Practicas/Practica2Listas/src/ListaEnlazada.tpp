@@ -26,6 +26,7 @@ template<class L>
 template<class I>
 ListaEnlazada<L>::Iterador<I>::Iterador(Nodo<L> *aNodo){
     nodo = aNodo;
+    int i;
 }
 
 /**
