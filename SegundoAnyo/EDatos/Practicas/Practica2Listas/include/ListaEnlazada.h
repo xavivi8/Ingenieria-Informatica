@@ -7,62 +7,69 @@
 
 template<class T>
 class ListaEnlazada {
-
+private:
     //declaracion deT Nodo local
-    class Nodo {
+    class Node {
 
     public:
-        T m_dato;
-        Nodo *sig;
-        Nodo(const T &aDato, Nodo *aSig = 0): dato(valor), sig(siguiente) {};
-        ~Nodo() {};
+        T m_data;
+        Node *next;
+        Node(const T &aData, Node *nextNode = nullptr)
+            : m_data(aData), next(nextNode) {};
+        ~Node() {};
     };
 
-    Nodo  *cabecera, *cola;
-    unsigned m_tama;
+    Node  *m_head, *m_tail;
+    unsigned m_size;
 
+    void clear();
 public:
 
     //declaracion deT iterador
-    class Iterador {
-        Nodo  *nodo;
+    class Iterator {
+        Node  *m_node;
     public:
         friend class ListaEnlazada<T> ;
 
-        Iterador(Nodo  *aNodo=0);
-        bool fin() const;
-        void siguiente();
-        T &dato() const;
-        ~Iterador();
+        Iterator (Node  *aNode=nullptr);
+        bool isEnd() const;
+        void next();
+        T &data() const;
+        ~Iterator();
     };
 
     ListaEnlazada();
     ListaEnlazada(const ListaEnlazada<T>  &aux);
     ~ListaEnlazada();
+
     ListaEnlazada &operator=(const ListaEnlazada<T>  &aux);
     ListaEnlazada<T>  operator+(const ListaEnlazada<T>  &aux);
-    Iterador iterador() const;
-    void insertarInicio(const T &dato);
-    void insertarFin(const T &dato);
-    void insertaDelante(Iterador &p, const T &dato);
-    void insertaDetras( Iterador &p, const T &dato);
-    void borrarInicio();
-    void borrarFinal();
-    void borra(Iterador &i);
-    int tam(){ return m_tama;}
-    void destruyeLista();  //puede/debe ir en private
 
-    ListaEnlazada<T> & concatena(const ListaEnlazada<T>  &l);
+    Iterator iterator() const;
 
-    T &inicio(){ 
-        if (!cabecera) 
+    void insertAtBiginning(const T &data);
+    void insertAtEnd(const T &data);
+    void InsertBefore(Iterator &p, const T &data);
+    void insertAfter( Iterator &p, const T &data);
+
+    void removeFirst();
+    void removeLast();
+    void remove(Iterator &i);
+
+    int size(){ return m_size;}
+    void destroyList();
+
+    ListaEnlazada<T> &concatenate(const ListaEnlazada<T>  &l);
+
+    T &first(){ 
+        if (!m_head) 
             throw std::invalid_argument("No existe ese elemento");
-        return cabecera->dato;
+        return m_head->m_data;
     };
-    T &fin(){
-        if (!cola) 
+    T &last(){
+        if (!m_tail) 
             throw std::invalid_argument("No existe ese elemento");
-        return cola->dato;
+        return m_tail->m_data;
     };
 };
 
