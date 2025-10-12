@@ -62,15 +62,11 @@ VDinamico<PaMedicamento> loadMedicinesFromCsv(const std::string &csvPath){
 
 void mostrarLista(const ListaEnlazada<int> &lista) {
     auto it = lista.iterator();
-    int contador = 0;
-
     std::cout << "[ ";
-    while(!it.isEnd() && contador < 50) {  // solo mostramos los 50 primeros
+    while (!it.isEnd()) {
         std::cout << it.data() << " ";
         it.next();
-        contador++;
     }
-    if(!it.isEnd()) std::cout << "...";
     std::cout << "]" << std::endl;
 }
 
@@ -90,7 +86,7 @@ int main(int argc, const char *argv[]) {
     try {
       ListaEnlazada<int> lista;
 
-        separador("Lista creada vacía");
+        separador("Lista creada vacia");
         mostrarLista(lista);
 
         // Insertar al final valores de 101 a 200
@@ -126,7 +122,7 @@ int main(int argc, const char *argv[]) {
         if(!it.isEnd()) {
             lista.insertAfter(it, 99);
         }
-        separador("Insertado 99 detrás de 98");
+        separador("Insertado 99 detras de 98");
         mostrarLista(lista);
 
         // Borrar los 10 primeros elementos
@@ -137,7 +133,7 @@ int main(int argc, const char *argv[]) {
         for (int i = 0; i < 10; ++i) {
             lista.removeLast();
         }
-        separador("Borrados los 10 primeros y 10 últimos elementos");
+        separador("Borrados los 10 primeros y 10 ultimos elementos");
         mostrarLista(lista);
 
         // Borrar todos los múltiplos de 10
@@ -149,11 +145,11 @@ int main(int argc, const char *argv[]) {
                 it.next();
             }
         }
-        separador("Borrados los múltiplos de 10");
+        separador("Borrados los multiplos de 10");
         mostrarLista(lista);
 
         separador("Fin de la prueba de ListaEnlazada<int>");
-        std::cout << "✅ Todos los pasos se ejecutaron correctamente." << std::endl;
+        std::cout << "Todos los pasos se ejecutaron correctamente." << std::endl;
     } catch (const std::exception &e){
         std::cerr << e.what() << '\n';
     }
