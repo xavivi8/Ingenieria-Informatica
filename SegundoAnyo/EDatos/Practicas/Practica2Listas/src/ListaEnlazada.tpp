@@ -46,7 +46,7 @@ T &ListaEnlazada<T>::Iterator::data() const{
     if(m_node == nullptr){
         throw std::out_of_range("Iterador fuera de rango");
     }
-    return m_nodo->m_data;
+    return m_node->m_data;
 };
 
 /**
@@ -186,7 +186,7 @@ ListaEnlazada<T> ListaEnlazada<T>::operator+(const ListaEnlazada<T> &aux){
   * @return Iterador que apunta al primer nodo de la lista
   */
 template<class T>
-ListaEnlazada<T>::Iterator ListaEnlazada<T>::iterator() const{
+typename ListaEnlazada<T>::Iterator ListaEnlazada<T>::iterator() const{
     return Iterator(m_head);
 };
 
