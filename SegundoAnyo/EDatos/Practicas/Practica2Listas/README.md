@@ -34,34 +34,6 @@ Practica2Listas/
 └── CMakeLists.txt          # Configuración para CMake
 ```
 
-## ⚙️ Compilación
-
-Puedes compilar el proyecto de dos formas:
-
-### Usando `Makefile`
-```bash
-make
-```
-
-### Usando `CMake`
-```bash
-mkdir build
-cd build
-cmake ..
-make
-```
-
-## ▶️ Ejecución
-
-Una vez compilado, el ejecutable se genera en la carpeta `build/`:
-```bash
-./build/MediExpress.out
-```
-o en Windows:
-```bash
-build\MediExpress.exe
-```
-
 ## 📁 Descripción de carpetas
 
 - **`include/`** → Cabeceras con definiciones de clases y funciones.
