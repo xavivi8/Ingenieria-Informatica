@@ -5,49 +5,42 @@
 #ifndef LISTAENLAZADA_H
 #define LISTAENLAZADA_H
 
-template<class L>
+template<class T>
 class ListaEnlazada {
 
-    //declaracion del Nodo local
-    template<class N>
+    //declaracion deT Nodo local
     class Nodo {
 
     public:
-        N m_dato;
+        T m_dato;
         Nodo *sig;
-        Nodo(const N &aDato, Nodo *aSig = 0)
-        ~Nodo() {}
+        Nodo(const T &aDato, Nodo *aSig = 0): dato(valor), sig(siguiente) {};
+        ~Nodo() {};
     };
 
-    Nodo<L> *cabecera, *cola;
+    Nodo<T>  *cabecera, *cola;
     unsigned m_tama;
 
 public:
 
-    //declaracion del iterador
-    template <class I>
+    //declaracion deT iterador
     class Iterador {
-        Nodo<L> *nodo;
+        Nodo  *nodo;
     public:
-        friend class ListaEnlazada<L>;
+        friend class ListaEnlazada<T> ;
 
-        Iterador(Nodo<L> *aNodo=0)
-
-        bool fin() { return nodo == 0; }
-
-        void siguiente() {
-            nodo = nodo->sig;
-        }
-        // Nodo<T> *vernodo() { return nodo; }
-        T &dato() { return nodo->dato; }
-        ~Iterador() {}
+        Iterador(Nodo  *aNodo=0);
+        bool fin() const;
+        void siguiente();
+        T &dato() const;
+        ~Iterador();
     };
 
     ListaEnlazada();
-    ListaEnlazada(const ListaEnlazada<L> &aux);
+    ListaEnlazada(const ListaEnlazada<T>  &aux);
     ~ListaEnlazada();
-    ListaEnlazada &operator=(const ListaEnlazada<L> &aux);
-    ListaEnlazada<L> operator+(const ListaEnlazada<L> &aux);
+    ListaEnlazada &operator=(const ListaEnlazada<T>  &aux);
+    ListaEnlazada<T>  operator+(const ListaEnlazada<T>  &aux);
     Iterador iterador() const;
     void insertarInicio(const T &dato);
     void insertarFin(const T &dato);
@@ -59,14 +52,14 @@ public:
     int tam(){ return m_tama;}
     void destruyeLista();  //puede/debe ir en private
 
-    ListaEnlazada<L>& concatena(const ListaEnlazada<L> &l);
+    ListaEnlazada<T> & concatena(const ListaEnlazada<T>  &l);
 
-    L &inicio(){ 
+    T &inicio(){ 
         if (!cabecera) 
             throw std::invalid_argument("No existe ese elemento");
         return cabecera->dato;
     };
-    L &fin(){
+    T &fin(){
         if (!cola) 
             throw std::invalid_argument("No existe ese elemento");
         return cola->dato;

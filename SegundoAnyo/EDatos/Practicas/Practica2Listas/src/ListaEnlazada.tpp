@@ -5,29 +5,37 @@
 
 /**
  * 
- * Nodo
- * 
- */
-
-template<class L>
-template<class N>
-ListaEnlazada<L>::Nodo<N>::Nodo(const N &aDato, Nodo *asig){
-    m_dato = aDato;
-    sig = asig;
-}
-
-/**
- * 
  * Iterador
  * 
  */
 
-template<class L>
-template<class I>
-ListaEnlazada<L>::Iterador<I>::Iterador(Nodo<L> *aNodo){
+template<class T>
+ListaEnlazada<T>::Iterador::Iterador(Nodo *aNodo){
     nodo = aNodo;
-    int i;
-}
+};
+
+template<class T>
+bool ListaEnlazada<T>::Iterador::fin() const {
+    return nodo == nullptr;
+};
+
+template<class T>
+void ListaEnlazada<T>::Iterador::siguiente(){
+    if(nodo != nullptr){
+        nodo = nodo->sig;
+    }
+};
+
+template<class T>
+T &ListaEnlazada<T>::Iterador::dato() const{
+    if(nodo == nullptr){
+        throw std::out_of_range("Iterador fuera de rango");
+    }
+    return nodo->m_dato;
+};
+
+template<class T>
+ListaEnlazada<T>::Iterador::~Iterador() = default;
 
 /**
  * 
