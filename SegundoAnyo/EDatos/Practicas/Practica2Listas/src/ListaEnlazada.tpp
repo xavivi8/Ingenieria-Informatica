@@ -282,4 +282,76 @@ void ListaEnlazada<T>::insertAfter(Iterator &it, const T &data){
     }
 
     ++m_size;
-}
+};
+
+/**
+ * Removes
+ */
+
+template<class T>
+void ListaEnlazada<T>::removeFirst(){
+    if (m_head == nullptr) {
+        throw std::out_of_range("No se puede eliminar: la lista está vacía");
+    }
+
+    if(m_head == m_tail){
+        clear();
+    } else {
+        Node *aux = m_head;
+        m_head = m_head->next;
+        delete aux;
+        --m_size;
+    }
+};
+
+template<class T>
+void ListaEnlazada<T>::removeLast(){
+    if(m_tail == nullptr){
+        throw std::out_of_range("La lista está vacía, no se puede eliminar el último elemento");
+    }
+
+    if(m_head == m_tail){
+        clear();
+    } else {
+        Node *aux = m_head;
+        while(aux->next != m_tail){
+            aux = aux->next;
+        }
+        
+        delete m_tail;
+        m_tail = aux;
+        m_tail->next = nullptr;
+        --m_size;
+    }
+};
+
+template<class T>
+void ListaEnlazada<T>::remove(Iterator &it){
+    if(it.m_node == nullptr){
+        throw std::invalid_argument("El iterador no apunta a ningún nodo");
+    }
+
+    if(it.m_node == m_head && it.m_node == m_tail){
+        clear();
+        it.m_node = nullptr;
+    } else {
+         Node *aux = m_head;
+        while(aux != nullptr && aux->next != it.m_node){
+            aux = aux->next;
+        }
+
+        if(aux == nullptr){
+            throw std::out_of_range("El nodo del iterador no pertenece a la lista");
+        }
+
+        aux->next = it.m_node->next;
+
+        if(it.m_node == m_tail){
+            m_tail = aux;
+        }
+
+        delete it.m_node;
+        it.m_node = aux->next; 
+        --m_size;
+    }
+};
