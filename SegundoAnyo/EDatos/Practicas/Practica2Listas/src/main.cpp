@@ -3,14 +3,10 @@
 #include <string>
 #include <sstream>
 #include "../include/VDinamico.h"
+#include "../include/ListaEnlazada.h"
 #include "../include/PaMedicamento.h"
 // Preguntar si se pueden usar "#include <vector>"
 
-/**
- * @brief Carga los medicamentos desde un archivo CSV
- * @param csvPath Ruta del archivo CSV
- * @return Devuelve un vector dinamico con los medicamentos cargados desde el archivo CSV
- */
 VDinamico<PaMedicamento> loadMedicinesFromCsv(const std::string &csvPath){
 
     std::ifstream is;
@@ -64,133 +60,100 @@ VDinamico<PaMedicamento> loadMedicinesFromCsv(const std::string &csvPath){
     return aux;
 };
 
-/**
- * @brief Muestra los primeros 50 elementos del vector de medicamentos
- * @param medicines Vector dinamico de medicamentos
- */
-void showFirst50(VDinamico<PaMedicamento> &medicines){
-    unsigned int limit = 50;
+void mostrarLista(const ListaEnlazada<int> &lista) {
+    auto it = lista.iterator();
+    int contador = 0;
 
-    if (limit > medicines.size()){
-        limit = medicines.size();
-        std::cout << "Primeros " << limit << " elementos: " << std::endl;
-    } else {
-        std::cout << "Primeros 50 elementos: " << std::endl;
+    std::cout << "[ ";
+    while(!it.isEnd() && contador < 50) {  // solo mostramos los 50 primeros
+        std::cout << it.data() << " ";
+        it.next();
+        contador++;
     }
-
-    for (unsigned int i = 0; i < limit; ++i){
-        std::cout << "Medicamento: Id Num: " << medicines[i].getIdNum() << " - Id Alpha: " << medicines[i].getIdAlpha()
-                  << " - Nombre: " << medicines[i].getName() << std::endl;
-    }
-};
+    if(!it.isEnd()) std::cout << "...";
+    std::cout << "]" << std::endl;
+}
 
 /**
- * @brief Busca un grupo de medicamentos por sus ids
- * @param medicines Vector dinamico de medicamentos
- * @param ids Vector dinamico de ids a buscar
- * @post Muestra por pantalla la posicion y los datos de los medicamentos encontrados
+ * @brief Muestra un separador visual con un título
  */
-void searchGroupOfMedicinesByIds(VDinamico<PaMedicamento> &medicines, VDinamico<int> &ids){
-    for (unsigned int i = 0; i < ids.size(); ++i){
-        int id = ids[i];
-        PaMedicamento medicineAux(id, "", "");
-
-        unsigned int pos = medicines.binarySearch(medicineAux);
-
-        if (pos != UINT_MAX){
-            std::cout << "Posicion en el vector: " << pos << "\n"
-                      << " Medicamento: ( IdNum=" << medicines[pos].getIdNum()
-                      << " IdAlpha=" << medicines[pos].getIdAlpha()
-                      << " Nombre=" << medicines[pos].getName()
-                      << ")" << std::endl;
-        } else{
-            std::cout << "No se encontro medicamento cuyo id es: " << id << std::endl;
-        }
-    }
-};
-
-/**
- * @brief Busca medicamentos que contengan un compuesto en su nombre
- * @param comp Compuesto a buscar
- * @param vMedicamentos Vector dinamico de medicamentos
- * @return Devuelve un vector dinamico de punteros a los medicamentos que contienen el compuesto en su nombre
- */
-VDinamico<PaMedicamento *> buscarCompuesto(const std::string &comp, VDinamico<PaMedicamento> &vMedicamentos){
-    VDinamico<PaMedicamento *> result;
-
-    for (unsigned int i = 0; i < vMedicamentos.size(); ++i){
-        if (vMedicamentos[i].getName().find(comp) != std::string::npos){
-            result.insert(&vMedicamentos[i]);
-        }
-    }
-
-    return result;
-};
+void separador(const std::string &titulo) {
+    std::cout << "=======================================================================================================================" << std::endl;
+    std::cout << "----------------------------------------------- " << titulo << " -----------------------------------------------" << std::endl;
+    std::cout << "=======================================================================================================================" << std::endl;
+}
 
 /**
  * @author Francisco Javier Martín-Lunas Escobar fjme0008@red.ujaen.es
  */
 int main(int argc, const char *argv[]) {
-
     try {
-        std::cout << "=======================================================================================================================" << std::endl;
-        std::cout << "-------------------------------------------------- Inserto los datos --------------------------------------------------" << std::endl;
-        std::cout << "=======================================================================================================================" << std::endl;
+      ListaEnlazada<int> lista;
 
-        VDinamico<PaMedicamento> medicines = loadMedicinesFromCsv("../data/pa_medicamentos.csv");
+        separador("Lista creada vacía");
+        mostrarLista(lista);
 
-        for (unsigned int i = 0; i < medicines.size(); i++){
-            std::cout << i + 1 << " Medicamento: ( IdNum=" << medicines[i].getIdNum()
-                      << " IdAlpha=" << medicines[i].getIdAlpha()
-                      << " Nombre=" << medicines[i].getName()
-                      << ")" << std::endl;
+        // Insertar al final valores de 101 a 200
+        for (int i = 101; i <= 200; ++i) {
+            lista.insertAtEnd(i);
         }
+        separador("Insertados valores 101 a 200 al final");
+        mostrarLista(lista);
 
-        std::cout << "=======================================================================================================================" << std::endl;
-        std::cout << "----------------------------------------------- Muestro los 50 primeros -----------------------------------------------" << std::endl;
-        std::cout << "=======================================================================================================================" << std::endl;
-
-        showFirst50(medicines);
-
-        std::cout << "=======================================================================================================================" << std::endl;
-        std::cout << "------------------------------------------------------- Ordeno --------------------------------------------------------" << std::endl;
-        std::cout << "=======================================================================================================================" << std::endl;
-
-        medicines.sort();
-
-        std::cout << "=======================================================================================================================" << std::endl;
-        std::cout << "----------------------------------------------- Muestro los 50 primeros -----------------------------------------------" << std::endl;
-        std::cout << "=======================================================================================================================" << std::endl;
-
-        showFirst50(medicines);
-
-        std::cout << "=======================================================================================================================" << std::endl;
-        std::cout << "---------------------------------------------------- Buscar los ids ---------------------------------------------------" << std::endl;
-        std::cout << "=======================================================================================================================" << std::endl;
-
-        VDinamico<int> ids;
-        ids.insert(350);
-        ids.insert(409);
-        ids.insert(820);
-        ids.insert(9009);
-        ids.insert(12370);
-        searchGroupOfMedicinesByIds(medicines, ids);
-
-        std::cout << "=======================================================================================================================" << std::endl;
-        std::cout << "---------------------------------------------------- Buscar aceites ---------------------------------------------------" << std::endl;
-        std::cout << "=======================================================================================================================" << std::endl;
-
-        VDinamico<PaMedicamento *> oil = buscarCompuesto("ACEITE", medicines);
-        std::cout << "\nTotal encontrados: " << oil.size() << std::endl;
-        for (unsigned int i = 0; i < oil.size(); ++i){
-            PaMedicamento *medicinePointer = oil[i];
-            /**
-             * Con punteros para usar el metodo usamos -> o (*ptr). para acceder a un metodo de un objeto de manera indirecta
-             * ya que por asi decirlo "seguiremos la direccion" y accederemos al objeto apuntado
-             */
-            std::cout << " Medicamento: ( IdNum=" << (*medicinePointer).getIdNum() << " IdAlpha="
-                      << medicinePointer->getIdAlpha() << " Nombre=" << medicinePointer->getName() << std::endl;
+        // Insertar al comienzo valores de 98 a 1 (decrecientes)
+        for (int i = 98; i >= 1; --i) {
+            lista.insertAtBiginning(i);
         }
+        separador("Insertados valores 98 a 1 al comienzo");
+        mostrarLista(lista);
+
+        // Insertar 100 delante del 101
+        auto it = lista.iterator();
+        while(!it.isEnd() && it.data() != 101) {
+            it.next();
+        }
+        if(!it.isEnd()) {
+            lista.InsertBefore(it, 100);
+        }
+        separador("Insertado 100 delante de 101");
+        mostrarLista(lista);
+
+        // Insertar 99 detrás del 98
+        it = lista.iterator();
+        while(!it.isEnd() && it.data() != 98) {
+            it.next();
+        }
+        if(!it.isEnd()) {
+            lista.insertAfter(it, 99);
+        }
+        separador("Insertado 99 detrás de 98");
+        mostrarLista(lista);
+
+        // Borrar los 10 primeros elementos
+        for (int i = 0; i < 10; ++i) {
+            lista.removeFirst();
+        }
+        // Borrar los 10 últimos elementos
+        for (int i = 0; i < 10; ++i) {
+            lista.removeLast();
+        }
+        separador("Borrados los 10 primeros y 10 últimos elementos");
+        mostrarLista(lista);
+
+        // Borrar todos los múltiplos de 10
+        it = lista.iterator();
+        while(!it.isEnd()) {
+            if(it.data() % 10 == 0) {
+                lista.remove(it);
+            } else {
+                it.next();
+            }
+        }
+        separador("Borrados los múltiplos de 10");
+        mostrarLista(lista);
+
+        separador("Fin de la prueba de ListaEnlazada<int>");
+        std::cout << "✅ Todos los pasos se ejecutaron correctamente." << std::endl;
     } catch (const std::exception &e){
         std::cerr << e.what() << '\n';
     }
