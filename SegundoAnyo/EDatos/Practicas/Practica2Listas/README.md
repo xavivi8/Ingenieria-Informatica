@@ -39,5 +39,4 @@ Practica2Listas/
 - **`include/`** → Cabeceras con definiciones de clases y funciones.
 - **`src/`** → Implementaciones en C++.
 - **`data/`** → Archivos CSV de prueba.
-- **`build/`** → Objetos y ejecutables generados.
 - **`Makefile` / `CMakeLists.txt`** → Archivos para automatizar la compilación.
