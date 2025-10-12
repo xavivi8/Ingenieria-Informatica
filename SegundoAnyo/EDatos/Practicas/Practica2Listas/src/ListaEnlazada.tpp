@@ -355,3 +355,19 @@ void ListaEnlazada<T>::remove(Iterator &it){
         --m_size;
     }
 };
+
+/**
+ * Otros metodos
+ */
+
+template<class T>
+ListaEnlazada<T> &ListaEnlazada<T>::concatenate(const ListaEnlazada<T> &l){
+    Node *current = l.m_head;
+
+    while(current != nullptr){
+        insertAtEnd(current->m_data);
+        current = current->next;
+    }
+
+    return *this;
+};
