@@ -18,7 +18,7 @@ class ListaEnlazada {
         ~Nodo() {};
     };
 
-    Nodo<T>  *cabecera, *cola;
+    Nodo  *cabecera, *cola;
     unsigned m_tama;
 
 public:
