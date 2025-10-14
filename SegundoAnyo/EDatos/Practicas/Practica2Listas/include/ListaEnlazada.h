@@ -27,6 +27,7 @@ public:
 
     //declaracion deT iterador
     class Iterator {
+    private:
         Node  *m_node;
     public:
         friend class ListaEnlazada<T> ;
