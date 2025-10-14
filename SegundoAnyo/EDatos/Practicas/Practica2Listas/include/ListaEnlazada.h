@@ -8,7 +8,7 @@
 template<class T>
 class ListaEnlazada {
 private:
-    //declaracion deT Nodo local
+    //declaracion del Nodo local
     class Node {
 
     public:
@@ -25,7 +25,7 @@ private:
     void clear();
 public:
 
-    //declaracion deT iterador
+    //declaracion del iterador
     class Iterator {
     private:
         Node  *m_node;
