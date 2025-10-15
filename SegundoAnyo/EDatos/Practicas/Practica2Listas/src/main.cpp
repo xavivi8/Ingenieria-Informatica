@@ -5,7 +5,6 @@
 #include "../include/VDinamico.h"
 #include "../include/ListaEnlazada.h"
 #include "../include/PaMedicamento.h"
-// Preguntar si se pueden usar "#include <vector>"
 
 VDinamico<PaMedicamento> loadMedicinesFromCsv(const std::string &csvPath){
 
