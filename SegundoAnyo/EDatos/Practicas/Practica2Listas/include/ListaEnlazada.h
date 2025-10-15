@@ -4,6 +4,7 @@
 
 #ifndef LISTAENLAZADA_H
 #define LISTAENLAZADA_H
+#include <stdexcept>
 
 template<class T>
 class ListaEnlazada {
