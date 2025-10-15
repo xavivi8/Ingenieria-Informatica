@@ -93,6 +93,10 @@ std::string PaMedicamento::getName() const{
     return m_name;
 };
 
+int *PaMedicamento::getServidoPor() const{
+    return servidoPor;
+}
+
 /**
  * Setters
  */
@@ -122,3 +126,7 @@ void PaMedicamento::setIdAlpha(std::string alphanumeric){
 void PaMedicamento::setName(std::string name){
     m_name = name;
 };
+
+void PaMedicamento::setServidoPor(int *servido){
+    servidoPor = servido;
+}

@@ -32,11 +32,13 @@ public:
     int getIdNum() const;
     std::string getIdAlpha() const;
     std::string getName() const;
+    int *getServidoPor() const;
 
     //Setters
     void setIdNum(int id_num);
     void setIdAlpha(std::string id_alpha);
     void setName(std::string name);
+    void setServidoPor(int *servido);
 };
 
 #endif //PAMEDICAMENTO_H
