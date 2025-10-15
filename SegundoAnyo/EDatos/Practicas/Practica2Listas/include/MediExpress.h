@@ -10,12 +10,14 @@
 #define MEDIEXPRESS_H
 
 class MediExpress{
+    private:
+        VDinamico<PaMedicamento> m_med;
+        ListaEnlazada<Laboratorio> m_lab;
     public:
-    void suministarMed(PaMedicamento paMed, Laboratorio lab);
-    void findLab(std::string lab) const;
-    void findLabCity(std::string labCity) const;
-    void findCompound(std::string compound) const;
- 
+        void suministrarMed(const PaMedicamento& med, const Laboratorio& lab);
+        Laboratorio* buscarLab(const std::string& labName);
+        ListaEnlazada<Laboratorio> buscarLabCiudad(const std::string& cityName) const;
+        VDinamico<PaMedicamento> buscarCompuesto(const std::string& compoundName) const;
 };
 
 #endif //MEDIEXPRESS_H
