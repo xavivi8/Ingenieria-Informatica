@@ -112,7 +112,7 @@ ListaEnlazada<T>::ListaEnlazada(const ListaEnlazada<T> &aux){
 
     Node *current = aux.m_head;
     while(current != nullptr){
-        insertAtEnd(current->m_dato);
+        insertAtEnd(current->m_data);
         current = current->next;
     }
 };
