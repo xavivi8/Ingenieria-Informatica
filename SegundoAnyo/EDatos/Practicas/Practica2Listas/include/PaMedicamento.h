@@ -12,7 +12,7 @@ private:
     int m_id_num;
     std::string m_id_alpha;
     std::string m_name;
-    int *m_servedBy;
+    int *servidoPor;
 
 public:
     PaMedicamento();
