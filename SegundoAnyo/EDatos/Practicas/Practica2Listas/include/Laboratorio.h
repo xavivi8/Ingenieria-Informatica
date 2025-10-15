@@ -10,10 +10,10 @@
 class Laboratorio{
 private:
     unsigned m_id;
-    std::string m_nombre_lab;
-    std::string m_direccion;
-    std::string m_cod_postal;
-    std::string m_localidad;
+    std::string m_lab_name;
+    std::string m_address;
+    std::string m_postal_code;
+    std::string m_city;
 
 public:
     // Constructores
@@ -29,17 +29,17 @@ public:
 
     // Getters
     int getId() const;
-    std::string getNombreLab() const;
-    std::string getDireccion() const;
-    std::string getCodPostal() const;
-    std::string getLocalidad() const;
+    std::string getLabName() const;
+    std::string getAddress() const;
+    std::string getPostalCode() const;
+    std::string getCity() const;
 
     // Setters
     void setId(int id);
-    void setNombreLab(const std::string &nombre_lab);
-    void setDireccion(const std::string &direccion);
-    void setCodPostal(const std::string &cod_postal);
-    void setLocalidad(const std::string &localidad);
+    void setLabName(const std::string &nombre_lab);
+    void setAddress(const std::string &direccion);
+    void setPostalCode(const std::string &cod_postal);
+    void setCity(const std::string &localidad);
 };
 
 #endif // LABORATORIO_H
