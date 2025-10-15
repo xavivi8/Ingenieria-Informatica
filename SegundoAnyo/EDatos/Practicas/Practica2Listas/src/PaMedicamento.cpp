@@ -13,7 +13,7 @@
 PaMedicamento::PaMedicamento(){
     m_id_num = 0;
     m_id_alpha = "";
-    m_nombre = "";
+    m_name = "";
 };
 
 /**
@@ -26,7 +26,7 @@ PaMedicamento::PaMedicamento(){
 PaMedicamento::PaMedicamento(int idNum, std::string idAlpha, std::string name){
     m_id_num = idNum;
     m_id_alpha = idAlpha;
-    m_nombre = name;
+    m_name = name;
 };
 
 /**
@@ -36,7 +36,7 @@ PaMedicamento::PaMedicamento(int idNum, std::string idAlpha, std::string name){
 PaMedicamento::~PaMedicamento(){
     m_id_num = 0;
     m_id_alpha.clear();
-    m_nombre.clear();
+    m_name.clear();
 };
 
 /**
@@ -90,7 +90,7 @@ std::string PaMedicamento::getIdAlpha() const{
  * @return Devuelve el nombre del medicamento
  */
 std::string PaMedicamento::getName() const{
-    return m_nombre;
+    return m_name;
 };
 
 /**
@@ -120,5 +120,5 @@ void PaMedicamento::setIdAlpha(std::string alphanumeric){
  * @post Actualiza el nombre del medicamento
  */
 void PaMedicamento::setName(std::string name){
-    m_nombre = name;
+    m_name = name;
 };

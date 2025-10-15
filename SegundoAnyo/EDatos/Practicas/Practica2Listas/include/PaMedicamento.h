@@ -11,8 +11,8 @@ class PaMedicamento{
 private:
     int m_id_num;
     std::string m_id_alpha;
-    std::string m_nombre;
-    int *servidoPor;
+    std::string m_name;
+    int *m_servedBy;
 
 public:
     PaMedicamento();
