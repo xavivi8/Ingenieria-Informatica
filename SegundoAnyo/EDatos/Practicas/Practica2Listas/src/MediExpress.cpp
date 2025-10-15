@@ -143,3 +143,24 @@ void MediExpress::suministrarMed(const PaMedicamento& med, const Laboratorio& la
     }
 }
 
+Laboratorio* MediExpress::buscarLab(const std::string &labName){
+    for(auto it = m_lab.iterator(); !it.isEnd(); it.next()){
+        if(it.data().getLabName()==labName){
+            return &it.data();
+        }
+    }
+
+    return nullptr;
+};
+
+ListaEnlazada<Laboratorio> MediExpress::buscarLabCiudad(const std::string &cityName) const{
+    ListaEnlazada<Laboratorio> aux;
+    
+    for(auto it = m_lab.iterator(); !it.isEnd(); it.next()){
+        if(it.data().getCity()==cityName){
+            aux.insertAtEnd(it.data());
+        }
+    }
+
+    return aux;
+}
