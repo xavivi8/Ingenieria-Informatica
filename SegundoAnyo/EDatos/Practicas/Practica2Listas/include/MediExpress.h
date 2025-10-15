@@ -12,9 +12,9 @@
 class MediExpress{
     public:
     void suministarMed(PaMedicamento paMed, Laboratorio lab);
-    void findLab() const;
-    void findLabCity() const;
-    void findCompuesto() const;
+    void findLab(std::string lab) const;
+    void findLabCity(std::string labCity) const;
+    void findCompound(std::string compound) const;
  
 };
 
