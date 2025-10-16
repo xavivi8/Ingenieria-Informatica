@@ -128,7 +128,7 @@ void MediExpress::suministrarMed(const PaMedicamento& med, const Laboratorio& la
     }
     if (labExists){
         //Buscar el medicamento y enlazar el primero que coincida
-        const unsigned int n = m_med.size();
+        const unsigned int n = m_med.len();
         for (unsigned int i = 0; i < n; ++i) {
             if (m_med[i] == med) {
                 int* sp = m_med[i].getServidoPor();
@@ -155,7 +155,7 @@ Laboratorio* MediExpress::buscarLab(const std::string &labName){
 
 ListaEnlazada<Laboratorio> MediExpress::buscarLabCiudad(const std::string &cityName) const{
     ListaEnlazada<Laboratorio> aux;
-    
+
     for(auto it = m_lab.iterator(); !it.isEnd(); it.next()){
         if(it.data().getCity()==cityName){
             aux.insertAtEnd(it.data());
@@ -164,3 +164,14 @@ ListaEnlazada<Laboratorio> MediExpress::buscarLabCiudad(const std::string &cityN
 
     return aux;
 }
+
+VDinamico<PaMedicamento> MediExpress::buscarCompuesto(const std::string &compoundName) const{
+    VDinamico<PaMedicamento> aux;
+
+    unsigned int siz = m_med.len();
+    for(int i = 0; i < siz;++i){
+
+    }
+
+    return aux;
+};

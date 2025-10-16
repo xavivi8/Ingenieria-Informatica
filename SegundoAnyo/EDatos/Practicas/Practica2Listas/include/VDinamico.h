@@ -31,11 +31,11 @@ public:
     ~VDinamico();
 
     VDinamico<T> &operator=(const VDinamico<T> &arr);
-    T &operator[](unsigned int index);
+    T &operator[](unsigned int index) const;
 
     void insert (const T &data, unsigned int pos=UINT_MAX);
     T remove (unsigned int index=UINT_MAX);
-    unsigned int size();
+    unsigned int len() const;
     void sort();
     unsigned int binarySearch(const T &data);
 };

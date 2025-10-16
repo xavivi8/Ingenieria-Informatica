@@ -223,7 +223,7 @@ VDinamico<T> &VDinamico<T>::operator=(const VDinamico<T> &arr) {
  * @post Sobrecarga del operador de acceso []
  */
 template<class T>
-T &VDinamico<T>::operator[](unsigned int index) {
+T &VDinamico<T>::operator[](unsigned int index) const{
     if(index>=m_tamal){
         throw std::out_of_range("Posicion fuera de rango");
     }
@@ -301,7 +301,7 @@ T VDinamico<T>::remove(unsigned int index){
  * @post Devuelve el tamanyo logico del vector
  */
 template<class T>
-unsigned int VDinamico<T>::size(){
+unsigned int VDinamico<T>::len() const{
     return m_tamal;
 };
 
