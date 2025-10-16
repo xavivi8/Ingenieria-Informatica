@@ -2,6 +2,7 @@
 // Created by jmart on 08/10/2025.
 //
 #include "../include/PaMedicamento.h"
+#include "../include/Laboratorio.h"
 
 /**
  * Constructores
@@ -37,8 +38,8 @@ PaMedicamento::~PaMedicamento(){
     m_id_num = 0;
     m_id_alpha.clear();
     m_name.clear();
-    delete servidoPor;
-    servidoPor = nullptr;
+    delete m_servidoPor;
+    m_servidoPor = nullptr;
 };
 
 /**
@@ -95,8 +96,8 @@ std::string PaMedicamento::getName() const{
     return m_name;
 };
 
-int *PaMedicamento::getServidoPor() const{
-    return servidoPor;
+Laboratorio *PaMedicamento::getServidoPor() const{
+    return m_servidoPor;
 }
 
 /**
@@ -129,6 +130,6 @@ void PaMedicamento::setName(std::string name){
     m_name = name;
 };
 
-void PaMedicamento::setServidoPor(int *servido){
-    servidoPor = servido;
+void PaMedicamento::setServidoPor(Laboratorio *lab){
+    m_servidoPor = lab;
 }

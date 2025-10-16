@@ -7,12 +7,13 @@
 
 #include <string>
 
+class Laboratorio;
 class PaMedicamento{
 private:
     int m_id_num;
     std::string m_id_alpha;
     std::string m_name;
-    int *servidoPor;
+    Laboratorio *m_servidoPor{nullptr};
 
 public:
     PaMedicamento();
@@ -32,13 +33,13 @@ public:
     int getIdNum() const;
     std::string getIdAlpha() const;
     std::string getName() const;
-    int *getServidoPor() const;
+    Laboratorio *getServidoPor() const;
 
     //Setters
     void setIdNum(int id_num);
     void setIdAlpha(std::string id_alpha);
     void setName(std::string name);
-    void setServidoPor(int *servido);
+    void setServidoPor(Laboratorio *lab);
 };
 
 #endif //PAMEDICAMENTO_H
