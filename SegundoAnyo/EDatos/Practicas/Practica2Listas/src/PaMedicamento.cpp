@@ -37,6 +37,8 @@ PaMedicamento::~PaMedicamento(){
     m_id_num = 0;
     m_id_alpha.clear();
     m_name.clear();
+    delete servidoPor;
+    servidoPor = nullptr;
 };
 
 /**

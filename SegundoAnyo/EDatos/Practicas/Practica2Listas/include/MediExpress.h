@@ -20,6 +20,7 @@ class MediExpress{
     public:
         MediExpress();
         MediExpress(const std::string &csvPathVD,const std::string &csvPathLE);
+        ~MediExpress();
 
         void suministrarMed(const PaMedicamento &med, const Laboratorio& lab);
         Laboratorio* buscarLab(const std::string &labName);

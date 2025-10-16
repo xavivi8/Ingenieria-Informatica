@@ -112,6 +112,8 @@ MediExpress::MediExpress(const std::string &csvPathVD, const std::string &csvPat
     m_lab = loadLabFromCsv(csvPathLE);
 }
 
+MediExpress::~MediExpress() = default;
+
 /**
  * Metodos
  */
