@@ -118,12 +118,11 @@ MediExpress::~MediExpress() = default;
  * Metodos
  */
 
-void MediExpress::suministrarMed(const PaMedicamento& med, const Laboratorio& lab){
+void MediExpress::suministrarMed(PaMedicamento& med, Laboratorio& lab){
     bool labExists = false;
-    const int labId = lab.getId();
 
     for (auto it = m_lab.iterator(); !it.isEnd(); it.next()) {
-        if (it.data().getId() == labId) {
+        if (it.data() == lab) {
             labExists = true;
             break;
         }
@@ -133,12 +132,7 @@ void MediExpress::suministrarMed(const PaMedicamento& med, const Laboratorio& la
         const unsigned int n = m_med.len();
         for (unsigned int i = 0; i < n; ++i) {
             if (m_med[i] == med) {
-                int* sp = m_med[i].getServidoPor();
-                if (sp) {
-                    *sp = labId;
-                } else {
-                    m_med[i].setServidoPor(new int(labId));
-                }
+                m_med[i].setServidoPor(&lab);
                 break;
         }
         }
