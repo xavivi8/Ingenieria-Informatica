@@ -5,6 +5,7 @@
 #ifndef LISTAENLAZADA_H
 #define LISTAENLAZADA_H
 #include <stdexcept>
+#include <string>
 
 template<class T>
 class ListaEnlazada {

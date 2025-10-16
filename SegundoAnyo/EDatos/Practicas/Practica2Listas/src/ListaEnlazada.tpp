@@ -2,6 +2,7 @@
 // Created by jmart on 08/10/2025.
 //
 #include "../include/ListaEnlazada.h"
+#include <sstream>
 
 /**
  * 
@@ -371,3 +372,4 @@ ListaEnlazada<T> &ListaEnlazada<T>::concatenate(const ListaEnlazada<T> &l){
 
     return *this;
 };
+
