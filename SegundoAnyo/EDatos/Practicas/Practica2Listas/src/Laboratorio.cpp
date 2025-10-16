@@ -22,6 +22,13 @@ Laboratorio::Laboratorio(int id, const std::string &nombre_lab, const std::strin
     m_city = localidad;
 }
 
+bool Laboratorio::operator==(Laboratorio lab) const{
+    if(m_id == lab.getId()){
+        return true;
+    }
+    return false;
+}
+
 /**
  * Getters
  */

@@ -9,7 +9,7 @@
 
 class Laboratorio{
 private:
-    unsigned m_id;
+    unsigned int m_id;
     std::string m_lab_name;
     std::string m_address;
     std::string m_postal_code;
@@ -26,6 +26,8 @@ public:
 
     // Destructor
     ~Laboratorio() = default;  // no hay recursos dinámicos, por ende se puede usar el default
+
+    bool operator==(Laboratorio lab) const;
 
     // Getters
     int getId() const;
