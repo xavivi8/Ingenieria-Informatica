@@ -58,7 +58,7 @@ public:
     void removeLast();
     void remove(Iterator &i);
 
-    int size(){ return m_size;}
+    int size(){ return m_size};
 
     ListaEnlazada<T> &concatenate(const ListaEnlazada<T>  &l);
 
