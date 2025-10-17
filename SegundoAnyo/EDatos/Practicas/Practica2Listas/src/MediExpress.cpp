@@ -100,6 +100,16 @@ ListaEnlazada<Laboratorio> MediExpress::loadLabFromCsv(const std::string &csvPat
     return aux;
 };
 
+void MediExpress::autoLinkMedications(){
+    unsigned int index  = 0;
+    const unsigned int siz = m_med.len();
+
+    for (auto it = m_lab.iterator(); !it.isEnd() && index < siz; it.next()) {
+        for (int pairIndex = 0; pairIndex < 2 && index < siz; ++pairIndex, ++index) {
+            m_med[index].setServidoPor(&it.data());
+        }
+    }
+};
 
 /**
  * Constructores

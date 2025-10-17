@@ -16,6 +16,7 @@ class MediExpress{
 
         VDinamico<PaMedicamento> loadMedicinesFromCsv(const std::string &csvPath);
         ListaEnlazada<Laboratorio> loadLabFromCsv(const std::string &csvPath);
+        void autoLinkMedications();
 
     public:
         MediExpress();
