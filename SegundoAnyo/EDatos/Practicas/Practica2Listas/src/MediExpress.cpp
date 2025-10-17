@@ -173,3 +173,16 @@ VDinamico<PaMedicamento> MediExpress::buscarCompuesto(const std::string &compoun
 
     return aux;
 };
+
+VDinamico<PaMedicamento> MediExpress::getMedicamSinLab() const{
+    VDinamico<PaMedicamento> aux;
+
+    unsigned int siz = m_med.len();
+    for(int i = 0; i < siz ; ++i){
+        if(m_med[i].getServidoPor() == nullptr){
+            aux.insert(m_med[i]);
+        }
+    }
+
+    return aux;
+};
