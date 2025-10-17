@@ -5,6 +5,7 @@
 #include "../include/VDinamico.h"
 #include "../include/ListaEnlazada.h"
 #include "../include/PaMedicamento.h"
+#include "../include/MediExpress.h"
 
 void mostrarLista(const ListaEnlazada<int> &lista) {
     auto it = lista.iterator();
@@ -104,7 +105,15 @@ int main(int argc, const char *argv[]) {
         std::cout << "----------------------------------------------- " << "Prueba II" << " -----------------------------------------------" << std::endl;
         std::cout << "=======================================================================================================================" << std::endl;
 
-        
+        MediExpress mediExpr("../data/pa_medicamentos.csv", "../data/laboratorios.csv");
+        VDinamico<PaMedicamento> noLab = mediExpr.getMedicamSinLab();
+        std::cout << "Medicamentos sin laboratorio: " << noLab.len() << "\n";
+
+        ListaEnlazada<Laboratorio> granada = mediExpr.buscarLabCiudad("Granada");
+        std::cout << "\nLaboratorios en Granada o provincia: " << granada.size() << "\n";
+        for (auto it = granada.iterator(); !it.isEnd(); it.next()) {
+            std::cout << "- " << it.data() << "\n";
+        }
 
     } catch (const std::exception &e){
         std::cerr << e.what() << '\n';
