@@ -29,6 +29,15 @@ bool Laboratorio::operator==(Laboratorio lab) const{
     return false;
 }
 
+std::ostream& operator<<(std::ostream& os, const Laboratorio& l) {
+    os << "[id=" << l.getId()
+       << "] " << l.getLabName()
+       << " | " << l.getAddress()
+       << " | " << l.getPostalCode()
+       << " | " << l.getCity();
+    return os;
+}
+
 /**
  * Getters
  */
