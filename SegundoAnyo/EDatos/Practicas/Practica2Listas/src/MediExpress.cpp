@@ -4,6 +4,8 @@
 #include "../include/MediExpress.h"
 #include <fstream>
 #include <sstream>
+#include <iterator>
+#include <iostream>
 
 /**
  * Metodos privados
@@ -57,44 +59,42 @@ VDinamico<PaMedicamento> MediExpress::loadMedicinesFromCsv(const std::string &cs
 };
 
 ListaEnlazada<Laboratorio> MediExpress::loadLabFromCsv(const std::string &csvPath){
-    std::ifstream is;
-    std::stringstream columns;
-    std::string row;
-
-    std::string idStr = "";
-    std::string nombre = "";
-    std::string direccion = "";
-    std::string cod_postal = "";
-    std::string localidad = "";
-
     ListaEnlazada<Laboratorio> aux;
 
-    is.open(csvPath);
-    if (is.good()) {
+    std::ifstream is(csvPath, std::ios::binary);
+    if (!is.is_open()) {
+        std::cerr << "[ERROR] No puedo abrir: " << csvPath << "\n";
+        return aux;
+    }
 
-        while (getline(is, row)) {
-            if (row != "") {
+    //Leer todo el archivo a memoria
+    std::string content((std::istreambuf_iterator<char>(is)),
+                         std::istreambuf_iterator<char>());
 
-                columns.str(row);
+    //Normalizar finales de línea: \r\n -> \n y \r -> \n
+    for (char &c : content) {
+        if (c == '\r') c = '\n';
+    }
 
-                getline(columns, idStr, ';');
-                getline(columns, nombre, ';');
-                getline(columns, direccion, ';');
-                getline(columns, cod_postal, ';');
-                getline(columns, localidad, '\r');
+    //Parsear línea a línea
+    std::stringstream ss(content);
+    std::string row;
+    while (std::getline(ss, row, '\n')) {
+        if (row.empty()) continue;
 
-                row = "";
-                columns.clear();
+        std::stringstream columns(row);
+        std::string idStr, nombre, direccion, cod_postal, localidad;
 
-                // crear y añadir el laboratorio
-                Laboratorio lab(std::stoi(idStr), nombre, direccion, cod_postal, localidad);
-                aux.insertAtEnd(lab);
-            }
-        }
+        std::getline(columns, idStr,      ';');
+        std::getline(columns, nombre,     ';');
+        std::getline(columns, direccion,  ';');
+        std::getline(columns, cod_postal, ';');
+        std::getline(columns, localidad);
 
-        is.close();
+        if (idStr.empty()) continue;
 
-    } else {
+        Laboratorio lab(std::stoi(idStr), nombre, direccion, cod_postal, localidad);
+        aux.insertAtEnd(lab);
     }
 
     return aux;
