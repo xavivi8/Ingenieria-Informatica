@@ -12,4 +12,5 @@ add_executable(Practica2Listas
         src/MediExpress.cpp
         src/PaMedicamento.cpp
         src/Laboratorio.cpp
+        src/utils.cpp
 )
