@@ -5,4 +5,11 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#include <string>
+#include <string_view>
+
+namespace utils{
+    
+}
+
 #endif //UTILS_H
