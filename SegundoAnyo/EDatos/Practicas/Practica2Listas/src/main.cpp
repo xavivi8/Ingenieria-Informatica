@@ -105,6 +105,8 @@ int main(int argc, const char *argv[]) {
         std::cout << "----------------------------------------------- " << "Prueba II" << " -----------------------------------------------" << std::endl;
         std::cout << "=======================================================================================================================" << std::endl;
 
+        separador("Labs Granada");
+
         MediExpress mediExpr("../data/pa_medicamentos.csv", "../data/laboratorios.csv");
         VDinamico<PaMedicamento> noLab = mediExpr.getMedicamSinLab();
         std::cout << "Medicamentos sin laboratorio: " << noLab.len() << "\n";
@@ -113,6 +115,25 @@ int main(int argc, const char *argv[]) {
         std::cout << "\nLaboratorios en Granada o provincia: " << granada.size() << "\n";
         for (auto it = granada.iterator(); !it.isEnd(); it.next()) {
             std::cout << "- " << it.data() << "\n";
+        }
+
+        separador("Labs Jaen");
+
+        ListaEnlazada<Laboratorio> jaen = mediExpr.buscarLabCiudad("jaen");
+        std::cout << "\nLaboratorios en Jaen o provincia: " << jaen.size() << "\n";
+
+        separador("Labs Madrid, 10 primeros");
+
+        ListaEnlazada<Laboratorio> madrid = mediExpr.buscarLabCiudad("Madrid");
+        std::cout << "\nLaboratorios en Madrid o provincia: " << madrid.size() << "\n";
+
+        std::cout << "Primeros 10:\n";
+        int mostrados = 0;
+        for (auto it = madrid.iterator(); !it.isEnd() && mostrados < 10; it.next(), ++mostrados) {
+            std::cout << (mostrados + 1) << ". " << it.data() << "\n";
+        }
+        if (madrid.size() == 0) {
+            std::cout << "(No hay resultados)\n";
         }
 
     } catch (const std::exception &e){
