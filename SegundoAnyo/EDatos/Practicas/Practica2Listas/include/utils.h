@@ -12,12 +12,12 @@ namespace utils{
 
     char toLow(unsigned char c);
 
-    void toLowerInplace(std::string &s);
+    void toLowerInPlace(std::string &s);
 
     std::string lowerCopy(std::string s);
 
     bool icontains(std::string_view haystack, std::string_view needle);
-    
+
 }
 
 #endif //UTILS_H

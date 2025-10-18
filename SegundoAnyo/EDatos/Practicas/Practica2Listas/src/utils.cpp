@@ -10,4 +10,9 @@ namespace utils {
     char toLow(unsigned char c){
         return static_cast<char>(std::tolower(c));
     }
+
+    void toLowerInPlace(std::string &s){
+        std::transform(s.begin(),s.end(),s.begin(),[](unsigned char c){return toLow(c);});
+    }
+
 }
