@@ -6,5 +6,8 @@
 #include <cctype>
 
 namespace utils {
-    
+
+    char toLow(unsigned char c){
+        return static_cast<char>(std::tolower(c));
+    }
 }
