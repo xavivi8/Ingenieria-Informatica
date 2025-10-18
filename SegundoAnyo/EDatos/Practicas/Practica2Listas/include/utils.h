@@ -12,6 +12,8 @@ namespace utils{
 
     char toLow(unsigned char c);
 
+    void toLowerInplace(std::string &s);
+
 }
 
 #endif //UTILS_H
