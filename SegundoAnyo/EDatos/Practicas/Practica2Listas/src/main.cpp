@@ -136,6 +136,29 @@ int main(int argc, const char *argv[]) {
             std::cout << "(No hay resultados)\n";
         }
 
+        separador("Labs sumistran Aceites");
+
+        VDinamico<PaMedicamento> aceites = mediExpr.buscarCompuesto("aceite");
+        ListaEnlazada<const Laboratorio*> labsUnicos;
+
+        for (unsigned int i = 0; i < aceites.len(); ++i) {
+            const Laboratorio* lab = aceites[i].getServidoPor();
+            if (!lab) continue;
+
+            bool yaEsta = false;
+            for (auto itL = labsUnicos.iterator(); !itL.isEnd(); itL.next()) {
+                if (itL.data() == lab) { yaEsta = true; break; }
+            }
+            if (!yaEsta) labsUnicos.insertAtEnd(lab);
+        }
+
+        std::cout << "\nLaboratorios que suministran 'ACEITES': " << labsUnicos.size() << "\n";
+        int idx = 1;
+        for (auto itL = labsUnicos.iterator(); !itL.isEnd(); itL.next()) {
+            std::cout << idx++ << ". " << *itL.data() << "\n";
+        }
+        if (labsUnicos.size() == 0) std::cout << "(Ninguno)\n";
+
     } catch (const std::exception &e){
         std::cerr << e.what() << '\n';
     }
