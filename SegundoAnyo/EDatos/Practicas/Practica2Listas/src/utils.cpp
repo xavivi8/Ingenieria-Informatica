@@ -15,4 +15,8 @@ namespace utils {
         std::transform(s.begin(),s.end(),s.begin(),[](unsigned char c){return toLow(c);});
     }
 
+    std::string lowerCopy(std::string s){
+        toLowerInPlace(s);
+        return s;
+    }
 }
