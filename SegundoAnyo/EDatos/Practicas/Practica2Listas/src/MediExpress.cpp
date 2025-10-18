@@ -178,7 +178,7 @@ VDinamico<PaMedicamento> MediExpress::buscarCompuesto(const std::string &compoun
 
     unsigned int siz = m_med.len();
     for(int i = 0; i < siz;++i){
-        if (m_med[i].getName() == compoundName) {
+        if (utils::iContains(m_med[i].getName(), compoundName)) {
             aux.insert(m_med[i]);
         }
     }
