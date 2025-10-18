@@ -159,6 +159,30 @@ int main(int argc, const char *argv[]) {
         }
         if (labsUnicos.size() == 0) std::cout << "(Ninguno)\n";
 
+        separador("Asignar labs");
+        ListaEnlazada<Laboratorio> labsMadrid = mediExpr.buscarLabCiudad("Madrid");
+
+        unsigned int objetivo = 152;
+        unsigned int asignados = 0;
+
+        auto itMad = labsMadrid.iterator();
+        while (!itMad.isEnd() && asignados < objetivo) {
+            VDinamico<PaMedicamento> sinLabAhora = mediExpr.getMedicamSinLab();
+            if (sinLabAhora.len() == 0) break;
+
+            mediExpr.suministrarMed(sinLabAhora[0], itMad.data());
+
+            ++asignados;
+            itMad.next();
+        }
+
+        std::cout << "\nAsignacion dinamica a laboratorios de Madrid\n";
+        std::cout << "  Objetivo: 152\n";
+        std::cout << "  Finalmente asignados: " << asignados << "\n";
+        if (asignados < 152) {
+            std::cout << "  (Aviso) No se alcanzaron 152 asignaciones: faltan medicamentos sin proveedor o laboratorios en Madrid.\n";
+        }
+
     } catch (const std::exception &e){
         std::cerr << e.what() << '\n';
     }
