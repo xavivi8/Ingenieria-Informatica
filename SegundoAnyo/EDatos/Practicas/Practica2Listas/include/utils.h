@@ -14,6 +14,8 @@ namespace utils{
 
     void toLowerInplace(std::string &s);
 
+    std::string lowerCopy(std::string s);
+
 }
 
 #endif //UTILS_H
