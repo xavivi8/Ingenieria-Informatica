@@ -20,11 +20,11 @@ namespace utils {
         return s;
     }
 
-    bool iContains(std::string_view h, std::string_view n) {
+    bool iContains(const std::string &h,const std::string &n) {
         bool val = true;
         if(!n.empty()){
-            std::string haystack(h);
-            std::string needle(n);
+            std::string haystack = h;
+            std::string needle = n;
             toLowerInPlace(haystack);
             toLowerInPlace(needle);
             val = haystack.find(needle) != std::string::npos;

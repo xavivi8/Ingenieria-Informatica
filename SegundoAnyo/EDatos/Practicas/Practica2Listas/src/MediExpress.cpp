@@ -2,6 +2,7 @@
 // Created by jmart on 08/10/2025.
 //
 #include "../include/MediExpress.h"
+#include "../include/utils.h"
 #include <fstream>
 #include <sstream>
 #include <iterator>
@@ -164,7 +165,7 @@ ListaEnlazada<Laboratorio> MediExpress::buscarLabCiudad(const std::string &cityN
     ListaEnlazada<Laboratorio> aux;
 
     for(auto it = m_lab.iterator(); !it.isEnd(); it.next()){
-        if(it.data().getCity()==cityName){
+        if(utils::iContains(it.data().getCity(),cityName)){
             aux.insertAtEnd(it.data());
         }
     }
