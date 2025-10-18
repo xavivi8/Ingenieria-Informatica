@@ -16,7 +16,7 @@ namespace utils{
 
     std::string lowerCopy(std::string s);
 
-    bool icontains(std::string_view haystack, std::string_view needle);
+    bool iContains(std::string_view haystack, std::string_view needle);
 
 }
 
