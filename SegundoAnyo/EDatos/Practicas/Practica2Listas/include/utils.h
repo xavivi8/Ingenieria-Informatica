@@ -9,7 +9,9 @@
 #include <string_view>
 
 namespace utils{
-    
+
+    char toLow(unsigned char c);
+
 }
 
 #endif //UTILS_H
