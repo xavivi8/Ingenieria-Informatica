@@ -114,7 +114,7 @@ int main(int argc, const char *argv[]) {
         ListaEnlazada<Laboratorio*> granada = mediExpr.buscarLabCiudad("Granada");
         std::cout << "\nLaboratorios en Granada o provincia: " << granada.size() << "\n";
         for (auto it = granada.iterator(); !it.isEnd(); it.next()) {
-            std::cout << "- " << it.data() << "\n";
+            std::cout << "- " << *it.data() << "\n";
         }
 
         separador("Labs Jaen");
@@ -130,7 +130,7 @@ int main(int argc, const char *argv[]) {
         std::cout << "Primeros 10:\n";
         int mostrados = 0;
         for (auto it = madrid.iterator(); !it.isEnd() && mostrados < 10; it.next(), ++mostrados) {
-            std::cout << (mostrados + 1) << ". " << it.data() << "\n";
+            std::cout << (mostrados + 1) << ". " << *it.data() << "\n";
         }
         if (madrid.size() == 0) {
             std::cout << "(No hay resultados)\n";
