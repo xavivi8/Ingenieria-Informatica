@@ -23,11 +23,11 @@ class MediExpress{
         MediExpress(const std::string &csvPathVD,const std::string &csvPathLE);
         ~MediExpress();
 
-        void suministrarMed(PaMedicamento &med, Laboratorio& lab);
+        void suministrarMed(PaMedicamento &med, Laboratorio &lab);
         Laboratorio* buscarLab(const std::string &labName);
-        ListaEnlazada<Laboratorio> buscarLabCiudad(const std::string &cityName) const;
-        VDinamico<PaMedicamento> buscarCompuesto(const std::string &compoundName) const;
-        VDinamico<PaMedicamento> getMedicamSinLab() const;
+        ListaEnlazada<Laboratorio*> buscarLabCiudad(const std::string &cityName) const;
+        VDinamico<PaMedicamento*> buscarCompuesto(const std::string &compoundName) const;
+        VDinamico<PaMedicamento*> getMedicamSinLab() const;
 };
 
 #endif //MEDIEXPRESS_H

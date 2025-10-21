@@ -161,38 +161,38 @@ Laboratorio* MediExpress::buscarLab(const std::string &labName){
     return nullptr;
 };
 
-ListaEnlazada<Laboratorio> MediExpress::buscarLabCiudad(const std::string &cityName) const{
-    ListaEnlazada<Laboratorio> aux;
+ListaEnlazada<Laboratorio*> MediExpress::buscarLabCiudad(const std::string &cityName) const{
+    ListaEnlazada<Laboratorio*> aux;
 
     for(auto it = m_lab.iterator(); !it.isEnd(); it.next()){
         if(utils::iContains(it.data().getCity(),cityName)){
-            aux.insertAtEnd(it.data());
+            aux.insertAtEnd(&it.data());
         }
     }
 
     return aux;
 }
 
-VDinamico<PaMedicamento> MediExpress::buscarCompuesto(const std::string &compoundName) const{
-    VDinamico<PaMedicamento> aux;
+VDinamico<PaMedicamento*> MediExpress::buscarCompuesto(const std::string &compoundName) const{
+    VDinamico<PaMedicamento*> aux;
 
     unsigned int siz = m_med.len();
     for(int i = 0; i < siz;++i){
         if (utils::iContains(m_med[i].getName(), compoundName)) {
-            aux.insert(m_med[i]);
+            aux.insert(&m_med[i]);
         }
     }
 
     return aux;
 };
 
-VDinamico<PaMedicamento> MediExpress::getMedicamSinLab() const{
-    VDinamico<PaMedicamento> aux;
+VDinamico<PaMedicamento*> MediExpress::getMedicamSinLab() const{
+    VDinamico<PaMedicamento*> aux;
 
     unsigned int siz = m_med.len();
     for(int i = 0; i < siz ; ++i){
         if(m_med[i].getServidoPor() == nullptr){
-            aux.insert(m_med[i]);
+            aux.insert(&m_med[i]);
         }
     }
 

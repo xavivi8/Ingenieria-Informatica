@@ -108,10 +108,10 @@ int main(int argc, const char *argv[]) {
         separador("Labs Granada");
 
         MediExpress mediExpr("../data/pa_medicamentos.csv", "../data/laboratorios.csv");
-        VDinamico<PaMedicamento> noLab = mediExpr.getMedicamSinLab();
+        VDinamico<PaMedicamento*> noLab = mediExpr.getMedicamSinLab();
         std::cout << "Medicamentos sin laboratorio: " << noLab.len() << "\n";
 
-        ListaEnlazada<Laboratorio> granada = mediExpr.buscarLabCiudad("Granada");
+        ListaEnlazada<Laboratorio*> granada = mediExpr.buscarLabCiudad("Granada");
         std::cout << "\nLaboratorios en Granada o provincia: " << granada.size() << "\n";
         for (auto it = granada.iterator(); !it.isEnd(); it.next()) {
             std::cout << "- " << it.data() << "\n";
@@ -119,12 +119,12 @@ int main(int argc, const char *argv[]) {
 
         separador("Labs Jaen");
 
-        ListaEnlazada<Laboratorio> jaen = mediExpr.buscarLabCiudad("jaen");
+        ListaEnlazada<Laboratorio*> jaen = mediExpr.buscarLabCiudad("jaen");
         std::cout << "\nLaboratorios en Jaen o provincia: " << jaen.size() << "\n";
 
         separador("Labs Madrid, 10 primeros");
 
-        ListaEnlazada<Laboratorio> madrid = mediExpr.buscarLabCiudad("Madrid");
+        ListaEnlazada<Laboratorio*> madrid = mediExpr.buscarLabCiudad("Madrid");
         std::cout << "\nLaboratorios en Madrid o provincia: " << madrid.size() << "\n";
 
         std::cout << "Primeros 10:\n";
@@ -138,11 +138,11 @@ int main(int argc, const char *argv[]) {
 
         separador("Labs sumistran Aceites");
 
-        VDinamico<PaMedicamento> aceites = mediExpr.buscarCompuesto("aceite");
+        VDinamico<PaMedicamento*> aceites = mediExpr.buscarCompuesto("aceite");
         ListaEnlazada<const Laboratorio*> labsUnicos;
 
         for (unsigned int i = 0; i < aceites.len(); ++i) {
-            const Laboratorio* lab = aceites[i].getServidoPor();
+            const Laboratorio* lab = aceites[i]->getServidoPor();
             if (!lab) continue;
 
             bool yaEsta = false;
@@ -160,17 +160,17 @@ int main(int argc, const char *argv[]) {
         if (labsUnicos.size() == 0) std::cout << "(Ninguno)\n";
 
         separador("Asignar labs");
-        ListaEnlazada<Laboratorio> labsMadrid = mediExpr.buscarLabCiudad("Madrid");
+        ListaEnlazada<Laboratorio*> labsMadrid = mediExpr.buscarLabCiudad("Madrid");
 
         unsigned int objetivo = 152;
         unsigned int asignados = 0;
 
         auto itMad = labsMadrid.iterator();
         while (!itMad.isEnd() && asignados < objetivo) {
-            VDinamico<PaMedicamento> sinLabAhora = mediExpr.getMedicamSinLab();
+            VDinamico<PaMedicamento*> sinLabAhora = mediExpr.getMedicamSinLab();
             if (sinLabAhora.len() == 0) break;
 
-            mediExpr.suministrarMed(sinLabAhora[0], itMad.data());
+            mediExpr.suministrarMed(*sinLabAhora[0], *itMad.data());
 
             ++asignados;
             itMad.next();
