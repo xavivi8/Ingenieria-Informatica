@@ -64,7 +64,7 @@ public:
     };
 
     ~Avl(){
-        destruyeArbol(m_root);
+        destroyTree(m_root);
     };
 };
 
