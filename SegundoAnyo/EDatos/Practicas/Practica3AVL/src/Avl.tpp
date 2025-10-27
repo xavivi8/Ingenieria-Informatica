@@ -121,3 +121,16 @@ bool Avl<T>::inserta(const T &dato){
     insertNode(m_root, dato);
     return m_size != before;
 };
+
+template<class T>
+Avl<T>& Avl<T>::operator=(const Avl<T>& orig) {
+    if(this == &orig){
+        return *this;
+    }
+
+    destroyTree(m_root);
+
+    m_root = copyAvl(orig.m_root);
+
+    return *this;
+};
