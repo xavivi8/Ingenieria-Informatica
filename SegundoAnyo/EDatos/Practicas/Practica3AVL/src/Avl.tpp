@@ -172,3 +172,20 @@ T* Avl<T>::buscaRec(const T& dato) {
     Node* n = findKey(dato, m_root);
     return n ? &n->m_data : nullptr;
 };
+
+template<class T>
+T* Avl<T>::buscaIt(const T& dato) {
+    Node *p = m_root;
+
+    while(p){
+        if(dato < p->m_data){
+            p = p->m_left;
+        } else if(p->m_data < dato){
+            p = p->m_right;
+        } else {
+            return &p->data;
+        }
+    }
+    
+    return nullptr;
+};
