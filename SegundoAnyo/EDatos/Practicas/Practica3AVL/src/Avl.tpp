@@ -174,6 +174,7 @@ Avl<T>& Avl<T>::operator=(const Avl<T>& orig) {
     destroyTree(m_root);
 
     m_root = copyAvl(orig.m_root);
+    m_size = orig.m_size;
 
     return *this;
 };
