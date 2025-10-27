@@ -8,6 +8,26 @@
  */
 
 template<class T>
+void Avl<T>::rotDer(Node *&p){
+    //raiz actual (a)
+    Node* q = p;
+    //hijo del actual (b)
+    Node* l = q->m_left;
+
+    //rotacion
+    p = l;
+    q->m_left = l->m_right;
+    l->m_right= q;
+
+    //actualizo
+    q->m_bal--
+    if(l->m_bal<0) q->m_bal -= l->m_bal;
+
+    l->m_bal--
+    if (q->m_bal > 0) l->m_bal += q->m_bal;
+};
+
+template<class T>
 void Avl<T>::rotIzq(Node *&p){
     //raiz actual (a)
     Node* q = p;
