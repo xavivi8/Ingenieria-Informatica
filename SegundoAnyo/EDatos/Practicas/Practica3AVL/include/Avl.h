@@ -27,7 +27,7 @@ class Avl {
 
     void inorder(Node p, int level, Vdinamico<T> &v);
     
-    Node *findNode ( const T &data, Node *p);
+    Node *findKey ( const T &data, Node *p);
     int insertNode(Node* &c, const T &data);
     
     void destroyTree(Node* &p);
