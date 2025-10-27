@@ -90,3 +90,14 @@ int Avl<T>::insertNode(Node *&c, const T &data){
     }
     return deltaH;
 };
+
+/**
+ * Metodos publicos
+ */
+
+template<class T>
+bool Avl<T>::inserta(const T &dato){
+    unsigned before = m_size;
+    insertNode(m_root, dato);
+    return m_size != before;
+};
