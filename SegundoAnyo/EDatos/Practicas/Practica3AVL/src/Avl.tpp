@@ -139,7 +139,7 @@ unsigned int Avl<T>::countElements(Node *p){
 
 template<class T>
 unsigned int Avl<T>::hightHelper(Node* p){
-    
+
 };
 
 /**
@@ -197,7 +197,7 @@ T* Avl<T>::buscaIt(const T& dato) {
         } else if(p->m_data < dato){
             p = p->m_right;
         } else {
-            return &p->data;
+            return &(p->data);
         }
     }
 
