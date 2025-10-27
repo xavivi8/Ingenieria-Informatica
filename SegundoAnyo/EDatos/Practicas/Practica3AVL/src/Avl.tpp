@@ -126,6 +126,17 @@ typename Avl<T>::Node* Avl<T>::findKey(const T& data, Node* p) {
     }
 };
 
+template<class T>
+unsigned int Avl<T>::countElements(Node *p){
+    unsigned int elements = 0;
+
+    if(p){
+        elements = 1 + countElements(p->m_left) + countElements(p->m_right);
+    }
+
+    return elements;
+};
+
 /**
  * Metodos publicos
  */
@@ -186,6 +197,6 @@ T* Avl<T>::buscaIt(const T& dato) {
             return &p->data;
         }
     }
-    
+
     return nullptr;
 };
