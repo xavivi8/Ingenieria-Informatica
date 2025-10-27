@@ -138,7 +138,9 @@ unsigned int Avl<T>::countElements(Node *p){
 };
 
 template<class T>
-unsigned int Avl<t>::hightHelper(Node* p){};
+unsigned int Avl<T>::hightHelper(Node* p){
+    
+};
 
 /**
  * Metodos publicos
