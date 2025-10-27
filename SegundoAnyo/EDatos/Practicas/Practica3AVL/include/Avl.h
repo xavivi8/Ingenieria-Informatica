@@ -68,4 +68,5 @@ public:
     };
 };
 
+#include "../src/Avl.tpp"
 #endif //AVL_H
