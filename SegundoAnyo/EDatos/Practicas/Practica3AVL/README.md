@@ -24,12 +24,9 @@ Practica2Listas/
 │   ├── utils.cpp
 │   └── main.cpp            # Punto de entrada del programa
 │
-├── build/                  # Archivos generados en la compilación
-│   ├── *.o
-│   └── MediExpress.exe / MediExpress.out
-│
 ├── data/                   # Archivos de datos de prueba
 │   ├── pa_medicamentos.csv
+│   ├── farmacias.csv
 │   └── laboratorios.csv
 │
 ├── Makefile                # (Opcional) Compilación automática
