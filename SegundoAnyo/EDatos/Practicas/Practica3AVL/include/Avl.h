@@ -37,7 +37,7 @@ class Avl {
 
     unsigned int countElements(Node* p);
 
-    unsigned hightHelper(Node* p);
+    unsigned int hightHelper(Node* p);
 
 public:
                
