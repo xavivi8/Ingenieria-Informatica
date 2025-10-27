@@ -24,8 +24,6 @@ class Avl {
 
     Node *m_root;
     unsigned int m_size;
-
-    void inorder(Node p, int level, Vdinamico<T> &v);
     
     Node *findKey ( const T &data, Node *p);
     int insertNode(Node* &c, const T &data);
