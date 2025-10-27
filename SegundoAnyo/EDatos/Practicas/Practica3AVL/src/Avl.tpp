@@ -111,6 +111,21 @@ void Avl<T>::destroyTree(Node*& p) {
     }
 }
 
+template<class T>
+typename Avl<T>::Node* Avl<T>::findKey(const T& data, Node* p) {
+    if(p){
+        if(data < p->m_data){
+            return findKey(data, p->m_left);
+        } else if(p->m_data > data){
+            return findKey(data, p->m_right);
+        } else {
+            return p;
+        }
+    } else{
+        return nullptr;
+    }
+};
+
 /**
  * Metodos publicos
  */
