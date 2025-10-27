@@ -91,6 +91,16 @@ int Avl<T>::insertNode(Node *&c, const T &data){
     return deltaH;
 };
 
+template<class T>
+typename Avl<T>::Node* Avl<T>::copyAvl(Node* p) {
+    if(!p) return nullptr;
+    Node *n = new Node(p->m_data);
+    n->m_bal = p->m_bal;
+    n->m_left = copyAvl(p->m_left);
+    n->m_right = copyAvl(p->m_right);
+    return n;
+};
+
 /**
  * Metodos publicos
  */
