@@ -200,3 +200,8 @@ T* Avl<T>::buscaIt(const T& dato) {
 
     return nullptr;
 };
+
+template<class T>
+unsigned int Avl<T>::numElementos(){
+    return m_size;//tambien puedo usar countElements
+};
