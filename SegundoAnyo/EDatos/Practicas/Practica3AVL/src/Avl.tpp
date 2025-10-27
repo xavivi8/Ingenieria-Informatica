@@ -166,3 +166,9 @@ Avl<T>& Avl<T>::operator=(const Avl<T>& orig) {
 
     return *this;
 };
+
+template<class T>
+T* Avl<T>::buscaRec(const T& dato) {
+    Node* n = findKey(dato, m_root);
+    return n ? &n->m_data : nullptr;
+};
