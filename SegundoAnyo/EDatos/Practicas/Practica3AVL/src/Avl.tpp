@@ -218,3 +218,8 @@ template<class T>
 unsigned int Avl<T>::numElementos(){
     return m_size;//tambien puedo usar countElements
 };
+
+template<class T>
+unsigned int Avl<T>::altura(){
+    return hightHelper(m_root);
+};
