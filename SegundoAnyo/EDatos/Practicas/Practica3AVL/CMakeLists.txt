@@ -13,4 +13,5 @@ add_executable(Practica2Listas
         src/PaMedicamento.cpp
         src/Laboratorio.cpp
         src/utils.cpp
+        src/Farmacia.cpp
 )
