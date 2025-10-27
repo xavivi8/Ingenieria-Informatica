@@ -101,6 +101,16 @@ typename Avl<T>::Node* Avl<T>::copyAvl(Node* p) {
     return n;
 };
 
+template<class T>
+void Avl<T>::destroyTree(Node*& p) {
+    if(p){
+        destroyTree(p->m_left);
+        destroyTree(p->m_right);
+        delete p;
+        p = nullptr;
+    }
+}
+
 /**
  * Metodos publicos
  */
