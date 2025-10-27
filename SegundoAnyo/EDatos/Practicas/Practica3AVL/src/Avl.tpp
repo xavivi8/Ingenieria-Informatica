@@ -147,9 +147,6 @@ Constructor
 
 template<class T>
 Avl<T>::Avl(const Avl<T>& orig){
-    m_root = nullptr;
-    m_size = 0;
-
     m_root = copyAvl(orig.m_root);
     m_size = orig.m_size;
 };
