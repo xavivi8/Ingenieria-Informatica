@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.29)
-project(Practica2Listas)
+project(Practica3AVL)
 
 set(CMAKE_CXX_STANDARD 14)
 
@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(include)
 
 # Archivos fuente
-add_executable(Practica2Listas
+add_executable(Practica3AVL
         src/main.cpp
         src/MediExpress.cpp
         src/PaMedicamento.cpp
