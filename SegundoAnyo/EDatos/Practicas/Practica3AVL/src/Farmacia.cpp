@@ -34,11 +34,11 @@ bool Farmacia::operator<(const Farmacia &farma) const{
  */
 
 
-void Farmacia::pedidoMedicam(unsigned int idNum){
+void Farmacia::pedidoMedicam(int idNum){
     if(!m_linkMedi){
         throw std::logic_error("Farmacia sin enlace a MediExpress");
     }
-    m_linkMedi->suministrarFarmacia(*this, idNum);
+    m_linkMedi->suministrarFarmacia(this, idNum);
 };
 
 

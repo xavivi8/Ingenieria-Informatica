@@ -219,7 +219,7 @@ PaMedicamento* MediExpress::buscarCompuesto(int id_num) {
 Farmacia* MediExpress::buscarFarmacia(const std::string &cif) {
     Farmacia key(cif, "", "", "", "", "");
     return m_farma.buscaIt(key);
-}
+};
 
 
 
@@ -245,3 +245,8 @@ VDinamico<Laboratorio*> MediExpress::buscarLabs(const std::string &nombrePA) con
     }
     return resultado;
 }
+
+
+void MediExpress::suministrarFarmacia(Farmacia *f, int idNum){
+
+};

@@ -18,7 +18,7 @@ class Avl {
         char m_bal; // -1, 0 , 1 para un árbol avl
         T m_data;
 
-        Node(const T &element): m_left(0), m_right(0), m_bal(0), m_data(ele){}
+        Node(const T &element): m_left(0), m_right(0), m_bal(0), m_data(){}
         Node(const Node &orig): m_left(orig.m_left), m_right(orig.m_right), m_bal(orig.m_bal), m_data(orig.dato){}
     };
 

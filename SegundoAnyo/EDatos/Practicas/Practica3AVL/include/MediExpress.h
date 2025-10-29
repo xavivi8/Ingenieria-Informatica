@@ -5,6 +5,7 @@
 #include "../include/ListaEnlazada.h"
 #include "../include/PaMedicamento.h"
 #include "../include/Laboratorio.h"
+#include "../include/Avl.h"
 
 #ifndef MEDIEXPRESS_H
 #define MEDIEXPRESS_H
@@ -33,7 +34,7 @@ class MediExpress{
 
         //metodos pract3
         PaMedicamento* buscarCompuesto(int id_num);
-        void suministrarFarmacia(Farmacia &f, int id_num);
+        void suministrarFarmacia(Farmacia *f, int idNum);
         Farmacia* buscarFarmacia(const std::string &cif);
         VDinamico<Laboratorio*> buscarLabs(const std::string &nombrePA) const;
 };

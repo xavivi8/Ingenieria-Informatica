@@ -21,10 +21,10 @@ void Avl<T>::rotDer(Node *&p){
     l->m_right= q;
 
     //actualizo
-    q->m_bal--
+    q->m_bal--;
     if(l->m_bal<0) q->m_bal -= l->m_bal;
 
-    l->m_bal--
+    l->m_bal--;
     if (q->m_bal > 0) l->m_bal += q->m_bal;
 };
 
@@ -223,7 +223,7 @@ T* Avl<T>::buscaIt(const T& dato) {
         } else if(p->m_data < dato){
             p = p->m_right;
         } else {
-            return &(p->data);
+            return &(p->m_data);
         }
     }
 
