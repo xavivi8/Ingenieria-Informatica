@@ -2,6 +2,7 @@
 // Created by jmart on 27/10/2025.
 //
 #include "../include/Avl.h"
+#include "../include/VDinamico.h"
 
 /**
  * Metodos privados
@@ -150,6 +151,15 @@ unsigned int Avl<T>::hightHelper(Node* p){
     }
 
     return res;
+};
+
+
+template<class T>
+void Avl<T>::inorden(Node* p, VDinamico<T*>& out) {
+    if (!p) return;
+    inorden(p->m_left, out);
+    out.insert(&p->m_data);
+    inorden(p->m_right, out);
 };
 
 /**

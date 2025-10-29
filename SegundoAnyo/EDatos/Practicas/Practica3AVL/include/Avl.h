@@ -38,6 +38,7 @@ class Avl {
     unsigned int countElements(Node* p);
 
     unsigned int hightHelper(Node* p);
+    void inorden(Node* p, VDinamico<T*>& out);
 
 public:
                
