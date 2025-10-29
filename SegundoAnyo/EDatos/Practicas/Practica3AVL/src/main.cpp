@@ -17,6 +17,10 @@ void mostrarLista(const ListaEnlazada<int> &lista) {
     std::cout << "]" << std::endl;
 }
 
+Avl<Farmacia> loadFarmaCsv(std::string csv){
+
+};
+
 /**
  * @brief Muestra un separador visual con un título
  */
@@ -35,9 +39,7 @@ int main(int argc, const char *argv[]) {
         std::cout << "----------------------------------------------- " << "Prueba I" << " -----------------------------------------------" << std::endl;
         std::cout << "=======================================================================================================================" << std::endl;
         
-        MediExpress mediExpr1("../data/pa_medicamentos.csv", "../data/laboratorios.csv", "../data/farmacias.csv");
-        Avl<Farmacia> farmaAvl1;
-        VDinamico<Farmacia*> farmaVdinamico1 = farmaAvl1.recorreInorden();
+        Avl<Farmacia> farmaAvl1 = loadFarmaCsv("");
 
         std::cout << "=======================================================================================================================" << std::endl;
         std::cout << "----------------------------------------------- " << "Prueba II" << " -----------------------------------------------" << std::endl;
