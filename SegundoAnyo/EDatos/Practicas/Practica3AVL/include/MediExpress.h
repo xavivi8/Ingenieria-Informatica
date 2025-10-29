@@ -38,6 +38,8 @@ class MediExpress{
         void suministrarFarmacia(Farmacia *f, int idNum);
         Farmacia* buscarFarmacia(const std::string &cif);
         VDinamico<Laboratorio*> buscarLabs(const std::string &nombrePA) const;
+
+        Avl<Farmacia> getFarmacies();
 };
 
 #endif //MEDIEXPRESS_H

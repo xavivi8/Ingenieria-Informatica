@@ -298,3 +298,12 @@ void MediExpress::suministrarFarmacia(Farmacia *f, int idNum){
     }
     f->dispensaMedicam(*medAux);
 };
+
+/**
+ * Getters
+ */
+
+
+Avl<Farmacia> MediExpress::getFarmacies(){
+    return m_farma;
+}
