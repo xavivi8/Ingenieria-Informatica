@@ -248,5 +248,9 @@ VDinamico<Laboratorio*> MediExpress::buscarLabs(const std::string &nombrePA) con
 
 
 void MediExpress::suministrarFarmacia(Farmacia *f, int idNum){
-
+    PaMedicamento* medAux = buscarCompuesto(idNum);
+    if(!medAux){
+        throw std::logic_error("Medicamento no encontrado");
+    }
+    f->dispensaMedicam(*medAux);
 };
