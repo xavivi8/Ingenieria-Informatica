@@ -9,6 +9,7 @@
 #ifndef MEDIEXPRESS_H
 #define MEDIEXPRESS_H
 
+class Farmacia;
 class MediExpress{
     private:
         VDinamico<PaMedicamento> m_med;
@@ -28,6 +29,12 @@ class MediExpress{
         ListaEnlazada<Laboratorio*> buscarLabCiudad(const std::string &cityName) const;
         VDinamico<PaMedicamento*> buscarCompuesto(const std::string &compoundName) const;
         VDinamico<PaMedicamento*> getMedicamSinLab() const;
+
+        //metodos pract3
+        PaMedicamento* buscarCompuesto(unsigned int id_num) const;
+        void suministrarFarmacia(Farmacia &f, unsigned int id_num);
+        Farmacia* buscarFarmacia(const std::string &cif) const;
+        VDinamico<Laboratorio*> buscarLabs(const std::string &nombrePA) const;
 };
 
 #endif //MEDIEXPRESS_H
