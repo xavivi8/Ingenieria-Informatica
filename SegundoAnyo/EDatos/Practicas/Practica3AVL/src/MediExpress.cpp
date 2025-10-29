@@ -198,3 +198,18 @@ VDinamico<PaMedicamento*> MediExpress::getMedicamSinLab() const{
 
     return aux;
 };
+
+/**
+ * Metodos pract 3
+ */
+
+
+PaMedicamento* MediExpress::buscarCompuesto(int id_num) {
+    if (m_med.len() == 0) return nullptr;
+
+    PaMedicamento aux(id_num, "", "");
+    unsigned int idx = m_med.binarySearch(aux);
+
+    if (idx == UINT_MAX) return nullptr;
+    return &m_med[idx];
+}

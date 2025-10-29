@@ -31,7 +31,7 @@ class MediExpress{
         VDinamico<PaMedicamento*> getMedicamSinLab() const;
 
         //metodos pract3
-        PaMedicamento* buscarCompuesto(unsigned int id_num) const;
+        PaMedicamento* buscarCompuesto(int id_num);
         void suministrarFarmacia(Farmacia &f, unsigned int id_num);
         Farmacia* buscarFarmacia(const std::string &cif) const;
         VDinamico<Laboratorio*> buscarLabs(const std::string &nombrePA) const;
