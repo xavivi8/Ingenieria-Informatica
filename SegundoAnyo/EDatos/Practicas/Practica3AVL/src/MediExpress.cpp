@@ -222,3 +222,26 @@ Farmacia* MediExpress::buscarFarmacia(const std::string &cif) {
 }
 
 
+
+VDinamico<Laboratorio*> MediExpress::buscarLabs(const std::string &nombrePA) const {
+    VDinamico<Laboratorio*> resultado;
+    if (m_med.len() == 0) return resultado;
+
+    for (unsigned int i = 0; i < m_med.len(); ++i) {
+        const PaMedicamento &med = m_med[i];
+
+        if (utils::iContains(med.getName(), nombrePA)) {
+            Laboratorio* lab = med.getServidoPor();
+            if (lab) {
+                bool yaEsta = false;
+                for (unsigned int j = 0; j < resultado.len() && !yaEsta; ++j) {
+                    if (resultado[j] == lab) yaEsta = true;
+                }
+                if (!yaEsta) {
+                    resultado.insert(lab);
+                }
+            }
+        }
+    }
+    return resultado;
+}
