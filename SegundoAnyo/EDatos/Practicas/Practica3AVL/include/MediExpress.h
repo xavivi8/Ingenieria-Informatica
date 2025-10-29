@@ -14,6 +14,7 @@ class MediExpress{
     private:
         VDinamico<PaMedicamento> m_med;
         ListaEnlazada<Laboratorio> m_lab;
+        Avl<Farmacia> m_farma;
 
         VDinamico<PaMedicamento> loadMedicinesFromCsv(const std::string &csvPath);
         ListaEnlazada<Laboratorio> loadLabFromCsv(const std::string &csvPath);
@@ -32,8 +33,8 @@ class MediExpress{
 
         //metodos pract3
         PaMedicamento* buscarCompuesto(int id_num);
-        void suministrarFarmacia(Farmacia &f, unsigned int id_num);
-        Farmacia* buscarFarmacia(const std::string &cif) const;
+        void suministrarFarmacia(Farmacia &f, int id_num);
+        Farmacia* buscarFarmacia(const std::string &cif);
         VDinamico<Laboratorio*> buscarLabs(const std::string &nombrePA) const;
 };
 

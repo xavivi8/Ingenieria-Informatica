@@ -2,6 +2,7 @@
 // Created by jmart on 08/10/2025.
 //
 #include "../include/MediExpress.h"
+#include "../include/Farmacia.h"
 #include "../include/utils.h"
 #include <fstream>
 #include <sstream>
@@ -213,3 +214,11 @@ PaMedicamento* MediExpress::buscarCompuesto(int id_num) {
     if (idx == UINT_MAX) return nullptr;
     return &m_med[idx];
 }
+
+
+Farmacia* MediExpress::buscarFarmacia(const std::string &cif) {
+    Farmacia key(cif, "", "", "", "", "");
+    return m_farma.buscaIt(key);
+}
+
+
