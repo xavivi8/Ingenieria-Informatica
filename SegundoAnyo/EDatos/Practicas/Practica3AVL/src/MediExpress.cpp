@@ -102,6 +102,49 @@ ListaEnlazada<Laboratorio> MediExpress::loadLabFromCsv(const std::string &csvPat
     return aux;
 };
 
+Avl<Farmacia> MediExpress::loadFarmacieFromCsv(const std::string &csvPath){
+    Avl<Farmacia> aux;
+
+    std::ifstream is(csvPath, std::ios::binary);
+    if (!is.is_open()) {
+        std::cerr << "[ERROR] No puedo abrir: " << csvPath << "\n";
+        return aux;
+    }
+
+    //Leer todo el archivo a memoria
+    std::string content((std::istreambuf_iterator<char>(is)),
+                         std::istreambuf_iterator<char>());
+
+    //Normalizar finales de línea: \r\n -> \n y \r -> \n
+    for (char &c : content) {
+        if (c == '\r') c = '\n';
+    }
+
+    //Parsear línea a línea
+    std::stringstream ss(content);
+    std::string row;
+    while (std::getline(ss, row, '\n')) {
+        if (row.empty()) continue;
+
+        std::stringstream columns(row);
+        std::string cif, province, city, name, address, postalCode;
+
+        std::getline(columns, cif,      ';');
+        std::getline(columns, province,     ';');
+        std::getline(columns, city,  ';');
+        std::getline(columns, name, ';');
+        std::getline(columns, address, ';');
+        std::getline(columns, postalCode);
+
+        if (cif.empty()) continue;
+
+        Farmacia farma(cif, province, city, name, address, postalCode);
+        aux.inserta(farma);
+    }
+
+    return aux;
+};
+
 void MediExpress::autoLinkMedications(){
     unsigned int index  = 0;
     const unsigned int siz = m_med.len();
@@ -119,9 +162,10 @@ void MediExpress::autoLinkMedications(){
 
 MediExpress::MediExpress() = default;
 
-MediExpress::MediExpress(const std::string &csvPathVD, const std::string &csvPathLE){
+MediExpress::MediExpress(const std::string &csvPathVD, const std::string &csvPathLE, const std::string &csvPathAVL){
     m_med = loadMedicinesFromCsv(csvPathVD);
     m_lab = loadLabFromCsv(csvPathLE);
+    m_farma = loadFarmacieFromCsv(csvPathAVL);
     autoLinkMedications();
 }
 

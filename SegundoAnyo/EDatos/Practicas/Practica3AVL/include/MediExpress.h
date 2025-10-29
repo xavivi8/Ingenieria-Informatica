@@ -19,11 +19,12 @@ class MediExpress{
 
         VDinamico<PaMedicamento> loadMedicinesFromCsv(const std::string &csvPath);
         ListaEnlazada<Laboratorio> loadLabFromCsv(const std::string &csvPath);
+        Avl<Farmacia> loadFarmacieFromCsv(const std::string &csvPath);
         void autoLinkMedications();
 
     public:
         MediExpress();
-        MediExpress(const std::string &csvPathVD,const std::string &csvPathLE);
+        MediExpress(const std::string &csvPathVD,const std::string &csvPathLE,const std::string &csvPathAVL);
         ~MediExpress();
 
         void suministrarMed(PaMedicamento &med, Laboratorio &lab);
