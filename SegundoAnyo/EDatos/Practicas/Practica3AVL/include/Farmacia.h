@@ -12,22 +12,23 @@
 class MediExpress;
 class Farmacia{
     std::string m_cif;
-    std::string m_provincia;
-    std::string m_localidad;
-    std::string m_nombre;
-    std::string m_direccion;
-    std::string m_codpostal;
+    std::string m_province;
+    std::string m_city;
+    std::string m_name;
+    std::string m_address;
+    std::string m_postalCode;
+
     MediExpress* m_linkMedi{nullptr};
     Avl<PaMedicamento> m_dispense;
 
     public:
     Farmacia() = default;
     Farmacia(const std::string &cif,
-             const std::string &provincia,
-             const std::string &localidad,
-             const std::string &nombre,
-             const std::string &direccion,
-             const std::string &codPostal);
+             const std::string &province,
+             const std::string &city,
+             const std::string &name,
+             const std::string &address,
+             const std::string &postalCode);
     ~Farmacia() = default;
 
     bool operator<(const Farmacia &farma) const;
@@ -37,7 +38,6 @@ class Farmacia{
     void dispensaMedicam(const PaMedicamento &pa);
 
     void setLinkMedi(MediExpress *medi);
-
     MediExpress* getLinkMedi() const;
 };
 
