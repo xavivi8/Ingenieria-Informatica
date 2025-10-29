@@ -46,3 +46,10 @@ PaMedicamento* Farmacia::buscaMedicam(int idNum){
     PaMedicamento aux(idNum,"","");
     return m_dispense.buscaIt(aux);
 };
+
+
+void Farmacia::dispensaMedicam(const PaMedicamento &pa){
+    if(!m_dispense.inserta(pa)){
+        throw std::runtime_error("El medicamento ya se encuentra");
+    }
+};
