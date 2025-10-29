@@ -53,3 +53,21 @@ void Farmacia::dispensaMedicam(const PaMedicamento &pa){
         throw std::runtime_error("El medicamento ya se encuentra");
     }
 };
+
+/**
+ * Getters
+ */
+
+
+MediExpress* Farmacia::getLinkMedi() const{
+    return m_linkMedi;
+};
+
+/**
+ * Setters
+ */
+
+
+void Farmacia::setLinkMedi(MediExpress *medi){
+    m_linkMedi = medi;
+};
