@@ -18,3 +18,11 @@ Farmacia::Farmacia(const std::string &cif, const std::string &province, const st
     m_postalCode = postalCode;
 };
 
+/**
+ * Operadores
+ */
+
+
+bool Farmacia::operator<(const Farmacia &farma) const{
+    return m_cif < farma.m_cif;
+};
