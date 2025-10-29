@@ -138,7 +138,7 @@ Avl<Farmacia> MediExpress::loadFarmacieFromCsv(const std::string &csvPath){
 
         if (cif.empty()) continue;
 
-        Farmacia farma(cif, province, city, name, address, postalCode);
+        Farmacia farma(cif, province, city, name, address, postalCode, this);
         aux.inserta(farma);
     }
 
@@ -261,7 +261,7 @@ PaMedicamento* MediExpress::buscarCompuesto(int id_num) {
 
 
 Farmacia* MediExpress::buscarFarmacia(const std::string &cif) {
-    Farmacia key(cif, "", "", "", "", "");
+    Farmacia key(cif, "", "", "", "", "",nullptr);
     return m_farma.buscaIt(key);
 };
 

@@ -28,7 +28,8 @@ class Farmacia{
              const std::string &city,
              const std::string &name,
              const std::string &address,
-             const std::string &postalCode);
+             const std::string &postalCode,
+             MediExpress* med);
     ~Farmacia() = default;
 
     bool operator<(const Farmacia &farma) const;
