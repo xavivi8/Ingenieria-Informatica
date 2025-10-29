@@ -4,6 +4,8 @@
 #include "../include/Farmacia.h"
 #include "../include/MediExpress.h"
 
+#include <stdexcept>
+
 /**
  * Constructor
  */
@@ -25,4 +27,15 @@ Farmacia::Farmacia(const std::string &cif, const std::string &province, const st
 
 bool Farmacia::operator<(const Farmacia &farma) const{
     return m_cif < farma.m_cif;
+};
+
+/**
+ * Metodos del uml
+ */
+
+
+void Farmacia::pedidoMedicam(unsigned int idNum){
+    if(!m_linkMedi){
+        throw std::logic_error("Farmacia sin enlace a MediExpress");
+    }
 };
