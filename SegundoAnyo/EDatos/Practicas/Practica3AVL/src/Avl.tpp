@@ -155,12 +155,18 @@ unsigned int Avl<T>::hightHelper(Node* p){
 
 
 template<class T>
-void Avl<T>::inorden(Node* p, VDinamico<T*>& out) {
+void Avl<T>::inorden(Node* p, int nivel, VDinamico<T>& v) {
     if (!p) return;
-    inorden(p->m_left, out);
-    out.insert(&p->m_data);
-    inorden(p->m_right, out);
-};
+
+    // izquierda
+    inorden(p->m_left, nivel + 1, v);
+
+    // visita (insertamos una COPIA del dato)
+    v.insert(p->m_data);
+
+    // derecha
+    inorden(p->m_right, nivel + 1, v);
+}
 
 /**
  * Metodos publicos
