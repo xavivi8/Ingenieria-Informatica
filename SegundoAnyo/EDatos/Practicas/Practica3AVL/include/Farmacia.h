@@ -34,7 +34,7 @@ class Farmacia{
     bool operator<(const Farmacia &farma) const;
 
     void pedidoMedicam(unsigned int id_num);
-    PaMedicamento* buscaMedicam(unsigned int id_num) const;
+    PaMedicamento* buscaMedicam(int id_num);
     void dispensaMedicam(const PaMedicamento &pa);
 
     void setLinkMedi(MediExpress *medi);

@@ -40,3 +40,9 @@ void Farmacia::pedidoMedicam(unsigned int idNum){
     }
     m_linkMedi->suministrarFarmacia(*this, idNum);
 };
+
+
+PaMedicamento* Farmacia::buscaMedicam(int idNum){
+    PaMedicamento aux(idNum,"","");
+    return m_dispense.buscaIt(aux);
+};
