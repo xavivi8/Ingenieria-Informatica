@@ -38,4 +38,5 @@ void Farmacia::pedidoMedicam(unsigned int idNum){
     if(!m_linkMedi){
         throw std::logic_error("Farmacia sin enlace a MediExpress");
     }
+    m_linkMedi->suministrarFarmacia(*this, idNum);
 };
