@@ -2,6 +2,8 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <chrono>
+
 #include "../include/VDinamico.h"
 #include "../include/ListaEnlazada.h"
 #include "../include/PaMedicamento.h"
@@ -151,7 +153,14 @@ int main(int argc, const char *argv[]) {
         }
 
         separador("Buscar cif avl y medir tiempo");
-        clock_t t_bus_ini = clock();
+
+        // (opcional) warm-up para estabilizar caché
+        for (unsigned int i = 0; i < cifs500.len(); ++i) {
+            Farmacia clave(cifs500[i], "", "", "", "", "", nullptr);
+            (void)arbolFarmacias.buscaIt(clave);
+        }
+
+        auto t0_avl = std::chrono::steady_clock::now();
 
         unsigned int encontradas = 0;
         unsigned int no_encontradas = 0;
@@ -163,11 +172,55 @@ int main(int argc, const char *argv[]) {
             else    ++no_encontradas;
         }
 
-        double t_bus_secs = (clock() - t_bus_ini) / (double)CLOCKS_PER_SEC;
+        auto t1_avl = std::chrono::steady_clock::now();
+        auto total_us_avl = std::chrono::duration_cast<std::chrono::microseconds>(t1_avl - t0_avl).count();
+        double avg_ns_avl = (total_us_avl * 1000.0) / (cifs500.len() ? cifs500.len() : 1);
 
         std::cout << "Buscadas " << cifs500.len() << " farmacias por CIF en el AVL.\n";
         std::cout << "Encontradas: " << encontradas << " | No encontradas: " << no_encontradas << "\n";
-        std::cout << "Tiempo total de busqueda: " << t_bus_secs << " segs.\n";
+        std::cout << "Tiempo total: " << total_us_avl << " microS (" << (total_us_avl/1000.0) << " ms) | ~" << avg_ns_avl << " ns/busqueda\n";
+
+
+        separador("Busqueda lineal eb VDinamico");
+
+        auto eq = [](const Farmacia& a, const Farmacia& b){
+            return !(a < b) && !(b < a);
+        };
+
+        // warm-up opcional para estabilizar caché
+        for (unsigned int i = 0; i < cifs500.len(); ++i) {
+            Farmacia clave(cifs500[i], "", "", "", "", "", nullptr);
+            for (unsigned int j = 0; j < vFarmacias.len(); ++j) {
+                if (eq(clave, vFarmacias[j])) break;
+            }
+        }
+
+        auto t0 = std::chrono::steady_clock::now();
+
+        unsigned int encontradasVec = 0;
+        unsigned int noEncontradasVec = 0;
+
+        for (unsigned int i = 0; i < cifs500.len(); ++i) {
+            Farmacia clave(cifs500[i], "", "", "", "", "", nullptr);
+            bool found = false;
+
+            for (unsigned int j = 0; j < vFarmacias.len(); ++j) {
+                if (eq(clave, vFarmacias[j])) { found = true; break; }
+            }
+
+            if (found) ++encontradasVec;
+            else       ++noEncontradasVec;
+        }
+
+        auto t1 = std::chrono::steady_clock::now();
+        auto total_us = std::chrono::duration_cast<std::chrono::microseconds>(t1 - t0).count();
+        double avg_ns = (total_us * 1000.0) / (cifs500.len() ? cifs500.len() : 1);
+
+        std::cout << "Busqueda lineal en vector de " << cifs500.len() << " CIFs\n";
+        std::cout << "Encontradas: " << encontradasVec
+                << " | No encontradas: " << noEncontradasVec << "\n";
+        std::cout << "Tiempo total: " << total_us << " microS (" << (total_us/1000.0)
+                << " ms) | ~" << avg_ns << " ns/busqueda\n";
 
         std::cout << "=======================================================================================================================" << std::endl;
         std::cout << "----------------------------------------------- " << "Prueba II" << " -----------------------------------------------" << std::endl;
