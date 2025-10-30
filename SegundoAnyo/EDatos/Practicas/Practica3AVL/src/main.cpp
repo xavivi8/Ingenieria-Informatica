@@ -217,10 +217,39 @@ int main(int argc, const char *argv[]) {
         double avg_ns = (total_us * 1000.0) / (cifs500.len() ? cifs500.len() : 1);
 
         std::cout << "Busqueda lineal en vector de " << cifs500.len() << " CIFs\n";
-        std::cout << "Encontradas: " << encontradasVec
-                << " | No encontradas: " << noEncontradasVec << "\n";
-        std::cout << "Tiempo total: " << total_us << " microS (" << (total_us/1000.0)
-                << " ms) | ~" << avg_ns << " ns/busqueda\n";
+        std::cout << "Encontradas: " << encontradasVec << " | No encontradas: " << noEncontradasVec << "\n";
+        std::cout << "Tiempo total: " << total_us << " microS (" << (total_us/1000.0) << " ms) | ~" << avg_ns << " ns/busqueda\n";
+
+        separador("Comparativa AVL vs Vector");
+
+        std::cout.setf(std::ios::fixed);
+        std::cout.precision(3);
+
+        std::cout << "AVL:           " << total_us_avl << " microS  (" << avg_ns_avl << " ns/busqueda)\n";
+        std::cout << "Vector lineal: " << total_us      << " microS  (" << avg_ns      << " ns/busqueda)\n";
+
+        // Determinar si mejora con AVL
+        if (total_us_avl == 0 && total_us == 0) {
+            std::cout << "Los tiempos son 0 microS (dataset muy pequenyo o medidas demasiado rapidas). Repite las busquedas varias veces para medir mejor.\n";
+        } else if (total_us_avl == 0 && total_us > 0) {
+            std::cout << "El AVL ha sido extremadamente rapido (masOmenos0 microS). Mejora clara frente al vector lineal.\n";
+        } else if (total_us == 0 && total_us_avl > 0) {
+            std::cout << "La busqueda lineal ha sido masOmenos0 µs y el AVL no: en esta medida puntual, no mejora.\n";
+        } else {
+            const double avl   = static_cast<double>(total_us_avl);
+            const double vec   = static_cast<double>(total_us);
+            if (avl < vec) {
+                double speedup = vec / avl;
+                double saving  = (1.0 - avl/vec) * 100.0;
+                std::cout << "Mejora: el AVL es " << speedup << " mas rapido (" << saving << "% menos tiempo total).\n";
+            } else if (avl > vec) {
+                double slowdown = avl / vec;
+                double extra    = (avl/vec - 1.0) * 100.0;
+                std::cout << "Peor: el AVL es " << slowdown << "× mas lento (" << extra << "% mas tiempo).\n";
+            } else {
+                std::cout << "= Empate: mismos tiempos totales.\n";
+            }
+        }
 
         std::cout << "=======================================================================================================================" << std::endl;
         std::cout << "----------------------------------------------- " << "Prueba II" << " -----------------------------------------------" << std::endl;
