@@ -251,6 +251,20 @@ int main(int argc, const char *argv[]) {
             }
         }
 
+        separador("Altura del AVL");
+        std::cout << "Altura del arbol AVL con " << arbolFarmacias.altura() << " farmacias: " << arbolFarmacias.getSize() << "\n";
+
+        separador("Inorden: primeras 100 farmacias");
+
+        VDinamico<Farmacia*> inord = arbolFarmacias.recorreInorden();
+        unsigned int toShow = std::min(100u, inord.len());
+
+        for (unsigned int i = 0; i < toShow; ++i) {
+            if (inord[i]) {
+                std::cout << (i + 1) << ") " << *inord[i] << "\n"; 
+            }
+        }
+
         std::cout << "=======================================================================================================================" << std::endl;
         std::cout << "----------------------------------------------- " << "Prueba II" << " -----------------------------------------------" << std::endl;
         std::cout << "=======================================================================================================================" << std::endl;
