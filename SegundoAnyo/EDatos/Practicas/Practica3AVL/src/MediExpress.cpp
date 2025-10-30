@@ -183,6 +183,7 @@ MediExpress::MediExpress() = default;
 
 MediExpress::MediExpress(const std::string &csvPathVD, const std::string &csvPathLE, const std::string &csvPathAVL){
     m_med = loadMedicinesFromCsv(csvPathVD);
+    m_med.sort(); 
     m_lab = loadLabFromCsv(csvPathLE);
     m_farma = loadFarmacieFromCsv(csvPathAVL);
     autoLinkMedications();

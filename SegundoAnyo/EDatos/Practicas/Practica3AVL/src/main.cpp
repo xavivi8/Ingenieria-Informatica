@@ -121,6 +121,67 @@ VDinamico<std::string> loadFirstCifsFromCsv(const std::string &csvPath, unsigned
     return cifs;
 }
 
+VDinamico<std::string> loadAllCifsFromCsv(const std::string &csvPath) {
+    VDinamico<std::string> cifs;
+    std::ifstream ifs(csvPath);
+    if (!ifs.good()){
+        std::cout << "Error de apertura en archivo: " << csvPath << "\n";
+        return cifs;
+    }
+    std::string row;
+    bool firstLine = true;
+
+    while (std::getline(ifs, row)){
+        if (row.empty()) continue;
+
+        if (firstLine && row.size() >= 3 &&
+            (unsigned char)row[0]==0xEF && (unsigned char)row[1]==0xBB && (unsigned char)row[2]==0xBF){
+            row.erase(0,3);
+        }
+        firstLine = false;
+
+        std::stringstream cols(row);
+        std::string cif;
+        if (!std::getline(cols, cif, ';')) continue;
+
+        if (utils::lowerCopy(cif) == "cif") continue;
+
+        if (!cif.empty()) cifs.insert(cif);
+    }
+    return cifs;
+}
+
+VDinamico<int> loadMedIdsFromCsv(const std::string &csvPath) {
+    VDinamico<int> ids;
+    std::ifstream ifs(csvPath);
+    if (!ifs.good()){
+        std::cout << "Error de apertura en archivo: " << csvPath << "\n";
+        return ids;
+    }
+    std::string row;
+    bool firstLine = true;
+
+    while (std::getline(ifs, row)){
+        if (row.empty()) continue;
+
+        if (firstLine && row.size() >= 3 &&
+            (unsigned char)row[0]==0xEF && (unsigned char)row[1]==0xBB && (unsigned char)row[2]==0xBF){
+            row.erase(0,3);
+        }
+        firstLine = false;
+
+        std::stringstream cols(row);
+        std::string idNumStr;
+        if (!std::getline(cols, idNumStr, ';')) continue;
+
+        if (utils::lowerCopy(idNumStr) == "id_number") continue;
+
+        if (!idNumStr.empty()) ids.insert(std::stoi(idNumStr));
+    }
+    return ids;
+}
+
+
 /**
  * @author Francisco Javier Martín-Lunas Escobar fjme0008@red.ujaen.es
  */
@@ -269,7 +330,42 @@ int main(int argc, const char *argv[]) {
         std::cout << "----------------------------------------------- " << "Prueba II" << " -----------------------------------------------" << std::endl;
         std::cout << "=======================================================================================================================" << std::endl;
 
-        
+        MediExpress me("../data/pa_medicamentos.csv", "../data/laboratorios.csv", "../data/farmacias.csv");
+
+        // Releer farmacias -> vector de CIF (sin crear copias de Farmacia: solo strings)
+        VDinamico<std::string> allCifs = loadAllCifsFromCsv("../data/farmacias.csv");
+        std::cout << "CIFs leidos: " << allCifs.len() << "\n";
+
+        // Leer IDs de medicamentos en el orden del CSV
+        VDinamico<int> medIds = loadMedIdsFromCsv("../data/pa_medicamentos.csv");
+        std::cout << "IDs de medicamentos cargados: " << medIds.len() << "\n";
+
+        // Enlace: para cada farmacia (encontrada por puntero), asignar 100 meds consecutivos, ciclando
+        unsigned int pharmaciesLinked = 0;
+        unsigned long long totalLinks = 0;
+
+        for (unsigned int p = 0; p < allCifs.len(); ++p) {
+            // Buscar puntero a Farmacia dentro del AVL de MediExpress (NO crea copias)
+            Farmacia* pf = me.buscarFarmacia(allCifs[p]);
+            if (!pf) continue;
+
+            if (medIds.len() == 0) break; // nada que asignar
+
+            // Bloque de 100 medicamentos por farmacia, con wrap-around
+            for (unsigned int k = 0; k < 100; ++k) {
+                unsigned int midx = (p * 100u + k) % medIds.len(); // cíclico
+                int idNum = medIds[midx];
+
+                // Suministra por ID (internamente busca el puntero real al medicamento y lo dispensa a la Farmacia)
+                me.suministrarFarmacia(pf, idNum);
+                ++totalLinks;
+            }
+            ++pharmaciesLinked;
+        }
+
+        std::cout << "Farmacias enlazadas: " << pharmaciesLinked
+                << " | Enlaces farmacia-medicamento realizados: " << totalLinks << "\n";
+        std::cout << "Cada farmacia recibio 100 medicamentos consecutivos; se ciclaron cuando fue necesario.\n";
 
     } catch (const std::exception &e){
         std::cerr << e.what() << '\n';
