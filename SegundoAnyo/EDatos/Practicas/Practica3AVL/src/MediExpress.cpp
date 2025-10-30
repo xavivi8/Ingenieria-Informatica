@@ -146,15 +146,34 @@ Avl<Farmacia> MediExpress::loadFarmacieFromCsv(const std::string &csvPath){
 };
 
 void MediExpress::autoLinkMedications(){
-    unsigned int index  = 0;
-    const unsigned int siz = m_med.len();
+    // Reparte 2 medicamentos por laboratorio (orden CSV) y asigna el resto a los primeros labs de Madrid.
+    const unsigned int totalMeds = m_med.len();
+    if (totalMeds == 0) return;
 
-    for (auto it = m_lab.iterator(); !it.isEnd() && index < siz; it.next()) {
-        for (int pairIndex = 0; pairIndex < 2 && index < siz; ++pairIndex, ++index) {
-            m_med[index].setServidoPor(&it.data());
+    // ---- Paso 1: 2 medicamentos por laboratorio en orden de lista ----
+    unsigned int medIndex = 0;
+    for (auto labIt = m_lab.iterator(); !labIt.isEnd() && medIndex < totalMeds; labIt.next()) {
+        for (int perLab = 0; perLab < 2 && medIndex < totalMeds; ++perLab, ++medIndex) {
+            m_med[medIndex].setServidoPor(&labIt.data());
         }
     }
-};
+
+    // ---- Paso 2: los restantes -> primeros laboratorios ubicados en "Madrid" ----
+    if (medIndex < totalMeds) {
+        // Filtra laboratorios cuya ciudad contenga "Madrid" (búsqueda case-insensitive)
+        ListaEnlazada<Laboratorio*> labsInMadrid = buscarLabCiudad("Madrid");
+
+        unsigned int remaining = totalMeds - medIndex;
+        unsigned int availableMadrid = static_cast<unsigned int>(labsInMadrid.size());
+        unsigned int assignCount = (remaining < availableMadrid) ? remaining : availableMadrid;
+
+        // Asignar uno a uno siguiendo el orden devuelto (coincide con el orden del CSV)
+        auto madridIt = labsInMadrid.iterator();
+        for (unsigned int k = 0; k < assignCount && medIndex < totalMeds; ++k, ++medIndex, madridIt.next()) {
+            m_med[medIndex].setServidoPor(madridIt.data());
+        }
+    }
+}
 
 /**
  * Constructores
