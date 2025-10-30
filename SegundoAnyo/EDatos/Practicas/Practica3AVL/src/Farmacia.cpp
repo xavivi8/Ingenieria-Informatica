@@ -30,6 +30,13 @@ bool Farmacia::operator<(const Farmacia &farma) const{
     return m_cif < farma.m_cif;
 };
 
+std::ostream& operator<<(std::ostream& os, const Farmacia& f) {
+    os << f.m_cif << " | " << f.m_name << " | " << f.m_city
+       << " (" << f.m_province << ") | " << f.m_postalCode
+       << " | " << f.m_address;
+    return os;
+}
+
 /**
  * Metodos del uml
  */

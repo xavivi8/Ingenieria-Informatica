@@ -33,6 +33,7 @@ class Farmacia{
     ~Farmacia() = default;
 
     bool operator<(const Farmacia &farma) const;
+    friend std::ostream& operator<<(std::ostream& os, const Farmacia& f);
 
     void pedidoMedicam(int idNum);
     PaMedicamento* buscaMedicam(int id_num);
