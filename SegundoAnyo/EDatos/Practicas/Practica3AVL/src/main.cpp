@@ -367,6 +367,70 @@ int main(int argc, const char *argv[]) {
                 << " | Enlaces farmacia-medicamento realizados: " << totalLinks << "\n";
         std::cout << "Cada farmacia recibio 100 medicamentos consecutivos; se ciclaron cuando fue necesario.\n";
 
+        separador("Parte 1 del 5");
+        
+        VDinamico<std::string> cifBuffer;
+        const char* cifList[] = {
+            "37656422V","46316032N","77092934Q","33961602D","B62351861","B62351861",
+            "B65828113","46138599R","35069965W","37579913Y","37682300C","37643742X",
+            "46112335A","47980171D","38116138D","46315600V","37640233C","37931842N",
+            "33964303L","35022080A","B66046640","E66748344","47640201W","B66621954",
+            "46121385Z","X6806622W","46046390E"
+        };
+        for (const char* s : cifList) cifBuffer.insert(std::string(s));
+
+        std::cout << "Buffer CIFs creado. Tamanyo: " << cifBuffer.len() << "\n";
+
+        separador("Parte 2 del 5");
+
+        
+        const int MAGNESIO_ID = 3640;
+        unsigned int foundPharm = 0, notFoundPharm = 0, alreadyHad = 0, ordered = 0;
+
+        for (unsigned int i = 0; i < cifBuffer.len(); ++i) {
+            const std::string &cif = cifBuffer[i];
+
+            Farmacia* pf = me.buscarFarmacia(cif);
+            if (!pf) {
+                ++notFoundPharm;
+                std::cout << "No encontrada farmacia con CIF: " << cif << "\n";
+                continue;
+            }
+            ++foundPharm;
+
+            if (pf->buscaMedicam(MAGNESIO_ID) != nullptr) {
+                ++alreadyHad;
+                std::cout << "Farmacia " << cif << " ya dispensa ID " << MAGNESIO_ID << ".\n";
+                continue;
+            }
+
+            try {
+                me.suministrarFarmacia(pf, MAGNESIO_ID);
+                ++ordered;
+                std::cout << "Pedido realizado a farmacia " << cif << " para ID " << MAGNESIO_ID << ".\n";
+            } catch (const std::exception &ex) {
+                std::cout << "[ERROR] No se pudo suministrar a " << cif << ": " << ex.what() << "\n";
+            }
+        }
+
+        std::cout << "Resumen buffer: encontradas=" << foundPharm
+                << " no_encontradas=" << notFoundPharm
+                << " ya_lo_tenian=" << alreadyHad
+                << " pedidos_realizados=" << ordered << "\n";
+
+        separador("Parte 3 del 5");
+
+
+        VDinamico<Laboratorio*> labsMag = me.buscarLabs("magnesio");
+        std::cout << "Laboratorios que trabajan algun \"MAGNESIO\": " << labsMag.len() << "\n";
+
+        unsigned int showLabs = std::min(15u, labsMag.len());
+        for (unsigned int i = 0; i < showLabs; ++i) {
+            if (labsMag[i]) {
+                std::cout << " - " << *labsMag[i] << "\n";
+            }
+        }
+
     } catch (const std::exception &e){
         std::cerr << e.what() << '\n';
     }
