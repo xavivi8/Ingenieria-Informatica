@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[    144339,       2907]
-NotebookOptionsPosition[    137185,       2782]
-NotebookOutlinePosition[    137622,       2799]
-CellTagsIndexPosition[    137579,       2796]
+NotebookDataLength[    148794,       3032]
+NotebookOptionsPosition[    141479,       2906]
+NotebookOutlinePosition[    141881,       2922]
+CellTagsIndexPosition[    141838,       2919]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -2764,7 +2764,7 @@ aceptable y superar el examen final.\[LineSeparator]1. Pepito hizo un \
 cuaderno de pr\[AAcute]cticas aceptable pero no demostr\[OAcute] que lo hizo \
 \[EAcute]l en la prueba escrita. Sabiendo que Pepito super\[OAcute] el examen \
 final \[DownQuestion]Aprob\[OAcute] Pepito las pr\[AAcute]cticas?
-Juanito asisti\[OAcute] a clase, hizo una patata de cuaderno pero realiz\
+2. Juanito asisti\[OAcute] a clase, hizo una patata de cuaderno pero realiz\
 \[OAcute] bien la prueba escrita donde demostraba que \[EAcute]l era el autor \
 del cuaderno. Juanito tambi\[EAcute]n aprob\[OAcute] el examen final, \
 \[DownQuestion]aprobar\[AAcute] las pr\[AAcute]cticas Juanito? \
@@ -2772,17 +2772,140 @@ del cuaderno. Juanito tambi\[EAcute]n aprob\[OAcute] el examen final, \
  CellChangeTimes->{
   3.970986109214838*^9, {3.9710913146911983`*^9, 3.9710916451812534`*^9}, {
    3.9710917911240997`*^9, 3.9710918311888084`*^9}, {3.9710918622427845`*^9, 
-   3.9710918756007824`*^9}},ExpressionUUID->"9fbcf6c7-b54f-8943-bed6-\
+   3.9710918756007824`*^9}, {3.9710926332018623`*^9, 
+   3.9710926348917065`*^9}},ExpressionUUID->"9fbcf6c7-b54f-8943-bed6-\
 0a7520f50d68"],
+
+Cell["\<\
+aprobar las pr\[AAcute]cticas (p)
+asistir a clases (q)
+hacer un cuaderno de pr\[AAcute]cticas aceptable (r)
+hacer un examen (s)
+aprobar el examen final (t) \
+\>", "Text",
+ CellChangeTimes->{{3.9710924042936726`*^9, 3.9710924615048447`*^9}, {
+   3.9710924969766293`*^9, 3.971092499057007*^9}, {3.9710925998580666`*^9, 
+   3.9710926079955273`*^9}, {3.9710933648211594`*^9, 3.97109336964229*^9}, {
+   3.9710934415699177`*^9, 3.971093551732836*^9}, 3.9710936209172497`*^9, {
+   3.971098557267721*^9, 3.9710985941508064`*^9}, {3.9710986622124424`*^9, 
+   3.9710987244580708`*^9}},ExpressionUUID->"db92a734-afdc-7841-8c2b-\
+083c69dae135"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"PremisaPJ", "[", 
+   RowBox[{"{", 
+    RowBox[{"p_", ",", "q_", ",", "r_", ",", "s_", ",", "t_"}], "}"}], "]"}], 
+  ":=", 
+  RowBox[{"(", 
+   RowBox[{"p", "\[Implies]", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"q", "\[And]", "r", "\[And]", "s"}], ")"}], "\[Or]", 
+      RowBox[{"(", 
+       RowBox[{"r", "\[And]", "t"}], ")"}]}], ")"}]}], ")"}]}], "\n", 
+ RowBox[{
+  RowBox[{"PremisaP1", "[", 
+   RowBox[{"{", 
+    RowBox[{"p_", ",", "q_", ",", "r_", ",", "s_", ",", "t_"}], "}"}], "]"}], 
+  ":=", 
+  RowBox[{"(", 
+   RowBox[{"r", "\[And]", 
+    RowBox[{"(", 
+     RowBox[{"\[Not]", "s"}], ")"}]}], ")"}]}], "\n", 
+ RowBox[{
+  RowBox[{"PremisaP2", "[", 
+   RowBox[{"{", 
+    RowBox[{"p_", ",", "q_", ",", "r_", ",", "s_", ",", "t_"}], "}"}], "]"}], 
+  ":=", 
+  RowBox[{"(", "t", ")"}]}], "\n", 
+ RowBox[{
+  RowBox[{"ConclusionP", "[", 
+   RowBox[{"{", 
+    RowBox[{"p_", ",", "q_", ",", "r_", ",", "s_", ",", "t_"}], "}"}], "]"}], 
+  ":=", 
+  RowBox[{"(", "p", ")"}]}], "\n", 
+ RowBox[{
+  RowBox[{"PremisaJ1", "[", 
+   RowBox[{"{", 
+    RowBox[{"p_", ",", "q_", ",", "r_", ",", "s_", ",", "t_"}], "}"}], "]"}], 
+  ":=", 
+  RowBox[{"(", 
+   RowBox[{"q", "\[And]", 
+    RowBox[{"(", 
+     RowBox[{"\[Not]", "r"}], ")"}], "\[And]", "s"}], ")"}]}], "\n", 
+ RowBox[{
+  RowBox[{"PremisaJ2", "[", 
+   RowBox[{"{", 
+    RowBox[{"p_", ",", "q_", ",", "r_", ",", "s_", ",", "t_"}], "}"}], "]"}], 
+  ":=", 
+  RowBox[{"(", "t", ")"}]}], "\n", 
+ RowBox[{
+  RowBox[{"ConclusionJ", "[", 
+   RowBox[{"{", 
+    RowBox[{"p_", ",", "q_", ",", "r_", ",", "s_", ",", "t_"}], "}"}], "]"}], 
+  ":=", 
+  RowBox[{"(", "p", ")"}]}], "\n", 
+ RowBox[{
+  RowBox[{"ArgumentacionP", "[", 
+   RowBox[{"{", 
+    RowBox[{"p_", ",", "q_", ",", "r_", ",", "s_", ",", "t_"}], "}"}], "]"}], 
+  ":=", 
+  RowBox[{"Implies", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"PremisaPJ", "[", 
+      RowBox[{"{", 
+       RowBox[{"p", ",", "q", ",", "r", ",", "s", ",", "t"}], "}"}], "]"}], "&&", 
+     RowBox[{"PremisaP1", "[", 
+      RowBox[{"{", 
+       RowBox[{"p", ",", "q", ",", "r", ",", "s", ",", "t"}], "}"}], "]"}], "&&", 
+     RowBox[{"PremisaP2", "[", 
+      RowBox[{"{", 
+       RowBox[{"p", ",", "q", ",", "r", ",", "s", ",", "t"}], "}"}], "]"}]}], 
+    ",", 
+    RowBox[{"ConclusionP", "[", 
+     RowBox[{"{", 
+      RowBox[{"p", ",", "q", ",", "r", ",", "s", ",", "t"}], "}"}], "]"}]}], 
+   "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"ArgumentacionJ", "[", 
+   RowBox[{"{", 
+    RowBox[{"p_", ",", "q_", ",", "r_", ",", "s_", ",", "t_"}], "}"}], "]"}], 
+  ":=", 
+  RowBox[{"Implies", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"PremisaPJ", "[", 
+      RowBox[{"{", 
+       RowBox[{"p", ",", "q", ",", "r", ",", "s", ",", "t"}], "}"}], "]"}], "&&", 
+     RowBox[{"PremisaP1", "[", 
+      RowBox[{"{", 
+       RowBox[{"p", ",", "q", ",", "r", ",", "s", ",", "t"}], "}"}], "]"}], "&&", 
+     RowBox[{"PremisaP2", "[", 
+      RowBox[{"{", 
+       RowBox[{"p", ",", "q", ",", "r", ",", "s", ",", "t"}], "}"}], "]"}]}], 
+    ",", 
+    RowBox[{"ConclusionP", "[", 
+     RowBox[{"{", 
+      RowBox[{"p", ",", "q", ",", "r", ",", "s", ",", "t"}], "}"}], "]"}]}], 
+   "]"}]}]}], "Code",
+ CellChangeTimes->{
+  3.9710926283810577`*^9, 3.9710932421239223`*^9, {3.971093346161701*^9, 
+   3.9710933604902973`*^9}, {3.9710935546800537`*^9, 3.971093565709261*^9}, {
+   3.9710985974871273`*^9, 3.9710986590263653`*^9}, {3.9710987265701427`*^9, 
+   3.9710988010248127`*^9}, {3.971098891215212*^9, 
+   3.9710989520138206`*^9}},ExpressionUUID->"a35f77c9-28e3-6348-83a6-\
+ea22a45b91e7"],
 
 Cell[BoxData[""], "Code",ExpressionUUID->"59b881b1-41f1-fe4f-9d8e-e84c5e14820b"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{1152, 579.6},
-WindowMargins->{{
-  Automatic, -5.399999999999864}, {-5.399999999999977, Automatic}},
+WindowSize->{1141.2, 573.6},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
 FrontEndVersion->"14.1 para Microsoft Windows (64-bit) (July 16, 2024)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"83040781-0c4f-0e47-9fe5-a09381aba929"
@@ -2904,8 +3027,10 @@ Cell[135315, 2740, 267, 6, 33, "Text",ExpressionUUID->"0940bcac-926a-3e49-94ed-0
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[135619, 2751, 183, 3, 53, "Subsection",ExpressionUUID->"a9ec4f6c-053a-154a-9e61-73bf7af16aa2"],
-Cell[135805, 2756, 1257, 19, 164, "Text",ExpressionUUID->"9fbcf6c7-b54f-8943-bed6-0a7520f50d68"],
-Cell[137065, 2777, 80, 0, 50, "Code",ExpressionUUID->"59b881b1-41f1-fe4f-9d8e-e84c5e14820b"]
+Cell[135805, 2756, 1314, 20, 164, "Text",ExpressionUUID->"9fbcf6c7-b54f-8943-bed6-0a7520f50d68"],
+Cell[137122, 2778, 642, 13, 121, "Text",ExpressionUUID->"db92a734-afdc-7841-8c2b-083c69dae135"],
+Cell[137767, 2793, 3589, 106, 190, "Code",ExpressionUUID->"a35f77c9-28e3-6348-83a6-ea22a45b91e7"],
+Cell[141359, 2901, 80, 0, 50, "Code",ExpressionUUID->"59b881b1-41f1-fe4f-9d8e-e84c5e14820b"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
