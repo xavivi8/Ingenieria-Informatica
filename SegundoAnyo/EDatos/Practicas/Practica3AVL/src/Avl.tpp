@@ -141,7 +141,7 @@ unsigned int Avl<T>::countElements(Node *p){
 template<class T>
 unsigned int Avl<T>::hightHelper(Node* p){
     unsigned int res = 0;
-    
+
     if(p){
         unsigned int hl = hightHelper(p->m_left);
         unsigned int hr = hightHelper(p->m_right);
