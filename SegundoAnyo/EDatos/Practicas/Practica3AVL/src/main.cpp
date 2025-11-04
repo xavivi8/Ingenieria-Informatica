@@ -422,7 +422,7 @@ int main(int argc, const char *argv[]) {
 
 
         VDinamico<Laboratorio*> labsMag = me.buscarLabs("magnesio");
-        std::cout << "Laboratorios que trabajan algun \"MAGNESIO\": " << labsMag.len() << "\n";
+        std::cout << "Laboratorios que trabajan algun \"MAGNESIO\": " << (labsMag.len()-1) << "\n";
 
         unsigned int showLabs = std::min(15u, labsMag.len());
         for (unsigned int i = 0; i < showLabs; ++i) {
