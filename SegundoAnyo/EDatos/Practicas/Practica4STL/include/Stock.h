@@ -16,6 +16,7 @@ public:
     void decrementa(int n);
     void incrementa(int n);
 
+    void setNumStock(int n);
 };
 
 #endif //STOCK_H
