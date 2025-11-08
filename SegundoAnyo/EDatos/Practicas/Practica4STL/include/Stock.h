@@ -17,6 +17,9 @@ public:
     void incrementa(int n);
 
     void setNumStock(int n);
+
+    int getIdPaMed() const;
+    int getNumStock() const;
 };
 
 #endif //STOCK_H
