@@ -12,7 +12,10 @@ class Stock{
 public:
     Stock() = default;
     Stock(int idPaMed, int unidades): m_id_PaMed(idPaMed), m_num_stock(unidades){};
-    
+
+    void decrementa(int n);
+    void incrementa(int n);
+
 };
 
 #endif //STOCK_H
