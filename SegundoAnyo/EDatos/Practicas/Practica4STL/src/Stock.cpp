@@ -18,6 +18,26 @@ Stock::Stock(int idPaMed, int unidades, PaMedicamento* pa){
 Metodos
 */
 
+bool Stock::decrementa(int n){
+    bool response = false;
+    if((m_num_stock-n)<=0){
+        m_num_stock -= n;
+        response = true;
+    }
+    return response;
+}
+
+void Stock::incrementa(int n){
+    m_num_stock = n;
+};
+
+/*
+Operator
+*/
+
+bool Stock::operator<(const Stock &rhs) const{
+    return (m_id_PaMed < rhs.getIdPaMed());
+};
 
 /*
 Getters
@@ -29,6 +49,10 @@ int Stock::getIdPaMed() const{
 
 int Stock::getNumStock() const{
     return m_num_stock;
+};
+
+PaMedicamento* Stock::getNumber() const{
+
 };
 
 
