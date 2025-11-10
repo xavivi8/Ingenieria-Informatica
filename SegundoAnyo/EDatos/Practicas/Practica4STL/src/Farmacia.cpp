@@ -6,6 +6,26 @@
 
 #include <stdexcept>
 
+/*
+Metodos privados
+*/
+
+void Farmacia::pedidoMedicam(int idNum, int n){
+    if(!m_linkMedi){
+        throw std::logic_error("Farmacia sin enlace a MediExpress");
+    }
+    if(n <= 0){
+        throw std::invalid_argument("Cantidad solicitada debe ser > 0");
+    }
+    m_linkMedi->suministrarFarmacia(*this, idNum, n);
+};
+
+int Farmacia::buscaMedicamID(int id_num){
+    std::set<Stock>::const_iterator it =order.find( Stock(id_num, 0, nullptr) );
+    if (it == order.end()) return -1;
+    return it->getNumStock();
+};
+
 /**
  * Constructor
  */
@@ -40,15 +60,6 @@ std::ostream& operator<<(std::ostream& os, const Farmacia& f) {
 /**
  * Metodos del uml
  */
-
-
-void Farmacia::pedidoMedicam(int idNum){
-    if(!m_linkMedi){
-        throw std::logic_error("Farmacia sin enlace a MediExpress");
-    }
-    m_linkMedi->suministrarFarmacia(this, idNum);
-};
-
 
 PaMedicamento* Farmacia::buscaMedicam(int idNum){
     PaMedicamento aux(idNum,"","");
