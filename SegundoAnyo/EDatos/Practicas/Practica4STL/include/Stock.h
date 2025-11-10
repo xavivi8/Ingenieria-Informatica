@@ -9,7 +9,7 @@
 class Stock{
     int m_id_PaMed;
     int m_num_stock;
-    PaMedicamento* m_idNum;
+    PaMedicamento* m_number;
 
 public:
     Stock() = default;
@@ -23,11 +23,11 @@ public:
 
     void setIdPaMed(int n);
     void setNumStock(int n);
-    void setIdNum(PaMedicamento* pa);
+    void setNumber(PaMedicamento* pa);
 
     int getIdPaMed() const;
     int getNumStock() const;
-    PaMedicamento* getIdNum() const;
+    PaMedicamento* getNumber() const;
 };
 
 #endif //STOCK_H
