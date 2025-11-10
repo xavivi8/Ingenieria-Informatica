@@ -1,6 +1,9 @@
 //
 // Created by jmart on 08/10/2025.
 //
+
+#ifndef MEDIEXPRESS_H
+#define MEDIEXPRESS_H
 #include "../include/PaMedicamento.h"
 #include "../include/Laboratorio.h"
 #include "../include/Farmacia.h"
@@ -9,9 +12,6 @@
 #include <vector>
 #include <list>
 #include <map>
-
-#ifndef MEDIEXPRESS_H
-#define MEDIEXPRESS_H
 
 class MediExpress{
     private:
@@ -31,7 +31,7 @@ class MediExpress{
                     const std::string &csvPathAVL);
         ~MediExpress();
 
-        void suministrarMed(PaMedicamento &med, Laboratorio &lab);
+        void suministrarMed(const PaMedicamento &med, const Laboratorio &lab);
         Laboratorio* buscarLab(const std::string &labName);
         std::vector<Laboratorio*> buscarLabCiudad(const std::string &cityName) const;
         std::vector<PaMedicamento*> buscarCompuesto(const std::string &compoundName) const;
