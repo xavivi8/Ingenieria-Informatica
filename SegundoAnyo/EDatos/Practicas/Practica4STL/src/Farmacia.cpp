@@ -77,6 +77,29 @@ void Farmacia::dispensaMedicam(const PaMedicamento &pa){
  * Getters
  */
 
+std::string Farmacia::getCif() const{
+    return m_cif;
+}
+
+std::string Farmacia::getProvince() const{
+    return m_province;
+}
+
+std::string Farmacia::getCity() const{
+    return m_city;
+}
+
+std::string Farmacia::getName() const{
+    return m_name;
+}
+
+std::string Farmacia::getAddress() const{
+    return m_address;
+}
+
+std::string Farmacia::getPostalCode() const{
+    return m_postalCode;
+}
 
 MediExpress* Farmacia::getLinkMedi() const{
     return m_linkMedi;
@@ -86,6 +109,29 @@ MediExpress* Farmacia::getLinkMedi() const{
  * Setters
  */
 
+void Farmacia::setCif(const std::string &cif){
+    m_cif = cif;
+}
+
+void Farmacia::setProvince(const std::string &province){
+    m_province = province;
+}
+
+void Farmacia::setCity(const std::string &city){
+    m_city = city;
+}
+
+void Farmacia::setName(const std::string &name){
+    m_name = name;
+}
+
+void Farmacia::setAddress(const std::string &address){
+    m_address = address;
+}
+
+void Farmacia::setPostalCode(const std::string &postalCode){
+    m_postalCode = postalCode;
+}
 
 void Farmacia::setLinkMedi(MediExpress *medi){
     m_linkMedi = medi;
