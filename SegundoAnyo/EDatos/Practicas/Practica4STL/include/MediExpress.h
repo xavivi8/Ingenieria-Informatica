@@ -1,11 +1,8 @@
 //
 // Created by jmart on 08/10/2025.
 //
-#include "../include/VDinamico.h"
-#include "../include/ListaEnlazada.h"
 #include "../include/PaMedicamento.h"
 #include "../include/Laboratorio.h"
-#include "../include/Avl.h"
 #include "../include/Farmacia.h"
 
 #include <set>
