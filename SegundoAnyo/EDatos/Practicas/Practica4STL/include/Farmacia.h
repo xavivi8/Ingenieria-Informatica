@@ -25,6 +25,8 @@ class Farmacia{
     std::set<Stock> order;
 
     void pedidoMedicam(int idNum, int n);
+    int buscaMedicamID(int id_num);
+
 
     public:
     Farmacia() = default;
