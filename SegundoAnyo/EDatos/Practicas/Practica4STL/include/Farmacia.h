@@ -54,12 +54,12 @@ class Farmacia{
     bool deleteStock(int idNum);
 
     //Getters
-    std::string& getCif() const;
-    std::string& getProvince() const;
-    std::string& getCity() const;
-    std::string& getName() const;
-    std::string& getAddress() const;
-    std::string& getPostalCode() const;
+    std::string getCif() const;
+    std::string getProvince() const;
+    std::string getCity() const;
+    std::string getName() const;
+    std::string getAddress() const;
+    std::string getPostalCode() const;
     MediExpress* getLinkMedi() const;
 
     //Setters
