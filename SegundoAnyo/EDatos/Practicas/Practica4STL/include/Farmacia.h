@@ -6,8 +6,12 @@
 #define FARMACIA_H
 
 #include "../include/PaMedicamento.h"
+#include "../include/Stock.h"
 #include "../include/Avl.h"
 #include <string>
+#include <set>
+#include <vector>
+
 
 class MediExpress;
 class Farmacia{
@@ -19,7 +23,9 @@ class Farmacia{
     std::string m_postalCode;
 
     MediExpress* m_linkMedi{nullptr};
-    Avl<PaMedicamento> m_dispense;
+    std::set<Stock> order;
+
+    void pedidoMedicam(int idNum, int n);
 
     public:
     Farmacia() = default;
@@ -35,12 +41,35 @@ class Farmacia{
     bool operator<(const Farmacia &farma) const;
     friend std::ostream& operator<<(std::ostream& os, const Farmacia& f);
 
-    void pedidoMedicam(int idNum);
     PaMedicamento* buscaMedicam(int id_num);
-    void dispensaMedicam(const PaMedicamento &pa);
+    std::vector<PaMedicamento*> buscaMedicamNombre(const std::string &nombre);
+    void nuevoStock(PaMedicamento* pa, int n);
+    
+    PaMedicamento* comprarMedicamento(int id_num, int n);
 
-    void setLinkMedi(MediExpress *medi);
+    
+    
+
+    bool deleteStock(int idNum);
+
+    //Getters
+    std::string& getCif() const;
+    std::string& getProvince() const;
+    std::string& getCity() const;
+    std::string& getName() const;
+    std::string& getAddress() const;
+    std::string& getPostalCode() const;
     MediExpress* getLinkMedi() const;
+
+    //Setters
+    void setCif(const std::string &cif);
+    void setProvince(const std::string &province);
+    void setCity(const std::string &city);
+    void setName(const std::string &name);
+    void setAddress(const std::string &address);
+    void setPostalCode(const std::string &postalCode);
+    void setLinkMedi(MediExpress *medi);
+
 };
 
 #endif //FARMACIA_H

@@ -18,14 +18,8 @@ private:
 public:
     PaMedicamento();
     PaMedicamento(int id_num, std::string id_alpha, std::string name);
-    /**
-     * Prefuntar si se podria usar "~PaMedicamento() = default;" para que el contructor lo haga automaticamente
-     * porque como no hay nada dinamico nos podriamos ahorar el hacerlo manual
-     */
     ~PaMedicamento();
 
-    //Operators
-    //Al poner al final el const se promete que esa funcion no modificara atributos
     bool operator==(const PaMedicamento &object) const;
     bool operator<(const PaMedicamento &object) const;
     

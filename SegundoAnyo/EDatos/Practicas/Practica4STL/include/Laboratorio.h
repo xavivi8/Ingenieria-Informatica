@@ -28,7 +28,7 @@ public:
     // Destructor
     ~Laboratorio() = default;  // no hay recursos dinámicos, por ende se puede usar el default
 
-    bool operator==(Laboratorio lab) const;
+    bool operator==(const Laboratorio &lab) const;
     friend std::ostream& operator<<(std::ostream& os, const Laboratorio& l);
 
     // Getters
