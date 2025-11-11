@@ -19,7 +19,7 @@ class Farmacia{
     std::string m_postalCode;
 
     MediExpress* m_linkMedi{nullptr};
-    Avl<PaMedicamento> m_dispense;
+    Avl<PaMedicamento*> m_dispense;
 
     public:
     Farmacia() = default;
