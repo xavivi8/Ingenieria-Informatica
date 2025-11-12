@@ -238,3 +238,13 @@ void MediExpress::suministrarFarmacia(Farmacia &f, int id_num, int n) {
     f.nuevoStock(med, n);
 }
 
+std::vector<Farmacia*> MediExpress::buscarFarmacias(const std::string &provincia) const {
+    std::vector<Farmacia*> v;
+    for (auto it = m_farma.cbegin(); it != m_farma.cend(); ++it) {
+        if (utils::iContains(it->getProvince(), provincia)) {
+            v.push_back(const_cast<Farmacia*>(&(*it)));
+        }
+    }
+    return v;
+}
+
