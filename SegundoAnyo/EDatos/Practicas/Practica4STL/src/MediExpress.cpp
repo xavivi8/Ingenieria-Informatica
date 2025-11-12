@@ -227,3 +227,14 @@ std::vector<Laboratorio*> MediExpress::buscarLabs(const std::string &nombrePA) c
     }
     return resultado;
 }
+
+/**
+ * Metodos pract 4
+ */
+
+void MediExpress::suministrarFarmacia(Farmacia &f, int id_num, int n) {
+    PaMedicamento* med = buscarCompuesto(id_num);
+    if (!med) throw std::logic_error("Medicamento no encontrado");
+    f.nuevoStock(med, n);
+}
+
