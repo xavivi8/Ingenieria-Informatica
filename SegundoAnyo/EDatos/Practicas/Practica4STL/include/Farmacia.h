@@ -22,7 +22,7 @@ class Farmacia{
     std::string m_postalCode;
 
     MediExpress* m_linkMedi{nullptr};
-    std::set<Stock> order;
+    std::set<Stock> m_order;
 
     void pedidoMedicam(int idNum, int n);
     int buscaMedicamID(int id_num);
@@ -42,15 +42,9 @@ class Farmacia{
     bool operator<(const Farmacia &farma) const;
     friend std::ostream& operator<<(std::ostream& os, const Farmacia& f);
 
-    PaMedicamento* buscaMedicam(int id_num);
     std::vector<PaMedicamento*> buscaMedicamNombre(const std::string &nombre);
     void nuevoStock(PaMedicamento* pa, int n);
-    
     PaMedicamento* comprarMedicamento(int id_num, int n);
-
-    
-    
-
     bool deleteStock(int idNum);
 
     //Getters
