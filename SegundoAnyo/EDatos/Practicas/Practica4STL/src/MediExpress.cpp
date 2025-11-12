@@ -201,8 +201,9 @@ PaMedicamento* MediExpress::buscarCompuesto(int id_num) {
 }
 
 Farmacia* MediExpress::buscarFarmacia(const std::string &cif) {
+    const std::string clave = utils::lowerCopy(cif);
     for (auto it = m_farma.begin(); it != m_farma.end(); ++it) {
-        if (it->getCif() == cif) return &(*it);
+        if (utils::lowerCopy(it->getCif()) == clave) return &(*it);
     }
     return nullptr;
 }
