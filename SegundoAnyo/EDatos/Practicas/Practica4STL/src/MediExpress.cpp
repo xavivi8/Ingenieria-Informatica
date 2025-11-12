@@ -248,3 +248,6 @@ std::vector<Farmacia*> MediExpress::buscarFarmacias(const std::string &provincia
     return v;
 }
 
+bool MediExpress::eliminarMedicamento(int id_num) {
+    return m_med.erase(id_num) > 0;
+}
