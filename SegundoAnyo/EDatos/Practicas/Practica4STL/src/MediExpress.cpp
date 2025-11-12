@@ -197,10 +197,8 @@ std::vector<PaMedicamento*> MediExpress::getMedicamSinLab() const {
 
 PaMedicamento* MediExpress::buscarCompuesto(int id_num) {
     auto it = m_med.find(id_num);
-    if (it == m_med.end()) return nullptr;
-    return &it->second;
+    return (it == m_med.end()) ? nullptr : &it->second;
 }
-
 
 Farmacia* MediExpress::buscarFarmacia(const std::string &cif) {
     for (auto it = m_farma.begin(); it != m_farma.end(); ++it) {
@@ -208,8 +206,6 @@ Farmacia* MediExpress::buscarFarmacia(const std::string &cif) {
     }
     return nullptr;
 }
-
-
 
 std::vector<Laboratorio*> MediExpress::buscarLabs(const std::string &nombrePA) const {
     std::vector<Laboratorio*> resultado;
