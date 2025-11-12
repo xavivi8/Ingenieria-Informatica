@@ -3,6 +3,7 @@
 //
 #include "../include/Farmacia.h"
 #include "../include/MediExpress.h"
+#include "../include/utils.h"
 
 #include <stdexcept>
 
@@ -21,8 +22,8 @@ void Farmacia::pedidoMedicam(int idNum, int n){
 };
 
 int Farmacia::buscaMedicamID(int id_num){
-    std::set<Stock>::const_iterator it =order.find( Stock(id_num, 0, nullptr) );
-    if (it == order.end()) return -1;
+    std::set<Stock>::const_iterator it =m_order.find( Stock(id_num, 0, nullptr) );
+    if (it == m_order.end()) return -1;
     return it->getNumStock();
 };
 
@@ -61,17 +62,91 @@ std::ostream& operator<<(std::ostream& os, const Farmacia& f) {
  * Metodos del uml
  */
 
-PaMedicamento* Farmacia::buscaMedicam(int idNum){
-    PaMedicamento aux(idNum,"","");
-    return m_dispense.buscaIt(aux);
-};
+std::vector<PaMedicamento*> Farmacia::buscaMedicamNombre(const std::string &nombre){
+    std::vector<PaMedicamento*> resultados;
+    if (nombre.empty()) return resultados;
 
+    resultados.reserve(m_order.size());
+    for (std::set<Stock>::const_iterator it = m_order.cbegin(); it != m_order.cbegin(); ++it) {
+        PaMedicamento* pa = it->getNumber();
+        if (!pa) continue;
 
-void Farmacia::dispensaMedicam(const PaMedicamento &pa){
-    if(!m_dispense.inserta(pa)){
-        throw std::runtime_error("El medicamento ya se encuentra");
+        if (utils::iContains(pa->getName(), nombre)) {
+            resultados.push_back(pa);
+        }
     }
-};
+    return resultados;
+}
+
+void Farmacia::nuevoStock(PaMedicamento* pa, int n){
+    if (!pa) {
+        throw std::invalid_argument("PaMedicamento nulo");
+    }
+    if (n <= 0) {
+        throw std::invalid_argument("La cantidad debe ser > 0");
+    }
+
+    Stock clave(pa->getIdNum(), 0, nullptr);
+    std::set<Stock>::const_iterator it = m_order.find(clave);
+
+    if (it == m_order.cend()) {
+       m_order.insert(Stock(pa->getIdNum(), n, pa));
+    } else {
+        int unidades = it->getNumStock();
+        PaMedicamento* ref = it->getNumber();
+        m_order.erase(it);
+        // Conserva el puntero existente si lo había; si era null, usa 'pa'
+        m_order.insert(Stock(pa->getIdNum(), unidades + n, ref ? ref : pa));
+    }
+}
+
+PaMedicamento* Farmacia::comprarMedicamento(int id_num, int n){
+    if (n <= 0) {
+        throw std::invalid_argument("La cantidad a comprar debe ser > 0");
+    }
+
+    std::set<Stock>::const_iterator it = m_order.find(Stock(id_num, 0, nullptr));
+
+    int disponible = (it == m_order.cend()) ? 0 : it->getNumStock();
+    if (disponible < n) {
+        // Necesitamos reponer la diferencia
+        int falta = n - disponible;
+        if (!m_linkMedi) {
+            throw std::logic_error("Farmacia sin enlace a MediExpress: no se puede reponer stock.");
+        }
+
+        pedidoMedicam(id_num, falta);
+
+        it = m_order.find(Stock(id_num, 0, nullptr));
+        if (it == m_order.cend() || it->getNumStock() < n) {
+            throw std::runtime_error("Stock insuficiente tras solicitar reposición.");
+        }
+    }
+
+    Stock actualizado = *it;
+    PaMedicamento* pa = actualizado.getNumber();
+    int restante = actualizado.getNumStock() - n;
+
+    m_order.erase(it);
+    if (restante > 0) {
+        actualizado.setNumStock(restante);
+        m_order.insert(actualizado);
+    }
+
+    if (!pa && m_linkMedi) {
+        pa = m_linkMedi->buscarCompuesto(id_num);
+    }
+
+    return pa;
+}
+
+bool Farmacia::deleteStock(int idNum){
+    std::set<Stock>::const_iterator it = m_order.find( Stock(idNum, 0, nullptr) );
+    if (it == m_order.cend()) return false;
+    m_order.erase(it);
+    return true;
+}
+
 
 /**
  * Getters
