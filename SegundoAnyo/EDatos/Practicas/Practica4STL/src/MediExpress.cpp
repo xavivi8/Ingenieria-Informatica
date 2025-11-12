@@ -8,60 +8,14 @@
 #include <sstream>
 #include <iterator>
 #include <iostream>
+#include <unordered_set>
 
 /**
  * Metodos privados
  */
 
-VDinamico<PaMedicamento> MediExpress::loadMedicinesFromCsv(const std::string &csvPath){
-
-    std::ifstream is;
-    std::stringstream columns;
-    std::string row;
-    int count = 0;
-    std::string idNum = "";
-    std::string idAlpha = "";
-    std::string name = "";
-
-    VDinamico<PaMedicamento> aux;
-
-    is.open(csvPath); // carpeta de proyecto
-    if (is.good()){
-
-        clock_t t_ini = clock();
-
-        while (getline(is, row)){
-
-            // ¿Se ha leído una nueva fila?
-            if (row != ""){
-
-                columns.str(row);
-
-                // formato de fila: id_number;id_alpha;nombre;
-
-                getline(columns, idNum, ';'); // leemos caracteres hasta encontrar y omitir ';'
-                getline(columns, idAlpha, ';');
-                getline(columns, name, ';');
-
-                row = "";
-                columns.clear();
-
-                PaMedicamento med(std::stoi(idNum), idAlpha, name);
-                aux.insert(med);
-            }
-        }
-
-        is.close();
-
-    } else {
-        
-    }
-
-    return aux;
-};
-
-ListaEnlazada<Laboratorio> MediExpress::loadLabFromCsv(const std::string &csvPath){
-    ListaEnlazada<Laboratorio> aux;
+std::map<int, PaMedicamento> MediExpress::loadMedicinesFromCsv(const std::string &csvPath) {
+    std::map<int, PaMedicamento> aux;
 
     std::ifstream is(csvPath, std::ios::binary);
     if (!is.is_open()) {
@@ -69,19 +23,36 @@ ListaEnlazada<Laboratorio> MediExpress::loadLabFromCsv(const std::string &csvPat
         return aux;
     }
 
-    //Leer todo el archivo a memoria
-    std::string content((std::istreambuf_iterator<char>(is)),
-                         std::istreambuf_iterator<char>());
+    std::string row;
+    while (std::getline(is, row)) {
+        if (row.empty()) continue;
 
-    //Normalizar finales de línea: \r\n -> \n y \r -> \n
-    for (char &c : content) {
-        if (c == '\r') c = '\n';
+        std::stringstream columns(row);
+        std::string idNum, idAlpha, name;
+
+        std::getline(columns, idNum,   ';');
+        std::getline(columns, idAlpha, ';');
+        std::getline(columns, name,    ';'); // el último ; es opcional
+
+        if (idNum.empty()) continue;
+
+        PaMedicamento med(std::stoi(idNum), idAlpha, name);
+        aux.emplace(med.getIdNum(), std::move(med));
+    }
+    return aux;
+}
+
+std::list<Laboratorio> MediExpress::loadLabFromCsv(const std::string &csvPath) {
+    std::list<Laboratorio> aux;
+
+    std::ifstream is(csvPath, std::ios::binary);
+    if (!is.is_open()) {
+        std::cerr << "[ERROR] No puedo abrir: " << csvPath << "\n";
+        return aux;
     }
 
-    //Parsear línea a línea
-    std::stringstream ss(content);
     std::string row;
-    while (std::getline(ss, row, '\n')) {
+    while (std::getline(is, row)) {
         if (row.empty()) continue;
 
         std::stringstream columns(row);
@@ -95,15 +66,13 @@ ListaEnlazada<Laboratorio> MediExpress::loadLabFromCsv(const std::string &csvPat
 
         if (idStr.empty()) continue;
 
-        Laboratorio lab(std::stoi(idStr), nombre, direccion, cod_postal, localidad);
-        aux.insertAtEnd(lab);
+        aux.emplace_back(std::stoi(idStr), nombre, direccion, cod_postal, localidad);
     }
-
     return aux;
-};
+}
 
-Avl<Farmacia> MediExpress::loadFarmacieFromCsv(const std::string &csvPath){
-    Avl<Farmacia> aux;
+std::vector<Farmacia> MediExpress::loadFarmacieFromCsv(const std::string &csvPath) {
+    std::vector<Farmacia> aux;
 
     std::ifstream is(csvPath, std::ios::binary);
     if (!is.is_open()) {
@@ -111,67 +80,45 @@ Avl<Farmacia> MediExpress::loadFarmacieFromCsv(const std::string &csvPath){
         return aux;
     }
 
-    //Leer todo el archivo a memoria
-    std::string content((std::istreambuf_iterator<char>(is)),
-                         std::istreambuf_iterator<char>());
-
-    //Normalizar finales de línea: \r\n -> \n y \r -> \n
-    for (char &c : content) {
-        if (c == '\r') c = '\n';
-    }
-
-    //Parsear línea a línea
-    std::stringstream ss(content);
     std::string row;
-    while (std::getline(ss, row, '\n')) {
+    while (std::getline(is, row)) {
         if (row.empty()) continue;
 
         std::stringstream columns(row);
         std::string cif, province, city, name, address, postalCode;
 
-        std::getline(columns, cif,      ';');
-        std::getline(columns, province,     ';');
-        std::getline(columns, city,  ';');
-        std::getline(columns, name, ';');
-        std::getline(columns, address, ';');
+        std::getline(columns, cif,        ';');
+        std::getline(columns, province,   ';');
+        std::getline(columns, city,       ';');
+        std::getline(columns, name,       ';');
+        std::getline(columns, address,    ';');
         std::getline(columns, postalCode);
 
         if (cif.empty()) continue;
 
-        Farmacia farma(cif, province, city, name, address, postalCode, this);
-        aux.inserta(farma);
+        aux.emplace_back(cif, province, city, name, address, postalCode, this);
     }
-
     return aux;
-};
+}
 
-void MediExpress::autoLinkMedications(){
-    // Reparte 2 medicamentos por laboratorio (orden CSV) y asigna el resto a los primeros labs de Madrid.
-    const unsigned int totalMeds = m_med.len();
-    if (totalMeds == 0) return;
+void MediExpress::autoLinkMedications() {
+    if (m_med.empty()) return;
 
-    // ---- Paso 1: 2 medicamentos por laboratorio en orden de lista ----
-    unsigned int medIndex = 0;
-    for (auto labIt = m_lab.iterator(); !labIt.isEnd() && medIndex < totalMeds; labIt.next()) {
-        for (int perLab = 0; perLab < 2 && medIndex < totalMeds; ++perLab, ++medIndex) {
-            m_med[medIndex].setServidoPor(&labIt.data());
+    // 1) Reparto: 2 medicamentos por laboratorio en orden de lista
+    auto medIt = m_med.begin();
+    for (auto labIt = m_lab.begin(); labIt != m_lab.end() && medIt != m_med.end(); ++labIt) {
+        for (int k = 0; k < 2 && medIt != m_med.end(); ++k, ++medIt) {
+            medIt->second.setServidoPor(&(*labIt));
         }
     }
+    if (medIt == m_med.end()) return;
 
-    // ---- Paso 2: los restantes -> primeros laboratorios ubicados en "Madrid" ----
-    if (medIndex < totalMeds) {
-        // Filtra laboratorios cuya ciudad contenga "Madrid" (búsqueda case-insensitive)
-        ListaEnlazada<Laboratorio*> labsInMadrid = buscarLabCiudad("Madrid");
-
-        unsigned int remaining = totalMeds - medIndex;
-        unsigned int availableMadrid = static_cast<unsigned int>(labsInMadrid.size());
-        unsigned int assignCount = (remaining < availableMadrid) ? remaining : availableMadrid;
-
-        // Asignar uno a uno siguiendo el orden devuelto (coincide con el orden del CSV)
-        auto madridIt = labsInMadrid.iterator();
-        for (unsigned int k = 0; k < assignCount && medIndex < totalMeds; ++k, ++medIndex, madridIt.next()) {
-            m_med[medIndex].setServidoPor(madridIt.data());
-        }
+    // 2) Resto: uno a cada primer laboratorio cuya ciudad contenga "Madrid"
+    auto labsMadrid = buscarLabCiudad("Madrid"); // usa utils::iContains
+    for (Laboratorio* lm : labsMadrid) {
+        if (medIt == m_med.end()) break;
+        medIt->second.setServidoPor(lm);
+        ++medIt;
     }
 }
 
@@ -181,10 +128,11 @@ void MediExpress::autoLinkMedications(){
 
 MediExpress::MediExpress() = default;
 
-MediExpress::MediExpress(const std::string &csvPathVD, const std::string &csvPathLE, const std::string &csvPathAVL){
-    m_med = loadMedicinesFromCsv(csvPathVD);
-    m_med.sort(); 
-    m_lab = loadLabFromCsv(csvPathLE);
+MediExpress::MediExpress(const std::string &csvPathVD,
+                         const std::string &csvPathLE,
+                         const std::string &csvPathAVL) {
+    m_med   = loadMedicinesFromCsv(csvPathVD);
+    m_lab   = loadLabFromCsv(csvPathLE);
     m_farma = loadFarmacieFromCsv(csvPathAVL);
     autoLinkMedications();
 }
@@ -195,74 +143,52 @@ MediExpress::~MediExpress() = default;
  * Metodos
  */
 
-void MediExpress::suministrarMed(PaMedicamento& med, Laboratorio& lab){
-    bool labExists = false;
+void MediExpress::suministrarMed(const PaMedicamento &med, const Laboratorio &lab) {
+    Laboratorio* labReal = buscarLab(lab.getLabName());
+    if (!labReal) return;
 
-    for (auto it = m_lab.iterator(); !it.isEnd(); it.next()) {
-        if (it.data() == lab) {
-            labExists = true;
-            break;
-        }
-    }
-    if (labExists){
-        //Buscar el medicamento y enlazar el primero que coincida
-        const unsigned int n = m_med.len();
-        for (unsigned int i = 0; i < n; ++i) {
-            if (m_med[i] == med) {
-                m_med[i].setServidoPor(&lab);
-                break;
-        }
-        }
+    auto itMed = m_med.find(med.getIdNum());
+    if (itMed != m_med.end()) {
+        itMed->second.setServidoPor(labReal);
     }
 }
 
-Laboratorio* MediExpress::buscarLab(const std::string &labName){
-    for(auto it = m_lab.iterator(); !it.isEnd(); it.next()){
-        if(it.data().getLabName()==labName){
-            return &it.data();
-        }
+Laboratorio* MediExpress::buscarLab(const std::string &labName) {
+    for (auto it = m_lab.begin(); it != m_lab.end(); ++it) {
+        if (it->getLabName() == labName) return &(*it);
     }
-
     return nullptr;
-};
+}
 
-ListaEnlazada<Laboratorio*> MediExpress::buscarLabCiudad(const std::string &cityName) const{
-    ListaEnlazada<Laboratorio*> aux;
-
-    for(auto it = m_lab.iterator(); !it.isEnd(); it.next()){
-        if(utils::iContains(it.data().getCity(),cityName)){
-            aux.insertAtEnd(&it.data());
+std::vector<Laboratorio*> MediExpress::buscarLabCiudad(const std::string &cityName) const {
+    std::vector<Laboratorio*> aux;
+    for (auto it = m_lab.cbegin(); it != m_lab.cend(); ++it) {
+        if (utils::iContains(it->getCity(), cityName)) {
+            // la función es const, pero la firma pide puntero no-const asi que hay que solucionarlo
+            aux.push_back(const_cast<Laboratorio*>(&(*it)));
         }
     }
-
+    return aux;
+}
+std::vector<PaMedicamento*> MediExpress::buscarCompuesto(const std::string &compoundName) const {
+    std::vector<PaMedicamento*> aux;
+    for (auto it = m_med.cbegin(); it != m_med.cend(); ++it) {
+        if (utils::iContains(it->second.getName(), compoundName)) {
+            aux.push_back(const_cast<PaMedicamento*>(&it->second));
+        }
+    }
     return aux;
 }
 
-VDinamico<PaMedicamento*> MediExpress::buscarCompuesto(const std::string &compoundName) const{
-    VDinamico<PaMedicamento*> aux;
-
-    unsigned int siz = m_med.len();
-    for(int i = 0; i < siz;++i){
-        if (utils::iContains(m_med[i].getName(), compoundName)) {
-            aux.insert(&m_med[i]);
+std::vector<PaMedicamento*> MediExpress::getMedicamSinLab() const {
+    std::vector<PaMedicamento*> aux;
+    for (auto it = m_med.cbegin(); it != m_med.cend(); ++it) {
+        if (it->second.getServidoPor() == nullptr) {
+            aux.push_back(const_cast<PaMedicamento*>(&it->second));
         }
     }
-
     return aux;
-};
-
-VDinamico<PaMedicamento*> MediExpress::getMedicamSinLab() const{
-    VDinamico<PaMedicamento*> aux;
-
-    unsigned int siz = m_med.len();
-    for(int i = 0; i < siz ; ++i){
-        if(m_med[i].getServidoPor() == nullptr){
-            aux.insert(&m_med[i]);
-        }
-    }
-
-    return aux;
-};
+}
 
 /**
  * Metodos pract 3
@@ -270,51 +196,34 @@ VDinamico<PaMedicamento*> MediExpress::getMedicamSinLab() const{
 
 
 PaMedicamento* MediExpress::buscarCompuesto(int id_num) {
-    if (m_med.len() == 0) return nullptr;
-
-    PaMedicamento aux(id_num, "", "");
-    unsigned int idx = m_med.binarySearch(aux);
-
-    if (idx == UINT_MAX) return nullptr;
-    return &m_med[idx];
+    auto it = m_med.find(id_num);
+    if (it == m_med.end()) return nullptr;
+    return &it->second;
 }
 
 
 Farmacia* MediExpress::buscarFarmacia(const std::string &cif) {
-    Farmacia key(cif, "", "", "", "", "",nullptr);
-    return m_farma.buscaIt(key);
-};
+    for (auto it = m_farma.begin(); it != m_farma.end(); ++it) {
+        if (it->getCif() == cif) return &(*it);
+    }
+    return nullptr;
+}
 
 
 
-VDinamico<Laboratorio*> MediExpress::buscarLabs(const std::string &nombrePA) const {
-    VDinamico<Laboratorio*> resultado;
-    if (m_med.len() == 0) return resultado;
+std::vector<Laboratorio*> MediExpress::buscarLabs(const std::string &nombrePA) const {
+    std::vector<Laboratorio*> resultado;
+    std::unordered_set<Laboratorio*> visto;
 
-    for (unsigned int i = 0; i < m_med.len(); ++i) {
-        const PaMedicamento &med = m_med[i];
+    for (auto it = m_med.cbegin(); it != m_med.cend(); ++it) {
+        const PaMedicamento &med = it->second;
+        if (!utils::iContains(med.getName(), nombrePA)) continue;
 
-        if (utils::iContains(med.getName(), nombrePA)) {
-            Laboratorio* lab = med.getServidoPor();
-            if (lab) {
-                bool yaEsta = false;
-                for (unsigned int j = 0; j < resultado.len() && !yaEsta; ++j) {
-                    if (resultado[j] == lab) yaEsta = true;
-                }
-                if (!yaEsta) {
-                    resultado.insert(lab);
-                }
-            }
+        Laboratorio* lab = med.getServidoPor();
+        if (lab && !visto.count(lab)) {
+            resultado.push_back(lab);
+            visto.insert(lab);
         }
     }
     return resultado;
 }
-
-
-void MediExpress::suministrarFarmacia(Farmacia *f, int idNum){
-    PaMedicamento* medAux = buscarCompuesto(idNum);
-    if(!medAux){
-        throw std::logic_error("Medicamento no encontrado");
-    }
-    f->dispensaMedicam(*medAux);
-};
