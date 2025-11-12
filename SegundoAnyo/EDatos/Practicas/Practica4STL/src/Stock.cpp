@@ -52,7 +52,7 @@ int Stock::getNumStock() const{
 };
 
 PaMedicamento* Stock::getNumber() const{
-
+    return m_number;
 };
 
 
