@@ -105,8 +105,8 @@ void MediExpress::autoLinkMedications() {
     if (m_med.empty()) return;
 
     // 1) Reparto: 2 medicamentos por laboratorio en orden de lista
-    auto medIt = m_med.begin();
-    for (auto labIt = m_lab.begin(); labIt != m_lab.end() && medIt != m_med.end(); ++labIt) {
+    std::map<int, PaMedicamento>::iterator medIt = m_med.begin();
+    for (std::list<Laboratorio>::iterator labIt = m_lab.begin(); labIt != m_lab.end() && medIt != m_med.end(); ++labIt) {
         for (int k = 0; k < 2 && medIt != m_med.end(); ++k, ++medIt) {
             medIt->second.setServidoPor(&(*labIt));
         }
@@ -114,7 +114,7 @@ void MediExpress::autoLinkMedications() {
     if (medIt == m_med.end()) return;
 
     // 2) Resto: uno a cada primer laboratorio cuya ciudad contenga "Madrid"
-    auto labsMadrid = buscarLabCiudad("Madrid"); // usa utils::iContains
+     std::vector<Laboratorio*> labsMadrid = buscarLabCiudad("Madrid");
     for (Laboratorio* lm : labsMadrid) {
         if (medIt == m_med.end()) break;
         medIt->second.setServidoPor(lm);
@@ -147,14 +147,14 @@ void MediExpress::suministrarMed(const PaMedicamento &med, const Laboratorio &la
     Laboratorio* labReal = buscarLab(lab.getLabName());
     if (!labReal) return;
 
-    auto itMed = m_med.find(med.getIdNum());
+    std::map<int, PaMedicamento>::iterator itMed = m_med.find(med.getIdNum());
     if (itMed != m_med.end()) {
         itMed->second.setServidoPor(labReal);
     }
 }
 
 Laboratorio* MediExpress::buscarLab(const std::string &labName) {
-    for (auto it = m_lab.begin(); it != m_lab.end(); ++it) {
+    for (std::list<Laboratorio>::iterator it = m_lab.begin(); it != m_lab.end(); ++it) {
         if (it->getLabName() == labName) return &(*it);
     }
     return nullptr;
@@ -162,7 +162,7 @@ Laboratorio* MediExpress::buscarLab(const std::string &labName) {
 
 std::vector<Laboratorio*> MediExpress::buscarLabCiudad(const std::string &cityName) const {
     std::vector<Laboratorio*> aux;
-    for (auto it = m_lab.cbegin(); it != m_lab.cend(); ++it) {
+    for (std::list<Laboratorio>::const_iterator it = m_lab.cbegin(); it != m_lab.cend(); ++it) {
         if (utils::iContains(it->getCity(), cityName)) {
             // la función es const, pero la firma pide puntero no-const asi que hay que solucionarlo
             aux.push_back(const_cast<Laboratorio*>(&(*it)));
@@ -172,7 +172,7 @@ std::vector<Laboratorio*> MediExpress::buscarLabCiudad(const std::string &cityNa
 }
 std::vector<PaMedicamento*> MediExpress::buscarCompuesto(const std::string &compoundName) const {
     std::vector<PaMedicamento*> aux;
-    for (auto it = m_med.cbegin(); it != m_med.cend(); ++it) {
+    for (std::map<int, PaMedicamento>::const_iterator it = m_med.cbegin(); it != m_med.cend(); ++it) {
         if (utils::iContains(it->second.getName(), compoundName)) {
             aux.push_back(const_cast<PaMedicamento*>(&it->second));
         }
@@ -182,7 +182,7 @@ std::vector<PaMedicamento*> MediExpress::buscarCompuesto(const std::string &comp
 
 std::vector<PaMedicamento*> MediExpress::getMedicamSinLab() const {
     std::vector<PaMedicamento*> aux;
-    for (auto it = m_med.cbegin(); it != m_med.cend(); ++it) {
+    for (std::map<int, PaMedicamento>::const_iterator it = m_med.cbegin(); it != m_med.cend(); ++it) {
         if (it->second.getServidoPor() == nullptr) {
             aux.push_back(const_cast<PaMedicamento*>(&it->second));
         }
@@ -196,13 +196,13 @@ std::vector<PaMedicamento*> MediExpress::getMedicamSinLab() const {
 
 
 PaMedicamento* MediExpress::buscarCompuesto(int id_num) {
-    auto it = m_med.find(id_num);
+    std::map<int, PaMedicamento>::iterator it = m_med.find(id_num);
     return (it == m_med.end()) ? nullptr : &it->second;
 }
 
 Farmacia* MediExpress::buscarFarmacia(const std::string &cif) {
     const std::string clave = utils::lowerCopy(cif);
-    for (auto it = m_farma.begin(); it != m_farma.end(); ++it) {
+    for (std::vector<Farmacia>::iterator it = m_farma.begin(); it != m_farma.end(); ++it) {
         if (utils::lowerCopy(it->getCif()) == clave) return &(*it);
     }
     return nullptr;
@@ -212,7 +212,7 @@ std::vector<Laboratorio*> MediExpress::buscarLabs(const std::string &nombrePA) c
     std::vector<Laboratorio*> resultado;
     std::unordered_set<Laboratorio*> visto;
 
-    for (auto it = m_med.cbegin(); it != m_med.cend(); ++it) {
+    for (std::map<int, PaMedicamento>::const_iterator it = m_med.cbegin(); it != m_med.cend(); ++it) {
         const PaMedicamento &med = it->second;
         if (!utils::iContains(med.getName(), nombrePA)) continue;
 
@@ -237,7 +237,7 @@ void MediExpress::suministrarFarmacia(Farmacia &f, int id_num, int n) {
 
 std::vector<Farmacia*> MediExpress::buscarFarmacias(const std::string &provincia) const {
     std::vector<Farmacia*> v;
-    for (auto it = m_farma.cbegin(); it != m_farma.cend(); ++it) {
+    for (std::vector<Farmacia>::const_iterator it = m_farma.cbegin(); it != m_farma.cend(); ++it) {
         if (utils::iContains(it->getProvince(), provincia)) {
             v.push_back(const_cast<Farmacia*>(&(*it)));
         }
