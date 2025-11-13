@@ -19,16 +19,15 @@ Metodos
 */
 
 bool Stock::decrementa(int n){
-    bool response = false;
-    if((m_num_stock-n)<=0){
-        m_num_stock -= n;
-        response = true;
-    }
-    return response;
+    if (n <= 0 || m_num_stock < n) return false;
+    m_num_stock -= n;
+    return true;
 }
 
 void Stock::incrementa(int n){
-    m_num_stock = n;
+    if (n > 0) {
+        m_num_stock += n;
+    }
 };
 
 /*

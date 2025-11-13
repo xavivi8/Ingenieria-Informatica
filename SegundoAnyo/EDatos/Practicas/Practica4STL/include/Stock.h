@@ -14,7 +14,7 @@ class Stock{
 public:
     Stock() = default;
     Stock(int idPaMed, int unidades, PaMedicamento* pa);
-    virtual ~Stock();
+    ~Stock() = default;
 
     bool decrementa(int n);
     void incrementa(int n);

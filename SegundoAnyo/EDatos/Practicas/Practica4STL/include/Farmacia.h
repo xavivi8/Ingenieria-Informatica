@@ -25,7 +25,7 @@ class Farmacia{
     std::set<Stock> m_order;
 
     void pedidoMedicam(int idNum, int n);
-    int buscaMedicamID(int id_num);
+    int buscaMedicamID(int id_num) const;
 
 
     public:
@@ -44,8 +44,8 @@ class Farmacia{
 
     std::vector<PaMedicamento*> buscaMedicamNombre(const std::string &nombre);
     void nuevoStock(PaMedicamento* pa, int n);
-    PaMedicamento* comprarMedicamento(int id_num, int n);
-    bool deleteStock(int idNum);
+    int comprarMedicam(int id_num, int n, PaMedicamento* &result);
+    bool eliminarStock(int idNum);
 
     //Getters
     std::string getCif() const;

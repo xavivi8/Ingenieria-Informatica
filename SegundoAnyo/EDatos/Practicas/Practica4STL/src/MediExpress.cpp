@@ -246,5 +246,14 @@ std::vector<Farmacia*> MediExpress::buscarFarmacias(const std::string &provincia
 }
 
 bool MediExpress::eliminarMedicamento(int id_num) {
-    return m_med.erase(id_num) > 0;
+    std::map<int, PaMedicamento>::iterator itMed = m_med.find(id_num);
+    if (itMed == m_med.end()) return false;
+
+    m_med.erase(itMed);
+
+    for (std::vector<Farmacia>::iterator it = m_farma.begin(); it != m_farma.end(); ++it) {
+        it->eliminarStock(id_num);
+    }
+
+    return true;
 }
