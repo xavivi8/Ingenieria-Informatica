@@ -8,16 +8,6 @@
 #include "../include/MediExpress.h"
 #include "../include/utils.h"
 
-void mostrarLista(const ListaEnlazada<int> &lista) {
-    auto it = lista.iterator();
-    std::cout << "[ ";
-    while (!it.isEnd()) {
-        std::cout << it.data() << " ";
-        it.next();
-    }
-    std::cout << "]" << std::endl;
-}
-
 /**
  * @brief Muestra un separador visual con un título
  */
@@ -32,16 +22,94 @@ void separador(const std::string &titulo) {
  */
 int main(int argc, const char *argv[]) {
     try {
-        std::cout << "=======================================================================================================================" << std::endl;
-        std::cout << "----------------------------------------------- " << "Prueba I" << " -----------------------------------------------" << std::endl;
-        std::cout << "=======================================================================================================================" << std::endl;
-        
-        
-        std::cout << "=======================================================================================================================" << std::endl;
-        std::cout << "----------------------------------------------- " << "Prueba II" << " -----------------------------------------------" << std::endl;
-        std::cout << "=======================================================================================================================" << std::endl;
+        const std::string FICH_FARMACIAS    = "../data/farmacias.csv";
+        const std::string FICH_LABORATORIOS = "../data/laboratorios.csv";
+        const std::string FICH_MEDICAMENTOS = "../data/pa_medicamentos.csv";
 
+        MediExpress sistema(FICH_MEDICAMENTOS, FICH_LABORATORIOS, FICH_FARMACIAS);
+
+        /**
+         * ===========================================================
+         * 1) Magnesio en farmacias de la provincia de Sevilla
+         * ===========================================================
+         */
+        separador("1) Compras de magnesio en farmacias de la provincia de Sevilla");
+
+        const int ID_OXIDO     = 3640; // ÓXIDO DE MAGNESIO
+        const int ID_CARBONATO = 3632; // CARBONATO DE MAGNESIO
+        const int ID_CLORURO   = 3633; // CLORURO DE MAGNESIO
+        const int NUM_CLIENTES = 12;
         
+        std::vector<Farmacia*> farSevilla = sistema.buscarFarmacias("Sevilla");
+
+        if (farSevilla.empty()) {
+            std::cout << "No se han encontrado farmacias en la provincia de Sevilla.\n";
+        }
+        
+        for (std::size_t i = 0; i < farSevilla.size(); ++i) {
+            Farmacia* f = farSevilla[i];
+
+            std::cout << "\nFarmacia " << f->getCif()
+                    << " - " << f->getName()
+                    << " (" << f->getCity() << ", " << f->getProvince() << ")\n";
+
+            int vendidosOxido     = 0;
+            int vendidosCarbonato = 0;
+            int vendidosCloruro   = 0;
+
+            for (int cli = 0; cli < NUM_CLIENTES; ++cli) {
+                bool comprado = false;
+                PaMedicamento* dummy = nullptr;
+
+                // 1º ÓXIDO DE MAGNESIO
+                try {
+                    f->comprarMedicam(ID_OXIDO, 1, dummy);
+                    ++vendidosOxido;
+                    comprado = true;
+                } catch (const std::exception&) {
+                    // seguimos con el siguiente
+                }
+
+                // 2º CARBONATO DE MAGNESIO
+                if (!comprado) {
+                    try {
+                        f->comprarMedicam(ID_CARBONATO, 1, dummy);
+                        ++vendidosCarbonato;
+                        comprado = true;
+                    } catch (const std::exception&) {
+                        // seguimos con el siguiente
+                    }
+                }
+
+                // 3º CLORURO DE MAGNESIO
+                if (!comprado) {
+                    try {
+                        f->comprarMedicam(ID_CLORURO, 1, dummy);
+                        ++vendidosCloruro;
+                        comprado = true;
+                    } catch (const std::exception& e) {
+                        std::cerr << "  [ADVERTENCIA] Cliente " << (cli + 1)
+                                << " sin magnesio: " << e.what() << '\n';
+                    }
+                }
+            }
+
+            int stockOxido     = f->getStock(ID_OXIDO);
+            int stockCarbonato = f->getStock(ID_CARBONATO);
+            int stockCloruro   = f->getStock(ID_CLORURO);
+
+            std::cout << "  Ventas realizadas: "
+                    << "Óxido(" << ID_OXIDO << ")=" << vendidosOxido
+                    << ", Carbonato(" << ID_CARBONATO << ")=" << vendidosCarbonato
+                    << ", Cloruro(" << ID_CLORURO << ")=" << vendidosCloruro << '\n';
+
+            std::cout << "  Stock actual: "
+                    << "Óxido=" << stockOxido
+                    << ", Carbonato=" << stockCarbonato
+                    << ", Cloruro=" << stockCloruro << "\n";
+        }
+
+
     } catch (const std::exception &e){
         std::cerr << e.what() << '\n';
     }
