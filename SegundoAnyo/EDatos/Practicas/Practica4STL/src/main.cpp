@@ -134,6 +134,27 @@ int main(int argc, const char *argv[]) {
             std::cout << "  - " << f->getCif() << " | " << f->getName() << " | " << f->getCity() << " (" << f->getProvince() << ")\n";
         }
 
+        /**
+         * ===========================================================
+         * 3) Eliminar medicamento con cianuro y comprobar
+         * ===========================================================
+         */
+        separador("3) Eliminación de medicamentos con cianuro");
+
+        const int ID_CIANURO = 9355;
+        const int ID_OTRO    = 3244;
+
+        std::cout << "Eliminando medicamento " << ID_CIANURO << "...\n";
+        bool borradoCianuro = sistema.eliminarMedicamento(ID_CIANURO);
+        std::cout << "  Resultado eliminar(" << ID_CIANURO << "): " << (borradoCianuro ? "Eliminado" : "No se encontraba") << '\n';
+
+        PaMedicamento* comprobacion = sistema.buscarCompuesto(ID_CIANURO);
+        std::cout << "  Comprobación de búsqueda del " << ID_CIANURO << ": " << (comprobacion ? "AÚN EXISTE (ERROR)" : "No se encuentra en el sistema") << "\n\n";
+
+        std::cout << "Probando a eliminar el medicamento " << ID_OTRO << "...\n";
+        bool borradoOtro = sistema.eliminarMedicamento(ID_OTRO);
+        std::cout << "  Resultado eliminar(" << ID_OTRO << "): " << (borradoOtro ? "Eliminado" : "No se encontraba") << '\n';
+
     } catch (const std::exception &e){
         std::cerr << e.what() << '\n';
     }
