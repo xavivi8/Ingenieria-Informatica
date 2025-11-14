@@ -143,6 +143,10 @@ bool Farmacia::eliminarStock(int idNum){
     return true;
 }
 
+int Farmacia::getStock(int id_num) const {
+    return buscaMedicamID(id_num);
+}
+
 
 /**
  * Getters
