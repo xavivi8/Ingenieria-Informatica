@@ -109,6 +109,30 @@ int main(int argc, const char *argv[]) {
                     << ", Cloruro=" << stockCloruro << "\n";
         }
 
+        /**
+         * ===========================================================
+         * 2) Farmacias de Madrid con medicamentos que contienen "VIRUS"
+         * ===========================================================
+         */
+        separador("2) Farmacias de la provincia de Madrid con medicamentos que contienen \"VIRUS\"");
+
+        std::vector<Farmacia*> farMadrid = sistema.buscarFarmacias("Madrid");
+        std::vector<Farmacia*> farMadridConVirus;
+
+        for (std::size_t i = 0; i < farMadrid.size(); ++i) {
+            Farmacia* f = farMadrid[i];
+            std::vector<PaMedicamento*> conVirus = f->buscaMedicamNombre("VIRUS");
+            if (!conVirus.empty()) {
+                farMadridConVirus.push_back(f);
+            }
+        }
+
+        std::cout << "Total de farmacias de la provincia de Madrid con algún medicamento que contiene \"VIRUS\" en su nombre: " << farMadridConVirus.size() << "\n";
+
+        for (std::size_t i = 0; i < farMadridConVirus.size(); ++i) {
+            Farmacia* f = farMadridConVirus[i];
+            std::cout << "  - " << f->getCif() << " | " << f->getName() << " | " << f->getCity() << " (" << f->getProvince() << ")\n";
+        }
 
     } catch (const std::exception &e){
         std::cerr << e.what() << '\n';
