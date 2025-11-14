@@ -99,12 +99,12 @@ int main(int argc, const char *argv[]) {
             int stockCloruro   = f->getStock(ID_CLORURO);
 
             std::cout << "  Ventas realizadas: "
-                    << "Óxido(" << ID_OXIDO << ")=" << vendidosOxido
+                    << "Oxido(" << ID_OXIDO << ")=" << vendidosOxido
                     << ", Carbonato(" << ID_CARBONATO << ")=" << vendidosCarbonato
                     << ", Cloruro(" << ID_CLORURO << ")=" << vendidosCloruro << '\n';
 
             std::cout << "  Stock actual: "
-                    << "Óxido=" << stockOxido
+                    << "Oxido=" << stockOxido
                     << ", Carbonato=" << stockCarbonato
                     << ", Cloruro=" << stockCloruro << "\n";
         }
@@ -127,7 +127,7 @@ int main(int argc, const char *argv[]) {
             }
         }
 
-        std::cout << "Total de farmacias de la provincia de Madrid con algún medicamento que contiene \"VIRUS\" en su nombre: " << farMadridConVirus.size() << "\n";
+        std::cout << "Total de farmacias de la provincia de Madrid con algun medicamento que contiene \"VIRUS\" en su nombre: " << farMadridConVirus.size() << "\n";
 
         for (std::size_t i = 0; i < farMadridConVirus.size(); ++i) {
             Farmacia* f = farMadridConVirus[i];
@@ -139,7 +139,7 @@ int main(int argc, const char *argv[]) {
          * 3) Eliminar medicamento con cianuro y comprobar
          * ===========================================================
          */
-        separador("3) Eliminación de medicamentos con cianuro");
+        separador("3) Eliminacion de medicamentos con cianuro");
 
         const int ID_CIANURO = 9355;
         const int ID_OTRO    = 3244;
@@ -149,7 +149,7 @@ int main(int argc, const char *argv[]) {
         std::cout << "  Resultado eliminar(" << ID_CIANURO << "): " << (borradoCianuro ? "Eliminado" : "No se encontraba") << '\n';
 
         PaMedicamento* comprobacion = sistema.buscarCompuesto(ID_CIANURO);
-        std::cout << "  Comprobación de búsqueda del " << ID_CIANURO << ": " << (comprobacion ? "AÚN EXISTE (ERROR)" : "No se encuentra en el sistema") << "\n\n";
+        std::cout << "  Comprobacion de busqueda del " << ID_CIANURO << ": " << (comprobacion ? "AUN EXISTE (ERROR)" : "No se encuentra en el sistema") << "\n\n";
 
         std::cout << "Probando a eliminar el medicamento " << ID_OTRO << "...\n";
         bool borradoOtro = sistema.eliminarMedicamento(ID_OTRO);
