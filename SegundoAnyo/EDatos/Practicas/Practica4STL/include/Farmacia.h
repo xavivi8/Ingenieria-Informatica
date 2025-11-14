@@ -46,6 +46,7 @@ class Farmacia{
     void nuevoStock(PaMedicamento* pa, int n);
     int comprarMedicam(int id_num, int n, PaMedicamento* &result);
     bool eliminarStock(int idNum);
+    int getStock(int id_num) const;
 
     //Getters
     std::string getCif() const;
