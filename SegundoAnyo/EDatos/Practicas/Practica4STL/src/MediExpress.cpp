@@ -122,6 +122,29 @@ void MediExpress::autoLinkMedications() {
     }
 }
 
+void MediExpress::autoLinkFarmaciasStock() {
+    if (m_med.empty() || m_farma.empty()) {
+        return;
+    }
+
+    const int STOCK_INICIAL      = 10;
+    const int MEDICAMENTOS_POR_F = 100;
+
+    std::map<int, PaMedicamento>::iterator itMed = m_med.begin();
+
+    for (std::vector<Farmacia>::iterator itFar = m_farma.begin(); itFar != m_farma.end() && itMed != m_med.end(); ++itFar) {
+        int asignados = 0;
+
+        // Asignar 100 medicamentos consecutivos a esta farmacia
+        while (asignados < MEDICAMENTOS_POR_F && itMed != m_med.end()) {
+            PaMedicamento* pa = &itMed->second;
+            itFar->nuevoStock(pa, STOCK_INICIAL);  // 10 unidades iniciales
+            ++itMed;
+            ++asignados;
+        }
+    }
+}
+
 /**
  * Constructores
  */
@@ -135,6 +158,7 @@ MediExpress::MediExpress(const std::string &csvPathVD,
     m_lab   = loadLabFromCsv(csvPathLE);
     m_farma = loadFarmacieFromCsv(csvPathAVL);
     autoLinkMedications();
+    autoLinkFarmaciasStock();
 }
 
 MediExpress::~MediExpress() = default;
