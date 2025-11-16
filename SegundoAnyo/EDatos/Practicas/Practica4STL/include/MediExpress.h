@@ -23,6 +23,7 @@ class MediExpress{
         std::list<Laboratorio> loadLabFromCsv(const std::string &csvPath);
         std::vector<Farmacia> loadFarmacieFromCsv(const std::string &csvPath);
         void autoLinkMedications();
+        void autoLinkFarmaciasStock();
 
     public:
         MediExpress();
