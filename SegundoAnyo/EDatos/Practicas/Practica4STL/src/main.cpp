@@ -35,9 +35,9 @@ int main(int argc, const char *argv[]) {
          */
         separador("1) Compras de magnesio en farmacias de la provincia de Sevilla");
 
-        const int ID_OXIDO     = 3640; // ÓXIDO DE MAGNESIO
-        const int ID_CARBONATO = 3632; // CARBONATO DE MAGNESIO
-        const int ID_CLORURO   = 3633; // CLORURO DE MAGNESIO
+        const int ID_OXIDO = 3640;
+        const int ID_CARBONATO = 3632;
+        const int ID_CLORURO = 3633;
         const int NUM_CLIENTES = 12;
 
         std::vector<Farmacia*> farSevilla = sistema.buscarFarmacias("Sevilla");
@@ -59,7 +59,6 @@ int main(int argc, const char *argv[]) {
             int vendidosCarbonato = 0;
             int vendidosCloruro   = 0;
 
-            // 0 = Óxido, 1 = Carbonato, 2 = Cloruro, 3 = ninguno
             int etapa = 0;
 
             for (int cli = 0; cli < NUM_CLIENTES; ++cli) {
@@ -84,7 +83,6 @@ int main(int argc, const char *argv[]) {
                 }
 
                 try {
-                    // El cliente compra 1 unidad del medicamento "actual"
                     f->comprarMedicam(idActual, 1, dummy);
 
                     if (etapa == 0)      ++vendidosOxido;
@@ -102,10 +100,8 @@ int main(int argc, const char *argv[]) {
                                   << " ha agotado el stock de " << nombreCorto
                                   << ". Se reponen 10 unidades.\n";
 
-                        // Reponer 10 unidades del mismo medicamento
                         sistema.suministrarFarmacia(*f, idActual, 10);
 
-                        // A partir de ahora, pasar al siguiente tipo
                         if (etapa < 2) {
                             ++etapa;
                             std::cout << "    [INFO] A partir de ahora los siguientes "
@@ -118,7 +114,6 @@ int main(int argc, const char *argv[]) {
                               << ": no pudo comprar " << nombreCorto
                               << " (" << e.what() << ")\n";
 
-                    // Si falla (por ejemplo, sin stock), avanzamos al siguiente tipo
                     if (etapa < 2) {
                         ++etapa;
                         std::cout << "    [INFO] Se pasa al siguiente tipo de magnesio "

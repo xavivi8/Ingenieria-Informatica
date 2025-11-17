@@ -110,25 +110,31 @@ int Farmacia::comprarMedicam(int id_num, int n, PaMedicamento* &result) {
 
     result = nullptr;
 
-    int disponible = buscaMedicamID(id_num);
-
-    if (disponible < n) {
-        return 0;  // sin venta
-    }
-
-    std::set<Stock>::const_iterator it = m_order.find(Stock(id_num, 0, nullptr));
-    if (it == m_order.cend()) {
+    std::set<Stock>::iterator it = m_order.find(Stock(id_num, 0, nullptr));
+    if (it == m_order.end()) {
         return 0;
     }
 
     Stock actualizado = *it;
+    int disponible = actualizado.getNumStock();
 
-    result = actualizado.getNumber();
-    if (!result && m_linkMedi) {
-        result = m_linkMedi->buscarCompuesto(id_num);
+    if (disponible < n) {
+        return 0;
     }
 
-    int restante = actualizado.getNumStock() - n;
+    result = actualizado.getNumber();
+    if (!result) {
+        if (!m_linkMedi) {
+            throw std::logic_error("Farmacia sin enlace a MediExpress");
+        }
+        result = m_linkMedi->buscarCompuesto(id_num);
+        if (!result) {
+            return 0;
+        }
+        actualizado.setNumber(result);
+    }
+
+    int restante = disponible - n;
 
     m_order.erase(it);
     actualizado.setNumStock(restante);
@@ -138,6 +144,7 @@ int Farmacia::comprarMedicam(int id_num, int n, PaMedicamento* &result) {
 
     return n;
 }
+
 
 
 bool Farmacia::eliminarStock(int idNum){
