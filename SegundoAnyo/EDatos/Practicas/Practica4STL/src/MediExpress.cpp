@@ -127,23 +127,41 @@ void MediExpress::autoLinkFarmaciasStock() {
         return;
     }
 
-    const int STOCK_INICIAL      = 10;
+    const int STOCK_INICIAL = 10;
     const int MEDICAMENTOS_POR_F = 100;
 
-    std::map<int, PaMedicamento>::iterator itMed = m_med.begin();
+    std::vector<int> ids;
+    ids.reserve(m_med.size());
+    for (std::map<int, PaMedicamento>::const_iterator it = m_med.cbegin();
+         it != m_med.cend();
+         ++it) {
+        ids.push_back(it->first);
+    }
 
-    for (std::vector<Farmacia>::iterator itFar = m_farma.begin(); itFar != m_farma.end() && itMed != m_med.end(); ++itFar) {
-        int asignados = 0;
+    if (ids.empty()) {
+        return;
+    }
 
-        // Asignar 100 medicamentos consecutivos a esta farmacia
-        while (asignados < MEDICAMENTOS_POR_F && itMed != m_med.end()) {
-            PaMedicamento* pa = &itMed->second;
-            itFar->nuevoStock(pa, STOCK_INICIAL);  // 10 unidades iniciales
-            ++itMed;
-            ++asignados;
+    const std::size_t total = ids.size();
+    std::size_t index = 0;
+
+    for (std::vector<Farmacia>::iterator itFar = m_farma.begin();
+         itFar != m_farma.end();
+         ++itFar) {
+
+        for (int k = 0; k < MEDICAMENTOS_POR_F; ++k) {
+            int idMed = ids[index];
+
+            suministrarFarmacia(*itFar, idMed, STOCK_INICIAL);
+
+            ++index;
+            if (index >= total) {
+                index = 0;
+            }
         }
     }
 }
+
 
 /**
  * Constructores

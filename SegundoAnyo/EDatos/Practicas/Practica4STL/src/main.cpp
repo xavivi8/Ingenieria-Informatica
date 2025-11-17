@@ -39,57 +39,90 @@ int main(int argc, const char *argv[]) {
         const int ID_CARBONATO = 3632; // CARBONATO DE MAGNESIO
         const int ID_CLORURO   = 3633; // CLORURO DE MAGNESIO
         const int NUM_CLIENTES = 12;
-        
+
         std::vector<Farmacia*> farSevilla = sistema.buscarFarmacias("Sevilla");
 
         if (farSevilla.empty()) {
             std::cout << "No se han encontrado farmacias en la provincia de Sevilla.\n";
         }
-        
+
+        int count = 1;
         for (std::size_t i = 0; i < farSevilla.size(); ++i) {
             Farmacia* f = farSevilla[i];
 
-            std::cout << "\nFarmacia " << f->getCif()
-                    << " - " << f->getName()
-                    << " (" << f->getCity() << ", " << f->getProvince() << ")\n";
+            std::cout << " - " << count << " - Farmacia " << f->getCif()
+                      << " - " << f->getName()
+                      << " (" << f->getCity() << ", " << f->getProvince() << ")\n";
+            ++count;
 
             int vendidosOxido     = 0;
             int vendidosCarbonato = 0;
             int vendidosCloruro   = 0;
 
+            // 0 = Óxido, 1 = Carbonato, 2 = Cloruro, 3 = ninguno
+            int etapa = 0;
+
             for (int cli = 0; cli < NUM_CLIENTES; ++cli) {
-                bool comprado = false;
-                PaMedicamento* dummy = nullptr;
+                PaMedicamento* dummy = 0;
 
-                // 1º ÓXIDO DE MAGNESIO
+                int idActual = 0;
+                std::string nombreCorto;
+
+                if (etapa == 0) {
+                    idActual    = ID_OXIDO;
+                    nombreCorto = "OXIDO de magnesio";
+                } else if (etapa == 1) {
+                    idActual    = ID_CARBONATO;
+                    nombreCorto = "CARBONATO de magnesio";
+                } else if (etapa == 2) {
+                    idActual    = ID_CLORURO;
+                    nombreCorto = "CLORURO de magnesio";
+                } else {
+                    std::cout << "  Cliente " << (cli + 1)
+                              << ": ya no quedan tipos de magnesio disponibles.\n";
+                    continue;
+                }
+
                 try {
-                    f->comprarMedicam(ID_OXIDO, 1, dummy);
-                    ++vendidosOxido;
-                    comprado = true;
-                } catch (const std::exception&) {
-                    // seguimos con el siguiente
-                }
+                    // El cliente compra 1 unidad del medicamento "actual"
+                    f->comprarMedicam(idActual, 1, dummy);
 
-                // 2º CARBONATO DE MAGNESIO
-                if (!comprado) {
-                    try {
-                        f->comprarMedicam(ID_CARBONATO, 1, dummy);
-                        ++vendidosCarbonato;
-                        comprado = true;
-                    } catch (const std::exception&) {
-                        // seguimos con el siguiente
+                    if (etapa == 0)      ++vendidosOxido;
+                    else if (etapa == 1) ++vendidosCarbonato;
+                    else                 ++vendidosCloruro;
+
+                    std::cout << "  Cliente " << (cli + 1)
+                              << " compro " << nombreCorto
+                              << " (ID " << idActual << ")\n";
+
+                    // ¿Este cliente ha dejado el stock a 0?
+                    int stockDespues = f->getStock(idActual);
+                    if (stockDespues == 0) {
+                        std::cout << "    [INFO] El cliente " << (cli + 1)
+                                  << " ha agotado el stock de " << nombreCorto
+                                  << ". Se reponen 10 unidades.\n";
+
+                        // Reponer 10 unidades del mismo medicamento
+                        sistema.suministrarFarmacia(*f, idActual, 10);
+
+                        // A partir de ahora, pasar al siguiente tipo
+                        if (etapa < 2) {
+                            ++etapa;
+                            std::cout << "    [INFO] A partir de ahora los siguientes "
+                                      << "clientes compraran el siguiente tipo de magnesio.\n";
+                        }
                     }
-                }
 
-                // 3º CLORURO DE MAGNESIO
-                if (!comprado) {
-                    try {
-                        f->comprarMedicam(ID_CLORURO, 1, dummy);
-                        ++vendidosCloruro;
-                        comprado = true;
-                    } catch (const std::exception& e) {
-                        std::cerr << "  [ADVERTENCIA] Cliente " << (cli + 1)
-                                << " sin magnesio: " << e.what() << '\n';
+                } catch (const std::exception& e) {
+                    std::cout << "  Cliente " << (cli + 1)
+                              << ": no pudo comprar " << nombreCorto
+                              << " (" << e.what() << ")\n";
+
+                    // Si falla (por ejemplo, sin stock), avanzamos al siguiente tipo
+                    if (etapa < 2) {
+                        ++etapa;
+                        std::cout << "    [INFO] Se pasa al siguiente tipo de magnesio "
+                                  << "para los siguientes clientes.\n";
                     }
                 }
             }
@@ -99,14 +132,15 @@ int main(int argc, const char *argv[]) {
             int stockCloruro   = f->getStock(ID_CLORURO);
 
             std::cout << "  Ventas realizadas: "
-                    << "Oxido(" << ID_OXIDO << ")=" << vendidosOxido
-                    << ", Carbonato(" << ID_CARBONATO << ")=" << vendidosCarbonato
-                    << ", Cloruro(" << ID_CLORURO << ")=" << vendidosCloruro << '\n';
+                      << "Oxido("      << ID_OXIDO     << ")=" << vendidosOxido
+                      << ", Carbonato(" << ID_CARBONATO << ")=" << vendidosCarbonato
+                      << ", Cloruro("   << ID_CLORURO   << ")=" << vendidosCloruro << '\n';
 
             std::cout << "  Stock actual: "
-                    << "Oxido=" << stockOxido
-                    << ", Carbonato=" << stockCarbonato
-                    << ", Cloruro=" << stockCloruro << "\n";
+                      << "Oxido="      << stockOxido
+                      << ", Carbonato=" << stockCarbonato
+                      << ", Cloruro="   << stockCloruro << "\n";
+            std::cout << "===================================================================================" << std::endl;
         }
 
         /**

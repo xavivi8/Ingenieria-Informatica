@@ -82,7 +82,7 @@ void Farmacia::nuevoStock(PaMedicamento* pa, int n){
     if (!pa) {
         throw std::invalid_argument("PaMedicamento nulo");
     }
-    if (n <= 0) {
+    if (n < 0) {
         throw std::invalid_argument("La cantidad debe ser > 0");
     }
 
@@ -108,20 +108,21 @@ int Farmacia::comprarMedicam(int id_num, int n, PaMedicamento* &result) {
         throw std::invalid_argument("La cantidad a comprar debe ser > 0");
     }
 
+    result = nullptr;
+
     int disponible = buscaMedicamID(id_num);
 
     if (disponible < n) {
-        int falta = n - disponible;
-        pedidoMedicam(id_num, falta);
+        return 0;  // sin venta
     }
 
     std::set<Stock>::const_iterator it = m_order.find(Stock(id_num, 0, nullptr));
-
-    if (it == m_order.cend() || it->getNumStock() < n) {
-        throw std::runtime_error("Stock insuficiente tras solicitar reposición.");
+    if (it == m_order.cend()) {
+        return 0;
     }
 
     Stock actualizado = *it;
+
     result = actualizado.getNumber();
     if (!result && m_linkMedi) {
         result = m_linkMedi->buscarCompuesto(id_num);
@@ -131,10 +132,13 @@ int Farmacia::comprarMedicam(int id_num, int n, PaMedicamento* &result) {
 
     m_order.erase(it);
     actualizado.setNumStock(restante);
-    m_order.insert(actualizado);
+    if (restante > 0) {
+        m_order.insert(actualizado);
+    }
 
-    return disponible;
+    return n;
 }
+
 
 bool Farmacia::eliminarStock(int idNum){
     std::set<Stock>::const_iterator it = m_order.find( Stock(idNum, 0, nullptr) );
