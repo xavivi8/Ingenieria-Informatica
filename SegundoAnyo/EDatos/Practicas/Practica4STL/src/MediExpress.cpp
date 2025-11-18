@@ -291,11 +291,11 @@ bool MediExpress::eliminarMedicamento(int id_num) {
     std::map<int, PaMedicamento>::iterator itMed = m_med.find(id_num);
     if (itMed == m_med.end()) return false;
 
-    m_med.erase(itMed);
-
     for (std::vector<Farmacia>::iterator it = m_farma.begin(); it != m_farma.end(); ++it) {
         it->eliminarStock(id_num);
     }
+
+    m_med.erase(itMed);
 
     return true;
 }
