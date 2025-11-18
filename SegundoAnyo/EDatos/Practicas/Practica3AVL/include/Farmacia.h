@@ -37,7 +37,7 @@ class Farmacia{
 
     void pedidoMedicam(int idNum);
     PaMedicamento* buscaMedicam(int id_num);
-    void dispensaMedicam(const PaMedicamento &pa);
+    void dispensaMedicam(PaMedicamento &pa);
 
     void setLinkMedi(MediExpress *medi);
     MediExpress* getLinkMedi() const;

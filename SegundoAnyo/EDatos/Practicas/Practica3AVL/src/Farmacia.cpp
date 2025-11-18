@@ -51,13 +51,19 @@ void Farmacia::pedidoMedicam(int idNum){
 
 
 PaMedicamento* Farmacia::buscaMedicam(int idNum){
-    PaMedicamento aux(idNum,"","");
-    return m_dispense.buscaIt(aux);
-};
+    PaMedicamento aux(idNum, "", "");
+    PaMedicamento* key = &aux;
+
+    PaMedicamento** found = m_dispense.buscaIt(key);
+    if (!found) return nullptr;
+
+    return *found;
+}
 
 
-void Farmacia::dispensaMedicam(const PaMedicamento &pa){
-    if(!m_dispense.inserta(pa)){
+
+void Farmacia::dispensaMedicam(PaMedicamento &pa){
+    if(!m_dispense.inserta(&pa)){
         throw std::runtime_error("El medicamento ya se encuentra");
     }
 };
