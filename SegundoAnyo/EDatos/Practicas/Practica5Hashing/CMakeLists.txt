@@ -1,0 +1,18 @@
+cmake_minimum_required(VERSION 3.29)
+project(Practica4STL)
+
+set(CMAKE_CXX_STANDARD 14)
+
+# Directorio de headers
+include_directories(include)
+
+# Archivos fuente
+add_executable(Practica4STL
+        src/main.cpp
+        src/MediExpress.cpp
+        src/PaMedicamento.cpp
+        src/Laboratorio.cpp
+        src/utils.cpp
+        src/Farmacia.cpp
+        src/Stock.cpp
+)
