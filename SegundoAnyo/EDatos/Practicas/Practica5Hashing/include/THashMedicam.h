@@ -5,4 +5,63 @@
 #ifndef THASHMEDICAM_H
 #define THASHMEDICAM_H
 
+#include <vector>
+#include "../include/PaMedicamento.h"
+
+enum Estado{LIBRE,OCUPADA,DISPONIBLE};
+
+class THashMedicam {
+private:    
+    class Entrada {
+     public:
+        unsigned long clave;
+        Estado marca;  //0(libre), 1(ocupada), 2(disponible)
+        PaMedicamento dato;
+        Entrada(): marca(LIBRE), clave(0), dato() {}
+        ~Entrada(){};
+    };
+
+    unsigned long tamaf;
+    unsigned long tamal; 
+    unsigned long maxCol;
+    unsigned long max10;
+    unsigned long sumaColisiones;
+    unsigned long primoMenor;
+
+    std::vector<Entrada> tabla;
+
+    bool esprimo(unsigned n);
+    int primo_menor(unsigned numero);
+    int primo_mayor(unsigned numero);
+
+    //  la función de dispersión es cuadratica
+    unsigned hash(unsigned long clave, int i);
+    
+    //  la funcion de dispersion es doble
+    unsigned hash2(unsigned clave, int i);
+
+    //  la funcion de dispersion es doble
+    unsigned hash3(unsigned clave, int i);
+    
+public:
+    THashMedicam(unsigned long maxElementos, double lamda=0.7);
+    THashMedicam(const THashMedicam &orig);
+
+    THashMedicam& operator=(const THashMedicam &orig);
+
+    bool insertar(unsigned long clave, PaMedicamento &dato);
+    bool borrar(unsigned long clave);
+
+    PaMedicamento* buscar(unsigned long clave);
+    
+    //funciones publicas
+    unsigned int numElementos();
+    unsigned int tamTabla();
+    unsigned long maxColisiones() const;
+    unsigned int numMax10();
+    float promedioColisiones() const;
+    float factorCarga();
+    ~THashMedicam();
+};
+
 #endif //THASHMEDICAM_H
