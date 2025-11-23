@@ -15,4 +15,5 @@ add_executable(Practica5Hashing
         src/utils.cpp
         src/Farmacia.cpp
         src/Stock.cpp
+        src/THashMedicam.cpp
 )
