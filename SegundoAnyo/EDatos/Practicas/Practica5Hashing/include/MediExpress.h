@@ -18,8 +18,8 @@
 class MediExpress{
     private:
         THashMedicam m_idMedication;
-        std::multimap<std::string, PaMedicamento*> nombMedication;
-        std::multimap<std::string, Farmacia> pharmacy;
+        std::multimap<std::string, PaMedicamento*> m_nameMed;
+        std::multimap<std::string, Farmacia> m_far;
         std::list<Laboratorio> m_lab;  
 
         /**
