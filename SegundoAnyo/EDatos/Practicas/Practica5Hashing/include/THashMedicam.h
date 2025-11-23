@@ -46,6 +46,7 @@ private:
 public:
     THashMedicam(unsigned long maxElementos, double lamda=0.7);
     THashMedicam(const THashMedicam &orig);
+    ~THashMedicam();
 
     THashMedicam& operator=(const THashMedicam &orig);
 
@@ -61,7 +62,6 @@ public:
     unsigned int numMax10();
     float promedioColisiones() const;
     float factorCarga();
-    ~THashMedicam();
 };
 
 #endif //THASHMEDICAM_H

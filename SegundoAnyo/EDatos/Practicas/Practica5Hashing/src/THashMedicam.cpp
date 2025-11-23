@@ -73,6 +73,8 @@ THashMedicam::THashMedicam(const THashMedicam &orig)
       primoMenor(orig.primoMenor),
       tabla(orig.tabla) {}
 
+THashMedicam::~THashMedicam() = default;
+
 /**
  * Operadores
  */
