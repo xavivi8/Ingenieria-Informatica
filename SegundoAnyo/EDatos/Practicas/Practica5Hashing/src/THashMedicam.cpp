@@ -206,3 +206,35 @@ bool THashMedicam::borrar(unsigned long clave) {
     }
     return false;
 }
+
+/**
+ * Getters
+ */
+
+unsigned int THashMedicam::numElementos() {
+    return static_cast<unsigned int>(tamal);
+}
+
+unsigned int THashMedicam::tamTabla() {
+    return static_cast<unsigned int>(tamaf);
+}
+
+unsigned long THashMedicam::maxColisiones() const {
+    return maxCol;
+}
+
+unsigned int THashMedicam::numMax10() {
+    return static_cast<unsigned int>(max10);
+}
+
+float THashMedicam::promedioColisiones() const {
+    if (tamal == 0) return 0.0f;
+    return static_cast<float>(sumaColisiones) /
+           static_cast<float>(tamal);
+}
+
+float THashMedicam::factorCarga() {
+    if (tamaf == 0) return 0.0f;
+    return static_cast<float>(tamal) /
+           static_cast<float>(tamaf);
+}
