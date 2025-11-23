@@ -348,14 +348,23 @@ std::vector<Farmacia*> MediExpress::buscarFarmacias(const std::string &provincia
 }
 
 bool MediExpress::eliminarMedicamento(int id_num) {
-    std::map<int, PaMedicamento>::iterator itMed = m_med.find(id_num);
-    if (itMed == m_med.end()) return false;
+    PaMedicamento* med = m_idMedication.buscar(id_num);
+    if (!med) return false;
 
-    for (std::vector<Farmacia>::iterator it = m_farma.begin(); it != m_farma.end(); ++it) {
-        it->eliminarStock(id_num);
+    for (std::multimap<std::string, Farmacia>::iterator it = m_far.begin(); it != m_far.end(); ++it) {
+        it->second.eliminarStock(id_num);
     }
 
-    m_med.erase(itMed);
+    // Borrar de la tabla hash
+    m_idMedication.borrar(id_num);
+
+    for (std::multimap<std::string, PaMedicamento*>::iterator it = m_nameMed.begin(); it != m_nameMed.end(); ) {
+        if (it->second == med) {
+            it = m_nameMed.erase(it);
+        } else {
+            ++it;
+        }
+    }
 
     return true;
 }
