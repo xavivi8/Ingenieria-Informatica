@@ -45,6 +45,16 @@ unsigned THashMedicam::hash(unsigned long clave, int i) {
     return static_cast<unsigned>((base + inc) % tamaf);
 }
 
+// Doble dispersión clásica: h_i(k) = (h1 + i*h2) % tamaf
+// h2(k) = primoMenor - (k % primoMenor)
+unsigned THashMedicam::hash2(unsigned clave, int i) {
+    unsigned h1 = static_cast<unsigned>(clave % tamaf);
+    unsigned paso = static_cast<unsigned>(
+        primoMenor - (clave % primoMenor)
+    );
+    return static_cast<unsigned>((h1 + static_cast<unsigned long>(i) * paso) % tamaf);
+}
+
 /**
  * Metodos publicos
  */
