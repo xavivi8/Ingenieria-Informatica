@@ -38,6 +38,13 @@ int THashMedicam::primo_menor(unsigned numero) {
     return static_cast<int>(candidato);
 }
 
+// Sondeo cuadrático: h_i(k) = (k % tamaf + i*i) % tamaf
+unsigned THashMedicam::hash(unsigned long clave, int i) {
+    unsigned long base = clave % tamaf;
+    unsigned long inc  = static_cast<unsigned long>(i) * static_cast<unsigned long>(i);
+    return static_cast<unsigned>((base + inc) % tamaf);
+}
+
 /**
  * Metodos publicos
  */
