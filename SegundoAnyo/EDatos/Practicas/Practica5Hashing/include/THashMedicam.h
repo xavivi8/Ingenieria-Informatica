@@ -52,10 +52,8 @@ public:
 
     bool insertar(unsigned long clave, PaMedicamento &dato);
     bool borrar(unsigned long clave);
-
     PaMedicamento* buscar(unsigned long clave);
     
-    //funciones publicas
     unsigned int numElementos();
     unsigned int tamTabla();
     unsigned long maxColisiones() const;
