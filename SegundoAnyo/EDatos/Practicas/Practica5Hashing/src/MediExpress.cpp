@@ -102,23 +102,41 @@ std::vector<Farmacia> MediExpress::loadFarmacieFromCsv(const std::string &csvPat
 }
 
 void MediExpress::autoLinkMedications() {
-    if (m_med.empty()) return;
+    // 1) Obtener lista de medicamentos sin duplicados desde nombMedication
+    std::vector<PaMedicamento*> meds;
+    meds.reserve(nombMedication.size());
+    std::unordered_set<PaMedicamento*> visto;
 
-    // 1) Reparto: 2 medicamentos por laboratorio en orden de lista
-    std::map<int, PaMedicamento>::iterator medIt = m_med.begin();
-    for (std::list<Laboratorio>::iterator labIt = m_lab.begin(); labIt != m_lab.end() && medIt != m_med.end(); ++labIt) {
-        for (int k = 0; k < 2 && medIt != m_med.end(); ++k, ++medIt) {
-            medIt->second.setServidoPor(&(*labIt));
+    for (std::multimap<std::string, PaMedicamento*>::iterator it = nombMedication.begin();
+         it != nombMedication.end(); ++it) {
+        PaMedicamento* p = it->second;
+        if (p && !visto.count(p)) {
+            visto.insert(p);
+            meds.push_back(p);
         }
     }
-    if (medIt == m_med.end()) return;
 
-    // 2) Resto: uno a cada primer laboratorio cuya ciudad contenga "Madrid"
-     std::vector<Laboratorio*> labsMadrid = buscarLabCiudad("Madrid");
+    if (meds.empty()) return;
+
+    // 2) Reparto: 2 medicamentos por laboratorio en orden de lista
+    std::size_t idxMed = 0;
+    for (std::list<Laboratorio>::iterator labIt = m_lab.begin();
+         labIt != m_lab.end() && idxMed < meds.size();
+         ++labIt) {
+
+        for (int k = 0; k < 2 && idxMed < meds.size(); ++k, ++idxMed) {
+            meds[idxMed]->setServidoPor(&(*labIt));
+        }
+    }
+
+    if (idxMed >= meds.size()) return;
+
+    // 3) Resto: uno a cada laboratorio cuya ciudad contenga "Madrid"
+    std::vector<Laboratorio*> labsMadrid = buscarLabCiudad("Madrid");
     for (Laboratorio* lm : labsMadrid) {
-        if (medIt == m_med.end()) break;
-        medIt->second.setServidoPor(lm);
-        ++medIt;
+        if (idxMed >= meds.size()) break;
+        meds[idxMed]->setServidoPor(lm);
+        ++idxMed;
     }
 }
 
