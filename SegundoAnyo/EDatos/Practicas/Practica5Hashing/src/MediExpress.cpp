@@ -292,8 +292,7 @@ std::vector<PaMedicamento*> MediExpress::getMedicamSinLab() const {
 
 
 PaMedicamento* MediExpress::buscarCompuesto(int id_num) {
-    std::map<int, PaMedicamento>::iterator it = m_med.find(id_num);
-    return (it == m_med.end()) ? nullptr : &it->second;
+    return m_idMedication.buscar(static_cast<unsigned long>(id_num));
 }
 
 Farmacia* MediExpress::buscarFarmacia(const std::string &cif) {
