@@ -55,6 +55,13 @@ unsigned THashMedicam::hash2(unsigned clave, int i) {
     return static_cast<unsigned>((h1 + static_cast<unsigned long>(i) * paso) % tamaf);
 }
 
+// Variante alternativa de doble dispersión
+unsigned THashMedicam::hash3(unsigned clave, int i) {
+    unsigned h1 = static_cast<unsigned>(clave % tamaf);
+    unsigned paso = static_cast<unsigned>((clave % primoMenor) + 1); // evita paso 0
+    return static_cast<unsigned>((h1 + static_cast<unsigned long>(i) * paso) % tamaf);
+}
+
 /**
  * Metodos publicos
  */
