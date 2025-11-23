@@ -44,6 +44,7 @@ private:
     unsigned hash3(unsigned clave, int i);
     
 public:
+    THashMedicam();
     THashMedicam(unsigned long maxElementos, double lamda=0.7);
     THashMedicam(const THashMedicam &orig);
     ~THashMedicam();
