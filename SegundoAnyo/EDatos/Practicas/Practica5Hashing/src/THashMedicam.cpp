@@ -115,3 +115,57 @@ THashMedicam& THashMedicam::operator=(const THashMedicam &orig) {
     }
     return *this;
 }
+
+/**
+ * Metodos
+ */
+bool THashMedicam::insertar(unsigned long clave, PaMedicamento &dato) {
+    if (tamal >= tamaf) {
+        return false;
+    }
+
+    int colisiones = 0;
+    int primeraDisponible = -1;
+
+    for (int i = 0; i < static_cast<int>(tamaf); ++i) {
+        unsigned idx = hash(clave, i);
+        Entrada &e = tabla[idx];
+
+        if (e.marca == OCUPADA) {
+            //Compruebo que no hayan claves repes
+            if (e.clave == clave) {
+                return false;
+            }
+            ++colisiones;
+            continue;
+        }
+
+        if (e.marca == DISPONIBLE) {
+            if (primeraDisponible == -1) {
+                primeraDisponible = static_cast<int>(idx);
+            }
+            ++colisiones;
+            continue;
+        }
+
+        unsigned posFinal = (primeraDisponible != -1) ? static_cast<unsigned>(primeraDisponible) : idx;
+
+        tabla[posFinal].clave = clave;
+        tabla[posFinal].dato = dato;
+        tabla[posFinal].marca = OCUPADA;
+
+        ++tamal;
+
+        if (colisiones > static_cast<int>(maxCol)) {
+            maxCol = static_cast<unsigned long>(colisiones);
+        }
+        sumaColisiones += static_cast<unsigned long>(colisiones);
+        if (colisiones <= 10) {
+            ++max10;
+        }
+
+        return true;
+    }
+
+    return false;
+}
