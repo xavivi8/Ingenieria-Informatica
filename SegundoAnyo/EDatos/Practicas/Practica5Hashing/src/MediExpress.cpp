@@ -107,8 +107,7 @@ void MediExpress::autoLinkMedications() {
     meds.reserve(nombMedication.size());
     std::unordered_set<PaMedicamento*> visto;
 
-    for (std::multimap<std::string, PaMedicamento*>::iterator it = nombMedication.begin();
-         it != nombMedication.end(); ++it) {
+    for (std::multimap<std::string, PaMedicamento*>::iterator it = nombMedication.begin(); it != nombMedication.end(); ++it) {
         PaMedicamento* p = it->second;
         if (p && !visto.count(p)) {
             visto.insert(p);
@@ -120,9 +119,7 @@ void MediExpress::autoLinkMedications() {
 
     // 2) Reparto: 2 medicamentos por laboratorio en orden de lista
     std::size_t idxMed = 0;
-    for (std::list<Laboratorio>::iterator labIt = m_lab.begin();
-         labIt != m_lab.end() && idxMed < meds.size();
-         ++labIt) {
+    for (std::list<Laboratorio>::iterator labIt = m_lab.begin(); labIt != m_lab.end() && idxMed < meds.size(); ++labIt) {
 
         for (int k = 0; k < 2 && idxMed < meds.size(); ++k, ++idxMed) {
             meds[idxMed]->setServidoPor(&(*labIt));
@@ -141,36 +138,36 @@ void MediExpress::autoLinkMedications() {
 }
 
 void MediExpress::autoLinkFarmaciasStock() {
-    if (m_med.empty() || m_farma.empty()) {
-        return;
-    }
-
-    const int STOCK_INICIAL = 10;
-    const int MEDICAMENTOS_POR_F = 100;
-
     std::vector<int> ids;
-    ids.reserve(m_med.size());
-    for (std::map<int, PaMedicamento>::const_iterator it = m_med.cbegin();
-         it != m_med.cend();
-         ++it) {
-        ids.push_back(it->first);
+    ids.reserve(nombMedication.size());
+    std::unordered_set<PaMedicamento*> visto;
+
+    for (std::multimap<std::string, PaMedicamento*>::iterator it = nombMedication.begin(); it != nombMedication.end(); ++it) {
+        PaMedicamento* p = it->second;
+        if (p && !visto.count(p)) {
+            visto.insert(p);
+            ids.push_back(p->getIdNum());
+        }
     }
 
-    if (ids.empty()) {
+    if (ids.empty() || pharmacy.empty()) {
         return;
     }
+
+    const int STOCK_INICIAL      = 10;
+    const int MEDICAMENTOS_POR_F = 100;
 
     const std::size_t total = ids.size();
     std::size_t index = 0;
 
-    for (std::vector<Farmacia>::iterator itFar = m_farma.begin();
-         itFar != m_farma.end();
-         ++itFar) {
+    for (std::multimap<std::string, Farmacia>::iterator itFar = pharmacy.begin(); itFar != pharmacy.end(); ++itFar) {
+
+        Farmacia &f = itFar->second;
 
         for (int k = 0; k < MEDICAMENTOS_POR_F; ++k) {
             int idMed = ids[index];
 
-            suministrarFarmacia(*itFar, idMed, STOCK_INICIAL);
+            suministrarFarmacia(f, idMed, STOCK_INICIAL);
 
             ++index;
             if (index >= total) {
@@ -179,7 +176,6 @@ void MediExpress::autoLinkFarmaciasStock() {
         }
     }
 }
-
 
 /**
  * Constructores
