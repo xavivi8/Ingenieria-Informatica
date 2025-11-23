@@ -3,6 +3,7 @@
 //
 #include "../include/THashMedicam.h"
 #include <cmath>
+
 /**
  * Metodos privados 
  */
@@ -25,5 +26,15 @@ int THashMedicam::primo_mayor(unsigned numero) {
         ++numero;
     }
     return static_cast<int>(numero);
+}
+
+int THashMedicam::primo_menor(unsigned numero) {
+    if (numero <= 3) return 2;
+    unsigned candidato = numero - 1;
+    while (candidato >= 2 && !esprimo(candidato)) {
+        --candidato;
+    }
+    if (candidato < 2) candidato = 2;
+    return static_cast<int>(candidato);
 }
 
