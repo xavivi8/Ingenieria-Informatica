@@ -337,9 +337,11 @@ void MediExpress::suministrarFarmacia(Farmacia &f, int id_num, int n) {
 
 std::vector<Farmacia*> MediExpress::buscarFarmacias(const std::string &provincia) const {
     std::vector<Farmacia*> v;
-    for (std::vector<Farmacia>::const_iterator it = m_farma.cbegin(); it != m_farma.cend(); ++it) {
-        if (utils::iContains(it->getProvince(), provincia)) {
-            v.push_back(const_cast<Farmacia*>(&(*it)));
+
+    for (std::multimap<std::string, Farmacia>::const_iterator it = m_far.cbegin(); it != m_far.cend(); ++it) {
+        const std::string &provFarma = it->second.getProvince();
+        if (utils::iContains(provFarma, provincia)) {
+            v.push_back(const_cast<Farmacia*>(&it->second));
         }
     }
     return v;
