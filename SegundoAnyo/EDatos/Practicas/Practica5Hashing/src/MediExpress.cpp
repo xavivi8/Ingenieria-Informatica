@@ -271,10 +271,17 @@ std::vector<PaMedicamento*> MediExpress::buscarCompuesto(const std::string &comp
 
 std::vector<PaMedicamento*> MediExpress::getMedicamSinLab() const {
     std::vector<PaMedicamento*> aux;
-    for (std::map<int, PaMedicamento>::const_iterator it = m_med.cbegin(); it != m_med.cend(); ++it) {
-        if (it->second.getServidoPor() == nullptr) {
-            aux.push_back(const_cast<PaMedicamento*>(&it->second));
+    std::unordered_set<PaMedicamento*> visto;
+
+    for (std::multimap<std::string, PaMedicamento*>::const_iterator it = m_nameMed.cbegin(); it != m_nameMed.cend(); ++it) {
+        PaMedicamento* med = it->second;
+        if (!med) continue;
+        if (visto.count(med)) continue;
+
+        if (med->getServidoPor() == nullptr) {
+            aux.push_back(med);
         }
+        visto.insert(med);
     }
     return aux;
 }
