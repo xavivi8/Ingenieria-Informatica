@@ -187,3 +187,22 @@ PaMedicamento* THashMedicam::buscar(unsigned long clave) {
     }
     return nullptr;
 }
+
+bool THashMedicam::borrar(unsigned long clave) {
+    for (int i = 0; i < static_cast<int>(tamaf); ++i) {
+        unsigned idx = hash(clave, i);
+        Entrada &e = tabla[idx];
+
+        if (e.marca == LIBRE) {
+            // ya no puede estar más allá
+            return false;
+        }
+
+        if (e.marca == OCUPADA && e.clave == clave) {
+            e.marca = DISPONIBLE;   // dejamos tumba
+            --tamal;
+            return true;
+        }
+    }
+    return false;
+}
