@@ -38,3 +38,29 @@ int THashMedicam::primo_menor(unsigned numero) {
     return static_cast<int>(candidato);
 }
 
+/**
+ * Metodos publicos
+ */
+
+THashMedicam::THashMedicam(unsigned long maxElementos, double lamda)
+    : tamaf(0),
+      tamal(0),
+      maxCol(0),
+      max10(0),
+      sumaColisiones(0),
+      primoMenor(0) {
+
+    if (lamda <= 0.0 || lamda >= 1.0) {
+        lamda = 0.7;  // valor por defecto razonable
+    }
+
+    // tamaño mínimo necesario para garantizar el factor de carga
+    double tamNecesario = std::ceil(maxElementos / lamda);
+
+    tamaf = static_cast<unsigned long>(primo_mayor(static_cast<unsigned>(tamNecesario)));
+
+    primoMenor = static_cast<unsigned long>(primo_menor(static_cast<unsigned>(tamaf)));
+
+    tabla.resize(static_cast<std::size_t>(tamaf));
+}
+
