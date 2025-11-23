@@ -169,3 +169,21 @@ bool THashMedicam::insertar(unsigned long clave, PaMedicamento &dato) {
 
     return false;
 }
+
+PaMedicamento* THashMedicam::buscar(unsigned long clave) {
+    for (int i = 0; i < static_cast<int>(tamaf); ++i) {
+        unsigned idx = hash(clave, i);
+        Entrada &e = tabla[idx];
+
+        if (e.marca == LIBRE) {
+            // encontramos una celda nunca usada: la clave no está
+            return nullptr;
+        }
+
+        if (e.marca == OCUPADA && e.clave == clave) {
+            return &e.dato;
+        }
+        // si es DISPONIBLE seguimos buscando
+    }
+    return nullptr;
+}
