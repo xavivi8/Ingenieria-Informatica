@@ -9,6 +9,7 @@
 #include <iterator>
 #include <iostream>
 #include <unordered_set>
+#include <chrono>
 
 /**
  * Metodos privados
@@ -367,4 +368,93 @@ bool MediExpress::eliminarMedicamento(int id_num) {
     }
 
     return true;
+}
+
+void MediExpress::mostrarEstadoTabla() {
+    std::cout << "================ ESTADO INTERNO DE LA TABLA HASH ================\n";
+
+    unsigned int tam = m_idMedication.tamTabla();
+    unsigned int nElems = m_idMedication.numElementos();
+    float lambda = m_idMedication.factorCarga();
+    unsigned long maxCol = m_idMedication.maxColisiones();
+    unsigned int num10 = m_idMedication.numMax10();
+    float promCol = m_idMedication.promedioColisiones();
+
+    std::cout << "  Tamaño de la tabla        : " << tam << "\n";
+    std::cout << "  Nº de elementos almacenados: " << nElems << "\n";
+    std::cout << "  Factor de carga (lambda)  : " << lambda << "\n";
+    std::cout << "  Máx. colisiones inserción : " << maxCol << "\n";
+    std::cout << "  Nº inserciones > 10 col.  : " << num10 << "\n";
+    std::cout << "  Promedio de colisiones    : " << promCol << "\n";
+    std::cout << "=================================================================\n";
+}
+
+void MediExpress::pruebaRendimiento() {
+    // 1) Construimos un vector de IDs y una lista de PaMedicamento
+    std::vector<int> ids;
+    std::list<PaMedicamento> lista;
+    std::unordered_set<PaMedicamento*> visto;
+
+    for (std::multimap<std::string, PaMedicamento*>::const_iterator it = m_nameMed.cbegin(); it != m_nameMed.cend(); ++it) {
+
+        PaMedicamento* med = it->second;
+        if (!med) {
+            continue;
+        }
+        if (visto.count(med)) {
+            continue;   // evitamos duplicados
+        }
+
+        visto.insert(med);
+        ids.push_back(med->getIdNum());
+        lista.push_back(*med);   // copia para la lista secuencial
+    }
+
+    if (ids.empty()) {
+        std::cout << "No hay medicamentos para realizar la prueba de rendimiento.\n";
+        return;
+    }
+
+    using namespace std::chrono;
+
+    // 2) Búsqueda masiva en la tabla hash
+    high_resolution_clock::time_point t0 = high_resolution_clock::now();
+
+    for (std::size_t i = 0; i < ids.size(); ++i) {
+        int id = ids[i];
+        PaMedicamento* p = buscarCompuesto(id);   // usa la tabla hash (THashMedicam)
+        (void)p; // solo para que el compilador no se queje si no lo usamos
+    }
+
+    high_resolution_clock::time_point t1 = high_resolution_clock::now();
+    duration<double, std::milli> durHash = t1 - t0;
+
+    // 3) Búsqueda masiva en std::list<PaMedicamento>
+    high_resolution_clock::time_point t2 = high_resolution_clock::now();
+
+    for (std::size_t i = 0; i < ids.size(); ++i) {
+        int id = ids[i];
+        bool found = false;
+
+        for (std::list<PaMedicamento>::const_iterator it = lista.cbegin();
+             it != lista.cend(); ++it) {
+
+            if (it->getIdNum() == id) {
+                found = true;
+                break;
+            }
+        }
+
+        (void)found; // no lo usamos, solo queremos medir el tiempo
+    }
+
+    high_resolution_clock::time_point t3 = high_resolution_clock::now();
+    duration<double, std::milli> durList = t3 - t2;
+
+    // 4) Mostrar resultados
+    std::cout << "================ PRUEBA DE RENDIMIENTO ==========================\n";
+    std::cout << "  Nº de búsquedas realizadas: " << ids.size() << "\n";
+    std::cout << "  Tiempo total con tabla hash : " << durHash.count() << " ms\n";
+    std::cout << "  Tiempo total con std::list  : " << durList.count() << " ms\n";
+    std::cout << "=================================================================\n";
 }
