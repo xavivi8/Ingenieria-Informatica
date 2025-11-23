@@ -181,7 +181,7 @@ void MediExpress::autoLinkFarmaciasStock() {
  * Constructores
  */
 
-MediExpress::MediExpress() = default;
+MediExpress::MediExpress() : m_idMedication(1) {}
 
 MediExpress::MediExpress(const std::string &csvPathVD,
                          const std::string &csvPathLE,
