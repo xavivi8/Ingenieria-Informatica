@@ -4,20 +4,23 @@
 
 #ifndef MEDIEXPRESS_H
 #define MEDIEXPRESS_H
-#include "../include/PaMedicamento.h"
-#include "../include/Laboratorio.h"
-#include "../include/Farmacia.h"
+#include "./PaMedicamento.h"
+#include "./Laboratorio.h"
+#include "./Farmacia.h"
+#include "./THashMedicam.h"
 
 #include <set>
 #include <vector>
 #include <list>
 #include <map>
+#include <string>
 
 class MediExpress{
     private:
-        std::map<int, PaMedicamento> m_med;
-        std::list<Laboratorio> m_lab;
-        std::vector<Farmacia> m_farma;
+        THashMedicam m_idMedication;
+        std::multimap<std::string, PaMedicamento*> nombMedication;
+        std::multimap<std::string, Farmacia> pharmacy;
+        std::list<Laboratorio> m_lab;  
 
         /**
          * @brief Carga los medicamentos desde un archivo CSV
@@ -88,12 +91,7 @@ class MediExpress{
          * @return Devuelve un vector con punteros a los laboratorios que se encuentran en la ciudad dada
          */
         std::vector<Laboratorio*> buscarLabCiudad(const std::string &cityName) const;
-        /**
-         * @brief Busca medicamentos que contengan un compuesto activo
-         * @param compoundName Nombre del compuesto activo
-         * @return Devuelve un vector con punteros a los medicamentos que contienen el compuesto activo dado
-         */
-        std::vector<PaMedicamento*> buscarCompuesto(const std::string &compoundName) const;
+
         /**
          * @brief Obtiene los medicamentos que no tienen laboratorio asignado
          * @return Devuelve un vector con punteros a los medicamentos sin laboratorio asignado
@@ -101,12 +99,6 @@ class MediExpress{
         std::vector<PaMedicamento*> getMedicamSinLab() const;
 
         //metodos pract3
-        /**
-         * @brief Busca un medicamento por su identificador numerico
-         * @param id_num Identificador numerico del medicamento
-         * @return Devuelve un puntero al medicamento si se encuentra, nullptr en caso contrario
-         */
-        PaMedicamento* buscarCompuesto(int id_num);
         /**
          * @brief Busca una farmacia por su CIF
          * @param cif CIF de la farmacia
@@ -141,6 +133,12 @@ class MediExpress{
          * @return Devuelve true si se ha podido eliminar el medicamento, false en caso contrario
          */
         bool eliminarMedicamento(int id_num);
+
+        //metodos pract5
+        std::vector<PaMedicamento*> buscarCompuesto(const std::string &nombrePA) const;
+        PaMedicamento* buscarCompuesto(int id_num);
+        void mostrarEstadoTabla();
+        void pruebaRendimiento(); 
 };
 
 #endif //MEDIEXPRESS_H
