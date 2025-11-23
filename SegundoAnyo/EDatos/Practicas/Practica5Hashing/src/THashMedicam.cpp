@@ -3,7 +3,6 @@
 //
 #include "../include/THashMedicam.h"
 #include <cmath>
-
 /**
  * Metodos privados 
  */
@@ -18,5 +17,13 @@ bool THashMedicam::esprimo(unsigned n) {
         if (n % i == 0) return false;
     }
     return true;
+}
+
+int THashMedicam::primo_mayor(unsigned numero) {
+    if (numero < 2) numero = 2;
+    while (!esprimo(numero)) {
+        ++numero;
+    }
+    return static_cast<int>(numero);
 }
 
