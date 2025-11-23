@@ -64,3 +64,12 @@ THashMedicam::THashMedicam(unsigned long maxElementos, double lamda)
     tabla.resize(static_cast<std::size_t>(tamaf));
 }
 
+THashMedicam::THashMedicam(const THashMedicam &orig)
+    : tamaf(orig.tamaf),
+      tamal(orig.tamal),
+      maxCol(orig.maxCol),
+      max10(orig.max10),
+      sumaColisiones(orig.sumaColisiones),
+      primoMenor(orig.primoMenor),
+      tabla(orig.tabla) {}
+
