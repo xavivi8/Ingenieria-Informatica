@@ -104,10 +104,10 @@ std::vector<Farmacia> MediExpress::loadFarmacieFromCsv(const std::string &csvPat
 void MediExpress::autoLinkMedications() {
     // 1) Obtener lista de medicamentos sin duplicados desde nombMedication
     std::vector<PaMedicamento*> meds;
-    meds.reserve(nombMedication.size());
+    meds.reserve(m_nameMed.size());
     std::unordered_set<PaMedicamento*> visto;
 
-    for (std::multimap<std::string, PaMedicamento*>::iterator it = nombMedication.begin(); it != nombMedication.end(); ++it) {
+    for (std::multimap<std::string, PaMedicamento*>::iterator it = m_nameMed.begin(); it != m_nameMed.end(); ++it) {
         PaMedicamento* p = it->second;
         if (p && !visto.count(p)) {
             visto.insert(p);
@@ -139,10 +139,10 @@ void MediExpress::autoLinkMedications() {
 
 void MediExpress::autoLinkFarmaciasStock() {
     std::vector<int> ids;
-    ids.reserve(nombMedication.size());
+    ids.reserve(m_nameMed.size());
     std::unordered_set<PaMedicamento*> visto;
 
-    for (std::multimap<std::string, PaMedicamento*>::iterator it = nombMedication.begin(); it != nombMedication.end(); ++it) {
+    for (std::multimap<std::string, PaMedicamento*>::iterator it = m_nameMed.begin(); it != m_nameMed.end(); ++it) {
         PaMedicamento* p = it->second;
         if (p && !visto.count(p)) {
             visto.insert(p);
@@ -150,7 +150,7 @@ void MediExpress::autoLinkFarmaciasStock() {
         }
     }
 
-    if (ids.empty() || pharmacy.empty()) {
+    if (ids.empty() || m_far.empty()) {
         return;
     }
 
@@ -160,7 +160,7 @@ void MediExpress::autoLinkFarmaciasStock() {
     const std::size_t total = ids.size();
     std::size_t index = 0;
 
-    for (std::multimap<std::string, Farmacia>::iterator itFar = pharmacy.begin(); itFar != pharmacy.end(); ++itFar) {
+    for (std::multimap<std::string, Farmacia>::iterator itFar = m_far.begin(); itFar != m_far.end(); ++itFar) {
 
         Farmacia &f = itFar->second;
 
@@ -202,7 +202,7 @@ MediExpress::MediExpress(const std::string &csvPathVD, const std::string &csvPat
     std::vector<Farmacia> auxFarma = loadFarmacieFromCsv(csvPathAVL);
     for (std::vector<Farmacia>::iterator it = auxFarma.begin();
          it != auxFarma.end(); ++it) {
-        pharmacy.insert(std::make_pair(it->getProvince(), *it));
+        m_far.insert(std::make_pair(it->getProvince(), *it));
     }
 
     // 5) Rellenar nombMedication con punteros a los PaMedicamento de la tabla hash
@@ -211,7 +211,7 @@ MediExpress::MediExpress(const std::string &csvPathVD, const std::string &csvPat
         PaMedicamento* p = m_idMedication.buscar(it->first);
         if (!p) continue;
         std::string clave = utils::lowerCopy(p->getName());
-        nombMedication.insert(std::make_pair(clave, p));
+        m_nameMed.insert(std::make_pair(clave, p));
     }
 
     autoLinkMedications();
@@ -228,9 +228,9 @@ void MediExpress::suministrarMed(const PaMedicamento &med, const Laboratorio &la
     Laboratorio* labReal = buscarLab(lab.getLabName());
     if (!labReal) return;
 
-    std::map<int, PaMedicamento>::iterator itMed = m_med.find(med.getIdNum());
-    if (itMed != m_med.end()) {
-        itMed->second.setServidoPor(labReal);
+    PaMedicamento* encontrado = m_idMedication.buscar(med.getIdNum());
+    if (encontrado) {
+        encontrado->setServidoPor(labReal);
     }
 }
 
@@ -251,11 +251,19 @@ std::vector<Laboratorio*> MediExpress::buscarLabCiudad(const std::string &cityNa
     }
     return aux;
 }
+
 std::vector<PaMedicamento*> MediExpress::buscarCompuesto(const std::string &compoundName) const {
     std::vector<PaMedicamento*> aux;
-    for (std::map<int, PaMedicamento>::const_iterator it = m_med.cbegin(); it != m_med.cend(); ++it) {
-        if (utils::iContains(it->second.getName(), compoundName)) {
-            aux.push_back(const_cast<PaMedicamento*>(&it->second));
+    std::unordered_set<PaMedicamento*> visto;
+
+    for (std::multimap<std::string, PaMedicamento*>::const_iterator it = m_nameMed.cbegin(); it != m_nameMed.cend(); ++it) {
+        PaMedicamento* med = it->second;
+        if (!med) continue;
+        if (visto.count(med)) continue; // evitar duplicados
+
+        if (utils::iContains(med->getName(), compoundName)) {
+            aux.push_back(med);
+            visto.insert(med);
         }
     }
     return aux;
