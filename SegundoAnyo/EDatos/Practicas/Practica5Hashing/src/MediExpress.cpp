@@ -309,11 +309,10 @@ std::vector<Laboratorio*> MediExpress::buscarLabs(const std::string &nombrePA) c
     std::vector<Laboratorio*> resultado;
     std::unordered_set<Laboratorio*> visto;
 
-    for (std::map<int, PaMedicamento>::const_iterator it = m_med.cbegin(); it != m_med.cend(); ++it) {
-        const PaMedicamento &med = it->second;
-        if (!utils::iContains(med.getName(), nombrePA)) continue;
-
-        Laboratorio* lab = med.getServidoPor();
+    std::vector<PaMedicamento*> meds = buscarCompuesto(nombrePA);
+    for (PaMedicamento* med : meds) {
+        if (!med) continue;
+        Laboratorio* lab = med->getServidoPor();
         if (lab && !visto.count(lab)) {
             resultado.push_back(lab);
             visto.insert(lab);
