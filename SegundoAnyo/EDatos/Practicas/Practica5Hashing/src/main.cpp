@@ -270,6 +270,49 @@ int main(int argc, const char *argv[]) {
             }
         }
 
+        separador("Prueba II Parte IV");
+        // Buscar primero por nombre y luego eliminar en el orden indicado
+        const std::string nombresProhibidos[] = { "CIANURO", "BISMUTO" };
+        const int NUM_PROHIBIDOS = 2;
+
+        for (int i = 0; i < NUM_PROHIBIDOS; ++i) {
+            const std::string &nombre = nombresProhibidos[i];
+            std::vector<PaMedicamento*> encontrados = sistema.buscarCompuesto(nombre);
+
+            std::cout << "\nMedicamentos que contienen \"" << nombre
+                      << "\" en su nombre: " << encontrados.size() << "\n";
+
+            if (encontrados.empty()) {
+                std::cout << "  (ninguno)\n";
+                continue;
+            }
+
+            // Mostrar y eliminar
+            for (std::size_t j = 0; j < encontrados.size(); ++j) {
+                PaMedicamento* pm = encontrados[j];
+                if (!pm) continue;
+
+                int id = pm->getIdNum();
+                std::cout << "  - Eliminando ID " << id
+                          << " | " << pm->getName() << " ... ";
+
+                bool ok = sistema.eliminarMedicamento(id);
+                if (ok) {
+                    std::cout << "OK\n";
+                } else {
+                    std::cout << "ya estaba eliminado o no se encontraba.\n";
+                }
+            }
+        }
+
+        // Comprobación: intentar buscarlos de nuevo
+        for (int i = 0; i < NUM_PROHIBIDOS; ++i) {
+            const std::string &nombre = nombresProhibidos[i];
+            std::vector<PaMedicamento*> comprobacion = sistema.buscarCompuesto(nombre);
+
+            std::cout << "\nTras la prohibicion, medicamentos con \"" << nombre <<"\" en el nombre: " << comprobacion.size() << "\n";
+        }
+
     } catch (const std::exception &e) {
         std::cerr << "[ERROR] " << e.what() << '\n';
         return 1;
