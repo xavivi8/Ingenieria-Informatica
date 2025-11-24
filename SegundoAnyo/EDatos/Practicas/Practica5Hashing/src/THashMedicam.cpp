@@ -211,11 +211,11 @@ bool THashMedicam::borrar(unsigned long clave) {
  * Getters
  */
 
-unsigned int THashMedicam::numElementos() {
+unsigned int THashMedicam::numElementos() const{
     return static_cast<unsigned int>(tamal);
 }
 
-unsigned int THashMedicam::tamTabla() {
+unsigned int THashMedicam::tamTabla() const{
     return static_cast<unsigned int>(tamaf);
 }
 
@@ -223,7 +223,7 @@ unsigned long THashMedicam::maxColisiones() const {
     return maxCol;
 }
 
-unsigned int THashMedicam::numMax10() {
+unsigned int THashMedicam::numMax10() const{
     return static_cast<unsigned int>(max10);
 }
 
@@ -233,7 +233,7 @@ float THashMedicam::promedioColisiones() const {
            static_cast<float>(tamal);
 }
 
-float THashMedicam::factorCarga() {
+float THashMedicam::factorCarga() const{
     if (tamaf == 0) return 0.0f;
     return static_cast<float>(tamal) /
            static_cast<float>(tamaf);

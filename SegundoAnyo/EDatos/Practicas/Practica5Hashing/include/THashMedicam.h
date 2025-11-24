@@ -55,12 +55,12 @@ public:
     bool borrar(unsigned long clave);
     PaMedicamento* buscar(unsigned long clave);
     
-    unsigned int numElementos();
-    unsigned int tamTabla();
+    unsigned int numElementos() const;
+    unsigned int tamTabla() const;
     unsigned long maxColisiones() const;
-    unsigned int numMax10();
+    unsigned int numMax10() const;
     float promedioColisiones() const;
-    float factorCarga();
+    float factorCarga() const;
 };
 
 #endif //THASHMEDICAM_H

@@ -454,3 +454,34 @@ void MediExpress::pruebaRendimiento() {
     std::cout << "  Tiempo total con std::list  : " << durList.count() << " ms\n";
     std::cout << "=================================================================\n";
 }
+
+/**
+ * Getters
+ */
+
+unsigned int MediExpress::getMaxColisiones() const {
+    return static_cast<unsigned int>(m_idMedication.maxColisiones());
+}
+
+unsigned int MediExpress::getNumMax10() const { 
+    return m_idMedication.numMax10();
+}
+float MediExpress::getPromedioColisiones() const { 
+    return m_idMedication.promedioColisiones(); 
+}
+float MediExpress::getFactorCarga() const { 
+    return m_idMedication.factorCarga(); 
+}
+unsigned int MediExpress::getTamTabla() const { 
+    return m_idMedication.tamTabla(); 
+}
+unsigned int MediExpress::getNumElementos() const { 
+    return m_idMedication.numElementos(); 
+}
+
+double MediExpress::getTiempoHash() const { 
+    return m_tiempoHash; 
+}
+double MediExpress::getTiempoLista() const { 
+    return m_tiempoLista; 
+}
