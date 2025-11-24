@@ -390,6 +390,7 @@ void MediExpress::mostrarEstadoTabla() {
 }
 
 void MediExpress::pruebaRendimiento() {
+    // 1) Construimos un vector de IDs y una lista de PaMedicamento
     std::vector<int> ids;
     std::list<PaMedicamento> lista;
     std::unordered_set<PaMedicamento*> visto;
@@ -397,12 +398,8 @@ void MediExpress::pruebaRendimiento() {
     for (std::multimap<std::string, PaMedicamento*>::const_iterator it = m_nameMed.cbegin(); it != m_nameMed.cend(); ++it) {
 
         PaMedicamento* med = it->second;
-        if (!med) {
-            continue;
-        }
-        if (visto.count(med)) {
-            continue;
-        }
+        if (!med) continue;
+        if (visto.count(med)) continue;
 
         visto.insert(med);
         ids.push_back(med->getIdNum());
@@ -410,13 +407,13 @@ void MediExpress::pruebaRendimiento() {
     }
 
     if (ids.empty()) {
-        std::cout << "No hay medicamentos para realizar la prueba de rendimiento.\n";
+        m_tiempoHash  = 0.0;
+        m_tiempoLista = 0.0;
         return;
     }
 
-    using namespace std::chrono;
-
-    high_resolution_clock::time_point t0 = high_resolution_clock::now();
+    // 2) Búsqueda masiva en la tabla hash
+    std::chrono::high_resolution_clock::time_point t0 = std::chrono::high_resolution_clock::now();
 
     for (std::size_t i = 0; i < ids.size(); ++i) {
         int id = ids[i];
@@ -424,10 +421,11 @@ void MediExpress::pruebaRendimiento() {
         (void)p;
     }
 
-    high_resolution_clock::time_point t1 = high_resolution_clock::now();
-    duration<double, std::milli> durHash = t1 - t0;
+    std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double, std::milli> durHash = t1 - t0;
 
-    high_resolution_clock::time_point t2 = high_resolution_clock::now();
+    // 3) Búsqueda masiva en std::list<PaMedicamento>
+    std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
 
     for (std::size_t i = 0; i < ids.size(); ++i) {
         int id = ids[i];
@@ -435,7 +433,6 @@ void MediExpress::pruebaRendimiento() {
 
         for (std::list<PaMedicamento>::const_iterator it = lista.cbegin();
              it != lista.cend(); ++it) {
-
             if (it->getIdNum() == id) {
                 found = true;
                 break;
@@ -445,14 +442,12 @@ void MediExpress::pruebaRendimiento() {
         (void)found;
     }
 
-    high_resolution_clock::time_point t3 = high_resolution_clock::now();
-    duration<double, std::milli> durList = t3 - t2;
+    std::chrono::high_resolution_clock::time_point t3 = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double, std::milli> durList = t3 - t2;
 
-    std::cout << "================ PRUEBA DE RENDIMIENTO ==========================\n";
-    std::cout << "  N de busquedas realizadas: " << ids.size() << "\n";
-    std::cout << "  Tiempo total con tabla hash : " << durHash.count() << " ms\n";
-    std::cout << "  Tiempo total con std::list  : " << durList.count() << " ms\n";
-    std::cout << "=================================================================\n";
+    // 4) Guardamos los tiempos para que el main los lea
+    m_tiempoHash  = durHash.count();
+    m_tiempoLista = durList.count();
 }
 
 /**
