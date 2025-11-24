@@ -1,7 +1,6 @@
 # Análisis de tablas de dispersión
 
-* *Autor 1*
-* *Autor 2*
+* *Francisco Javier Martín-Lunas Escobar*
 
 ## Tamaño de tabla: xx
 | función | máximo de colisiones | supera 10 colisiones | factor de carga | promedio de colisiones |
