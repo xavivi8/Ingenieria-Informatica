@@ -91,6 +91,8 @@ int main(int argc, const char *argv[]) {
 
         std::cout << "Informe generado en ../analisis_Thash.md\n";
 
+        separador("Prueba II");
+
     } catch (const std::exception &e) {
         std::cerr << "[ERROR] " << e.what() << '\n';
         return 1;
