@@ -143,6 +143,20 @@ class MediExpress{
         PaMedicamento* buscarCompuesto(int id_num);
         void mostrarEstadoTabla();
         void pruebaRendimiento(); 
+        
+        //getters
+        //metricas de la tabla hash
+        unsigned int getMaxColisiones() const;
+        unsigned int getNumMax10() const;
+        float getPromedioColisiones() const;
+        float getFactorCarga() const;
+        unsigned int getTamTabla() const;
+        unsigned int getNumElementos() const;
+
+        //tiempos de la última prueba de rendimiento (en ms)
+        double getTiempoHash() const;
+        double getTiempoLista() const;
+
 };
 
 #endif //MEDIEXPRESS_H
