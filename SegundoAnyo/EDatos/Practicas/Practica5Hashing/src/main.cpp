@@ -192,15 +192,6 @@ int main(int argc, const char *argv[]) {
 
                         // Reponer 10 unidades de ÓXIDO DE MAGNESIO a la farmacia
                         sistema.suministrarFarmacia(*f, ID_OXIDO, 10);
-
-                        try {
-                            f->comprarMedicam(ID_OXIDO, 1, dummy);
-                            std::cout << "    Compra OXIDO DE MAGNESIO (ID " << ID_OXIDO
-                                      << ") tras la reposicion.\n";
-                        } catch (const std::exception &e) {
-                            std::cout << "    Ni siquiera tras la reposicion se pudo comprar OXIDO DE MAGNESIO ("
-                                      << e.what() << ")\n";
-                        }
                     }
                 }
 
