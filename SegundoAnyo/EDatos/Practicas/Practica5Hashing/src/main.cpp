@@ -92,7 +92,11 @@ int main(int argc, const char *argv[]) {
         std::cout << "Informe generado en ../analisis_Thash.md\n";
 
         separador("Prueba II Parte I");
-
+        //TODO: hacer busqueda con intersección para que encuentre exactamente el medicamento, por ejemplo, LIDOCAINA 
+        //TODO    HIDROCLORURO y no LIDOCAINA HIDROCLORURO xxxxxxx
+        
+        //TODO: en todas las busquedas de medicamentos hay que hacer la intersección para por ejemplo que si quiero MAGNESIO me de
+        //TODO  todos los medicamentos que contenga MAGNESIO en el nombre 
         const std::string consultas[] = {
             "MAGNESIO CLORURO HEXAHIDRATO",
             "CLORURO",
