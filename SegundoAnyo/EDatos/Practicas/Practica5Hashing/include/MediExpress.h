@@ -68,7 +68,9 @@ class MediExpress{
          */
         MediExpress(const std::string &csvPathVD,
                     const std::string &csvPathLE,
-                    const std::string &csvPathAVL);
+                    const std::string &csvPathAVL,
+                    double lambda,
+                    TipoHash tipoHash);
         /**
          * @brief Destructor
          * @post Destructor por defecto
