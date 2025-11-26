@@ -9,6 +9,7 @@
 #include "../include/PaMedicamento.h"
 
 enum Estado{LIBRE,OCUPADA,DISPONIBLE};
+enum TipoHash { HASH1 = 1, HASH2 = 2, HASH3 = 3 };
 
 class THashMedicam {
 private:    
@@ -29,6 +30,7 @@ private:
     unsigned long primoMenor;
 
     std::vector<Entrada> tabla;
+    TipoHash tipo;
 
     bool esprimo(unsigned n);
     int primo_menor(unsigned numero);
@@ -45,7 +47,7 @@ private:
     
 public:
     THashMedicam();
-    THashMedicam(unsigned long maxElementos, double lamda=0.7);
+    THashMedicam(unsigned long maxElementos, double lamda=0.7, TipoHash t = HASH1);
     THashMedicam(const THashMedicam &orig);
     ~THashMedicam();
 
@@ -61,6 +63,8 @@ public:
     unsigned int numMax10() const;
     float promedioColisiones() const;
     float factorCarga() const;
+
+    TipoHash getTipo() const;
 };
 
 #endif //THASHMEDICAM_H
