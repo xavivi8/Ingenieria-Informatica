@@ -95,13 +95,14 @@ MediExpress ejecutarPruebaI(const std::string &fichMed, const std::string &fichL
             unsigned int tamTabla = results[l][0].tableSize;
 
             md << "## Tamaño de tabla: " << tamTabla << "\n";
-            md << "| función | máximo de colisiones | factor de carga | promedio de colisiones |\n";
-            md << "|---------|:--------------------:|:---------------:|:----------------------:|\n";
+            md << "| función | máximo de colisiones | supera 10 colisiones | factor de carga | promedio de colisiones |\n";
+            md << "|---------|:--------------------:|:--------------------:|:---------------:|:----------------------:|\n";
 
             for (int h = 0; h < 3; ++h) {
                 const HashResult &r = results[l][h];
                 md << "| " << r.functionName << "   |  "
                    << r.maxCollisions << "          |      "
+                   << r.numOver10Collisions << "       |        "
                    << r.loadFactor << "       |        "
                    << r.avgCollisions << "         |\n";
             }

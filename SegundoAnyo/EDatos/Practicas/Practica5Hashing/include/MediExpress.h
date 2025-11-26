@@ -19,7 +19,7 @@ class MediExpress{
     private:
         THashMedicam m_idMedication;
         std::multimap<std::string, PaMedicamento*> m_nameMed;
-        std::multimap<std::string, Farmacia> m_far;
+        std::vector<Farmacia> m_far;
         std::list<Laboratorio> m_labs;
         
         // tiempos de la última prueba de rendimiento
@@ -31,7 +31,7 @@ class MediExpress{
          * @param csvPath Ruta del archivo CSV
          * @return Devuelve un mapa con los medicamentos cargados
          */
-        std::map<int, PaMedicamento> loadMedicinesFromCsv(const std::string &csvPath);
+        std::vector<PaMedicamento> loadMedicinesFromCsv(const std::string &csvPath);
         /**
          * @brief Carga los laboratorios desde un archivo CSV
          * @param csvPath Ruta del archivo CSV

@@ -15,32 +15,39 @@
  * Metodos privados
  */
 
-std::map<int, PaMedicamento> MediExpress::loadMedicinesFromCsv(const std::string &csvPath) {
-    std::map<int, PaMedicamento> aux;
+std::vector<PaMedicamento> MediExpress::loadMedicinesFromCsv(const std::string &csvPath) {
+    std::vector<PaMedicamento> medicines;
 
     std::ifstream is(csvPath, std::ios::binary);
     if (!is.is_open()) {
         std::cerr << "[ERROR] No puedo abrir: " << csvPath << "\n";
-        return aux;
+        return medicines;
     }
 
     std::string row;
     while (std::getline(is, row)) {
-        if (row.empty()) continue;
+        if (row.empty()) {
+            continue;
+        }
 
         std::stringstream columns(row);
-        std::string idNum, idAlpha, name;
+        std::string idNum;
+        std::string idAlpha;
+        std::string name;
 
         std::getline(columns, idNum,   ';');
         std::getline(columns, idAlpha, ';');
-        std::getline(columns, name,    ';');
+        std::getline(columns, name,    ';');  // el último ; es opcional
 
-        if (idNum.empty()) continue;
+        if (idNum.empty()) {
+            continue;
+        }
 
-        PaMedicamento med(std::stoi(idNum), idAlpha, name);
-        aux.emplace(med.getIdNum(), std::move(med));
+        int numericId = std::stoi(idNum);
+        medicines.emplace_back(numericId, idAlpha, name);
     }
-    return aux;
+
+    return medicines;
 }
 
 std::list<Laboratorio> MediExpress::loadLabFromCsv(const std::string &csvPath) {
@@ -143,7 +150,8 @@ void MediExpress::autoLinkFarmaciasStock() {
     ids.reserve(m_nameMed.size());
     std::unordered_set<PaMedicamento*> visto;
 
-    for (std::multimap<std::string, PaMedicamento*>::iterator it = m_nameMed.begin(); it != m_nameMed.end(); ++it) {
+    for (std::multimap<std::string, PaMedicamento*>::iterator it = m_nameMed.begin();
+         it != m_nameMed.end(); ++it) {
         PaMedicamento* p = it->second;
         if (p && !visto.count(p)) {
             visto.insert(p);
@@ -161,9 +169,8 @@ void MediExpress::autoLinkFarmaciasStock() {
     const std::size_t total = ids.size();
     std::size_t index = 0;
 
-    for (std::multimap<std::string, Farmacia>::iterator itFar = m_far.begin(); itFar != m_far.end(); ++itFar) {
-
-        Farmacia &f = itFar->second;
+    for (std::size_t i = 0; i < m_far.size(); ++i) {
+        Farmacia &f = m_far[i];
 
         for (int k = 0; k < MEDICAMENTOS_POR_F; ++k) {
             int idMed = ids[index];
@@ -185,24 +192,25 @@ void MediExpress::autoLinkFarmaciasStock() {
 MediExpress::MediExpress() : m_idMedication(1) {}
 
 MediExpress::MediExpress(const std::string &csvPathVD, const std::string &csvPathLE, const std::string &csvPathAVL,double lambda, TipoHash tipoHash) : m_idMedication(1) {
-    std::map<int, PaMedicamento> auxMed = loadMedicinesFromCsv(csvPathVD);
+    std::vector<PaMedicamento> auxMed = loadMedicinesFromCsv(csvPathVD);
 
     THashMedicam tmp(static_cast<unsigned long>(auxMed.size()), lambda, tipoHash);
 
-    for (std::map<int, PaMedicamento>::iterator it = auxMed.begin(); it != auxMed.end(); ++it) {
-        tmp.insertar(it->first, it->second);
+    for (std::size_t i = 0; i < auxMed.size(); ++i) {
+        PaMedicamento &med = auxMed[i];
+        unsigned long key = static_cast<unsigned long>(med.getIdNum());
+        tmp.insertar(key, med);
     }
     m_idMedication = tmp;
 
     m_labs = loadLabFromCsv(csvPathLE);
 
     std::vector<Farmacia> auxFarma = loadFarmacieFromCsv(csvPathAVL);
-    for (std::vector<Farmacia>::iterator it = auxFarma.begin(); it != auxFarma.end(); ++it) {
-        m_far.insert(std::make_pair(it->getProvince(), *it));
-    }
+    m_far = auxFarma;
 
-    for (std::map<int, PaMedicamento>::const_iterator it = auxMed.cbegin(); it != auxMed.cend(); ++it) {
-        PaMedicamento* p = m_idMedication.buscar(it->first);
+    for (std::size_t i = 0; i < auxMed.size(); ++i) {
+        int id = auxMed[i].getIdNum();
+        PaMedicamento* p = m_idMedication.buscar(static_cast<unsigned long>(id));
         if (!p) continue;
         std::string clave = utils::lowerCopy(p->getName());
         m_nameMed.insert(std::make_pair(clave, p));
@@ -291,13 +299,17 @@ PaMedicamento* MediExpress::buscarCompuesto(int id_num) {
 
 Farmacia* MediExpress::buscarFarmacia(const std::string &cif) {
     const std::string clave = utils::lowerCopy(cif);
-    for (std::multimap<std::string, Farmacia>::iterator it = m_far.begin();  it != m_far.end(); ++it) {
-        if (utils::lowerCopy(it->second.getCif()) == clave) {
-            return &it->second;
+
+    for (std::size_t i = 0; i < m_far.size(); ++i) {
+        const std::string cifFarma = utils::lowerCopy(m_far[i].getCif());
+        if (cifFarma == clave) {
+            return &m_far[i];
         }
     }
+
     return nullptr;
 }
+
 
 std::vector<Laboratorio*> MediExpress::buscarLabs(const std::string &nombrePA) const {
     std::vector<Laboratorio*> resultado;
@@ -332,27 +344,29 @@ void MediExpress::suministrarFarmacia(Farmacia &f, int id_num, int n) {
 std::vector<Farmacia*> MediExpress::buscarFarmacias(const std::string &provincia) const {
     std::vector<Farmacia*> v;
 
-    for (std::multimap<std::string, Farmacia>::const_iterator it = m_far.cbegin(); it != m_far.cend(); ++it) {
-        const std::string &provFarma = it->second.getProvince();
+    for (std::size_t i = 0; i < m_far.size(); ++i) {
+        const std::string &provFarma = m_far[i].getProvince();
         if (utils::iContains(provFarma, provincia)) {
-            v.push_back(const_cast<Farmacia*>(&it->second));
+            v.push_back(const_cast<Farmacia*>(&m_far[i]));
         }
     }
+
     return v;
 }
+
 
 bool MediExpress::eliminarMedicamento(int id_num) {
     PaMedicamento* med = m_idMedication.buscar(id_num);
     if (!med) return false;
 
-    for (std::multimap<std::string, Farmacia>::iterator it = m_far.begin(); it != m_far.end(); ++it) {
-        it->second.eliminarStock(id_num);
+    for (std::size_t i = 0; i < m_far.size(); ++i) {
+        m_far[i].eliminarStock(id_num);
     }
 
-    // Borrar de la tabla hash
     m_idMedication.borrar(id_num);
 
-    for (std::multimap<std::string, PaMedicamento*>::iterator it = m_nameMed.begin(); it != m_nameMed.end(); ) {
+    for (std::multimap<std::string, PaMedicamento*>::iterator it = m_nameMed.begin();
+         it != m_nameMed.end(); ) {
         if (it->second == med) {
             it = m_nameMed.erase(it);
         } else {
