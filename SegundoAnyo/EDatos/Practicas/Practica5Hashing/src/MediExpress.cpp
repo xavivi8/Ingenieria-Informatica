@@ -33,7 +33,7 @@ std::map<int, PaMedicamento> MediExpress::loadMedicinesFromCsv(const std::string
 
         std::getline(columns, idNum,   ';');
         std::getline(columns, idAlpha, ';');
-        std::getline(columns, name,    ';'); // el último ; es opcional
+        std::getline(columns, name,    ';');
 
         if (idNum.empty()) continue;
 
@@ -120,7 +120,7 @@ void MediExpress::autoLinkMedications() {
 
     // 2) Reparto: 2 medicamentos por laboratorio en orden de lista
     std::size_t idxMed = 0;
-    for (std::list<Laboratorio>::iterator labIt = m_lab.begin(); labIt != m_lab.end() && idxMed < meds.size(); ++labIt) {
+    for (std::list<Laboratorio>::iterator labIt = m_labs.begin(); labIt != m_labs.end() && idxMed < meds.size(); ++labIt) {
 
         for (int k = 0; k < 2 && idxMed < meds.size(); ++k, ++idxMed) {
             meds[idxMed]->setServidoPor(&(*labIt));
@@ -194,7 +194,7 @@ MediExpress::MediExpress(const std::string &csvPathVD, const std::string &csvPat
     }
     m_idMedication = tmp;
 
-    m_lab = loadLabFromCsv(csvPathLE);
+    m_labs = loadLabFromCsv(csvPathLE);
 
     std::vector<Farmacia> auxFarma = loadFarmacieFromCsv(csvPathAVL);
     for (std::vector<Farmacia>::iterator it = auxFarma.begin(); it != auxFarma.end(); ++it) {
@@ -229,7 +229,7 @@ void MediExpress::suministrarMed(const PaMedicamento &med, const Laboratorio &la
 }
 
 Laboratorio* MediExpress::buscarLab(const std::string &labName) {
-    for (std::list<Laboratorio>::iterator it = m_lab.begin(); it != m_lab.end(); ++it) {
+    for (std::list<Laboratorio>::iterator it = m_labs.begin(); it != m_labs.end(); ++it) {
         if (it->getLabName() == labName) return &(*it);
     }
     return nullptr;
@@ -237,7 +237,7 @@ Laboratorio* MediExpress::buscarLab(const std::string &labName) {
 
 std::vector<Laboratorio*> MediExpress::buscarLabCiudad(const std::string &cityName) const {
     std::vector<Laboratorio*> aux;
-    for (std::list<Laboratorio>::const_iterator it = m_lab.cbegin(); it != m_lab.cend(); ++it) {
+    for (std::list<Laboratorio>::const_iterator it = m_labs.cbegin(); it != m_labs.cend(); ++it) {
         if (utils::iContains(it->getCity(), cityName)) {
             // la función es const, pero la firma pide puntero no-const asi que hay que solucionarlo
             aux.push_back(const_cast<Laboratorio*>(&(*it)));
@@ -400,8 +400,8 @@ void MediExpress::pruebaRendimiento() {
     }
 
     if (ids.empty()) {
-        m_tiempoHash  = 0.0;
-        m_tiempoLista = 0.0;
+        m_hashTime  = 0.0;
+        m_listTime = 0.0;
         return;
     }
 
@@ -439,8 +439,8 @@ void MediExpress::pruebaRendimiento() {
     std::chrono::duration<double, std::milli> durList = t3 - t2;
 
     // 4) Guardamos los tiempos para que el main los lea
-    m_tiempoHash  = durHash.count();
-    m_tiempoLista = durList.count();
+    m_hashTime  = durHash.count();
+    m_listTime = durList.count();
 }
 
 /**
@@ -468,8 +468,8 @@ unsigned int MediExpress::getNumElementos() const {
 }
 
 double MediExpress::getTiempoHash() const { 
-    return m_tiempoHash; 
+    return m_hashTime; 
 }
 double MediExpress::getTiempoLista() const { 
-    return m_tiempoLista; 
+    return m_listTime; 
 }

@@ -20,11 +20,11 @@ class MediExpress{
         THashMedicam m_idMedication;
         std::multimap<std::string, PaMedicamento*> m_nameMed;
         std::multimap<std::string, Farmacia> m_far;
-        std::list<Laboratorio> m_lab;
+        std::list<Laboratorio> m_labs;
         
         // tiempos de la última prueba de rendimiento
-        double m_tiempoHash{0.0};
-        double m_tiempoLista{0.0};
+        double m_hashTime{0.0};
+        double m_listTime{0.0};
 
         /**
          * @brief Carga los medicamentos desde un archivo CSV
