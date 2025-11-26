@@ -142,6 +142,198 @@ MediExpress ejecutarPruebaI(const std::string &fichMed, const std::string &fichL
     return sistema;
 }
 
+/**
+ * @brief Lógica de la Prueba II Parte II (farmacias de Sevilla y MAGNESIO)
+ */
+void pruebaII_ParteII(MediExpress &sistema) {
+    const int NUM_CLIENTES = 12;
+    const int ID_OXIDO = 3640;   // ÓXIDO DE MAGNESIO
+
+    std::vector<Farmacia*> farSevilla = sistema.buscarFarmacias("Sevilla");
+    if (farSevilla.empty()) {
+        std::cout << "\nNo se han encontrado farmacias en la provincia de Sevilla.\n";
+    } else {
+        for (std::size_t i = 0; i < farSevilla.size(); ++i) {
+            Farmacia* f = farSevilla[i];
+            if (f == 0) {
+                continue;
+            }
+
+            std::cout << "\nFarmacia " << f->getCif() << " - " << f->getName() << " (" << f->getCity() << ", " << f->getProvince() << ")\n";
+
+            // Estado inicial: mostrar medicamentos con "MAGNESIO" y su stock
+            std::vector<PaMedicamento*> magIni = f->buscaMedicamNombre("MAGNESIO");
+            std::cout << "  Estado inicial (medicamentos con 'MAGNESIO'):\n";
+            if (magIni.empty()) {
+                std::cout << "    (ninguno)\n";
+            } else {
+                for (std::size_t j = 0; j < magIni.size(); ++j) {
+                    PaMedicamento* pm = magIni[j];
+                    if (pm == 0) {
+                        continue;
+                    }
+                    int stock = f->getStock(pm->getIdNum());
+                    std::cout << "    - ID " << pm->getIdNum() << " | " << pm->getName() << " | stock = " << stock << "\n";
+                }
+            }
+
+            // 12 clientes
+            for (int cli = 0; cli < NUM_CLIENTES; ++cli) {
+                std::cout << "  Cliente " << (cli + 1) << ": ";
+
+                // Buscar un tipo de magnesio en stock
+                std::vector<PaMedicamento*> mag = f->buscaMedicamNombre("MAGNESIO");
+                PaMedicamento* elegido = 0;
+
+                for (std::size_t j = 0; j < mag.size(); ++j) {
+                    PaMedicamento* pm = mag[j];
+                    if (pm == 0) {
+                        continue;
+                    }
+                    int stock = f->getStock(pm->getIdNum());
+                    if (stock > 0) {
+                        elegido = pm;
+                        break;
+                    }
+                }
+
+                PaMedicamento* dummy = 0;
+
+                if (elegido != 0) {
+                    try {
+                        f->comprarMedicam(elegido->getIdNum(), 1, dummy);
+                        std::cout << "compra " << elegido->getName() << " (ID " << elegido->getIdNum() << ")\n";
+                    } catch (const std::exception &e) {
+                        std::cout << "no pudo comprar " << elegido->getName() << " (" << e.what() << ")\n";
+                    }
+                } else {
+                    std::cout << "no encuentra ningun 'MAGNESIO' en stock. " << "Se pide OXIDO DE MAGNESIO (ID " << ID_OXIDO << ") al laboratorio.\n";
+
+                    // Reponer 10 unidades de ÓXIDO DE MAGNESIO a la farmacia
+                    sistema.suministrarFarmacia(*f, ID_OXIDO, 10);
+                }
+            }
+
+            // Estado final: mostrar de nuevo los medicamentos con "MAGNESIO"
+            std::vector<PaMedicamento*> magFin = f->buscaMedicamNombre("MAGNESIO");
+            std::cout << "  Estado final (medicamentos con 'MAGNESIO'):\n";
+            if (magFin.empty()) {
+                std::cout << "    (ninguno)\n";
+            } else {
+                for (std::size_t j = 0; j < magFin.size(); ++j) {
+                    PaMedicamento* pm = magFin[j];
+                    if (pm == 0) {
+                        continue;
+                    }
+                    int stock = f->getStock(pm->getIdNum());
+                    std::cout << "    - ID " << pm->getIdNum() << " | " << pm->getName() << " | stock = " << stock << "\n";
+                }
+            }
+        }
+    }
+}
+
+/**
+ * @brief Lógica de la Prueba II Parte III (farmacia de Jaén / Úbeda y ANTÍGENO OLIGOSACÁRIDO)
+ */
+void pruebaII_ParteIII(MediExpress &sistema) {
+    std::vector<Farmacia*> farJaen = sistema.buscarFarmacias("Jaen");
+    if (farJaen.empty()) {
+        std::cout << "No se ha encontrado farmacia en la provincia de Jaen.\n";
+    } else {
+        Farmacia* fUbeda = farJaen[0];
+        if (fUbeda == 0) {
+            std::cout << "No se ha podido obtener la farmacia de Jaen.\n";
+            return;
+        }
+
+        std::cout << "Farmacia de Jaen (Ubeda): " << fUbeda->getCif() << " - " << fUbeda->getName() << " (" << fUbeda->getCity() << ", " << fUbeda->getProvince() << ")\n";
+
+        std::vector<PaMedicamento*> antigenos = sistema.buscarCompuesto("ANTIGENO OLIGOSACARIDO");
+
+        std::cout << "\nSe han encontrado " << antigenos.size() << " medicamento(s) que contienen \"ANTIGENO OLIGOSACARIDO\" en su nombre.\n";
+
+        std::cout << "\nStock inicial de 'ANTIGENO OLIGOSACARIDO' (todas las formas) en la farmacia de Ubeda:\n";
+        if (antigenos.empty()) {
+            std::cout << "  No se han encontrado medicamentos con ese nombre en el sistema.\n";
+        } else {
+            for (std::size_t i = 0; i < antigenos.size(); ++i) {
+                PaMedicamento* pm = antigenos[i];
+                if (pm == 0) {
+                    continue;
+                }
+                int stock = fUbeda->getStock(pm->getIdNum());
+                std::cout << "  - ID " << pm->getIdNum() << " | " << pm->getName() << " | stock = " << stock << "\n";
+            }
+
+            std::cout << "\nSe piden 10 unidades de todas las formas de 'ANTIGENO OLIGOSACARIDO'.\n";
+            for (std::size_t i = 0; i < antigenos.size(); ++i) {
+                PaMedicamento* pm = antigenos[i];
+                if (pm == 0) {
+                    continue;
+                }
+                sistema.suministrarFarmacia(*fUbeda, pm->getIdNum(), 10);
+            }
+
+            std::cout << "\nStock final tras el pedido en la farmacia de Ubeda:\n";
+            for (std::size_t i = 0; i < antigenos.size(); ++i) {
+                PaMedicamento* pm = antigenos[i];
+                if (pm == 0) {
+                    continue;
+                }
+                int stock = fUbeda->getStock(pm->getIdNum());
+                std::cout << "  - ID " << pm->getIdNum() << " | " << pm->getName() << " | stock = " << stock << "\n";
+            }
+        }
+    }
+}
+
+/**
+ * @brief Lógica de la Prueba II Parte IV (prohibición de CIANURO y BISMUTO)
+ */
+void pruebaII_ParteIV(MediExpress &sistema) {
+    const std::string nombresProhibidos[] = { "CIANURO", "BISMUTO" };
+    const int NUM_PROHIBIDOS = 2;
+
+    for (int i = 0; i < NUM_PROHIBIDOS; ++i) {
+        const std::string &nombre = nombresProhibidos[i];
+        std::vector<PaMedicamento*> encontrados = sistema.buscarCompuesto(nombre);
+
+        std::cout << "\nMedicamentos que contienen \"" << nombre << "\" en su nombre: " << encontrados.size() << "\n";
+
+        if (encontrados.empty()) {
+            std::cout << "  (ninguno)\n";
+            continue;
+        }
+
+        // Mostrar y eliminar
+        for (std::size_t j = 0; j < encontrados.size(); ++j) {
+            PaMedicamento* pm = encontrados[j];
+            if (pm == 0) {
+                continue;
+            }
+
+            int id = pm->getIdNum();
+            std::cout << "  - Eliminando ID " << id << " | " << pm->getName() << " ... ";
+
+            bool ok = sistema.eliminarMedicamento(id);
+            if (ok) {
+                std::cout << "OK\n";
+            } else {
+                std::cout << "ya estaba eliminado o no se encontraba.\n";
+            }
+        }
+    }
+
+    // Comprobación: intentar buscarlos de nuevo
+    for (int i = 0; i < NUM_PROHIBIDOS; ++i) {
+        const std::string &nombre = nombresProhibidos[i];
+        std::vector<PaMedicamento*> comprobacion = sistema.buscarCompuesto(nombre);
+
+        std::cout << "\nTras la prohibicion, medicamentos con \"" << nombre << "\" en el nombre: " << comprobacion.size() << "\n";
+    }
+}
+
 
 /**
  * @author Francisco Javier Martín-Lunas Escobar  (fjme0008@red.ujaen.es)
@@ -177,196 +369,22 @@ int main(int argc, const char *argv[]) {
             } else {
                 for (std::size_t j = 0; j < meds.size(); ++j) {
                     PaMedicamento* pm = meds[j];
-                    if (!pm) continue;
-                    std::cout << "  - ID " << pm->getIdNum()
-                              << " | "   << pm->getName() << "\n";
+                    if (pm == 0) {
+                        continue;
+                    }
+                    std::cout << "  - ID " << pm->getIdNum() << " | "   << pm->getName() << "\n";
                 }
             }
         }
 
         separador("Prueba II Parte II");
-        const int NUM_CLIENTES = 12;
-        const int ID_OXIDO     = 3640;   // ÓXIDO DE MAGNESIO
-
-        std::vector<Farmacia*> farSevilla = sistema.buscarFarmacias("Sevilla");
-        if (farSevilla.empty()) {
-            std::cout << "\nNo se han encontrado farmacias en la provincia de Sevilla.\n";
-        } else {
-            for (std::size_t i = 0; i < farSevilla.size(); ++i) {
-                Farmacia* f = farSevilla[i];
-                if (!f) continue;
-
-                std::cout << "\nFarmacia " << f->getCif()
-                          << " - " << f->getName()
-                          << " (" << f->getCity() << ", " << f->getProvince() << ")\n";
-
-                // Estado inicial: mostrar medicamentos con "MAGNESIO" y su stock
-                std::vector<PaMedicamento*> magIni = f->buscaMedicamNombre("MAGNESIO");
-                std::cout << "  Estado inicial (medicamentos con 'MAGNESIO'):\n";
-                if (magIni.empty()) {
-                    std::cout << "    (ninguno)\n";
-                } else {
-                    for (std::size_t j = 0; j < magIni.size(); ++j) {
-                        PaMedicamento* pm = magIni[j];
-                        if (!pm) continue;
-                        int stock = f->getStock(pm->getIdNum());
-                        std::cout << "    - ID " << pm->getIdNum()
-                                  << " | " << pm->getName()
-                                  << " | stock = " << stock << "\n";
-                    }
-                }
-
-                // 12 clientes
-                for (int cli = 0; cli < NUM_CLIENTES; ++cli) {
-                    std::cout << "  Cliente " << (cli + 1) << ": ";
-
-                    // Buscar un tipo de magnesio en stock
-                    std::vector<PaMedicamento*> mag = f->buscaMedicamNombre("MAGNESIO");
-                    PaMedicamento* elegido = nullptr;
-
-                    for (std::size_t j = 0; j < mag.size(); ++j) {
-                        PaMedicamento* pm = mag[j];
-                        if (!pm) continue;
-                        int stock = f->getStock(pm->getIdNum());
-                        if (stock > 0) {
-                            elegido = pm;
-                            break;
-                        }
-                    }
-
-                    PaMedicamento* dummy = 0;
-
-                    if (elegido) {
-                        try {
-                            f->comprarMedicam(elegido->getIdNum(), 1, dummy);
-                            std::cout << "compra " << elegido->getName()
-                                      << " (ID " << elegido->getIdNum() << ")\n";
-                        } catch (const std::exception &e) {
-                            std::cout << "no pudo comprar " << elegido->getName()
-                                      << " (" << e.what() << ")\n";
-                        }
-                    } else {
-                        std::cout << "no encuentra ningun 'MAGNESIO' en stock. "
-                                  << "Se pide OXIDO DE MAGNESIO (ID " << ID_OXIDO << ") al laboratorio.\n";
-
-                        // Reponer 10 unidades de ÓXIDO DE MAGNESIO a la farmacia
-                        sistema.suministrarFarmacia(*f, ID_OXIDO, 10);
-                    }
-                }
-
-                // Estado final: mostrar de nuevo los medicamentos con "MAGNESIO"
-                std::vector<PaMedicamento*> magFin = f->buscaMedicamNombre("MAGNESIO");
-                std::cout << "  Estado final (medicamentos con 'MAGNESIO'):\n";
-                if (magFin.empty()) {
-                    std::cout << "    (ninguno)\n";
-                } else {
-                    for (std::size_t j = 0; j < magFin.size(); ++j) {
-                        PaMedicamento* pm = magFin[j];
-                        if (!pm) continue;
-                        int stock = f->getStock(pm->getIdNum());
-                        std::cout << "    - ID " << pm->getIdNum()
-                                  << " | " << pm->getName()
-                                  << " | stock = " << stock << "\n";
-                    }
-                }
-            }
-        }
+        pruebaII_ParteII(sistema);
 
         separador("Prueba II Parte III");
-        std::vector<Farmacia*> farJaen = sistema.buscarFarmacias("Jaen");
-        if (farJaen.empty()) {
-            std::cout << "No se ha encontrado farmacia en la provincia de Jaen.\n";
-        } else {
-            Farmacia* fUbeda = farJaen[0];
-            std::cout << "Farmacia de Jaen (Ubeda): "
-                    << fUbeda->getCif() << " - " << fUbeda->getName()
-                    << " (" << fUbeda->getCity() << ", " << fUbeda->getProvince() << ")\n";
-
-            // Buscar todas las formas de "ANTIGENO OLIGOSACARIDO" EN TODO EL SISTEMA
-            std::vector<PaMedicamento*> antigenos =
-                    sistema.buscarCompuesto("ANTIGENO OLIGOSACARIDO");
-
-            std::cout << "\nSe han encontrado " << antigenos.size()
-                    << " medicamento(s) que contienen \"ANTIGENO OLIGOSACARIDO\" en su nombre.\n";
-
-            std::cout << "\nStock inicial de 'ANTIGENO OLIGOSACARIDO' (todas las formas) en la farmacia de Ubeda:\n";
-            if (antigenos.empty()) {
-                std::cout << "  No se han encontrado medicamentos con ese nombre en el sistema.\n";
-            } else {
-                // Mostrar stock inicial en la farmacia (aunque sea 0)
-                for (std::size_t i = 0; i < antigenos.size(); ++i) {
-                    PaMedicamento* pm = antigenos[i];
-                    if (!pm) continue;
-                    int stock = fUbeda->getStock(pm->getIdNum());   // 0 si no estaba en stock
-                    std::cout << "  - ID " << pm->getIdNum()
-                            << " | " << pm->getName()
-                            << " | stock = " << stock << "\n";
-                }
-
-                // Pedir 10 unidades de todos los que haya disponibles (en el sistema)
-                std::cout << "\nSe piden 10 unidades de todas las formas de 'ANTIGENO OLIGOSACARIDO'.\n";
-                for (std::size_t i = 0; i < antigenos.size(); ++i) {
-                    PaMedicamento* pm = antigenos[i];
-                    if (!pm) continue;
-                    sistema.suministrarFarmacia(*fUbeda, pm->getIdNum(), 10);
-                }
-
-                // Mostrar stock final en la farmacia
-                std::cout << "\nStock final tras el pedido en la farmacia de Ubeda:\n";
-                for (std::size_t i = 0; i < antigenos.size(); ++i) {
-                    PaMedicamento* pm = antigenos[i];
-                    if (!pm) continue;
-                    int stock = fUbeda->getStock(pm->getIdNum());
-                    std::cout << "  - ID " << pm->getIdNum()
-                            << " | " << pm->getName()
-                            << " | stock = " << stock << "\n";
-                }
-            }
-        }
+        pruebaII_ParteIII(sistema);
 
         separador("Prueba II Parte IV");
-        // Buscar primero por nombre y luego eliminar en el orden indicado
-        const std::string nombresProhibidos[] = { "CIANURO", "BISMUTO" };
-        const int NUM_PROHIBIDOS = 2;
-
-        for (int i = 0; i < NUM_PROHIBIDOS; ++i) {
-            const std::string &nombre = nombresProhibidos[i];
-            std::vector<PaMedicamento*> encontrados = sistema.buscarCompuesto(nombre);
-
-            std::cout << "\nMedicamentos que contienen \"" << nombre
-                      << "\" en su nombre: " << encontrados.size() << "\n";
-
-            if (encontrados.empty()) {
-                std::cout << "  (ninguno)\n";
-                continue;
-            }
-
-            // Mostrar y eliminar
-            for (std::size_t j = 0; j < encontrados.size(); ++j) {
-                PaMedicamento* pm = encontrados[j];
-                if (!pm) continue;
-
-                int id = pm->getIdNum();
-                std::cout << "  - Eliminando ID " << id
-                          << " | " << pm->getName() << " ... ";
-
-                bool ok = sistema.eliminarMedicamento(id);
-                if (ok) {
-                    std::cout << "OK\n";
-                } else {
-                    std::cout << "ya estaba eliminado o no se encontraba.\n";
-                }
-            }
-        }
-
-        // Comprobación: intentar buscarlos de nuevo
-        for (int i = 0; i < NUM_PROHIBIDOS; ++i) {
-            const std::string &nombre = nombresProhibidos[i];
-            std::vector<PaMedicamento*> comprobacion = sistema.buscarCompuesto(nombre);
-
-            std::cout << "\nTras la prohibicion, medicamentos con \"" << nombre
-                      << "\" en el nombre: " << comprobacion.size() << "\n";
-        }
+        pruebaII_ParteIV(sistema);
 
     } catch (const std::exception &e) {
         std::cerr << "[ERROR] " << e.what() << '\n';
