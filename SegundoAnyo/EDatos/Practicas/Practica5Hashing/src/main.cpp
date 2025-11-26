@@ -23,16 +23,16 @@ MediExpress ejecutarPruebaI(const std::string &fichMed, const std::string &fichL
     const TipoHash TIPOS[3]        = {HASH1, HASH2, HASH3};
     const char*    NOMBRES_HASH[3] = {"hash1", "hash2", "hash3"};
 
-    struct ResultadoHash {
-        std::string  nombreFuncion;
-        unsigned int tamTabla;
-        float        factorCarga;
-        unsigned int maxCol;
-        float        promCol;
-        unsigned int numSup10;
+    struct HashResult  {
+        std::string  functionName;
+        unsigned int tableSize;
+        float loadFactor;
+        unsigned int maxCollisions;
+        float avgCollisions;
+        unsigned int numOver10Collisions;
     };
 
-    ResultadoHash resultados[2][3];
+    HashResult results[2][3];
 
     // Creamos 6 objetos MediExpress: 3 funciones hash x 2 lambdas
     for (int l = 0; l < 2; ++l) {
@@ -43,23 +43,23 @@ MediExpress ejecutarPruebaI(const std::string &fichMed, const std::string &fichL
                             LAMBDAS[l],
                             TIPOS[h]);
 
-            resultados[l][h].nombreFuncion = NOMBRES_HASH[h];
-            resultados[l][h].tamTabla = tmp.getTamTabla();
-            resultados[l][h].factorCarga = tmp.getFactorCarga();
-            resultados[l][h].maxCol = tmp.getMaxColisiones();
-            resultados[l][h].promCol = tmp.getPromedioColisiones();
-            resultados[l][h].numSup10 = tmp.getNumMax10();
+            results[l][h].functionName = NOMBRES_HASH[h];
+            results[l][h].tableSize = tmp.getTamTabla();
+            results[l][h].loadFactor = tmp.getFactorCarga();
+            results[l][h].maxCollisions = tmp.getMaxColisiones();
+            results[l][h].avgCollisions = tmp.getPromedioColisiones();
+            results[l][h].numOver10Collisions = tmp.getNumMax10();
         }
     }
 
     // Elegimos automáticamente la mejor configuración (menor promedio de colisiones)
     int bestL = 0;
     int bestH = 0;
-    float bestProm = resultados[0][0].promCol;
+    float bestProm = results[0][0].avgCollisions;
     for (int l = 0; l < 2; ++l) {
         for (int h = 0; h < 3; ++h) {
-            if (resultados[l][h].promCol < bestProm) {
-                bestProm = resultados[l][h].promCol;
+            if (results[l][h].avgCollisions < bestProm) {
+                bestProm = results[l][h].avgCollisions;
                 bestL    = l;
                 bestH    = h;
             }
@@ -68,20 +68,20 @@ MediExpress ejecutarPruebaI(const std::string &fichMed, const std::string &fichL
 
     // Construir el sistema (carga CSV + construcción tabla hash) con la mejor config
     std::chrono::high_resolution_clock::time_point t0 = std::chrono::high_resolution_clock::now();
-    MediExpress sistema(fichMed, fichLab, fichFar, LAMBDAS[bestL], TIPOS[bestH]);
+    MediExpress system(fichMed, fichLab, fichFar, LAMBDAS[bestL], TIPOS[bestH]);
     std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
 
     std::chrono::duration<double, std::milli> durCarga = t1 - t0;
 
     // Mostrar por pantalla el estado interno de la tabla elegida
-    sistema.mostrarEstadoTabla();
+    system.mostrarEstadoTabla();
 
     // Lanzar la prueba de rendimiento (rellena m_tiempoHash / m_tiempoLista)
-    sistema.pruebaRendimiento();
+    system.pruebaRendimiento();
 
     // Tiempos de búsqueda hash vs lista
-    double tHash = sistema.getTiempoHash();
-    double tList = sistema.getTiempoLista();
+    double hashTime = system.getTiempoHash();
+    double listTime = system.getTiempoLista();
 
     std::ofstream md("../analisis_Thash.md");
     if (!md.is_open()) {
@@ -92,45 +92,45 @@ MediExpress ejecutarPruebaI(const std::string &fichMed, const std::string &fichL
 
         // ---- Tablas de ajuste para λ=0.65 y λ=0.68 ----
         for (int l = 0; l < 2; ++l) {
-            unsigned int tamTabla = resultados[l][0].tamTabla;
+            unsigned int tamTabla = results[l][0].tableSize;
 
             md << "## Tamaño de tabla: " << tamTabla << "\n";
             md << "| función | máximo de colisiones | factor de carga | promedio de colisiones |\n";
             md << "|---------|:--------------------:|:---------------:|:----------------------:|\n";
 
             for (int h = 0; h < 3; ++h) {
-                const ResultadoHash &r = resultados[l][h];
-                md << "| " << r.nombreFuncion << "   |  "
-                   << r.maxCol << "          |      "
-                   << r.factorCarga << "       |        "
-                   << r.promCol << "         |\n";
+                const HashResult &r = results[l][h];
+                md << "| " << r.functionName << "   |  "
+                   << r.maxCollisions << "          |      "
+                   << r.loadFactor << "       |        "
+                   << r.avgCollisions << "         |\n";
             }
             md << "\n";
 
             md << "Número de inserciones con más de 10 colisiones para este tamaño de tabla:\n\n";
             for (int h = 0; h < 3; ++h) {
-                const ResultadoHash &r = resultados[l][h];
-                md << "- " << r.nombreFuncion << ": " << r.numSup10 << "\n";
+                const HashResult &r = results[l][h];
+                md << "- " << r.functionName << ": " << r.numOver10Collisions << "\n";
             }
             md << "\n";
         }
 
-        const ResultadoHash &best = resultados[bestL][bestH];
+        const HashResult &best = results[bestL][bestH];
 
         md << "## Justificación de la configuración elegida\n\n";
         md << "Hemos optado por la configuración de tabla con tamaño "
-           << best.tamTabla << ", aplicando la función "
-           << best.nombreFuncion << " con λ objetivo "
+           << best.tableSize << ", aplicando la función "
+           << best.functionName << " con λ objetivo "
            << LAMBDA_TEXT[bestL] << ".\n";
         md << "Es la que ofrece el menor promedio de colisiones ("
-           << best.promCol << ") y un máximo de "
-           << best.maxCol << " colisiones en la inserción más costosa,\n";
+           << best.avgCollisions << ") y un máximo de "
+           << best.maxCollisions << " colisiones en la inserción más costosa,\n";
         md << "además de un número de inserciones con más de 10 colisiones igual a "
-           << best.numSup10 << ", inferior al de otras alternativas.\n\n";
+           << best.numOver10Collisions << ", inferior al de otras alternativas.\n\n";
 
         md << "## Comparación de tiempos dados en milisegundos\n\n";
-        md << "Tiempo en realizar las búsquedas en la Tabla Hash: " << tHash  << " ms\n";
-        md << "Tiempo en realizar las búsquedas en la Lista: "      << tList  << " ms\n";
+        md << "Tiempo en realizar las búsquedas en la Tabla Hash: " << hashTime  << " ms\n";
+        md << "Tiempo en realizar las búsquedas en la Lista: "      << listTime  << " ms\n";
         md << "Tiempo aproximado de carga de datos y construcción de la tabla: "
            << durCarga.count() << " ms\n";
 
@@ -139,22 +139,22 @@ MediExpress ejecutarPruebaI(const std::string &fichMed, const std::string &fichL
 
     std::cout << "Informe generado en ../analisis_Thash.md\n";
 
-    return sistema;
+    return system;
 }
 
 /**
  * @brief Lógica de la Prueba II Parte II (farmacias de Sevilla y MAGNESIO)
  */
-void pruebaII_ParteII(MediExpress &sistema) {
+void pruebaII_ParteII(MediExpress &system) {
     const int NUM_CLIENTES = 12;
     const int ID_OXIDO = 3640;   // ÓXIDO DE MAGNESIO
 
-    std::vector<Farmacia*> farSevilla = sistema.buscarFarmacias("Sevilla");
-    if (farSevilla.empty()) {
+    std::vector<Farmacia*> sevillaPharmacies = system.buscarFarmacias("Sevilla");
+    if (sevillaPharmacies.empty()) {
         std::cout << "\nNo se han encontrado farmacias en la provincia de Sevilla.\n";
     } else {
-        for (std::size_t i = 0; i < farSevilla.size(); ++i) {
-            Farmacia* f = farSevilla[i];
+        for (std::size_t i = 0; i < sevillaPharmacies.size(); ++i) {
+            Farmacia* f = sevillaPharmacies[i];
             if (f == 0) {
                 continue;
             }
@@ -183,7 +183,7 @@ void pruebaII_ParteII(MediExpress &sistema) {
 
                 // Buscar un tipo de magnesio en stock
                 std::vector<PaMedicamento*> mag = f->buscaMedicamNombre("MAGNESIO");
-                PaMedicamento* elegido = 0;
+                PaMedicamento* chosen = 0;
 
                 for (std::size_t j = 0; j < mag.size(); ++j) {
                     PaMedicamento* pm = mag[j];
@@ -192,25 +192,25 @@ void pruebaII_ParteII(MediExpress &sistema) {
                     }
                     int stock = f->getStock(pm->getIdNum());
                     if (stock > 0) {
-                        elegido = pm;
+                        chosen = pm;
                         break;
                     }
                 }
 
                 PaMedicamento* dummy = 0;
 
-                if (elegido != 0) {
+                if (chosen != 0) {
                     try {
-                        f->comprarMedicam(elegido->getIdNum(), 1, dummy);
-                        std::cout << "compra " << elegido->getName() << " (ID " << elegido->getIdNum() << ")\n";
+                        f->comprarMedicam(chosen->getIdNum(), 1, dummy);
+                        std::cout << "compra " << chosen->getName() << " (ID " << chosen->getIdNum() << ")\n";
                     } catch (const std::exception &e) {
-                        std::cout << "no pudo comprar " << elegido->getName() << " (" << e.what() << ")\n";
+                        std::cout << "no pudo comprar " << chosen->getName() << " (" << e.what() << ")\n";
                     }
                 } else {
                     std::cout << "no encuentra ningun 'MAGNESIO' en stock. " << "Se pide OXIDO DE MAGNESIO (ID " << ID_OXIDO << ") al laboratorio.\n";
 
                     // Reponer 10 unidades de ÓXIDO DE MAGNESIO a la farmacia
-                    sistema.suministrarFarmacia(*f, ID_OXIDO, 10);
+                    system.suministrarFarmacia(*f, ID_OXIDO, 10);
                 }
             }
 
@@ -236,20 +236,20 @@ void pruebaII_ParteII(MediExpress &sistema) {
 /**
  * @brief Lógica de la Prueba II Parte III (farmacia de Jaén / Úbeda y ANTÍGENO OLIGOSACÁRIDO)
  */
-void pruebaII_ParteIII(MediExpress &sistema) {
-    std::vector<Farmacia*> farJaen = sistema.buscarFarmacias("Jaen");
-    if (farJaen.empty()) {
+void pruebaII_ParteIII(MediExpress &system) {
+    std::vector<Farmacia*> jaenPharmacies = system.buscarFarmacias("Jaen");
+    if (jaenPharmacies.empty()) {
         std::cout << "No se ha encontrado farmacia en la provincia de Jaen.\n";
     } else {
-        Farmacia* fUbeda = farJaen[0];
-        if (fUbeda == 0) {
+        Farmacia* ubedaPharmacy = jaenPharmacies[0];
+        if (ubedaPharmacy == 0) {
             std::cout << "No se ha podido obtener la farmacia de Jaen.\n";
             return;
         }
 
-        std::cout << "Farmacia de Jaen (Ubeda): " << fUbeda->getCif() << " - " << fUbeda->getName() << " (" << fUbeda->getCity() << ", " << fUbeda->getProvince() << ")\n";
+        std::cout << "Farmacia de Jaen (Ubeda): " << ubedaPharmacy->getCif() << " - " << ubedaPharmacy->getName() << " (" << ubedaPharmacy->getCity() << ", " << ubedaPharmacy->getProvince() << ")\n";
 
-        std::vector<PaMedicamento*> antigenos = sistema.buscarCompuesto("ANTIGENO OLIGOSACARIDO");
+        std::vector<PaMedicamento*> antigenos = system.buscarCompuesto("ANTIGENO OLIGOSACARIDO");
 
         std::cout << "\nSe han encontrado " << antigenos.size() << " medicamento(s) que contienen \"ANTIGENO OLIGOSACARIDO\" en su nombre.\n";
 
@@ -262,7 +262,7 @@ void pruebaII_ParteIII(MediExpress &sistema) {
                 if (pm == 0) {
                     continue;
                 }
-                int stock = fUbeda->getStock(pm->getIdNum());
+                int stock = ubedaPharmacy->getStock(pm->getIdNum());
                 std::cout << "  - ID " << pm->getIdNum() << " | " << pm->getName() << " | stock = " << stock << "\n";
             }
 
@@ -272,7 +272,7 @@ void pruebaII_ParteIII(MediExpress &sistema) {
                 if (pm == 0) {
                     continue;
                 }
-                sistema.suministrarFarmacia(*fUbeda, pm->getIdNum(), 10);
+                system.suministrarFarmacia(*ubedaPharmacy, pm->getIdNum(), 10);
             }
 
             std::cout << "\nStock final tras el pedido en la farmacia de Ubeda:\n";
@@ -281,7 +281,7 @@ void pruebaII_ParteIII(MediExpress &sistema) {
                 if (pm == 0) {
                     continue;
                 }
-                int stock = fUbeda->getStock(pm->getIdNum());
+                int stock = ubedaPharmacy->getStock(pm->getIdNum());
                 std::cout << "  - ID " << pm->getIdNum() << " | " << pm->getName() << " | stock = " << stock << "\n";
             }
         }
@@ -291,13 +291,13 @@ void pruebaII_ParteIII(MediExpress &sistema) {
 /**
  * @brief Lógica de la Prueba II Parte IV (prohibición de CIANURO y BISMUTO)
  */
-void pruebaII_ParteIV(MediExpress &sistema) {
-    const std::string nombresProhibidos[] = { "CIANURO", "BISMUTO" };
-    const int NUM_PROHIBIDOS = 2;
+void pruebaII_ParteIV(MediExpress &system) {
+    const std::string forbidden_names[] = { "CIANURO", "BISMUTO" };
+    const int NUM_FORBBIDEN = 2;
 
-    for (int i = 0; i < NUM_PROHIBIDOS; ++i) {
-        const std::string &nombre = nombresProhibidos[i];
-        std::vector<PaMedicamento*> encontrados = sistema.buscarCompuesto(nombre);
+    for (int i = 0; i < NUM_FORBBIDEN; ++i) {
+        const std::string &nombre = forbidden_names[i];
+        std::vector<PaMedicamento*> encontrados = system.buscarCompuesto(nombre);
 
         std::cout << "\nMedicamentos que contienen \"" << nombre << "\" en su nombre: " << encontrados.size() << "\n";
 
@@ -316,7 +316,7 @@ void pruebaII_ParteIV(MediExpress &sistema) {
             int id = pm->getIdNum();
             std::cout << "  - Eliminando ID " << id << " | " << pm->getName() << " ... ";
 
-            bool ok = sistema.eliminarMedicamento(id);
+            bool ok = system.eliminarMedicamento(id);
             if (ok) {
                 std::cout << "OK\n";
             } else {
@@ -326,9 +326,9 @@ void pruebaII_ParteIV(MediExpress &sistema) {
     }
 
     // Comprobación: intentar buscarlos de nuevo
-    for (int i = 0; i < NUM_PROHIBIDOS; ++i) {
-        const std::string &nombre = nombresProhibidos[i];
-        std::vector<PaMedicamento*> comprobacion = sistema.buscarCompuesto(nombre);
+    for (int i = 0; i < NUM_FORBBIDEN; ++i) {
+        const std::string &nombre = forbidden_names[i];
+        std::vector<PaMedicamento*> comprobacion = system.buscarCompuesto(nombre);
 
         std::cout << "\nTras la prohibicion, medicamentos con \"" << nombre << "\" en el nombre: " << comprobacion.size() << "\n";
     }
@@ -345,7 +345,7 @@ int main(int argc, const char *argv[]) {
         const std::string FICH_MEDICAMENTOS = "../data/pa_medicamentos.csv";
 
         separador("Prueba I");
-        MediExpress sistema = ejecutarPruebaI(FICH_MEDICAMENTOS, FICH_LABORATORIOS, FICH_FARMACIAS);
+        MediExpress system  = ejecutarPruebaI(FICH_MEDICAMENTOS, FICH_LABORATORIOS, FICH_FARMACIAS);
 
         separador("Prueba II Parte I");
         const std::string consultas[] = {
@@ -360,7 +360,7 @@ int main(int argc, const char *argv[]) {
 
         for (int i = 0; i < NUM_CONSULTAS; ++i) {
             const std::string &q = consultas[i];
-            std::vector<PaMedicamento*> meds = sistema.buscarCompuesto(q);
+            std::vector<PaMedicamento*> meds = system.buscarCompuesto(q);
 
             std::cout << "\nBusqueda por nombre: \"" << q << "\"\n";
             std::cout << "  Se han encontrado " << meds.size() << " medicamento(s).\n";
@@ -378,13 +378,13 @@ int main(int argc, const char *argv[]) {
         }
 
         separador("Prueba II Parte II");
-        pruebaII_ParteII(sistema);
+        pruebaII_ParteII(system);
 
         separador("Prueba II Parte III");
-        pruebaII_ParteIII(sistema);
+        pruebaII_ParteIII(system);
 
         separador("Prueba II Parte IV");
-        pruebaII_ParteIV(sistema);
+        pruebaII_ParteIV(system);
 
     } catch (const std::exception &e) {
         std::cerr << "[ERROR] " << e.what() << '\n';
