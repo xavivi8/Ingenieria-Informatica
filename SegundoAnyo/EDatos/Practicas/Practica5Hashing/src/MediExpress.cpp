@@ -366,12 +366,12 @@ bool MediExpress::eliminarMedicamento(int id_num) {
 void MediExpress::mostrarEstadoTabla() {
     std::cout << "================ ESTADO INTERNO DE LA TABLA HASH ================\n";
 
-    unsigned int tam = m_idMedication.tamTabla();
+    unsigned int tam = m_idMedication.getTableSize();
     unsigned int nElems = m_idMedication.numElementos();
-    float lambda = m_idMedication.factorCarga();
-    unsigned long maxCol = m_idMedication.maxColisiones();
-    unsigned int num10 = m_idMedication.numMax10();
-    float promCol = m_idMedication.promedioColisiones();
+    float lambda = m_idMedication.getLoadFactor();
+    unsigned long maxCol = m_idMedication.getMaxCollisions();
+    unsigned int num10 = m_idMedication.getNumOver10Collisions();
+    float promCol = m_idMedication.getAverageCollisions();
 
     std::cout << "  Tamanyo de la tabla        : " << tam << "\n";
     std::cout << "  N de elementos almacenados: " << nElems << "\n";
@@ -448,20 +448,20 @@ void MediExpress::pruebaRendimiento() {
  */
 
 unsigned int MediExpress::getMaxColisiones() const {
-    return static_cast<unsigned int>(m_idMedication.maxColisiones());
+    return static_cast<unsigned int>(m_idMedication.getMaxCollisions());
 }
 
 unsigned int MediExpress::getNumMax10() const { 
-    return m_idMedication.numMax10();
+    return m_idMedication.getNumOver10Collisions();
 }
 float MediExpress::getPromedioColisiones() const { 
-    return m_idMedication.promedioColisiones(); 
+    return m_idMedication.getAverageCollisions(); 
 }
 float MediExpress::getFactorCarga() const { 
-    return m_idMedication.factorCarga(); 
+    return m_idMedication.getLoadFactor(); 
 }
 unsigned int MediExpress::getTamTabla() const { 
-    return m_idMedication.tamTabla(); 
+    return m_idMedication.getTableSize(); 
 }
 unsigned int MediExpress::getNumElementos() const { 
     return m_idMedication.numElementos(); 

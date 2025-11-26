@@ -8,56 +8,56 @@
  * Metodos privados 
  */
 
-bool THashMedicam::esprimo(unsigned n) {
+bool THashMedicam::isPrime(unsigned n) {
     if (n < 2) return false;
     if (n == 2 || n == 3) return true;
     if (n % 2 == 0) return false;
 
-    unsigned limite = static_cast<unsigned>(std::sqrt(static_cast<double>(n)));
-    for (unsigned i = 3; i <= limite; i += 2) {
+    unsigned limit = static_cast<unsigned>(std::sqrt(static_cast<double>(n)));
+    for (unsigned i = 3; i <= limit; i += 2) {
         if (n % i == 0) return false;
     }
     return true;
 }
 
-int THashMedicam::primo_mayor(unsigned numero) {
-    if (numero < 2) numero = 2;
-    while (!esprimo(numero)) {
-        ++numero;
+int THashMedicam::nextPrime(unsigned number) {
+    if (number < 2) number = 2;
+    while (!isPrime(number)) {
+        ++number;
     }
-    return static_cast<int>(numero);
+    return static_cast<int>(number);
 }
 
-int THashMedicam::primo_menor(unsigned numero) {
-    if (numero <= 3) return 2;
-    unsigned candidato = numero - 1;
-    while (candidato >= 2 && !esprimo(candidato)) {
-        --candidato;
+int THashMedicam::previousPrime(unsigned number) {
+    if (number <= 3) return 2;
+    unsigned candidate = number - 1;
+    while (candidate >= 2 && !isPrime(candidate)) {
+        --candidate;
     }
-    if (candidato < 2) candidato = 2;
-    return static_cast<int>(candidato);
+    if (candidate < 2) candidate = 2;
+    return static_cast<int>(candidate);
 }
 
-// Sondeo cuadrático: h_i(k) = (k % tamaf + i*i) % tamaf
+// Sondeo cuadrático: h_i(k) = (k % m_tableSize + i*i) % m_tableSize
 unsigned THashMedicam::hash(unsigned long clave, int i) {
-    unsigned long base = clave % tamaf;
+    unsigned long base = clave % m_tableSize;
     unsigned long inc  = static_cast<unsigned long>(i) * static_cast<unsigned long>(i);
-    return static_cast<unsigned>((base + inc) % tamaf);
+    return static_cast<unsigned>((base + inc) % m_tableSize);
 }
 
-// Doble dispersión clásica: h_i(k) = (h1 + i*h2) % tamaf
+// Doble dispersión clásica: h_i(k) = (h1 + i*h2) % m_tableSize
 // h2(k) = primoMenor - (k % primoMenor)
 unsigned THashMedicam::hash2(unsigned clave, int i) {
-    unsigned h1 = static_cast<unsigned>(clave % tamaf);
-    unsigned paso = static_cast<unsigned>(primoMenor - (clave % primoMenor));
-    return static_cast<unsigned>((h1 + static_cast<unsigned long>(i) * paso) % tamaf);
+    unsigned h1 = static_cast<unsigned>(clave % m_tableSize);
+    unsigned step = static_cast<unsigned>(m_smallerPrime - (clave % m_smallerPrime));
+    return static_cast<unsigned>((h1 + static_cast<unsigned long>(i) * step) % m_tableSize);
 }
 
 // Variante alternativa de doble dispersión
 unsigned THashMedicam::hash3(unsigned clave, int i) {
-    unsigned h1 = static_cast<unsigned>(clave % tamaf);
-    unsigned paso = static_cast<unsigned>((clave % primoMenor) + 1); // evita paso 0
-    return static_cast<unsigned>((h1 + static_cast<unsigned long>(i) * paso) % tamaf);
+    unsigned h1 = static_cast<unsigned>(clave % m_tableSize);
+    unsigned step = static_cast<unsigned>((clave % m_smallerPrime) + 1); // evita paso 0
+    return static_cast<unsigned>((h1 + static_cast<unsigned long>(i) * step) % m_tableSize);
 }
 
 /**
@@ -65,13 +65,14 @@ unsigned THashMedicam::hash3(unsigned clave, int i) {
  */
 
 THashMedicam::THashMedicam(unsigned long maxElementos, double lamda, TipoHash t)
-    : tamaf(0),
-      tamal(0),
-      maxCol(0),
-      max10(0),
-      sumaColisiones(0),
-      primoMenor(0),
-      tipo(t) {
+    : m_tableSize(0),
+      m_numElements(0),
+      m_maxCollisions(0),
+      m_over10Collisions(0),
+      m_collisionsSum(0),
+      m_smallerPrime(0),
+      m_table(),
+      m_hashType(t) {
 
     if (lamda <= 0.0 || lamda >= 1.0) {
         lamda = 0.7;  // valor por defecto razonable
@@ -80,21 +81,22 @@ THashMedicam::THashMedicam(unsigned long maxElementos, double lamda, TipoHash t)
     // tamaño mínimo necesario para garantizar el factor de carga
     double tamNecesario = std::ceil(maxElementos / lamda);
 
-    tamaf = static_cast<unsigned long>(primo_mayor(static_cast<unsigned>(tamNecesario)));
+    m_tableSize = static_cast<unsigned long>(nextPrime(static_cast<unsigned>(tamNecesario)));
 
-    primoMenor = static_cast<unsigned long>(primo_menor(static_cast<unsigned>(tamaf)));
+    m_smallerPrime = static_cast<unsigned long>(previousPrime(static_cast<unsigned>(m_tableSize)));
 
-    tabla.resize(static_cast<std::size_t>(tamaf));
+    m_table.resize(static_cast<std::size_t>(m_tableSize));
 }
 
 THashMedicam::THashMedicam(const THashMedicam &orig)
-    : tamaf(orig.tamaf),
-      tamal(orig.tamal),
-      maxCol(orig.maxCol),
-      max10(orig.max10),
-      sumaColisiones(orig.sumaColisiones),
-      primoMenor(orig.primoMenor),
-      tabla(orig.tabla) {}
+    : m_tableSize(orig.m_tableSize),
+      m_numElements(orig.m_numElements),
+      m_maxCollisions(orig.m_maxCollisions),
+      m_over10Collisions(orig.m_over10Collisions),
+      m_collisionsSum(orig.m_collisionsSum),
+      m_smallerPrime(orig.m_smallerPrime),
+      m_table(orig.m_table),
+      m_hashType(orig.m_hashType) {}
 
 THashMedicam::~THashMedicam() = default;
 
@@ -104,14 +106,14 @@ THashMedicam::~THashMedicam() = default;
 
 THashMedicam& THashMedicam::operator=(const THashMedicam &orig) {
     if (this != &orig) {
-        tamaf = orig.tamaf;
-        tamal = orig.tamal;
-        maxCol = orig.maxCol;
-        max10 = orig.max10;
-        sumaColisiones = orig.sumaColisiones;
-        primoMenor = orig.primoMenor;
-        tabla = orig.tabla;
-        tipo = orig.tipo;
+        m_tableSize = orig.m_tableSize;
+        m_numElements = orig.m_numElements;
+        m_maxCollisions = orig.m_maxCollisions;
+        m_over10Collisions = orig.m_over10Collisions;
+        m_collisionsSum = orig.m_collisionsSum;
+        m_smallerPrime = orig.m_smallerPrime;
+        m_table = orig.m_table;
+        m_hashType = orig.m_hashType;
     }
     return *this;
 }
@@ -120,57 +122,57 @@ THashMedicam& THashMedicam::operator=(const THashMedicam &orig) {
  * Metodos
  */
 bool THashMedicam::insertar(unsigned long clave, PaMedicamento &dato) {
-    if (tamal >= tamaf) {
+    if (m_numElements >= m_tableSize) {
         return false;
     }
 
-    int colisiones = 0;
-    int primeraDisponible = -1;
+    int collisions = 0;
+    int firstAvailable = -1;
 
-    for (int i = 0; i < static_cast<int>(tamaf); ++i) {
+    for (int i = 0; i < static_cast<int>(m_tableSize); ++i) {
 
         unsigned idx;
-        switch (tipo) {
+        switch (m_hashType) {
             case HASH1: idx = hash(clave, i);  break;
             case HASH2: idx = hash2(clave, i); break;
             case HASH3: idx = hash3(clave, i); break;
-            default:    idx = hash(clave, i);  break;
+            default: idx = hash(clave, i);  break;
         }
 
-        Entrada &e = tabla[idx];
+        Entrada &entry = m_table[idx];
 
-        if (e.marca == OCUPADA) {
-            if (e.clave == clave) {
+        if (entry.m_state  == OCUPADA) {
+            if (entry.m_key  == clave) {
                 return false;
             }
-            ++colisiones;
+            ++collisions;
             continue;
         }
 
-        if (e.marca == DISPONIBLE) {
-            if (primeraDisponible == -1) {
-                primeraDisponible = static_cast<int>(idx);
+        if (entry.m_state  == DISPONIBLE) {
+            if (firstAvailable == -1) {
+                firstAvailable = static_cast<int>(idx);
             }
-            ++colisiones;
+            ++collisions;
             continue;
         }
 
-        // e.marca == LIBRE -> insertamos
-        unsigned posFinal = (primeraDisponible != -1) ? static_cast<unsigned>(primeraDisponible) : idx;
+        // entry.m_state  == LIBRE -> insertamos
+        unsigned finalPos  = (firstAvailable != -1) ? static_cast<unsigned>(firstAvailable) : idx;
 
-        tabla[posFinal].clave = clave;
-        tabla[posFinal].dato  = dato;
-        tabla[posFinal].marca = OCUPADA;
+        m_table[finalPos ].m_key = clave;
+        m_table[finalPos ].m_data = dato;
+        m_table[finalPos ].m_state = OCUPADA;
 
-        ++tamal;
+        ++m_numElements;
 
-        if (colisiones > static_cast<int>(maxCol)) {
-            maxCol = static_cast<unsigned long>(colisiones);
+        if (collisions > static_cast<int>(m_maxCollisions)) {
+            m_maxCollisions = static_cast<unsigned long>(collisions);
         }
-        sumaColisiones += static_cast<unsigned long>(colisiones);
+        m_collisionsSum += static_cast<unsigned long>(collisions);
 
-        if (colisiones > 10) {
-            ++max10;
+        if (collisions > 10) {
+            ++m_over10Collisions;
         }
 
         return true;
@@ -180,49 +182,49 @@ bool THashMedicam::insertar(unsigned long clave, PaMedicamento &dato) {
 }
 
 PaMedicamento *THashMedicam::buscar(unsigned long clave) {
-    for (int i = 0; i < static_cast<int>(tamaf); ++i) {
+    for (int i = 0; i < static_cast<int>(m_tableSize); ++i) {
 
         unsigned idx;
-        switch (tipo) {
+        switch (m_hashType) {
             case HASH1: idx = hash(clave, i);  break;
             case HASH2: idx = hash2(clave, i); break;
             case HASH3: idx = hash3(clave, i); break;
-            default:    idx = hash(clave, i);  break;
+            default: idx = hash(clave, i);  break;
         }
 
-        Entrada &e = tabla[idx];
+        Entrada &entry = m_table[idx];
 
-        if (e.marca == LIBRE) {
+        if (entry.m_state  == LIBRE) {
             return nullptr;
         }
 
-        if (e.marca == OCUPADA && e.clave == clave) {
-            return &e.dato;
+        if (entry.m_state  == OCUPADA && entry.m_key  == clave) {
+            return &entry.m_data  ;
         }
     }
     return nullptr;
 }
 
 bool THashMedicam::borrar(unsigned long clave) {
-    for (int i = 0; i < static_cast<int>(tamaf); ++i) {
+    for (int i = 0; i < static_cast<int>(m_tableSize); ++i) {
 
         unsigned idx;
-        switch (tipo) {
+        switch (m_hashType) {
             case HASH1: idx = hash(clave, i);  break;
             case HASH2: idx = hash2(clave, i); break;
             case HASH3: idx = hash3(clave, i); break;
             default:    idx = hash(clave, i);  break;
         }
 
-        Entrada &e = tabla[idx];
+        Entrada &entry = m_table[idx];
 
-        if (e.marca == LIBRE) {
+        if (entry.m_state  == LIBRE) {
             return false;
         }
 
-        if (e.marca == OCUPADA && e.clave == clave) {
-            e.marca = DISPONIBLE;
-            --tamal;
+        if (entry.m_state  == OCUPADA && entry.m_key  == clave) {
+            entry.m_state  = DISPONIBLE;
+            --m_numElements;
             return true;
         }
     }
@@ -235,33 +237,33 @@ bool THashMedicam::borrar(unsigned long clave) {
  */
 
 unsigned int THashMedicam::numElementos() const{
-    return static_cast<unsigned int>(tamal);
+    return static_cast<unsigned int>(m_numElements);
 }
 
-unsigned int THashMedicam::tamTabla() const{
-    return static_cast<unsigned int>(tamaf);
+unsigned int THashMedicam::getTableSize() const{
+    return static_cast<unsigned int>(m_tableSize);
 }
 
-unsigned long THashMedicam::maxColisiones() const {
-    return maxCol;
+unsigned long THashMedicam::getMaxCollisions() const {
+    return m_maxCollisions;
 }
 
-unsigned int THashMedicam::numMax10() const{
-    return static_cast<unsigned int>(max10);
+unsigned int THashMedicam::getNumOver10Collisions() const{
+    return static_cast<unsigned int>(m_over10Collisions);
 }
 
-float THashMedicam::promedioColisiones() const {
-    if (tamal == 0) return 0.0f;
-    return static_cast<float>(sumaColisiones) /
-           static_cast<float>(tamal);
+float THashMedicam::getAverageCollisions() const {
+    if (m_numElements == 0) return 0.0f;
+    return static_cast<float>(m_collisionsSum) /
+           static_cast<float>(m_numElements);
 }
 
-float THashMedicam::factorCarga() const{
-    if (tamaf == 0) return 0.0f;
-    return static_cast<float>(tamal) /
-           static_cast<float>(tamaf);
+float THashMedicam::getLoadFactor() const{
+    if (m_tableSize == 0) return 0.0f;
+    return static_cast<float>(m_numElements) /
+           static_cast<float>(m_tableSize);
 }
 
-TipoHash THashMedicam::getTipo() const {
-    return tipo;
+TipoHash THashMedicam::getHashType() const {
+    return m_hashType;
 }
