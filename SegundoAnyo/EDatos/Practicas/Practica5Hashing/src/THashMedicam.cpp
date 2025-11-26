@@ -49,9 +49,7 @@ unsigned THashMedicam::hash(unsigned long clave, int i) {
 // h2(k) = primoMenor - (k % primoMenor)
 unsigned THashMedicam::hash2(unsigned clave, int i) {
     unsigned h1 = static_cast<unsigned>(clave % tamaf);
-    unsigned paso = static_cast<unsigned>(
-        primoMenor - (clave % primoMenor)
-    );
+    unsigned paso = static_cast<unsigned>(primoMenor - (clave % primoMenor));
     return static_cast<unsigned>((h1 + static_cast<unsigned long>(i) * paso) % tamaf);
 }
 
@@ -66,13 +64,14 @@ unsigned THashMedicam::hash3(unsigned clave, int i) {
  * Metodos publicos
  */
 
-THashMedicam::THashMedicam(unsigned long maxElementos, double lamda)
+THashMedicam::THashMedicam(unsigned long maxElementos, double lamda, TipoHash t)
     : tamaf(0),
       tamal(0),
       maxCol(0),
       max10(0),
       sumaColisiones(0),
-      primoMenor(0) {
+      primoMenor(0),
+      tipo(t) {
 
     if (lamda <= 0.0 || lamda >= 1.0) {
         lamda = 0.7;  // valor por defecto razonable
@@ -112,6 +111,7 @@ THashMedicam& THashMedicam::operator=(const THashMedicam &orig) {
         sumaColisiones = orig.sumaColisiones;
         primoMenor = orig.primoMenor;
         tabla = orig.tabla;
+        tipo = orig.tipo;
     }
     return *this;
 }
@@ -128,11 +128,18 @@ bool THashMedicam::insertar(unsigned long clave, PaMedicamento &dato) {
     int primeraDisponible = -1;
 
     for (int i = 0; i < static_cast<int>(tamaf); ++i) {
-        unsigned idx = hash(clave, i);
+
+        unsigned idx;
+        switch (tipo) {
+            case HASH1: idx = hash(clave, i);  break;
+            case HASH2: idx = hash2(clave, i); break;
+            case HASH3: idx = hash3(clave, i); break;
+            default:    idx = hash(clave, i);  break;
+        }
+
         Entrada &e = tabla[idx];
 
         if (e.marca == OCUPADA) {
-            //Compruebo que no hayan claves repes
             if (e.clave == clave) {
                 return false;
             }
@@ -148,10 +155,11 @@ bool THashMedicam::insertar(unsigned long clave, PaMedicamento &dato) {
             continue;
         }
 
+        // e.marca == LIBRE -> insertamos
         unsigned posFinal = (primeraDisponible != -1) ? static_cast<unsigned>(primeraDisponible) : idx;
 
         tabla[posFinal].clave = clave;
-        tabla[posFinal].dato = dato;
+        tabla[posFinal].dato  = dato;
         tabla[posFinal].marca = OCUPADA;
 
         ++tamal;
@@ -160,7 +168,8 @@ bool THashMedicam::insertar(unsigned long clave, PaMedicamento &dato) {
             maxCol = static_cast<unsigned long>(colisiones);
         }
         sumaColisiones += static_cast<unsigned long>(colisiones);
-        if (colisiones <= 10) {
+
+        if (colisiones > 10) {
             ++max10;
         }
 
@@ -170,42 +179,56 @@ bool THashMedicam::insertar(unsigned long clave, PaMedicamento &dato) {
     return false;
 }
 
-PaMedicamento* THashMedicam::buscar(unsigned long clave) {
+PaMedicamento *THashMedicam::buscar(unsigned long clave) {
     for (int i = 0; i < static_cast<int>(tamaf); ++i) {
-        unsigned idx = hash(clave, i);
+
+        unsigned idx;
+        switch (tipo) {
+            case HASH1: idx = hash(clave, i);  break;
+            case HASH2: idx = hash2(clave, i); break;
+            case HASH3: idx = hash3(clave, i); break;
+            default:    idx = hash(clave, i);  break;
+        }
+
         Entrada &e = tabla[idx];
 
         if (e.marca == LIBRE) {
-            // encontramos una celda nunca usada: la clave no está
             return nullptr;
         }
 
         if (e.marca == OCUPADA && e.clave == clave) {
             return &e.dato;
         }
-        // si es DISPONIBLE seguimos buscando
     }
     return nullptr;
 }
 
 bool THashMedicam::borrar(unsigned long clave) {
     for (int i = 0; i < static_cast<int>(tamaf); ++i) {
-        unsigned idx = hash(clave, i);
+
+        unsigned idx;
+        switch (tipo) {
+            case HASH1: idx = hash(clave, i);  break;
+            case HASH2: idx = hash2(clave, i); break;
+            case HASH3: idx = hash3(clave, i); break;
+            default:    idx = hash(clave, i);  break;
+        }
+
         Entrada &e = tabla[idx];
 
         if (e.marca == LIBRE) {
-            // ya no puede estar más allá
             return false;
         }
 
         if (e.marca == OCUPADA && e.clave == clave) {
-            e.marca = DISPONIBLE;   // dejamos tumba
+            e.marca = DISPONIBLE;
             --tamal;
             return true;
         }
     }
     return false;
 }
+
 
 /**
  * Getters
@@ -237,4 +260,8 @@ float THashMedicam::factorCarga() const{
     if (tamaf == 0) return 0.0f;
     return static_cast<float>(tamal) /
            static_cast<float>(tamaf);
+}
+
+TipoHash THashMedicam::getTipo() const {
+    return tipo;
 }
