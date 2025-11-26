@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <chrono>
+#include <unordered_set>
 
 #include "../include/MediExpress.h"
 
@@ -290,17 +291,43 @@ void pruebaII_ParteIII(MediExpress &system) {
 }
 
 /**
- * @brief Lógica de la Prueba II Parte IV (prohibición de CIANURO y BISMUTO)
+ * @brief Lógica de la Prueba II Parte IV (prohibición de CIANURO y BISMUTO como palabra completa)
  */
 void pruebaII_ParteIV(MediExpress &system) {
     const std::string forbidden_names[] = { "CIANURO", "BISMUTO" };
     const int NUM_FORBBIDEN = 2;
 
+    // 1) Buscar, mostrar y eliminar
     for (int i = 0; i < NUM_FORBBIDEN; ++i) {
-        const std::string &nombre = forbidden_names[i];
-        std::vector<PaMedicamento*> encontrados = system.buscarCompuesto(nombre);
+        const std::string &baseName = forbidden_names[i];
 
-        std::cout << "\nMedicamentos que contienen \"" << nombre << "\" en su nombre: " << encontrados.size() << "\n";
+        // Queremos que sea "palabra": patrones con espacios alrededor
+        const std::string patterns[3] = {
+            baseName + " ",        // ...CIANURO + espacio
+            " " + baseName,        // espacio + CIANURO...
+            " " + baseName + " "   // espacio + CIANURO + espacio
+        };
+
+        std::vector<PaMedicamento*> encontrados;
+        std::unordered_set<PaMedicamento*> seen;
+
+        // Unimos resultados de las tres búsquedas evitando duplicados
+        for (int p = 0; p < 3; ++p) {
+            std::vector<PaMedicamento*> parciales = system.buscarCompuesto(patterns[p]);
+            for (std::size_t j = 0; j < parciales.size(); ++j) {
+                PaMedicamento* pm = parciales[j];
+                if (pm == 0) {
+                    continue;
+                }
+                if (!seen.count(pm)) {
+                    seen.insert(pm);
+                    encontrados.push_back(pm);
+                }
+            }
+        }
+
+        std::cout << "\nMedicamentos que contienen la palabra \"" << baseName
+                  << "\" en su nombre: " << encontrados.size() << "\n";
 
         if (encontrados.empty()) {
             std::cout << "  (ninguno)\n";
@@ -326,14 +353,38 @@ void pruebaII_ParteIV(MediExpress &system) {
         }
     }
 
-    // Comprobación: intentar buscarlos de nuevo
+    // 2) Comprobación: intentar buscarlos de nuevo con la misma lógica de "palabra"
     for (int i = 0; i < NUM_FORBBIDEN; ++i) {
-        const std::string &nombre = forbidden_names[i];
-        std::vector<PaMedicamento*> comprobacion = system.buscarCompuesto(nombre);
+        const std::string &baseName = forbidden_names[i];
 
-        std::cout << "\nTras la prohibicion, medicamentos con \"" << nombre << "\" en el nombre: " << comprobacion.size() << "\n";
+        const std::string patterns[3] = {
+            baseName + " ",
+            " " + baseName,
+            " " + baseName + " "
+        };
+
+        std::vector<PaMedicamento*> comprobacion;
+        std::unordered_set<PaMedicamento*> seenCheck;
+
+        for (int p = 0; p < 3; ++p) {
+            std::vector<PaMedicamento*> parciales = system.buscarCompuesto(patterns[p]);
+            for (std::size_t j = 0; j < parciales.size(); ++j) {
+                PaMedicamento* pm = parciales[j];
+                if (pm == 0) {
+                    continue;
+                }
+                if (!seenCheck.count(pm)) {
+                    seenCheck.insert(pm);
+                    comprobacion.push_back(pm);
+                }
+            }
+        }
+
+        std::cout << "\nTras la prohibicion, medicamentos con la palabra \"" << baseName
+                  << "\" en el nombre: " << comprobacion.size() << "\n";
     }
 }
+
 
 
 /**
