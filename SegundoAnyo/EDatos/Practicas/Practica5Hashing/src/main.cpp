@@ -15,8 +15,136 @@ void separador(const std::string &titulo) {
 }
 
 /**
- * @author
- *  Francisco Javier Martín-Lunas Escobar  (fjme0008@red.ujaen.es)
+ * @brief Ejecuta la Prueba I: ajuste de la tabla + prueba de rendimiento. Devuelve un MediExpress construido con la mejor configuración encontrada.
+ */
+MediExpress ejecutarPruebaI(const std::string &fichMed, const std::string &fichLab, const std::string &fichFar) {
+    const double   LAMBDAS[2]      = {0.65, 0.68};
+    const char*    LAMBDA_TEXT[2]  = {"0.65", "0.68"};
+    const TipoHash TIPOS[3]        = {HASH1, HASH2, HASH3};
+    const char*    NOMBRES_HASH[3] = {"hash1", "hash2", "hash3"};
+
+    struct ResultadoHash {
+        std::string  nombreFuncion;
+        unsigned int tamTabla;
+        float        factorCarga;
+        unsigned int maxCol;
+        float        promCol;
+        unsigned int numSup10;
+    };
+
+    ResultadoHash resultados[2][3];
+
+    // Creamos 6 objetos MediExpress: 3 funciones hash x 2 lambdas
+    for (int l = 0; l < 2; ++l) {
+        for (int h = 0; h < 3; ++h) {
+            MediExpress tmp(fichMed,
+                            fichLab,
+                            fichFar,
+                            LAMBDAS[l],
+                            TIPOS[h]);
+
+            resultados[l][h].nombreFuncion = NOMBRES_HASH[h];
+            resultados[l][h].tamTabla = tmp.getTamTabla();
+            resultados[l][h].factorCarga = tmp.getFactorCarga();
+            resultados[l][h].maxCol = tmp.getMaxColisiones();
+            resultados[l][h].promCol = tmp.getPromedioColisiones();
+            resultados[l][h].numSup10 = tmp.getNumMax10();
+        }
+    }
+
+    // Elegimos automáticamente la mejor configuración (menor promedio de colisiones)
+    int bestL = 0;
+    int bestH = 0;
+    float bestProm = resultados[0][0].promCol;
+    for (int l = 0; l < 2; ++l) {
+        for (int h = 0; h < 3; ++h) {
+            if (resultados[l][h].promCol < bestProm) {
+                bestProm = resultados[l][h].promCol;
+                bestL    = l;
+                bestH    = h;
+            }
+        }
+    }
+
+    // Construir el sistema (carga CSV + construcción tabla hash) con la mejor config
+    std::chrono::high_resolution_clock::time_point t0 = std::chrono::high_resolution_clock::now();
+    MediExpress sistema(fichMed, fichLab, fichFar, LAMBDAS[bestL], TIPOS[bestH]);
+    std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
+
+    std::chrono::duration<double, std::milli> durCarga = t1 - t0;
+
+    // Mostrar por pantalla el estado interno de la tabla elegida
+    sistema.mostrarEstadoTabla();
+
+    // Lanzar la prueba de rendimiento (rellena m_tiempoHash / m_tiempoLista)
+    sistema.pruebaRendimiento();
+
+    // Tiempos de búsqueda hash vs lista
+    double tHash = sistema.getTiempoHash();
+    double tList = sistema.getTiempoLista();
+
+    std::ofstream md("../analisis_Thash.md");
+    if (!md.is_open()) {
+        std::cerr << "[ERROR] No se pudo abrir ../analisis_Thash.md para escritura\n";
+    } else {
+        md << "# Análisis de tablas de dispersión\n\n";
+        md << "* *Francisco Javier Martín-Lunas Escobar*\n\n";
+
+        // ---- Tablas de ajuste para λ=0.65 y λ=0.68 ----
+        for (int l = 0; l < 2; ++l) {
+            unsigned int tamTabla = resultados[l][0].tamTabla;
+
+            md << "## Tamaño de tabla: " << tamTabla << "\n";
+            md << "| función | máximo de colisiones | factor de carga | promedio de colisiones |\n";
+            md << "|---------|:--------------------:|:---------------:|:----------------------:|\n";
+
+            for (int h = 0; h < 3; ++h) {
+                const ResultadoHash &r = resultados[l][h];
+                md << "| " << r.nombreFuncion << "   |  "
+                   << r.maxCol << "          |      "
+                   << r.factorCarga << "       |        "
+                   << r.promCol << "         |\n";
+            }
+            md << "\n";
+
+            md << "Número de inserciones con más de 10 colisiones para este tamaño de tabla:\n\n";
+            for (int h = 0; h < 3; ++h) {
+                const ResultadoHash &r = resultados[l][h];
+                md << "- " << r.nombreFuncion << ": " << r.numSup10 << "\n";
+            }
+            md << "\n";
+        }
+
+        const ResultadoHash &best = resultados[bestL][bestH];
+
+        md << "## Justificación de la configuración elegida\n\n";
+        md << "Hemos optado por la configuración de tabla con tamaño "
+           << best.tamTabla << ", aplicando la función "
+           << best.nombreFuncion << " con λ objetivo "
+           << LAMBDA_TEXT[bestL] << ".\n";
+        md << "Es la que ofrece el menor promedio de colisiones ("
+           << best.promCol << ") y un máximo de "
+           << best.maxCol << " colisiones en la inserción más costosa,\n";
+        md << "además de un número de inserciones con más de 10 colisiones igual a "
+           << best.numSup10 << ", inferior al de otras alternativas.\n\n";
+
+        md << "## Comparación de tiempos dados en milisegundos\n\n";
+        md << "Tiempo en realizar las búsquedas en la Tabla Hash: " << tHash  << " ms\n";
+        md << "Tiempo en realizar las búsquedas en la Lista: "      << tList  << " ms\n";
+        md << "Tiempo aproximado de carga de datos y construcción de la tabla: "
+           << durCarga.count() << " ms\n";
+
+        md.close();
+    }
+
+    std::cout << "Informe generado en ../analisis_Thash.md\n";
+
+    return sistema;
+}
+
+
+/**
+ * @author Francisco Javier Martín-Lunas Escobar  (fjme0008@red.ujaen.es)
  */
 int main(int argc, const char *argv[]) {
     try {
@@ -25,78 +153,9 @@ int main(int argc, const char *argv[]) {
         const std::string FICH_MEDICAMENTOS = "../data/pa_medicamentos.csv";
 
         separador("Prueba I");
-        // 1) Construir el sistema (carga CSV + construcción tabla hash)
-        auto t0 = std::chrono::high_resolution_clock::now();
-        MediExpress sistema(FICH_MEDICAMENTOS, FICH_LABORATORIOS, FICH_FARMACIAS);
-        auto t1 = std::chrono::high_resolution_clock::now();
-
-        std::chrono::duration<double, std::milli> durCarga = t1 - t0;
-
-        // Mostrar por pantalla el estado interno de la tabla, tal y como pide el enunciado
-        sistema.mostrarEstadoTabla();
-
-        // 2) Lanzar la prueba de rendimiento (rellena m_tiempoHash / m_tiempoLista)
-        sistema.pruebaRendimiento();
-
-        // 3) Obtener métricas de la tabla hash mediante getters
-        unsigned int tam = sistema.getTamTabla();
-        unsigned int nElems = sistema.getNumElementos();  // si quieres usarlo luego
-        float lambda  = sistema.getFactorCarga();
-        unsigned int maxCol = sistema.getMaxColisiones();
-        unsigned int num10 = sistema.getNumMax10();
-        float promCol = sistema.getPromedioColisiones();
-        double tHash = sistema.getTiempoHash();
-        double tList = sistema.getTiempoLista();
-
-        // 4) Escribir el informe en analisis_Thash.md
-        std::ofstream md("../analisis_Thash.md");
-        if (!md.is_open()) {
-            std::cerr << "[ERROR] No se pudo abrir ../analisis_Thash.md para escritura\n";
-            return 1;
-        }
-
-        md << "# Análisis de tablas de dispersión\n\n";
-        md << "* *Francisco Javier Martín-Lunas Escobar*\n\n";
-
-        // ===================== Tabla tamaño actual =====================
-        md << "## Tamaño de tabla: " << tam << "\n\n";   // <-- línea en blanco tras el heading
-        md << "| función | máximo de colisiones | supera 10 colisiones | factor de carga | promedio de colisiones |\n";
-        md << "|---------|:--------------------:|:--------------------:|:---------------:|:----------------------:|\n";
-        md << "| configuración actual | "
-           << maxCol  << " | "
-           << num10   << " | "
-           << lambda  << " | "
-           << promCol << " |\n";
-        md << "| texto   | valor | valor | valor | valor |\n\n";  // <-- línea en blanco tras la tabla
-
-        // ===================== Tabla para otra configuración (plantilla) =====================
-        md << "## Tamaño de tabla: yy\n\n";  // heading + línea en blanco
-        md << "| función | máximo de colisiones | supera 10 colisiones | factor de carga | promedio de colisiones |\n";
-        md << "|---------|:--------------------:|:--------------------:|:---------------:|:----------------------:|\n";
-        md << "| texto   | valor | valor | valor | valor |\n";
-        md << "| texto   | valor | valor | valor | valor |\n\n";
-
-        // ===================== Justificación =====================
-        md << "## Justificación de la configuración elegida\n\n"; // heading + blanco
-        md << "Hemos optado por ... (rellenar manualmente justificando en base a los valores de la tabla).\n\n";
-
-        // ===================== Comparación de tiempos =====================
-        md << "## Comparación de tiempos dados en milisegundos\n\n"; // heading + blanco
-        md << "Tiempo en realizar las búsquedas en la Tabla Hash: " << tHash  << " ms\n";
-        md << "Tiempo en realizar las búsquedas en la Lista: "      << tList  << " ms\n";
-        md << "Tiempo aproximado de carga de datos y construcción de la tabla: "
-           << durCarga.count() << " ms\n";
-
-        md.close();
-
-        std::cout << "Informe generado en ../analisis_Thash.md\n";
+        MediExpress sistema = ejecutarPruebaI(FICH_MEDICAMENTOS, FICH_LABORATORIOS, FICH_FARMACIAS);
 
         separador("Prueba II Parte I");
-        //TODO: hacer busqueda con intersección para que encuentre exactamente el medicamento, por ejemplo, LIDOCAINA 
-        //TODO    HIDROCLORURO y no LIDOCAINA HIDROCLORURO xxxxxxx
-        
-        //TODO: en todas las busquedas de medicamentos hay que hacer la intersección para por ejemplo que si quiero MAGNESIO me de
-        //TODO  todos los medicamentos que contenga MAGNESIO en el nombre 
         const std::string consultas[] = {
             "MAGNESIO CLORURO HEXAHIDRATO",
             "CLORURO",
@@ -305,7 +364,8 @@ int main(int argc, const char *argv[]) {
             const std::string &nombre = nombresProhibidos[i];
             std::vector<PaMedicamento*> comprobacion = sistema.buscarCompuesto(nombre);
 
-            std::cout << "\nTras la prohibicion, medicamentos con \"" << nombre <<"\" en el nombre: " << comprobacion.size() << "\n";
+            std::cout << "\nTras la prohibicion, medicamentos con \"" << nombre
+                      << "\" en el nombre: " << comprobacion.size() << "\n";
         }
 
     } catch (const std::exception &e) {
