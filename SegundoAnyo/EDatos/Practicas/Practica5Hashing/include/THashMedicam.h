@@ -15,26 +15,26 @@ class THashMedicam {
 private:    
     class Entrada {
      public:
-        unsigned long clave;
-        Estado marca;  //0(libre), 1(ocupada), 2(disponible)
-        PaMedicamento dato;
-        Entrada(): marca(LIBRE), clave(0), dato() {}
+        unsigned long m_key;
+        Estado m_state;  //0(libre), 1(ocupada), 2(disponible)
+        PaMedicamento m_data;
+        Entrada(): m_state(LIBRE), m_key(0), m_data() {}
         ~Entrada(){};
     };
 
-    unsigned long tamaf;
-    unsigned long tamal; 
-    unsigned long maxCol;
-    unsigned long max10;
-    unsigned long sumaColisiones;
-    unsigned long primoMenor;
+    unsigned long m_tableSize;
+    unsigned long m_numElements; 
+    unsigned long m_maxCollisions;
+    unsigned long m_over10Collisions;
+    unsigned long m_collisionsSum;
+    unsigned long m_smallerPrime;
 
-    std::vector<Entrada> tabla;
-    TipoHash tipo;
+    std::vector<Entrada> m_table;
+    TipoHash m_hashType;
 
-    bool esprimo(unsigned n);
-    int primo_menor(unsigned numero);
-    int primo_mayor(unsigned numero);
+    bool isPrime(unsigned n);
+    int previousPrime(unsigned number);
+    int nextPrime(unsigned number);
 
     //  la función de dispersión es cuadratica
     unsigned hash(unsigned long clave, int i);
@@ -56,15 +56,15 @@ public:
     bool insertar(unsigned long clave, PaMedicamento &dato);
     bool borrar(unsigned long clave);
     PaMedicamento* buscar(unsigned long clave);
-    
     unsigned int numElementos() const;
-    unsigned int tamTabla() const;
-    unsigned long maxColisiones() const;
-    unsigned int numMax10() const;
-    float promedioColisiones() const;
-    float factorCarga() const;
 
-    TipoHash getTipo() const;
+    unsigned int getTableSize() const;
+    unsigned long getMaxCollisions() const;
+    unsigned int getNumOver10Collisions() const;
+    float getAverageCollisions() const;
+    float getLoadFactor() const;
+
+    TipoHash getHashType() const;
 };
 
 #endif //THASHMEDICAM_H
