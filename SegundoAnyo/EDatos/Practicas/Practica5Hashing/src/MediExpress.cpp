@@ -184,31 +184,24 @@ void MediExpress::autoLinkFarmaciasStock() {
 
 MediExpress::MediExpress() : m_idMedication(1) {}
 
-MediExpress::MediExpress(const std::string &csvPathVD, const std::string &csvPathLE, const std::string &csvPathAVL) : m_idMedication(1) {
-    // 1) Cargar medicamentos en un mapa temporal
+MediExpress::MediExpress(const std::string &csvPathVD, const std::string &csvPathLE, const std::string &csvPathAVL,double lambda, TipoHash tipoHash) : m_idMedication(1) {
     std::map<int, PaMedicamento> auxMed = loadMedicinesFromCsv(csvPathVD);
 
-    // 2) Crear una tabla hash dimensionada al nº de medicamentos
-    THashMedicam tmp(static_cast<unsigned long>(auxMed.size()));
-    for (std::map<int, PaMedicamento>::iterator it = auxMed.begin();
-         it != auxMed.end(); ++it) {
+    THashMedicam tmp(static_cast<unsigned long>(auxMed.size()), lambda, tipoHash);
+
+    for (std::map<int, PaMedicamento>::iterator it = auxMed.begin(); it != auxMed.end(); ++it) {
         tmp.insertar(it->first, it->second);
     }
     m_idMedication = tmp;
 
-    // 3) Cargar laboratorios
     m_lab = loadLabFromCsv(csvPathLE);
 
-    // 4) Cargar farmacias y poblar el multimap
     std::vector<Farmacia> auxFarma = loadFarmacieFromCsv(csvPathAVL);
-    for (std::vector<Farmacia>::iterator it = auxFarma.begin();
-         it != auxFarma.end(); ++it) {
+    for (std::vector<Farmacia>::iterator it = auxFarma.begin(); it != auxFarma.end(); ++it) {
         m_far.insert(std::make_pair(it->getProvince(), *it));
     }
 
-    // 5) Rellenar nombMedication con punteros a los PaMedicamento de la tabla hash
-    for (std::map<int, PaMedicamento>::const_iterator it = auxMed.cbegin();
-         it != auxMed.cend(); ++it) {
+    for (std::map<int, PaMedicamento>::const_iterator it = auxMed.cbegin(); it != auxMed.cend(); ++it) {
         PaMedicamento* p = m_idMedication.buscar(it->first);
         if (!p) continue;
         std::string clave = utils::lowerCopy(p->getName());
