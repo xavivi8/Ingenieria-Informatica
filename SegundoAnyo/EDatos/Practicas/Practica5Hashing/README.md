@@ -1,4 +1,4 @@
-# 📦 Proyecto: Practica2Listas
+# 📦 Proyecto: Practica5Hashing
 
 Este proyecto está organizado en varias carpetas que separan las cabeceras, implementaciones, datos y archivos de compilación, facilitando la modularidad y el mantenimiento del código.
 
