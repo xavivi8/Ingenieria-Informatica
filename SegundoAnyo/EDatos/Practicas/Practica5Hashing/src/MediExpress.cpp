@@ -257,7 +257,7 @@ std::vector<Laboratorio*> MediExpress::buscarLabCiudad(const std::string &cityNa
 std::vector<PaMedicamento*> MediExpress::buscarCompuesto(const std::string &compoundName) const {
     std::vector<PaMedicamento*> aux;
     std::unordered_set<PaMedicamento*> visto;
-
+//find () y hacer un set interset
     for (std::multimap<std::string, PaMedicamento*>::const_iterator it = m_nameMed.cbegin(); it != m_nameMed.cend(); ++it) {
         PaMedicamento* med = it->second;
         if (!med) continue;
