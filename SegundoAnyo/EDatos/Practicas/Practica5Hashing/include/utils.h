@@ -47,19 +47,21 @@ namespace utils{
 
     /**
      * @brief Limpia un token eliminando caracteres no alfanuméricos y convirtiendo a minúsculas.
-     * @param t Token de entrada (string_view para evitar copias innecesarias).
+     * @param t Token de entrada.
      * @return Nueva cadena con solo caracteres alfanuméricos en minúscula.
-     * @post Se eliminan todos los caracteres que no sean letras o dígitos.
+     * @post Se eliminan todos los caracteres que no sean letras o dígitos (según std::isalnum).
+     * @note No realiza normalización Unicode (tildes/ñ se procesan byte a byte).
      */
-    std::string cleanToken(std::string_view t);
+    std::string cleanToken(const std::string &t);
 
     /**
-     * @brief Divide un texto en tokens limpios (lower + alfanum) separados por espacios.
-     * @param text Texto de entrada (string_view para evitar copias innecesarias).
+     * @brief Divide un texto en tokens limpios separados por espacios.
+     * @param text Texto de entrada.
      * @return Vector de cadenas con los tokens limpios.
-     * @post Cada token se limpia usando cleanToken().
+     * @post Cada token se limpia usando cleanToken() y se descartan tokens vacíos.
+     * @note La división se realiza por espacios usando un flujo (std::istringstream).
      */
-    std::vector<std::string> splitTerms(std::string_view text);
+    std::vector<std::string> splitTerms(const std::string &text);
 }
 
 #endif //UTILS_H

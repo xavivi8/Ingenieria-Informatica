@@ -33,7 +33,7 @@ namespace utils {
         return val;
     }
 
-    std::string cleanToken(std::string_view t) {
+    std::string cleanToken(const std::string &t) {
         std::string out;
         out.reserve(t.size());
         for (std::string::size_type i = 0; i < t.size(); ++i) {
@@ -45,17 +45,17 @@ namespace utils {
         return out;
     }
 
-    std::vector<std::string> splitTerms(std::string_view text) {
+    std::vector<std::string> splitTerms(const std::string &text) {
         std::vector<std::string> terms;
 
-        // Pasamos a std::string para usar istringstream cómodamente
-        std::string s(text);
-        std::istringstream iss(s);
-
+        std::istringstream iss(text);
         std::string tok;
+
         while (iss >> tok) {
-            std::string cleaned = cleanToken(tok);
-            if (!cleaned.empty()) terms.push_back(cleaned);
+            tok = cleanToken(tok);
+            if (!tok.empty()) {
+                terms.push_back(tok);
+            }
         }
         return terms;
     }
