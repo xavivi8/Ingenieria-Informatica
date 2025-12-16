@@ -10,6 +10,7 @@
 #include <iostream>
 #include <unordered_set>
 #include <chrono>
+#include <algorithm>
 
 /**
  * Metodos privados
@@ -212,9 +213,13 @@ MediExpress::MediExpress(const std::string &csvPathVD, const std::string &csvPat
         int id = auxMed[i].getIdNum();
         PaMedicamento* p = m_idMedication.buscar(static_cast<unsigned long>(id));
         if (!p) continue;
-        std::string clave = utils::lowerCopy(p->getName());
-        m_nameMed.insert(std::make_pair(clave, p));
+
+        std::vector<std::string> toks = utils::splitTerms(p->getName());
+        for (std::size_t j = 0; j < toks.size(); ++j) {
+            m_nameMed.insert(std::make_pair(toks[j], p));
+        }
     }
+
 
     autoLinkMedications();
     autoLinkFarmaciasStock();
@@ -255,21 +260,41 @@ std::vector<Laboratorio*> MediExpress::buscarLabCiudad(const std::string &cityNa
 }
 
 std::vector<PaMedicamento*> MediExpress::buscarCompuesto(const std::string &compoundName) const {
-    std::vector<PaMedicamento*> aux;
-    std::unordered_set<PaMedicamento*> visto;
-//find () y hacer un set interset
-    for (std::multimap<std::string, PaMedicamento*>::const_iterator it = m_nameMed.cbegin(); it != m_nameMed.cend(); ++it) {
-        PaMedicamento* med = it->second;
-        if (!med) continue;
-        if (visto.count(med)) continue; // evitar duplicados
+    std::vector<std::string> terms = utils::splitTerms(compoundName);
+    if (terms.empty()) return std::vector<PaMedicamento*>();
 
-        if (utils::iContains(med->getName(), compoundName)) {
-            aux.push_back(med);
-            visto.insert(med);
+    std::set<PaMedicamento*> result;
+    {
+        std::multimap<std::string, PaMedicamento*>::const_iterator it = m_nameMed.find(terms[0]);
+        for (; it != m_nameMed.end() && it->first == terms[0]; ++it) {
+            if (it->second) result.insert(it->second);
         }
     }
-    return aux;
+    if (result.empty()) return std::vector<PaMedicamento*>();
+
+    for (std::size_t i = 1; i < terms.size(); ++i) {
+        std::set<PaMedicamento*> nextSet;
+
+        std::multimap<std::string, PaMedicamento*>::const_iterator it = m_nameMed.find(terms[i]);
+        for (; it != m_nameMed.end() && it->first == terms[i]; ++it) {
+            if (it->second) nextSet.insert(it->second);
+        }
+
+        std::set<PaMedicamento*> inter;
+        std::set_intersection(result.begin(), result.end(), nextSet.begin(), nextSet.end(), std::inserter(inter, inter.begin()));
+        result.swap(inter);
+
+        if (result.empty()) return std::vector<PaMedicamento*>();
+    }
+
+    std::vector<PaMedicamento*> out;
+    out.reserve(result.size());
+    for (std::set<PaMedicamento*>::const_iterator it = result.begin(); it != result.end(); ++it) {
+        out.push_back(*it);
+    }
+    return out;
 }
+
 
 std::vector<PaMedicamento*> MediExpress::getMedicamSinLab() const {
     std::vector<PaMedicamento*> aux;
