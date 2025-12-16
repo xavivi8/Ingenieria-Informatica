@@ -7,6 +7,7 @@
 
 #include <string>
 #include <string_view>
+#include <vector>
 
 namespace utils{
 
@@ -44,6 +45,21 @@ namespace utils{
      */
     bool iContains(const std::string &haystack,const std::string &needle);
 
+    /**
+     * @brief Limpia un token eliminando caracteres no alfanuméricos y convirtiendo a minúsculas.
+     * @param t Token de entrada (string_view para evitar copias innecesarias).
+     * @return Nueva cadena con solo caracteres alfanuméricos en minúscula.
+     * @post Se eliminan todos los caracteres que no sean letras o dígitos.
+     */
+    std::string cleanToken(std::string_view t);
+
+    /**
+     * @brief Divide un texto en tokens limpios (lower + alfanum) separados por espacios.
+     * @param text Texto de entrada (string_view para evitar copias innecesarias).
+     * @return Vector de cadenas con los tokens limpios.
+     * @post Cada token se limpia usando cleanToken().
+     */
+    std::vector<std::string> splitTerms(std::string_view text);
 }
 
 #endif //UTILS_H
