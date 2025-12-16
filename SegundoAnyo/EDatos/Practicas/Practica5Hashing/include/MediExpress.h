@@ -141,22 +141,70 @@ class MediExpress{
         bool eliminarMedicamento(int id_num);
 
         //metodos pract5
+        /**
+         * @brief Busca medicamentos por su nombre compuesto
+         * @param nombrePA Nombre compuesto del medicamento
+         * @return Devuelve un vector con punteros a los medicamentos que coinciden con el nombre dado
+         */
         std::vector<PaMedicamento*> buscarCompuesto(const std::string &nombrePA) const;
+        /**
+         * @brief Busca un medicamento por su identificador numerico
+         * @param id_num Identificador numerico del medicamento
+         * @return Devuelve un puntero al medicamento si se encuentra, nullptr en caso contrario
+         */
         PaMedicamento* buscarCompuesto(int id_num);
+        /**
+         * @brief Muestra el estado de la tabla hash
+         */
         void mostrarEstadoTabla();
+        /**
+         * @brief Realiza una prueba de rendimiento comparando la búsqueda en la tabla hash y en una lista
+         */
         void pruebaRendimiento(); 
         
         //getters
         //metricas de la tabla hash
+        /**
+         * @brief Devuelve el número de colisiones máximas ocurridas durante las inserciones
+         * @return Devuelve el número de colisiones máximas ocurridas durante las inserciones
+         */
         unsigned int getMaxColisiones() const;
+        /**
+         * @brief Devuelve el número de inserciones que han tenido más de 10 colisiones
+         * @return Devuelve el número de inserciones que han tenido más de 10 colisiones
+         */
         unsigned int getNumMax10() const;
+        /**
+         * @brief Devuelve el promedio de colisiones por inserción
+         * @return Devuelve el promedio de colisiones por inserción
+         */
         float getPromedioColisiones() const;
+        /**
+         * @brief Devuelve el factor de carga de la tabla hash
+         * @return Devuelve el factor de carga de la tabla hash
+         */
         float getFactorCarga() const;
+        /**
+         * @brief Devuelve el tamaño de la tabla hash
+         * @return Devuelve el tamaño de la tabla hash
+         */
         unsigned int getTamTabla() const;
+        /**
+         * @brief Devuelve el número de elementos almacenados en la tabla hash
+         * @return Devuelve el número de elementos almacenados en la tabla hash
+         */
         unsigned int getNumElementos() const;
 
         //tiempos de la última prueba de rendimiento (en ms)
+        /**
+         * @brief Devuelve el tiempo de búsqueda en la tabla hash
+         * @return Devuelve el tiempo de búsqueda en la tabla hash
+         */
         double getTiempoHash() const;
+        /**
+         * @brief Devuelve el tiempo de búsqueda en la lista
+         * @return Devuelve el tiempo de búsqueda en la lista
+         */
         double getTiempoLista() const;
 
 };
