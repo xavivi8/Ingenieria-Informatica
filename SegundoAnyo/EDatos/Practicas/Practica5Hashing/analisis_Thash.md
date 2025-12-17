@@ -36,6 +36,6 @@ además de un número de inserciones con más de 10 colisiones igual a 1, inferi
 
 ## Comparación de tiempos dados en milisegundos
 
-Tiempo en realizar las búsquedas en la Tabla Hash: 0.0989 ms
-Tiempo en realizar las búsquedas en la Lista: 40.3159 ms
-Tiempo aproximado de carga de datos y construcción de la tabla: 40.3223 ms
+Tiempo en realizar las búsquedas en la Tabla Hash: 0.14 ms
+Tiempo en realizar las búsquedas en la Lista: 49.2983 ms
+Tiempo aproximado de carga de datos y construcción de la tabla: 51.8068 ms
