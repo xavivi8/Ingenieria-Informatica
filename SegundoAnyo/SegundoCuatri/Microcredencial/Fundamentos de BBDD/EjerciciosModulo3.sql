@@ -81,9 +81,39 @@ WHERE special_features LIKE '%Behind the Scenes%'
 ORDER BY length DESC
 LIMIT 10;
 
-##
+## Agrupaciones y Agregaciones
 
+# Ejercicio 15
+#
 
+SELECT last_name, COUNT(*) AS num_actores FROM actor GROUP BY last_name;
 
+# Ejercicio 16
+#
 
+SELECT last_name, COUNT(*) AS num_actores FROM actor GROUP BY last_name HAVING COUNT(*) >= 2;
+
+# Ejercicio 17
+#
+
+SELECT customer_id, COUNT(*) AS num_alquileres FROM rental GROUP BY customer_id;
+
+# Ejercicio 18
+#
+
+SELECT customer_id, SUM(amount) AS total_aportado 
+FROM payment 
+GROUP BY customer_id 
+ORDER BY total_aportado DESC
+LIMIT 10;
+
+# Ejercicio 19
+#
+
+Select MAX(amount) - MIN(amount) AS diferencia FROM payment;
+
+# Ejercicio 20
+#
+
+SELECT customer_id, AVG(amount) AS media_por_pago FROM payment GROUP BY  customer_id;
 
