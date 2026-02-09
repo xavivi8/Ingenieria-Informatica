@@ -117,3 +117,41 @@ Select MAX(amount) - MIN(amount) AS diferencia FROM payment;
 
 SELECT customer_id, AVG(amount) AS media_por_pago FROM payment GROUP BY  customer_id;
 
+# Ejercicio 21
+#
+
+ALTER TABLE actor ADD COLUMN middle_name VARCHAR(45) NULL AFTER first_name;
+
+# Ejercicio 22
+#
+
+ALTER TABLE actor MODIFY COLUMN middle_name BLOB;
+
+# Ejercicio 23
+#
+
+ALTER TABLE actor DROP COLUMN middle_name;
+
+# Ejercicio 24
+#
+
+UPDATE actor SET first_name='HARPO' WHERE last_name='WILLIAMS' AND first_name='GROUCHO';
+
+# Ejercicio 25
+#
+
+UPDATE actor
+SET first_name = 'MUCHO GROUCHO'
+WHERE actor_id IN (
+	SELECT actor_id
+    FROM (SELECT actor_id FROM actor WHERE first_name='GROUCHO') AS t
+);
+
+UPDATE actor
+SET first_name = 'GROUCHO'
+WHERE actor_id IN (
+	SELECT actor_id
+    FROM (SELECT actor_id FROM actor WHERE first_name='HARPO') AS t
+);
+
+
