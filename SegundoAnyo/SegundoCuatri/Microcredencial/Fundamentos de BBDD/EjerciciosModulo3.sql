@@ -439,8 +439,11 @@ SELECT a.dia, s.staff_id, CONCAT(s.first_name, ' ', s.last_name) AS empleado, a.
 		PARTITION BY a.staff_id
 		ORDER BY a.dia
 	) AS alquileres_dia_anterior, a.num_alquileres
-    - LAG(a.num_alquileres) OVER (PARTITION BY a.staff_id ORDER BY a.dia)
-    AS diferencia_vs_anterior
+    - 
+    LAG(a.num_alquileres) OVER (
+		PARTITION BY a.staff_id 
+		ORDER BY a.dia
+    ) AS diferencia_vs_anterior
 FROM alquileres_staff_dia a
 JOIN staff s ON s.staff_id = a.staff_id
 ORDER BY a.dia, ranking_del_dia, empleado;
