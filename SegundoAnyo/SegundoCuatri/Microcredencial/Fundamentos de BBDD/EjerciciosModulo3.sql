@@ -453,11 +453,11 @@ ORDER BY a.dia, ranking_del_dia, empleado;
 
 WITH ingresos_diarios AS (
   SELECT
-    YEAR(payment_date)  AS anio,
+    YEAR(payment_date) AS anio,
     MONTH(payment_date) AS mes,
-    DATE(payment_date)  AS fecha,
-    DAY(payment_date)   AS dia_mes,
-    SUM(amount)         AS ingresos_dia
+    DATE(payment_date) AS fecha,
+    DAY(payment_date) AS dia_mes,
+    SUM(amount) AS ingresos_dia
   FROM payment
   GROUP BY YEAR(payment_date), MONTH(payment_date), DATE(payment_date), DAY(payment_date)
 ),
