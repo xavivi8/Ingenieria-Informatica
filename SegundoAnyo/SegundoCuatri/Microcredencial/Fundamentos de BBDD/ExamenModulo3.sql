@@ -170,3 +170,51 @@ ORDER BY store_id, rk, title;
 
 # b
 
+USE sakila;
+
+WITH tienda AS (
+	SELECT
+		i.store_id,
+		f.film_id,
+		f.title,
+		COUNT(*) AS num_alquileres
+	FROM rental r
+	JOIN inventory i ON i.inventory_id = r.inventory_id
+	JOIN film f ON f.film_id = i.film_id
+	GROUP BY i.store_id, f.film_id, f.title
+),
+stock AS (
+	SELECT
+		store_id,
+		film_id,
+		COUNT(*) AS copias_en_tienda
+	FROM inventory
+	GROUP BY store_id, film_id
+),
+ranked AS (
+	SELECT
+		t.store_id,
+		t.film_id,
+		t.title,
+		t.num_alquileres,
+		s.copias_en_tienda,
+		DENSE_RANK() OVER (
+			PARTITION BY t.store_id
+			ORDER BY t.num_alquileres DESC
+		) AS rk
+	FROM tienda t
+	JOIN stock s 
+    ON s.store_id = t.store_id AND s.film_id = t.film_id
+)
+SELECT
+	store_id,
+	rk AS ranking_popularidad,
+	film_id,
+	title,
+	num_alquileres,
+	copias_en_tienda,
+	ROUND(num_alquileres / NULLIF(copias_en_tienda, 0), 2) 
+         AS alquileres_por_copia
+FROM ranked
+WHERE rk <= 10 AND copias_en_tienda <= 4
+ORDER BY store_id, num_alquileres DESC, title;
