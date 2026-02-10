@@ -407,16 +407,17 @@ WITH ingresos_diarios AS (
 	SELECT
     YEAR(payment_date) AS anio,
     MONTH(payment_date) AS mes,
-    DATE(payment_date) AS dia,
+    DAY(payment_date) AS dia,
     SUM(amount) AS ingresos_dia
 	FROM payment
-	GROUP BY YEAR(payment_date), MONTH(payment_date), DATE(payment_date)
+	GROUP BY YEAR(payment_date), MONTH(payment_date), DAY(payment_date)
 )
 
-SELECT anio, mes,dia, ingresos_dia, SUM(ingresos_dia) OVER (
-	PARTITION BY anio, mes
-    ORDER BY dia
-  ) AS ingresos_acumulados_mes
+SELECT anio, mes,dia, ingresos_dia, 
+	SUM(ingresos_dia) OVER (
+		PARTITION BY anio, mes
+		ORDER BY dia
+	) AS ingresos_acumulados_mes
 FROM ingresos_diarios
 ORDER BY anio, mes, dia;
 
