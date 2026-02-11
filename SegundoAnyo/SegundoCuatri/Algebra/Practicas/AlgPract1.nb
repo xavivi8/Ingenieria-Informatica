@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[     15477,        421]
-NotebookOptionsPosition[     12717,        367]
-NotebookOutlinePosition[     13137,        383]
-CellTagsIndexPosition[     13094,        380]
+NotebookDataLength[     17575,        482]
+NotebookOptionsPosition[     14370,        420]
+NotebookOutlinePosition[     14790,        436]
+CellTagsIndexPosition[     14747,        433]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -355,11 +355,64 @@ B) Razonar la veracidad o falsedad de la siguiente afirmaci\[OAcute]n: \
 \[OpenCurlyDoubleQuote]En el anillo de polinomio 2x^3 -2x^2-8x-12 es \
 irreducible\[CloseCurlyDoubleQuote].\
 \>", "Subsubsection",
- CellChangeTimes->{{3.9797882705060387`*^9, 
-  3.9797883521119385`*^9}},ExpressionUUID->"bf95f0e6-299b-d041-b509-\
+ CellChangeTimes->{{3.9797882705060387`*^9, 3.9797883521119385`*^9}, 
+   3.979788576403473*^9},ExpressionUUID->"bf95f0e6-299b-d041-b509-\
 4a1a2edb9247"],
 
-Cell[BoxData[""], "Code",ExpressionUUID->"e47dac56-6e17-f748-93b7-68eb7426a0da"]
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"r", "[", "x_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"2", 
+    SuperscriptBox["x", "3"]}], "-", 
+   RowBox[{"2", 
+    SuperscriptBox["x", "2"]}], "-", 
+   RowBox[{"8", "x"}], "-", "12"}]}], "\n", 
+ RowBox[{"r", "[", "x", "]"}]}], "Code",
+ CellChangeTimes->{{3.9797884622243557`*^9, 3.9797884762729187`*^9}, {
+  3.979788513758032*^9, 3.979788517608843*^9}, {3.979788573700981*^9, 
+  3.9797886175995865`*^9}},
+ CellLabel->"In[30]:=",ExpressionUUID->"e47dac56-6e17-f748-93b7-68eb7426a0da"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", "12"}], "-", 
+  RowBox[{"8", " ", "x"}], "-", 
+  RowBox[{"2", " ", 
+   SuperscriptBox["x", "2"]}], "+", 
+  RowBox[{"2", " ", 
+   SuperscriptBox["x", "3"]}]}]], "Output",
+ CellChangeTimes->{3.9797886183297844`*^9},
+ CellLabel->"Out[31]=",ExpressionUUID->"1ffecb1c-6843-754e-8537-f8b6cd9aa6f3"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Factor", "[", 
+  RowBox[{"r", "[", "x", "]"}], "]"}]], "Code",
+ CellChangeTimes->{{3.979788632914694*^9, 3.9797886931734695`*^9}},
+ CellLabel->"In[34]:=",ExpressionUUID->"62f20e2a-8318-524c-bc2e-bd7737b9cce7"],
+
+Cell[BoxData[
+ RowBox[{"2", " ", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"-", "3"}], "+", "x"}], ")"}], " ", 
+  RowBox[{"(", 
+   RowBox[{"2", "+", 
+    RowBox[{"2", " ", "x"}], "+", 
+    SuperscriptBox["x", "2"]}], ")"}]}]], "Output",
+ CellChangeTimes->{{3.979788658594452*^9, 3.979788695148428*^9}},
+ CellLabel->"Out[34]=",ExpressionUUID->"f4dc08a7-d3c2-054f-95c0-6e7614394ccb"]
+}, Open  ]],
+
+Cell["Falso, no es irreducible", "Text",
+ CellChangeTimes->{{3.979788703475456*^9, 
+  3.979788713103657*^9}},ExpressionUUID->"126d3b1a-ea36-7c45-806f-\
+e67150292a25"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
@@ -417,8 +470,16 @@ Cell[11744, 336, 175, 2, 32, "Output",ExpressionUUID->"c732186a-bc8f-fa4b-a6d5-8
 Cell[11934, 341, 268, 6, 55, "Text",ExpressionUUID->"58a17851-16c3-b64a-a12a-f8644a9f6f38"]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[12239, 352, 343, 7, 85, "Subsubsection",ExpressionUUID->"bf95f0e6-299b-d041-b509-4a1a2edb9247"],
-Cell[12585, 361, 80, 0, 50, "Code",ExpressionUUID->"e47dac56-6e17-f748-93b7-68eb7426a0da"]
+Cell[12239, 352, 366, 7, 85, "Subsubsection",ExpressionUUID->"bf95f0e6-299b-d041-b509-4a1a2edb9247"],
+Cell[CellGroupData[{
+Cell[12630, 363, 520, 13, 67, "Code",ExpressionUUID->"e47dac56-6e17-f748-93b7-68eb7426a0da"],
+Cell[13153, 378, 331, 9, 32, "Output",ExpressionUUID->"1ffecb1c-6843-754e-8537-f8b6cd9aa6f3"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13521, 392, 233, 4, 50, "Code",ExpressionUUID->"62f20e2a-8318-524c-bc2e-bd7737b9cce7"],
+Cell[13757, 398, 380, 10, 34, "Output",ExpressionUUID->"f4dc08a7-d3c2-054f-95c0-6e7614394ccb"]
+}, Open  ]],
+Cell[14152, 411, 166, 3, 33, "Text",ExpressionUUID->"126d3b1a-ea36-7c45-806f-e67150292a25"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
