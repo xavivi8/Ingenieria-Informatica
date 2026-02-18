@@ -36,7 +36,6 @@ def validar_no_vacio(valor: str) -> bool:
 
 def validar_email(email: str) -> bool:
     email = email.strip().lower()
-    # Formato mínimo: algo@uja.es (sin espacios)
     if " " in email:
         return False
     if not email.endswith(EMAIL_DOMAIN):
@@ -47,7 +46,6 @@ def validar_email(email: str) -> bool:
 
 def validar_dni(dni: str) -> bool:
     dni = dni.strip().upper()
-    # 8 dígitos + 1 letra
     return re.fullmatch(r"\d{8}[A-Z]", dni) is not None
 
 
@@ -66,7 +64,7 @@ def pedir_campo_obligatorio(mensaje: str, funcion_validacion, funcion_normalizac
             valor = funcion_normalizacion(valor)
         if funcion_validacion(valor):
             return valor
-        print("❌ Valor inválido. Inténtalo de nuevo.")
+        print("Valor inválido. Inténtalo de nuevo.")
 
 
 def pedir_telefono_opcional(mensaje: str) -> str:
@@ -74,7 +72,7 @@ def pedir_telefono_opcional(mensaje: str) -> str:
         valor = input(mensaje).strip()
         if validar_telefono(valor):
             return valor  # puede ser ""
-        print("❌ Teléfono inválido. Debe tener exactamente 9 dígitos o dejarse vacío.")
+        print("Teléfono inválido. Debe tener exactamente 9 dígitos o dejarse vacío.")
 
 
 def crear_usuario(siguiente_id: int) -> Usuario:
@@ -154,18 +152,18 @@ def main():
             usuario = crear_usuario(next_id)
             usuarios.append(usuario)
             next_id += 1
-            print("✅ Usuario creado y guardado en memoria.")
+            print("Usuario creado y guardado en memoria.")
 
         elif opcion == "2":
             mostrar_usuarios(usuarios)
 
         elif opcion == "0":
             guardar_csv(usuarios, CSV_FILENAME)
-            print(f"✅ Programa finalizado. CSV generado: {CSV_FILENAME}")
+            print(f"Programa finalizado. CSV generado: {CSV_FILENAME}")
             break
 
         else:
-            print("❌ Opción inválida. Elige 1, 2 o 0.")
+            print("Opción inválida. Elige 1, 2 o 0.")
 
 
 if __name__ == "__main__":
