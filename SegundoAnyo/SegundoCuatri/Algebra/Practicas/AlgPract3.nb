@@ -1,0 +1,437 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     14516,        429]
+NotebookOptionsPosition[     11374,        366]
+NotebookOutlinePosition[     11775,        382]
+CellTagsIndexPosition[     11732,        379]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ SubscriptBox["\[SelectionPlaceholder]", "\[Placeholder]"]], "Input",Expressio\
+nUUID->"df3a617b-a06b-8e44-a813-fd81ec7e2007"],
+
+Cell[CellGroupData[{
+
+Cell["Cuaderno de Pr\[AAcute]cticas", "Title",
+ CellChangeTimes->{{3.9355789246389446`*^9, 3.9355789344286766`*^9}},
+ TextAlignment->Center,ExpressionUUID->"e51df37f-f5ee-034e-8a31-af7675be4fa6"],
+
+Cell["\[CapitalAAcute]lgebra", "Subtitle",
+ CellChangeTimes->{{3.9355789484963284`*^9, 3.9355789729962845`*^9}, {
+  3.9482593339359226`*^9, 3.9482593384440594`*^9}},
+ TextAlignment->Center,ExpressionUUID->"df93aba7-5618-0746-a1fc-c738851c47e5"],
+
+Cell["Grado en Ingenier\[IAcute]a Inform\[AAcute]tica", "Subtitle",
+ CellChangeTimes->{{3.9355789785606422`*^9, 3.9355789938801403`*^9}},
+ TextAlignment->Center,ExpressionUUID->"bf98b478-5705-f042-84df-7f00ff024189"],
+
+Cell[TextData[StyleBox["CURSO 2025/26",
+ FontWeight->"Bold"]], "Subtitle",
+ CellChangeTimes->{{3.9355789987527676`*^9, 3.9355790110897045`*^9}, {
+  3.9797883706185093`*^9, 3.97978837249564*^9}},
+ TextAlignment->Center,ExpressionUUID->"c349bfab-1d72-6a4d-bf4a-55793146c660"],
+
+Cell[CellGroupData[{
+
+Cell["Datos personales", "Section",
+ CellChangeTimes->{{3.935579019412815*^9, 
+  3.9355790301005898`*^9}},ExpressionUUID->"57f6aa7b-4296-a846-8b9e-\
+d8497d4b2d86"],
+
+Cell["\<\
+Nombre y apellidos : Francisco Javier Mart\[IAcute]n - Lunas Escobar
+DNI : 26268082
+Grupo de teor\[IAcute]a : A
+Grupo de pr\[AAcute]cticas :1 \
+\>", "Text",
+ CellChangeTimes->{{3.935579034489855*^9, 3.9355790865124397`*^9}, {
+  3.9488537782916965`*^9, 3.948853789402048*^9}, {3.9797883755260887`*^9, 
+  3.97978838406283*^9}, {3.980998642223751*^9, 
+  3.9809986427140884`*^9}},ExpressionUUID->"7060ac4a-285c-d04a-a0b4-\
+e8d0b9bd6e05"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Pr\[AAcute]ctica 2", "Section",
+ CellChangeTimes->{{3.9355791003871403`*^9, 3.935579106140892*^9}, {
+  3.9482593405840073`*^9, 3.9482593406950645`*^9}, {3.9803967263520947`*^9, 
+  3.980396726773718*^9}},ExpressionUUID->"3797e760-1388-0541-b35f-\
+def2ba04bb89"],
+
+Cell[BoxData[""], "Code",
+ CellChangeTimes->{
+  3.980396733045862*^9, {3.9803973744060783`*^9, 3.98039744805443*^9}, {
+   3.9803974871381454`*^9, 3.98039751187875*^9}, 3.9803975549170055`*^9, 
+   3.980397821742504*^9, 3.98039786086858*^9, {3.980397924697275*^9, 
+   3.980398025550173*^9}, {3.9803983728362236`*^9, 3.980398389500313*^9}, {
+   3.9809986512434216`*^9, 
+   3.980998659744293*^9}},ExpressionUUID->"b05af692-d8ff-e846-9cff-\
+70c9b8ca7ea0"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Ejercicio 1.  Determinar el n\[UAcute]mero de inversiones y la paridad de \
+las siguientes permutaciones de ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["S", "5"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "1f2849e1-74be-704e-9b48-fd1679302e07"],
+ ":"
+}], "Subsection",
+ CellChangeTimes->{{3.948259428170553*^9, 3.9482594931084175`*^9}, {
+   3.9482595294641857`*^9, 3.948259530297287*^9}, {3.948260255955908*^9, 
+   3.9482602708542137`*^9}, {3.979787985707634*^9, 3.979787987705902*^9}, 
+   3.980396915026455*^9, {3.980998681671961*^9, 
+   3.980998734234228*^9}},ExpressionUUID->"b8ec6aa5-1b92-f74c-822e-\
+9daaa8a3201d"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "I) ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["\[Sigma]", "n"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "4ab34d1e-3a20-4245-93a8-6539fb63e3ad"],
+ " donde n=Mod[DNI,101]+1 "
+}], "Subsubsection",
+ CellChangeTimes->{{3.948259532255142*^9, 3.9482596318451385`*^9}, {
+   3.948259894229271*^9, 3.948259976446211*^9}, 3.9482601734248257`*^9, {
+   3.952601603718918*^9, 3.952601618233303*^9}, {3.9797879993720665`*^9, 
+   3.9797881018938313`*^9}, {3.98039691950782*^9, 3.980396996934376*^9}, {
+   3.9809987390397663`*^9, 3.98099874428092*^9}, {3.980998806165766*^9, 
+   3.9809988338304996`*^9}},ExpressionUUID->"11fb0259-bd42-604b-8102-\
+31a710eacf1b"],
+
+Cell[BoxData[""], "Code",
+ CellChangeTimes->{
+  3.9797880678192787`*^9, 3.980398138999481*^9, {3.98099883958976*^9, 
+   3.9809988419672985`*^9}},ExpressionUUID->"1abad0b7-3690-4640-bc35-\
+936f3dca8b00"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "II) ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["\[Sigma]", "m"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "a46ce6e0-7c45-454a-a527-c5bfcf01ffeb"],
+ " donde m=Mod[mes*dia*(Mod[a\[NTilde]o,11]+1),120]+1 y dias/mes/a\[NTilde]o \
+es su fecha de nacimiento"
+}], "Subsubsection",
+ CellChangeTimes->{{3.980397002071644*^9, 3.980397044086954*^9}, {
+  3.980998854771393*^9, 
+  3.9809989155769997`*^9}},ExpressionUUID->"915f4af8-f276-7449-b75e-\
+9cc8bf758461"],
+
+Cell[BoxData[""], "Code",
+ CellChangeTimes->{3.9803982877003*^9, 
+  3.980998852475689*^9},ExpressionUUID->"cd17f378-9d52-424c-8c72-\
+a97b8e979d63"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "III) ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["\[Sigma]", "n"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "e7b9e17e-b3b9-214e-a46f-6093a0ea7c34"],
+ " ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["\[Sigma]", "m"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "ff911051-ea66-0c42-8b2e-c8b5a6f9f86c"],
+ " y de su inversa"
+}], "Subsubsection",
+ CellChangeTimes->{{3.9803970680676365`*^9, 3.9803970968243446`*^9}, {
+  3.9809989266579113`*^9, 
+  3.98099897027273*^9}},ExpressionUUID->"b50dfa57-8d96-5844-80ad-\
+2334b384d842"],
+
+Cell[BoxData[""], "Code",
+ CellChangeTimes->{{3.980398514004526*^9, 3.980398518571165*^9}},
+ CellLabel->"",ExpressionUUID->"a93fe637-f7d4-754d-b7ac-d26da49b2214"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Ejercicio 2 Rel 2. Dadas las permutaciones de ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["S", "5"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "ba73b408-5b4f-0340-8b1b-1afb2255b8ee"],
+ "\n\[Sigma] = ( ",
+ Cell[BoxData[
+  FormBox[GridBox[{
+     {"1"},
+     {"2"}
+    }], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "368c5af2-9feb-4943-bb11-1bc534c84bcb"],
+ "  ",
+ Cell[BoxData[
+  FormBox[GridBox[{
+     {"2"},
+     {"3"}
+    }], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "e3b609fe-42b1-8341-9559-82f98c87a482"],
+ " ",
+ Cell[BoxData[
+  FormBox[GridBox[{
+     {"3"},
+     {"1"}
+    }], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "bf6e88bd-529d-f44f-8271-aadacdbd5618"],
+ " ",
+ Cell[BoxData[
+  FormBox[GridBox[{
+     {"4"},
+     {"5"}
+    }], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "be99ad3a-dba4-d04e-a3bf-01f1f8782609"],
+ " ",
+ Cell[BoxData[
+  FormBox[GridBox[{
+     {"5"},
+     {"4"}
+    }], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "babbf1d9-78b8-e948-9e39-c7bb06a137ac"],
+ " )         \[Tau] = ( ",
+ Cell[BoxData[
+  FormBox[GridBox[{
+     {"1"},
+     {"5"}
+    }], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "de208e0d-2d59-814b-b411-dcb8bd0588ee"],
+ "  ",
+ Cell[BoxData[
+  FormBox[GridBox[{
+     {"2"},
+     {"4"}
+    }], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "973d5f6d-27a6-5a44-9205-c66fcf714e84"],
+ " ",
+ Cell[BoxData[
+  FormBox[GridBox[{
+     {"3"},
+     {"1"}
+    }], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "a3e1b373-9b0f-ea4d-958b-bcef050cb5da"],
+ " ",
+ Cell[BoxData[
+  FormBox[GridBox[{
+     {"4"},
+     {"3"}
+    }], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "83637292-35bc-0a48-8f67-60d66b42d367"],
+ " ",
+ Cell[BoxData[
+  FormBox[GridBox[{
+     {"5"},
+     {"2"}
+    }], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "fadf1dd4-ddee-6a41-84d8-bb41da50d9a5"],
+ " ) \nSe pide:"
+}], "Subsection",
+ CellChangeTimes->{{3.9803971134133835`*^9, 3.9803971901591587`*^9}, {
+  3.980999022022585*^9, 3.980999161499838*^9}, {3.980999206329815*^9, 
+  3.9809992437963448`*^9}, {3.980999477528227*^9, 
+  3.9809994789797726`*^9}},ExpressionUUID->"d1dd2f65-0a15-844b-b102-\
+d3af9393cc90"],
+
+Cell[BoxData[""], "Code",
+ CellChangeTimes->{3.980398862867626*^9, 
+  3.9809989864846535`*^9},ExpressionUUID->"7cd1b6c5-e5ce-bc4d-9227-\
+d456c84aecce"],
+
+Cell[CellGroupData[{
+
+Cell["i) El n\[UAcute]mero de inversiones de cada permutaci\[OAcute]n. ", \
+"Subsubsection",
+ CellChangeTimes->{{3.980397196993078*^9, 3.980397252880743*^9}, {
+  3.980999314471443*^9, 
+  3.980999340545376*^9}},ExpressionUUID->"7e78913b-46c5-2740-b59b-\
+48ddd2547fef"],
+
+Cell[BoxData[""], "Code",
+ CellChangeTimes->{{3.9803987372876034`*^9, 3.980398770926668*^9}, 
+   3.9803988785315247`*^9, 
+   3.980999343221405*^9},ExpressionUUID->"97607dd1-32ff-3e42-9934-\
+6cd8357132b3"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+II) La descomposici\[OAcute]n en ciclos y transposiciones de cada permutaci\
+\[OAcute]n\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.9803972654880943`*^9, 3.980397272790056*^9}, {
+  3.9809993528915176`*^9, 
+  3.9809994027340164`*^9}},ExpressionUUID->"4f751848-b3cd-3d4d-b5a5-\
+bbd6bd9e48a5"],
+
+Cell[BoxData[""], "Code",
+ CellChangeTimes->{3.9803987321903515`*^9, 3.98039893110227*^9, 
+  3.9809994127403927`*^9},ExpressionUUID->"6315d906-8a2c-8d46-a669-\
+bc64351b0d8d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["III) La signatura de cada permutaci\[OAcute]n.", "Subsubsection",
+ CellChangeTimes->{{3.9809994299529953`*^9, 
+  3.980999441086439*^9}},ExpressionUUID->"d8d1352b-deab-3e4b-afd0-\
+fd8931e1f6ec"],
+
+Cell[BoxData[""], "Code",ExpressionUUID->"7db6036b-c6e6-d54f-9323-2a8fbbebac82"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Ejercicio 2 Ord2 24/25 A) En ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["S", "5"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "0467d23d-7eb6-564c-b6e0-6205e4430a3e"],
+ " consideramos la siguiente permutaci\[OAcute]n:\n\[Sigma] = (24) ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    RowBox[{"(", "341", ")"}], "2"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "2f6a2c40-cd3f-3f41-a612-8c04b6ad6098"],
+ " (12)\nComprobar si \[Sigma] es un ciclo. \[DownQuestion]Pertenece a ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["A", "5"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "b66729c6-3309-7240-bce1-1300a618a36a"],
+ "? \[DownQuestion]Es cierto que ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[Sigma]", 
+    RowBox[{"-", "1"}]], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "6d13e078-9768-d44c-ba9d-659878564acd"],
+ " = (341)?"
+}], "Subsection",
+ CellChangeTimes->{{3.980397280481394*^9, 3.9803973204015694`*^9}, {
+  3.9809994731206856`*^9, 
+  3.980999648772791*^9}},ExpressionUUID->"924806c6-ea3a-4145-b090-\
+41cb8ed62b38"],
+
+Cell[BoxData[""], "Code",ExpressionUUID->"d067826f-1798-924f-a0ad-b4e775ea4432"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{574.8, 568.8},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
+FrontEndVersion->"14.1 para Microsoft Windows (64-bit) (July 16, 2024)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"fd0cd67a-a225-6c43-8621-158809ce6861"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[554, 20, 140, 2, 28, "Input",ExpressionUUID->"df3a617b-a06b-8e44-a813-fd81ec7e2007"],
+Cell[CellGroupData[{
+Cell[719, 26, 195, 2, 96, "Title",ExpressionUUID->"e51df37f-f5ee-034e-8a31-af7675be4fa6"],
+Cell[917, 30, 244, 3, 52, "Subtitle",ExpressionUUID->"df93aba7-5618-0746-a1fc-c738851c47e5"],
+Cell[1164, 35, 216, 2, 52, "Subtitle",ExpressionUUID->"bf98b478-5705-f042-84df-7f00ff024189"],
+Cell[1383, 39, 273, 4, 52, "Subtitle",ExpressionUUID->"c349bfab-1d72-6a4d-bf4a-55793146c660"],
+Cell[CellGroupData[{
+Cell[1681, 47, 163, 3, 66, "Section",ExpressionUUID->"57f6aa7b-4296-a846-8b9e-d8497d4b2d86"],
+Cell[1847, 52, 443, 10, 99, "Text",ExpressionUUID->"7060ac4a-285c-d04a-a0b4-e8d0b9bd6e05"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2327, 67, 266, 4, 66, "Section",ExpressionUUID->"3797e760-1388-0541-b35f-def2ba04bb89"],
+Cell[2596, 73, 450, 8, 50, "Code",ExpressionUUID->"b05af692-d8ff-e846-9cff-70c9b8ca7ea0"],
+Cell[CellGroupData[{
+Cell[3071, 85, 664, 15, 79, "Subsection",ExpressionUUID->"b8ec6aa5-1b92-f74c-822e-9daaa8a3201d"],
+Cell[CellGroupData[{
+Cell[3760, 104, 692, 15, 43, "Subsubsection",ExpressionUUID->"11fb0259-bd42-604b-8102-31a710eacf1b"],
+Cell[4455, 121, 202, 4, 50, "Code",ExpressionUUID->"1abad0b7-3690-4640-bc35-936f3dca8b00"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4694, 130, 497, 13, 68, "Subsubsection",ExpressionUUID->"915f4af8-f276-7449-b75e-9cc8bf758461"],
+Cell[5194, 145, 147, 3, 50, "Code",ExpressionUUID->"cd17f378-9d52-424c-8c72-a97b8e979d63"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5378, 153, 590, 18, 43, "Subsubsection",ExpressionUUID->"b50dfa57-8d96-5844-80ad-2334b384d842"],
+Cell[5971, 173, 162, 2, 50, "Code",ExpressionUUID->"a93fe637-f7d4-754d-b7ac-d26da49b2214"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6182, 181, 2388, 93, 125, "Subsection",ExpressionUUID->"d1dd2f65-0a15-844b-b102-d3af9393cc90"],
+Cell[8573, 276, 151, 3, 50, "Code",ExpressionUUID->"7cd1b6c5-e5ce-bc4d-9227-d456c84aecce"],
+Cell[CellGroupData[{
+Cell[8749, 283, 267, 5, 43, "Subsubsection",ExpressionUUID->"7e78913b-46c5-2740-b59b-48ddd2547fef"],
+Cell[9019, 290, 204, 4, 50, "Code",ExpressionUUID->"97607dd1-32ff-3e42-9934-6cd8357132b3"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9260, 299, 301, 7, 68, "Subsubsection",ExpressionUUID->"4f751848-b3cd-3d4d-b5a5-bbd6bd9e48a5"],
+Cell[9564, 308, 174, 3, 50, "Code",ExpressionUUID->"6315d906-8a2c-8d46-a669-bc64351b0d8d"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9775, 316, 199, 3, 43, "Subsubsection",ExpressionUUID->"d8d1352b-deab-3e4b-afd0-fd8931e1f6ec"],
+Cell[9977, 321, 80, 0, 50, "Code",ExpressionUUID->"7db6036b-c6e6-d54f-9323-2a8fbbebac82"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10106, 327, 1145, 32, 157, "Subsection",ExpressionUUID->"924806c6-ea3a-4145-b090-41cb8ed62b38"],
+Cell[11254, 361, 80, 0, 50, "Code",ExpressionUUID->"d067826f-1798-924f-a0ad-b4e775ea4432"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
