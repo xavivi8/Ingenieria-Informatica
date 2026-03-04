@@ -1,0 +1,243 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[      9719,        235]
+NotebookOptionsPosition[      7263,        182]
+NotebookOutlinePosition[      7876,        204]
+CellTagsIndexPosition[      7833,        201]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Cuaderno de Pr\[AAcute]cticas", "Title",
+ CellChangeTimes->{{3.9355789246389446`*^9, 3.9355789344286766`*^9}},
+ TextAlignment->Center,ExpressionUUID->"dccdb41f-b2d3-0a48-841a-d30fc39bc10a"],
+
+Cell["\[CapitalAAcute]lgebra", "Subtitle",
+ CellChangeTimes->{{3.9355789484963284`*^9, 3.9355789729962845`*^9}, {
+  3.9482593339359226`*^9, 3.9482593384440594`*^9}},
+ TextAlignment->Center,ExpressionUUID->"cac23a62-6855-5d49-92ad-d44f33e2d7e4"],
+
+Cell["Grado en Ingenier\[IAcute]a Inform\[AAcute]tica", "Subtitle",
+ CellChangeTimes->{{3.9355789785606422`*^9, 3.9355789938801403`*^9}},
+ TextAlignment->Center,ExpressionUUID->"bd158943-babf-1742-9214-e22aa328e152"],
+
+Cell[TextData[StyleBox["CURSO 2025/26",
+ FontWeight->"Bold"]], "Subtitle",
+ CellChangeTimes->{{3.9355789987527676`*^9, 3.9355790110897045`*^9}, {
+  3.9797883706185093`*^9, 3.97978837249564*^9}},
+ TextAlignment->Center,ExpressionUUID->"d1a69e5b-e8ce-9c43-9e64-84bebed17bc6"],
+
+Cell[CellGroupData[{
+
+Cell["Datos personales", "Section",
+ CellChangeTimes->{{3.935579019412815*^9, 
+  3.9355790301005898`*^9}},ExpressionUUID->"736f443e-58ec-414c-84bd-\
+32e7174c509f"],
+
+Cell["\<\
+Nombre y apellidos : Francisco Javier Mart\[IAcute]n - Lunas Escobar
+DNI : 26268082
+Grupo de teor\[IAcute]a : A
+Grupo de pr\[AAcute]cticas :1 \
+\>", "Text",
+ CellChangeTimes->{{3.935579034489855*^9, 3.9355790865124397`*^9}, {
+  3.9488537782916965`*^9, 3.948853789402048*^9}, {3.9797883755260887`*^9, 
+  3.97978838406283*^9}, {3.980998642223751*^9, 
+  3.9809986427140884`*^9}},ExpressionUUID->"31145814-fadd-ae49-9d8e-\
+05e0bd38f4e7"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Pr\[AAcute]ctica 4", "Section",
+ CellChangeTimes->{{3.9355791003871403`*^9, 3.935579106140892*^9}, {
+  3.9482593405840073`*^9, 3.9482593406950645`*^9}, {3.9803967263520947`*^9, 
+  3.980396726773718*^9}, {3.9810199208868713`*^9, 3.981019921023817*^9}, {
+  3.9816001602240105`*^9, 
+  3.9816001603896103`*^9}},ExpressionUUID->"d1dcabdd-4dbb-cc49-8431-\
+bb7496f046dd"],
+
+Cell[BoxData[""], "Code",
+ CellChangeTimes->{
+  3.980396733045862*^9, {3.9803973744060783`*^9, 3.98039744805443*^9}, {
+   3.9803974871381454`*^9, 3.98039751187875*^9}, 3.9803975549170055`*^9, 
+   3.980397821742504*^9, 3.98039786086858*^9, {3.980397924697275*^9, 
+   3.980398025550173*^9}, {3.9803983728362236`*^9, 3.980398389500313*^9}, {
+   3.9809986512434216`*^9, 3.980998659744293*^9}, {3.9809999001995735`*^9, 
+   3.980999906493332*^9}, {3.9809999412130566`*^9, 3.98099994560655*^9}, {
+   3.9809999811593723`*^9, 3.9809999860052814`*^9}, {3.981001277371258*^9, 
+   3.9810013070111713`*^9}, {3.9810013463024616`*^9, 3.981001347708824*^9}, {
+   3.981001399009239*^9, 3.9810014664834538`*^9}, {3.981001500547514*^9, 
+   3.981001546341156*^9}, {3.981001589233282*^9, 3.9810016166327*^9}, {
+   3.9810016828169994`*^9, 3.9810016937269707`*^9}, {3.981003739690008*^9, 
+   3.9810037402179127`*^9}, {3.981019952221012*^9, 3.981019981086437*^9}, 
+   3.981599079886572*^9, {3.981599123982315*^9, 3.9815991501224136`*^9}, 
+   3.9816001585226345`*^9},ExpressionUUID->"538f6bd6-b824-7541-905f-\
+34388da60848"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Ejercicio 5.29 \[LineSeparator]a) Sea W el conjunto formado por todas las \
+cifras distintas que componen su DNI junto con todas las letras distintas de \
+su primer apellido.
+b) Consideramos el grafo no orientado G\:2081 cuyo conjunto de \
+v\[EAcute]rtices es W y donde dos v\[EAcute]rtices cualesquiera ser\[AAcute]n \
+adyacentes si y s\[OAcute]lo si son:
+\tI. Un n\[UAcute]mero par y una vocal.
+\tII. Un n\[UAcute]mero impar y una consonante.
+\tIII. Dos n\[UAcute]meros pares distintos.
+c) Consideramos el grafo dirigido G\:2082 cuyo conjunto de v\[EAcute]rtices \
+es W y donde el conjunto de flechas est\[AAcute] formado por todas aquellas \
+flechas que podemos considerar de la forma:
+\tI. Origen en un n\[UAcute]mero impar y fin en una vocal.
+\tII. Origen en una vocal y fin en una consonante.
+\tIII. Origen en un n\[UAcute]mero par y fin en un n\[UAcute]mero \t\t       \
+impar.
+Se pide:\
+\>", "Subsection",
+ CellChangeTimes->{{3.948259428170553*^9, 3.9482594931084175`*^9}, {
+   3.9482595294641857`*^9, 3.948259530297287*^9}, {3.948260255955908*^9, 
+   3.9482602708542137`*^9}, {3.979787985707634*^9, 3.979787987705902*^9}, 
+   3.980396915026455*^9, {3.980998681671961*^9, 3.980998734234228*^9}, 
+   3.9816001634793987`*^9, {3.9816002051194477`*^9, 3.981600207809677*^9}, {
+   3.9816002412758217`*^9, 3.9816003076796894`*^9}, {3.9816003391909027`*^9, 
+   3.9816004051031036`*^9}},ExpressionUUID->"bae94472-de35-4242-ba8d-\
+06df33e3d13a"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+I) Definir G\:2081 y G\:2082 directamente por sus conjuntos de \
+v\[EAcute]rtices y lados o flechas.\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.948259532255142*^9, 3.9482596318451385`*^9}, {
+   3.948259894229271*^9, 3.948259976446211*^9}, 3.9482601734248257`*^9, {
+   3.952601603718918*^9, 3.952601618233303*^9}, {3.9797879993720665`*^9, 
+   3.9797881018938313`*^9}, {3.98039691950782*^9, 3.980396996934376*^9}, {
+   3.9809987390397663`*^9, 3.98099874428092*^9}, {3.980998806165766*^9, 
+   3.9809988338304996`*^9}, 
+   3.9816003927562237`*^9},ExpressionUUID->"8ca809fe-cf1b-0a48-a24a-\
+203ad82ff30f"],
+
+Cell[BoxData[""], "Code",
+ CellChangeTimes->{
+  3.9797880678192787`*^9, 3.980398138999481*^9, {3.98099883958976*^9, 
+   3.9809988419672985`*^9}, {3.9810017458740406`*^9, 3.9810017767060966`*^9}, 
+   3.9816001717272415`*^9},ExpressionUUID->"66da641a-012e-774b-b72d-\
+307fbf01e5e2"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["II) Calcular las matrices de adyacencia de G\:2081 y G\:2082.", \
+"Subsubsection",
+ CellChangeTimes->{{3.9816004093136997`*^9, 
+  3.9816004177064915`*^9}},ExpressionUUID->"1ab92cd8-1e39-a54b-b0a0-\
+80acf4107423"],
+
+Cell[BoxData[""], "Code",ExpressionUUID->"8a1d8eae-9d48-dc42-9c47-831233109996"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["III) Calcular la matriz de incidencia de G\:2081.", "Subsubsection",
+ CellChangeTimes->{{3.9816004316988945`*^9, 
+  3.9816004340788803`*^9}},ExpressionUUID->"9b9e433a-6f1e-ba4d-a7f2-\
+d8e410560bc7"],
+
+Cell[BoxData[""], "Code",ExpressionUUID->"6626c43d-f327-3a40-a439-702f582c9eab"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["IV) Representar gr\[AAcute]ficamente G\:2081 y G\:2082.", \
+"Subsubsection",
+ CellChangeTimes->{{3.9816004491476765`*^9, 
+  3.981600451372959*^9}},ExpressionUUID->"c9888df8-cae5-9745-91fe-\
+054b0df1c76f"],
+
+Cell[BoxData[""], "Code",ExpressionUUID->"4efcd1a7-0476-7f42-9c79-9b1f60c68fce"]
+}, Open  ]]
+}, Open  ]],
+
+Cell["Ejercicio 2", "Subsection",
+ CellChangeTimes->{{3.9816004611372776`*^9, 
+  3.981600464517618*^9}},ExpressionUUID->"093e5d2d-d9fe-5349-a39a-\
+ec6224899b00"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowToolbars->"MultipurposeBar",
+WindowSize->{574.8, 573.6},
+WindowMargins->{{Automatic, -4.7999999999999545`}, {Automatic, 0}},
+DockedCells->{},
+TaggingRules-><|
+ "NotebookTemplateVersion" -> 2., "NotebookTemplate" -> True, 
+  "GeneratedNotebookOptions" -> {}|>,
+CellContext->Notebook,
+FrontEndVersion->"14.1 para Microsoft Windows (64-bit) (July 16, 2024)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"fd0cd67a-a225-6c43-8621-158809ce6861"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 195, 2, 96, "Title",ExpressionUUID->"dccdb41f-b2d3-0a48-841a-d30fc39bc10a"],
+Cell[774, 26, 244, 3, 52, "Subtitle",ExpressionUUID->"cac23a62-6855-5d49-92ad-d44f33e2d7e4"],
+Cell[1021, 31, 216, 2, 52, "Subtitle",ExpressionUUID->"bd158943-babf-1742-9214-e22aa328e152"],
+Cell[1240, 35, 273, 4, 52, "Subtitle",ExpressionUUID->"d1a69e5b-e8ce-9c43-9e64-84bebed17bc6"],
+Cell[CellGroupData[{
+Cell[1538, 43, 163, 3, 66, "Section",ExpressionUUID->"736f443e-58ec-414c-84bd-32e7174c509f"],
+Cell[1704, 48, 443, 10, 99, "Text",ExpressionUUID->"31145814-fadd-ae49-9d8e-05e0bd38f4e7"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2184, 63, 370, 6, 66, "Section",ExpressionUUID->"d1dcabdd-4dbb-cc49-8431-bb7496f046dd"],
+Cell[2557, 71, 1099, 16, 50, "Code",ExpressionUUID->"538f6bd6-b824-7541-905f-34388da60848"],
+Cell[CellGroupData[{
+Cell[3681, 91, 1454, 26, 523, "Subsection",ExpressionUUID->"bae94472-de35-4242-ba8d-06df33e3d13a"],
+Cell[CellGroupData[{
+Cell[5160, 121, 612, 11, 68, "Subsubsection",ExpressionUUID->"8ca809fe-cf1b-0a48-a24a-203ad82ff30f"],
+Cell[5775, 134, 280, 5, 50, "Code",ExpressionUUID->"66da641a-012e-774b-b72d-307fbf01e5e2"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6092, 144, 218, 4, 43, "Subsubsection",ExpressionUUID->"1ab92cd8-1e39-a54b-b0a0-80acf4107423"],
+Cell[6313, 150, 80, 0, 50, "Code",ExpressionUUID->"8a1d8eae-9d48-dc42-9c47-831233109996"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6430, 155, 204, 3, 43, "Subsubsection",ExpressionUUID->"9b9e433a-6f1e-ba4d-a7f2-d8e410560bc7"],
+Cell[6637, 160, 80, 0, 50, "Code",ExpressionUUID->"6626c43d-f327-3a40-a439-702f582c9eab"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6754, 165, 210, 4, 43, "Subsubsection",ExpressionUUID->"c9888df8-cae5-9745-91fe-054b0df1c76f"],
+Cell[6967, 171, 80, 0, 50, "Code",ExpressionUUID->"4efcd1a7-0476-7f42-9c79-9b1f60c68fce"]
+}, Open  ]]
+}, Open  ]],
+Cell[7074, 175, 161, 3, 53, "Subsection",ExpressionUUID->"093e5d2d-d9fe-5349-a39a-ec6224899b00"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
