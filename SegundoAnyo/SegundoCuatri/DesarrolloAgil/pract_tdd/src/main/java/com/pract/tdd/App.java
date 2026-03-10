@@ -29,6 +29,15 @@ public final class App {
     }
 
     /**
+     * Esta función crea datos de prueba para comprobar que el listado de la clasificación funciona.
+     */
+    static private void mockData() {
+        misEquipos.add(new Equipo("Equipo 1", 11));
+        misEquipos.add(new Equipo("Equipo 2", 1));
+        misEquipos.add(new Equipo("Equipo 3", 33));
+    }
+
+    /**
      * Says hello to the world.
      * @param args The arguments of the program.
      */
@@ -36,7 +45,7 @@ public final class App {
         System.out.println("Mi liga");
         System.out.println("");
         System.out.println("");
-
+        mockData();
         imprimeClasificacion();
     }
 }
