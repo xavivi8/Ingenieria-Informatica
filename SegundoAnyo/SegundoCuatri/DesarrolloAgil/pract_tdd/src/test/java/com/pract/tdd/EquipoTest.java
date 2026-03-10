@@ -31,4 +31,14 @@ public class EquipoTest {
     void getPuntos() {
         assertEquals(78, new Equipo("Equipo 1", 78).getPuntos());
     }
+
+    @Test
+    void comparaPorPuntosInverso() {
+        Equipo e1 = new Equipo("A", 30);
+        Equipo e2 = new Equipo("B", 45);
+        assertTrue(e1.comparaPorPuntosInverso(e2) > 0);
+        assertTrue(e2.comparaPorPuntosInverso(e1) < 0);
+        Equipo e3 = new Equipo("C", 45);
+        assertTrue(e2.comparaPorPuntosInverso(e3) == 0);
+    }
 }
