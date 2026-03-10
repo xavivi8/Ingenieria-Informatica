@@ -13,6 +13,6 @@ class AppTest {
      */
     @Test
     void testApp() {
-        assertEquals(1, 1);
+        App.main(null);
     }
 }
