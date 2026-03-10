@@ -46,6 +46,7 @@ public final class App {
         System.out.println("");
         System.out.println("");
         mockData();
+        misEquipos.sort((a, b) -> (a.puntos < b.puntos ? -1 : a.puntos > b.puntos ? 1 : 0));
         imprimeClasificacion();
     }
 }
