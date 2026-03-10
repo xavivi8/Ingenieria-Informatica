@@ -1,5 +1,6 @@
 package com.pract.tdd;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -14,4 +15,12 @@ public class EquipoTest {
             new Equipo(null, 0);
         });
     }
+
+    @Test
+    public void ConstructorParametrizado() {
+        assertEquals("Equipo 1", new Equipo("Equipo 1", 0).getNombre());
+        assertEquals(22, new Equipo("Equipo 1", 22).getPuntos());
+    }
+
+
 }
