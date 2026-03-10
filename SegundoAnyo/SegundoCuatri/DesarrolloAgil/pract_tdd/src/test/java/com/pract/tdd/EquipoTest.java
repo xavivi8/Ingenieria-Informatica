@@ -54,4 +54,12 @@ public class EquipoTest {
             e1.setNombre(null);
         });
     }
+
+    @Test
+    public void setNombre() {
+        Equipo e1 = new Equipo("A", 32);
+        e1.setNombre("B");
+        assertEquals("B", e1.getNombre());
+        assertSame(e1, e1.setNombre("G"));
+    }
 }
