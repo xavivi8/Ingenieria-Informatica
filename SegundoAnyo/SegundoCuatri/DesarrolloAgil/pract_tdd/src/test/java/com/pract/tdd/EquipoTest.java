@@ -10,5 +10,8 @@ public class EquipoTest {
         assertThrows(IllegalArgumentException.class, () -> {
             new Equipo("", 0);
         });
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Equipo(null, 0);
+        });
     }
 }
