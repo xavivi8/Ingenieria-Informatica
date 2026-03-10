@@ -41,4 +41,17 @@ public class EquipoTest {
         Equipo e3 = new Equipo("C", 45);
         assertTrue(e2.comparaPorPuntosInverso(e3) == 0);
     }
+
+    @Test
+    public void setNombre_excepciones() {
+        Equipo e1 = new Equipo("A", 32);
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            e1.setNombre("");
+        });
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            e1.setNombre(null);
+        });
+    }
 }
