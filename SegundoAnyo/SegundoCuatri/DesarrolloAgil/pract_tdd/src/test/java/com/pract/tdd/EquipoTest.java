@@ -22,5 +22,8 @@ public class EquipoTest {
         assertEquals(22, new Equipo("Equipo 1", 22).getPuntos());
     }
 
-
+    @Test
+    void getNombre() {
+        assertEquals("Equipo 1", new Equipo("Equipo 1", 0).getNombre());
+    }
 }
