@@ -51,4 +51,20 @@ public class Equipo {
     final public int getPuntos() {
         return this.puntos;
     }
+
+    /**
+     * Establece un nuevo nombre para el equipo.
+     * @param unNombre El nuevo nombre para el equipo.
+     * @throws IllegalArgumentException unNombre no puede ser vacío.
+     * @throws IllegalArgumentException unNombre no puede ser null.
+     * @post Modifica el nombre del equipo.
+     * @return El propio objeto para encadenar llamadas.
+     */
+    public Equipo setNombre(final String unNombre) {
+        if (unNombre == null || unNombre == "")
+            throw (new IllegalArgumentException(
+                "Equipo: setNombre: Nombre no puede ser null ni cadena vacía."));
+        this.nombre = unNombre;
+        return this;
+    }
 }
