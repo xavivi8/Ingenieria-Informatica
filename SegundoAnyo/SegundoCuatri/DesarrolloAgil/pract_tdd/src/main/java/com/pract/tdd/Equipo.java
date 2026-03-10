@@ -22,6 +22,21 @@ public class Equipo {
     }
 
     /**
+     * Compara dos equipos considerando que el que tiene más puntos se coloca antes que el que tiene
+     * menos puntos.
+     * @param otroEquipo Equipo con el que voy a comparar a this.
+     * @return Un número negativo si this tiene más puntos que otroEquipo; un número positivo si this
+     * tiene menos puntos que otroEquipo; y 0, si tienen los mismos puntos.
+     */
+    final public int comparaPorPuntosInverso(final Equipo otroEquipo) {
+        if (this.puntos > otroEquipo.puntos)
+            return -1;
+        if (this.puntos < otroEquipo.puntos)
+            return 1;
+        return 0;
+    }
+
+    /**
      * Devuelve el nombre del equipo
      * @return El nombre del equipo.
      */
