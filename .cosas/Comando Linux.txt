@@ -1,0 +1,12 @@
+Comando Linux
+
+- Instalador de videos de yt en mp3
+sudo curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp
+
+sudo chmod a+rx /usr/local/bin/yt-dlp
+
+hash -r
+
+yt-dlp --version (para ver que funciona)
+
+yt-dlp -x --audio-format mp3 "https://youtu.be/pMbTKa5fnJE?si=DLkP9PooRmhn9A3A" (El comando para descargar el video que quiero en mp3)
