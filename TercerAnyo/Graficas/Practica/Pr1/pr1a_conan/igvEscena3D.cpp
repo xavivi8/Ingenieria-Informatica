@@ -3,12 +3,12 @@
 
 #include "igvEscena3D.h"
 
-// Métodos constructores -----------------------------------
+// Mï¿½todos constructores -----------------------------------
 
-// Métodos públicos ----------------------------------------
+// Mï¿½todos pï¿½blicos ----------------------------------------
 
 /**
- * Método para pintar los ejes coordenados llamando a funciones de OpenGL
+ * Mï¿½todo para pintar los ejes coordenados llamando a funciones de OpenGL
  */
 void igvEscena3D::pintar_ejes ()
 {  GLfloat rojo[] = { 1,0,0,1.0 };
@@ -31,9 +31,9 @@ void igvEscena3D::pintar_ejes ()
 }
 
 /**
- * Método con las llamadas OpenGL para visualizar la escena
+ * Mï¿½todo con las llamadas OpenGL para visualizar la escena
  * @param escena Identificador del tipo de escena a dibujar
- * @pre Se asume que el valor del parámetro es correcto
+ * @pre Se asume que el valor del parï¿½metro es correcto
  */
 void igvEscena3D::visualizar ( int escena )
 {  // borra la ventana y el Z-buffer
@@ -51,7 +51,7 @@ void igvEscena3D::visualizar ( int escena )
    {  pintar_ejes ();
    }
 
-   // Escena seleccionada a través del menú (clic botón derecho)
+   // Escena seleccionada a travï¿½s del menï¿½ (clic botï¿½n derecho)
    if ( escena == EscenaA )
    {  renderEscenaA ();
    }
@@ -80,8 +80,15 @@ void igvEscena3D::renderEscenaA ()
    glMaterialfv ( GL_FRONT, GL_EMISSION, color_pieza );
 
    glPushMatrix ();
+    glScaled(1,1,2);
    glutSolidCube ( 1 );
    glPopMatrix ();
+
+    glPushMatrix ();
+    glTranslatef(0,0.5,0);
+    glScaled(1,0.25,2.25);
+    glutSolidCube ( 1 );
+    glPopMatrix ();
 }
 
 /**
@@ -113,7 +120,7 @@ void igvEscena3D::renderEscenaC ()
 }
 
 /**
- * Método para consultar si hay que dibujar los ejes o no
+ * Mï¿½todo para consultar si hay que dibujar los ejes o no
  * @retval true Si hay que dibujar los ejes
  * @retval false Si no hay que dibujar los ejes
  */
@@ -122,10 +129,10 @@ bool igvEscena3D::get_ejes ()
 }
 
 /**
- * Método para activar o desactivar el dibujado de los ejes
+ * Mï¿½todo para activar o desactivar el dibujado de los ejes
  * @param _ejes Indica si hay que dibujar los ejes (true) o no (false)
  * @post El estado del objeto cambia en lo que respecta al dibujado de ejes,
- *       de acuerdo al valor pasado como parámetro
+ *       de acuerdo al valor pasado como parï¿½metro
  */
 void igvEscena3D::set_ejes ( bool _ejes )
 {  ejes = _ejes;
