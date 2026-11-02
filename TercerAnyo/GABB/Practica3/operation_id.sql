@@ -61,3 +61,4 @@ WHERE  o.cod_op >= 22
 ORDER  BY o.cod_op;
 
 COMMIT;
+
