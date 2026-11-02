@@ -1,5 +1,20 @@
+-- =====================================================================
+-- Práctica 3 - Ejercicios 1 y 2
+-- TRG_DESCUBIERTO.SQL
+-- (El ejercicio 2 no pide fichero propio, así que se resuelve aquí.)
+--
+-- Antes de empezar:
+--   * DataGrip: poner la consola en modo de transacción MANUAL (selector
+--     "Tx" de la barra de la consola). En modo Auto cada sentencia hace
+--     COMMIT sola y el ejercicio 2 no tiene sentido.
+--   * SQL Developer: el autocommit viene desactivado por defecto.
+--   * Ejecutar las sentencias de una en una para ver cada resultado.
+-- =====================================================================
 
+
+-- #####################################################################
 -- EJERCICIO 1. Disparador TRG_DESCUBIERTO
+-- #####################################################################
 
 -- a) Crear y compilar el disparador
 CREATE OR REPLACE TRIGGER trg_descubierto
@@ -16,7 +31,7 @@ BEGIN
 END;
 /
 
--- Comproba
+-- Comprobar que ha compilado sin errores (debe devolver 0 filas)
 SELECT line, position, text
 FROM   user_errors
 WHERE  name = 'TRG_DESCUBIERTO';
@@ -31,6 +46,10 @@ WHERE  a.balance > 0
 ORDER  BY a.id;
 
 -- Retirar el 120 % del saldo de la primera cuenta ING con saldo positivo
+-- (deja un descubierto del 20 %). Debe dar:
+--   ORA-20000: No se puede retirar un saldo superior al 110% del saldo actual
+--   ORA-06512: at "GI410.TRG_DESCUBIERTO", line ...
+--   ORA-04088: error during execution of trigger 'GI410.TRG_DESCUBIERTO'
 UPDATE account
 SET    balance = balance - 1.2 * balance
 WHERE  id = (SELECT MIN(a.id)
@@ -39,8 +58,10 @@ WHERE  id = (SELECT MIN(a.id)
              WHERE  a.balance > 0);
 
 
+-- #####################################################################
 -- EJERCICIO 2. Transferencia de X a Y y transacciones
-
+-- #####################################################################
+--
 -- Cuentas elegidas:
 --   X = cuenta 14 (cuenta ING; según el ejercicio 5 tiene 10 eur, > 0)
 --   Y = cuenta asociada del registro titular-cuenta ("OwnerAsAc-AsAc") 8
@@ -58,6 +79,10 @@ SELECT 'Y', id, balance
 FROM   account
 WHERE  id = (SELECT associated_account_id FROM "OwnerAsAc-AsAc" WHERE id = 8);
 
+
+-- =====================================================================
+-- Proceso completo (pasos a-f), sentencia a sentencia
+-- =====================================================================
 
 -- a) Iniciar la transacción
 COMMIT;
