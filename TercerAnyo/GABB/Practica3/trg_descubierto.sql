@@ -1,29 +1,11 @@
--- =====================================================================
--- Práctica 3 - Ejercicios 1 y 2
--- TRG_DESCUBIERTO.SQL
--- (El ejercicio 2 no pide fichero propio, así que se resuelve aquí.)
---
--- Antes de empezar:
---   * DataGrip: poner la consola en modo de transacción MANUAL (selector
---     "Tx" de la barra de la consola). En modo Auto cada sentencia hace
---     COMMIT sola y el ejercicio 2 no tiene sentido.
---   * SQL Developer: el autocommit viene desactivado por defecto.
---   * Ejecutar las sentencias de una en una para ver cada resultado.
--- =====================================================================
+-- Ejercicio 1
 
-
--- #####################################################################
--- EJERCICIO 1. Disparador TRG_DESCUBIERTO
--- #####################################################################
-
--- a) Crear y compilar el disparador
+-- a)
 CREATE OR REPLACE TRIGGER trg_descubierto
 BEFORE UPDATE OF balance ON account
 FOR EACH ROW
-WHEN (new.balance < old.balance)          -- solo cuando sale dinero
+WHEN (new.balance < old.balance)
 BEGIN
-    -- Saldo mínimo permitido: -10 % del saldo que había antes de retirar.
-    -- Ej.: saldo 1000 -> se pueden retirar hasta 1100 (saldo final -100).
     IF :new.balance < -0.10 * :old.balance THEN
         RAISE_APPLICATION_ERROR(-20000,
             'No se puede retirar un saldo superior al 110% del saldo actual');
@@ -31,25 +13,18 @@ BEGIN
 END;
 /
 
--- Comprobar que ha compilado sin errores (debe devolver 0 filas)
 SELECT line, position, text
 FROM   user_errors
 WHERE  name = 'TRG_DESCUBIERTO';
 
--- b) Actualizar la cuenta ING de un cliente dejando un descubierto > 10 %
+-- b)
 
--- Cuentas ING con saldo positivo
 SELECT a.id, a.balance
 FROM   account a
 JOIN   ing_account i ON i.id = a.id
 WHERE  a.balance > 0
 ORDER  BY a.id;
 
--- Retirar el 120 % del saldo de la primera cuenta ING con saldo positivo
--- (deja un descubierto del 20 %). Debe dar:
---   ORA-20000: No se puede retirar un saldo superior al 110% del saldo actual
---   ORA-06512: at "GI410.TRG_DESCUBIERTO", line ...
---   ORA-04088: error during execution of trigger 'GI410.TRG_DESCUBIERTO'
 UPDATE account
 SET    balance = balance - 1.2 * balance
 WHERE  id = (SELECT MIN(a.id)
@@ -57,20 +32,8 @@ WHERE  id = (SELECT MIN(a.id)
              JOIN   ing_account i ON i.id = a.id
              WHERE  a.balance > 0);
 
+-- Ejercicio 2
 
--- #####################################################################
--- EJERCICIO 2. Transferencia de X a Y y transacciones
--- #####################################################################
---
--- Cuentas elegidas:
---   X = cuenta 14 (cuenta ING; según el ejercicio 5 tiene 10 eur, > 0)
---   Y = cuenta asociada del registro titular-cuenta ("OwnerAsAc-AsAc") 8
---   La operación D se registra con el Cli-Acc de la cuenta X y el
---   titular-cuenta 8 como destino.
---   Código de operación: 900, para no chocar con el 21 del ejercicio 5.
--- Para usar otras cuentas basta con cambiar 14 y 8 en todo el bloque.
-
--- Comprobar las cuentas elegidas (X debe tener saldo positivo)
 SELECT 'X' AS cuenta, id, balance
 FROM   account
 WHERE  id = 14
@@ -79,44 +42,38 @@ SELECT 'Y', id, balance
 FROM   account
 WHERE  id = (SELECT associated_account_id FROM "OwnerAsAc-AsAc" WHERE id = 8);
 
-
--- =====================================================================
--- Proceso completo (pasos a-f), sentencia a sentencia
--- =====================================================================
-
--- a) Iniciar la transacción
+-- a)
 COMMIT;
 
--- b) Insertar la operación D: transferir el doble del saldo de X a Y
+-- b)
 INSERT INTO operation (cod_op, "date", "Cli-Acc_id")
 VALUES (900, SYSDATE, (SELECT MIN(id) FROM "Cli-Acc" WHERE ing_account_id = 14));
 
 INSERT INTO op_d (cod_op, amount, periodicity, "OwnerAsAc-AsAc_id")
 VALUES (900, (SELECT 2 * balance FROM account WHERE id = 14), 'once', 8);
 
--- c) Comprobar que la inserción se ha realizado
+-- c)
 SELECT o.cod_op, o."date", o."Cli-Acc_id", d.amount, d.periodicity
 FROM   operation o
 JOIN   op_d d ON d.cod_op = o.cod_op
 WHERE  o.cod_op = 900;
 
--- d) Incrementar Y con el doble del saldo de X
+-- d)
 UPDATE account
 SET    balance = balance + (SELECT 2 * balance FROM account WHERE id = 14)
 WHERE  id = (SELECT associated_account_id FROM "OwnerAsAc-AsAc" WHERE id = 8);
 
--- e) Comprobar que la actualización se ha realizado
+-- e)
 SELECT id, balance
 FROM   account
 WHERE  id = 14
    OR  id = (SELECT associated_account_id FROM "OwnerAsAc-AsAc" WHERE id = 8);
 
--- f) Decrementar X con el doble de su saldo -> salta TRG_DESCUBIERTO
+-- f)
 UPDATE account
 SET    balance = balance - 2 * balance
 WHERE  id = 14;
 
--- Ver qué ha quedado
 SELECT id, balance
 FROM   account
 WHERE  id = 14
@@ -124,7 +81,6 @@ WHERE  id = 14
 
 SELECT * FROM op_d WHERE cod_op = 900;
 
--- ---------------------------------------------------------------------
 -- i) ¿Qué ha ocurrido con X, Y y la operación "D"? ¿Por qué?
 --
 -- El paso f falla: X quedaría en -100 % de su saldo y el disparador lanza
@@ -138,14 +94,10 @@ SELECT * FROM op_d WHERE cod_op = 900;
 -- confirmar, y la BD queda en un estado incoherente: el dinero aparece en
 -- Y sin haber salido de X. Si ahora se hiciera COMMIT, ese estado quedaría
 -- grabado; con ROLLBACK se deshace todo.
--- ---------------------------------------------------------------------
 
-ROLLBACK;     -- deshacer la prueba
+ROLLBACK;
 
-
--- =====================================================================
--- ii) Repetir el proceso con un COMMIT justo antes del paso f
--- =====================================================================
+-- ii)
 COMMIT;
 
 INSERT INTO operation (cod_op, "date", "Cli-Acc_id")
@@ -168,13 +120,13 @@ FROM   account
 WHERE  id = 14
    OR  id = (SELECT associated_account_id FROM "OwnerAsAc-AsAc" WHERE id = 8);
 
-COMMIT;       -- confirma los pasos b-e
+COMMIT;
 
-UPDATE account                 -- f) -> ORA-20000
+UPDATE account
 SET    balance = balance - 2 * balance
 WHERE  id = 14;
 
-ROLLBACK;     -- ya no deshace nada: b-e están confirmados
+ROLLBACK;
 
 SELECT id, balance
 FROM   account
@@ -183,7 +135,6 @@ WHERE  id = 14
 
 SELECT * FROM op_d WHERE cod_op = 900;
 
--- ---------------------------------------------------------------------
 -- ii) ¿Obtienes el mismo resultado? ¿Por qué?
 --
 -- Se ve lo mismo que en i): la operación D insertada, Y incrementada y X
@@ -193,9 +144,7 @@ SELECT * FROM op_d WHERE cod_op = 900;
 -- puede ya deshacer los pasos confirmados, de modo que la incoherencia
 -- (dinero en Y que no ha salido de X) queda grabada en la BD.
 -- El COMMIT parte en dos lo que debería ser una única unidad de trabajo.
--- ---------------------------------------------------------------------
 
--- Limpieza: operación compensatoria para dejar los datos como estaban
 UPDATE account
 SET    balance = balance - (SELECT amount FROM op_d WHERE cod_op = 900)
 WHERE  id = (SELECT associated_account_id FROM "OwnerAsAc-AsAc" WHERE id = 8);
@@ -204,13 +153,7 @@ DELETE FROM op_d      WHERE cod_op = 900;
 DELETE FROM operation WHERE cod_op = 900;
 COMMIT;
 
-
--- =====================================================================
--- iii) Repetir el proceso desde el paso b dentro de un bloque PL/SQL
--- Para ver los mensajes:
---   DataGrip: activar DBMS_OUTPUT con el botón de la barra de la consola
---   SQL Developer / SQL*Plus: SET SERVEROUTPUT ON
--- =====================================================================
+-- iii)
 COMMIT;
 
 DECLARE
@@ -224,30 +167,29 @@ BEGIN
     SELECT associated_account_id INTO v_y FROM "OwnerAsAc-AsAc" WHERE id = v_oa;
     SELECT 2 * balance INTO v_importe FROM account WHERE id = v_x;
 
-    -- b) Insertar la operación D
+    -- b)
     INSERT INTO operation (cod_op, "date", "Cli-Acc_id")
     VALUES (900, SYSDATE, (SELECT MIN(id) FROM "Cli-Acc" WHERE ing_account_id = v_x));
 
     INSERT INTO op_d (cod_op, amount, periodicity, "OwnerAsAc-AsAc_id")
     VALUES (900, v_importe, 'once', v_oa);
 
-    -- c) Comprobar la inserción
+    -- c)
     SELECT COUNT(*) INTO v_n FROM op_d WHERE cod_op = 900;
     DBMS_OUTPUT.PUT_LINE('Operaciones D insertadas: ' || v_n);
 
-    -- d) Incrementar Y
+    -- d)
     UPDATE account SET balance = balance + v_importe WHERE id = v_y;
 
-    -- e) Comprobar la actualización
+    -- e)
     SELECT balance INTO v_saldo_y FROM account WHERE id = v_y;
     DBMS_OUTPUT.PUT_LINE('Nuevo saldo de Y: ' || v_saldo_y);
 
-    -- f) Decrementar X -> ORA-20000
+    -- f)
     UPDATE account SET balance = balance - v_importe WHERE id = v_x;
 END;
 /
 
--- Ver qué ha quedado
 SELECT id, balance
 FROM   account
 WHERE  id = 14
@@ -255,7 +197,6 @@ WHERE  id = 14
 
 SELECT * FROM op_d WHERE cod_op = 900;
 
--- ---------------------------------------------------------------------
 -- iii) ¿Obtienes el mismo resultado? ¿Por qué?
 --
 -- No. Ahora no queda nada: ni la operación D, ni el ingreso en Y, ni
@@ -270,12 +211,9 @@ SELECT * FROM op_d WHERE cod_op = 900;
 -- y los pasos b-d SÍ se mantendrían. Para capturar excepciones y conservar
 -- la atomicidad se pone un SAVEPOINT al principio del bloque y un
 -- ROLLBACK TO SAVEPOINT en el manejador de la excepción.
--- ---------------------------------------------------------------------
 
 ROLLBACK;
 
-
--- ---------------------------------------------------------------------
 -- iv) ¿Es indispensable crear un disparador para realizar esta
 --     comprobación de integridad? Justifica la respuesta.
 --
@@ -303,4 +241,3 @@ ROLLBACK;
 --   sea coherente: como se ve en i) y ii), también hace falta tratar la
 --   transferencia como una transacción atómica (bloque PL/SQL o ROLLBACK
 --   ante el error).
--- ---------------------------------------------------------------------
