@@ -13,17 +13,18 @@ else
 	exit 1
 fi
 
-while read linea;do
+while IFS= read -r linea;do
 	uid=$(echo "${linea}" | cut -d: -f3)
-	if [[ ${1} = ${uid} ]];then
+	if [[ ${1} -eq ${uid} ]];then
 		echo "Existe un usuario cuyo UID sea ${uid}"
 		gid=$(echo "${linea}" | cut -d: -f4)
-		if [[ ${uid} = ${gid} ]];then
+		if [[ ${uid} -eq ${gid} ]];then
 			echo "Tienen el mismo UID (${uid}) y el mismo GID  (${gid})"
 		else
 			echo "No tienen el midmo UID (${uid}) y el mismo GID (${gid})"
 		fi
+		exit 0
 	fi
 done < /etc/passwd
-
+echo "No existe ningun usuario con UID ${1}"
 exit 0
